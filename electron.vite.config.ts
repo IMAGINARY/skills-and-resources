@@ -12,6 +12,9 @@ export default defineConfig({
           format: "cjs",
         },
       },
+      externalizeDeps: {
+        exclude: ["@tockawa/nfc-pcsc"],
+      },
     },
   },
   renderer: {

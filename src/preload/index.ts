@@ -1,18 +1,18 @@
-import { contextBridge } from "electron";
+import { strict as assert } from "node:assert";
 
-// Custom APIs for renderer
-const api = {};
+// TODO: Patch @pokusew/nfc-pcsc according to https://hirok.io/posts/package-json-exports#targeting-node-js-esm-cjs-and-type-script
+import PCSC from "@tockawa/nfc-pcsc";
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
-if (process.contextIsolated) {
-  try {
-    contextBridge.exposeInMainWorld("api", api);
-  } catch (error) {
-    console.error(error);
-  }
-} else {
-  // @ts-ignore (define in dts)
-  window.api = api;
-}
+import type { PreloadApi } from "./types";
+
+assert(!process.contextIsolated, "contextIsolation must be disabled");
+
+let nfc = null;
+const api: PreloadApi = {
+  get nfc() {
+    return nfc ?? (nfc = new PCSC());
+  },
+};
+
+// @ts-ignore (define in dts)
+window.api = api;

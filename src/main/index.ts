@@ -8,6 +8,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
+      sandbox: false, // required for native modules in preload scripts
+      contextIsolation: false, // required for passing classes and functions from preload to renderer
       preload: path.join(__dirname, "../preload/index.cjs"),
     },
   });
