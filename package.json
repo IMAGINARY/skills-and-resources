@@ -5,8 +5,7 @@
   "type": "module",
   "main": "./out/main/index.js",
   "scripts": {
-    "install": "npm install --ignore-scripts && patch-package",
-    "postinstall": "electron-rebuild",
+    "postinstall": "patch-package && electron-rebuild && ./scripts/fix-electron-suid-sandbox",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
@@ -44,6 +43,6 @@
     "vue-tsc": "^3.2.2"
   },
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": ">=20.20.0 <21"
   }
 }
