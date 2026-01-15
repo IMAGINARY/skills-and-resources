@@ -1,0 +1,52 @@
+#!/usr/bin/bash
+# The order of smartcard reader devices in pcscd depend on the order they have been
+# detected by the OS. During boot, small differences in the duration devices need for
+# initialization may therefore result in varying device orders across reboots.
+#
+# This scripts unbinds all smartcard readers currently connected to the system and rebinds
+# them one after the other in sorted order (according to their path in sysfs).
+
+echo "Ensuring deterministic indexing of smartcard readers"
+
+echo
+echo "The following smartcard readers are present in the system:"
+mapfile -t DEVICES < <(udevadm info --export-db --property-match=ID_SMARTCARD_READER=1 | grep "^E: DEVPATH=" | sed -r 's/^E: DEVPATH=(.*)$/\/sys\1/' | sort)
+echo "${DEVICES[@]}"
+
+echo
+echo "Unbinding all joysticks ..."
+# Unbind all joysticks in sorted order
+# Sort the devices by their sysfs path and store the driver path in an associative array
+declare -A DRIVERS
+declare -A DEVICE_IDS
+for DEVICE in "${DEVICES[@]}"; do
+  echo -n "  Unbinding $DEVICE "
+  DEVICE_ID="$(basename "$DEVICE")"
+  DRIVER="$(readlink -f "$DEVICE"/driver)"
+  DRIVER_NAME="$(basename "$DRIVER")"
+  DRIVERS["$DEVICE"]="$DRIVER"
+  DEVICE_IDS["$DEVICE"]="$DEVICE_ID"
+  echo "(Driver: $DRIVER_NAME, Device ID: $DEVICE_ID)"
+
+  echo "$DEVICE_ID" >"$DRIVER/unbind"
+  while [ -d "$DEVICE/driver" ]; do
+    sleep 0.01s
+  done
+done
+
+echo
+echo "Re-binding the devices in sorted order ..."
+for DEVICE in "${DEVICES[@]}"; do
+  DEVICE_ID="${DEVICE_IDS[$DEVICE]}"
+  DRIVER="${DRIVERS[$DEVICE]}"
+  DRIVER_NAME="$(basename "$DRIVER")"
+  echo "  Binding $DEVICE (Driver: $DRIVER_NAME, Device ID: $DEVICE_ID)"
+  echo "$DEVICE_ID" >"$DRIVER/bind"
+  while ! [ -d "$DEVICE/driver" ]; do
+    sleep 0.01s
+  done
+  # Delay is necessary, because pcscd is slow at initializing devices
+  sleep 1s
+done
+
+echo "Done"
