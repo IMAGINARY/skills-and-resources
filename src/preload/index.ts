@@ -1,23 +1,29 @@
 import { strict as assert } from "node:assert";
-import PCSC from "@tockawa/nfc-pcsc";
+import PCSC, { Reader } from "@tockawa/nfc-pcsc";
 
 import type { PreloadApi } from "./types";
 
 assert(!process.contextIsolated, "contextIsolation must be disabled");
 
+const nfcReaders = new Set<Reader>();
+
 function constructNfc() {
   const nfc = new PCSC();
+  nfc.on("reader", (reader) => {
+    nfcReaders.add(reader);
+    reader.once("end", (reader) => nfcReaders.delete(reader));
+  });
   window.addEventListener("unload", () => destructNfc(nfc));
   return nfc;
 }
 
 function destructNfc(nfc) {
   // failing to close readers and the nfc instance will cause the renderer process to crash upon reload
-  Object.values(nfc.readers).forEach((reader) => reader.close());
+  nfcReaders.values().forEach((reader) => reader.close());
   nfc.close();
 }
 
-let nfc = null;
+let nfc: PCSC | null = null;
 const api: PreloadApi = {
   get nfc() {
     return nfc ?? (nfc = constructNfc());
