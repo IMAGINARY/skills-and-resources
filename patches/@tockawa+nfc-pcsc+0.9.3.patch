@@ -1,0 +1,14 @@
+diff --git a/node_modules/@tockawa/nfc-pcsc/package.json b/node_modules/@tockawa/nfc-pcsc/package.json
+index 7c829d3..82e4874 100644
+--- a/node_modules/@tockawa/nfc-pcsc/package.json
++++ b/node_modules/@tockawa/nfc-pcsc/package.json
+@@ -8,7 +8,8 @@
+ 	"exports": {
+ 		".": {
+ 			"import": "./dist/esm/src/index.mjs",
+-			"require": "./dist/commonjs/src/index.js"
++			"require": "./dist/commonjs/src/index.js",
++			"types": "./dist/types/src/index.d.ts"
+ 		},
+ 		"./package.json": "./package.json"
+ 	},
