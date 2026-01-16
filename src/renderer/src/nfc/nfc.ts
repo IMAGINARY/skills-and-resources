@@ -1,3 +1,5 @@
+import * as errcodes from "./pcsclite-error-codes";
+
 export function useNFC() {
   const nfc = window.api.nfc;
 
@@ -33,7 +35,18 @@ export function useNFC() {
     });
 
     reader.on("error", (err) => {
-      console.error(`reader error on ${reader.name}`, err);
+      const matches = /.*\((?<id>0x[0-9a-f]+)\)$/.exec(err);
+      const errorCode = Number.parseInt(matches?.groups?.id ?? "-1", 16);
+      switch (errorCode) {
+        case errcodes.SCARD_E_SHARING_VIOLATION:
+          console.warn(`${err}\nPlease remove the card from the reader and try again.`);
+          break;
+        case errcodes.SCARD_E_NO_SMARTCARD:
+          console.warn(`${err}\nPlease reconnect the card to the reader.`);
+          break;
+        default:
+          console.error(`reader error on ${reader.name}`, err);
+      }
     });
 
     reader.on("end", () => {
