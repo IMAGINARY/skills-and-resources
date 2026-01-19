@@ -1,5 +1,5 @@
 import { TokenReader } from "@renderer/token-reader/token-reader";
-import * as errorCodes from "@renderer/token-reader/pcsclite-error-codes";
+import { PscliteErrorCodes } from "@renderer/token-reader/pcsclite-error-codes";
 
 import type { Reader as NFCReader } from "@tockawa/nfc-pcsc";
 import type NFC from "@tockawa/nfc-pcsc";
@@ -43,10 +43,10 @@ function handleReaderError(reader, error: Error) {
   try {
     const { code } = parseErrorMessages(error.message);
     switch (code) {
-      case errorCodes.SCARD_E_SHARING_VIOLATION:
+      case PscliteErrorCodes.SCARD_E_SHARING_VIOLATION:
         console.warn(`${error}\nPlease remove the card from the reader and try again.`);
         break;
-      case errorCodes.SCARD_E_NO_SMARTCARD:
+      case PscliteErrorCodes.SCARD_E_NO_SMARTCARD:
         console.warn(`${error}\nPlease reconnect the card to the reader.`);
         break;
       default:
