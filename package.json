@@ -22,6 +22,7 @@
     "@tockawa/nfc-pcsc": "^0.9.3",
     "nan": "^2.24.0",
     "pinia": "^3.0.4",
+    "typed-emitter": "^2.1.0",
     "vue": "^3.5.26"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "patch-package": "^8.0.1",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
+    "vite-plugin-node-polyfills": "^0.25.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vue-tsc": "^3.2.2"
   },
