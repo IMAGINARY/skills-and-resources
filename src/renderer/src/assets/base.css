@@ -1,6 +1,10 @@
 /* semantic variables for this project */
 :root {
+  --page-background-color: #4f4f4f;
+  --app-background-color: #222222;
+  --app-text-color: #ffffff;
 }
 
 body {
+  background-color: var(--page-background-color);
 }

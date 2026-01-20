@@ -2,3 +2,10 @@
 
 #app {
 }
+
+.full-hd-v-box {
+  min-width: 1080px;
+  max-width: 1080px;
+  min-height: 1920px;
+  max-height: 1920px;
+}
