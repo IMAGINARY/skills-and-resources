@@ -1,20 +1,10 @@
-import { computed } from "vue";
 import { defineStore } from "pinia";
 
-export type Options = {
-  challengeNfcReaderName: string;
-  inventoryNfcReaderName: string;
-};
-
-export type ReadonlyOptions = Readonly<Options>;
-
-const options: ReadonlyOptions = {
-  challengeNfcReaderName: "ACS ACR122U PICC Interface",
-  inventoryNfcReaderName: "ACS ACR122U PICC Interface 01",
-};
+import type { Options } from "@renderer/options/options";
 
 export const useOptionsStore = defineStore("options", () => {
-  const config = computed(() => options);
-
-  return { config };
+  // Dummy state that is overwritten by a pinia plugin in main.ts
+  // Is there a more elegant way to do this and still preserve type safety?
+  const options = undefined as unknown as Options;
+  return { options };
 });

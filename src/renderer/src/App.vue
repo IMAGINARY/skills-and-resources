@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
+import { useTokenState } from "@renderer/composables/token-state";
+import { useOptionsStore } from "@renderer/stores/options";
 
-import { useCharacterAssignmentStore } from "@renderer/stores/character-assignment";
-
-const characterAssignmentStore = useCharacterAssignmentStore();
-const { challenge, inventory } = storeToRefs(characterAssignmentStore);
+const optionStore = useOptionsStore();
+const { options } = optionStore;
+const { tokenState: challenge } = useTokenState(options.nfc.readerNames.challenge);
+const { tokenState: inventory } = useTokenState(options.nfc.readerNames.inventory);
 </script>
 
 <template>

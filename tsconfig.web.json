@@ -11,6 +11,7 @@
     "baseUrl": ".",
     "paths": {
       "@renderer/*": ["src/renderer/src/*"]
-    }
+    },
+    "types": ["@modyfi/vite-plugin-yaml/modules"]
   }
 }

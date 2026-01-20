@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "electron-vite";
+import viteYaml from "@modyfi/vite-plugin-yaml";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
@@ -24,6 +25,6 @@ export default defineConfig({
         "@renderer": resolve("src/renderer/src"),
       },
     },
-    plugins: [vue(), vueDevTools(), nodePolyfills({ include: ["events"] })],
+    plugins: [viteYaml(), vue(), vueDevTools(), nodePolyfills({ include: ["events"] })],
   },
 });
