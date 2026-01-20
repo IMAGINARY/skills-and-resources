@@ -2,7 +2,9 @@ import EventEmitter from "events";
 
 import type TypedEmitter from "typed-emitter";
 
-export type TokenId = NonNullable<string>;
+export type TokenId = string;
+export type TokenClass = string;
+export type Token = { id: TokenId; class: TokenClass };
 
 export type TokenReaderEvents = {
   update: () => void;
@@ -13,5 +15,5 @@ export abstract class TokenReader extends (EventEmitter as new () => TypedEmitte
     super();
   }
 
-  public abstract get currentToken(): TokenId | null;
+  public abstract get currentToken(): Readonly<Token> | null;
 }

@@ -1,9 +1,11 @@
 import { TokenReader } from "@renderer/token-reader/token-reader";
 import { PscliteErrorCodes } from "@renderer/token-reader/pcsclite-error-codes";
 
+import { CapabilityContainer } from "@johntalton/ndef";
+
 import type { Reader as NFCReader } from "@tockawa/nfc-pcsc";
 import type NFC from "@tockawa/nfc-pcsc";
-import type { TokenId } from "@renderer/token-reader/token-reader";
+import type { Token } from "@renderer/token-reader/token-reader";
 
 // TODO: make code datatype an enum. See https://www.typescriptlang.org/docs/handbook/enums.html
 type PCSCLiteError = { message: string; functionName: string; code: number };
@@ -60,7 +62,7 @@ function handleReaderError(reader, error: Error) {
 export class TokenReaderNFC extends TokenReader {
   static nfc: NFC | null = null;
 
-  protected id: TokenId | null = null;
+  protected token: Token | null = null;
 
   constructor(readerName: string) {
     super();
@@ -74,20 +76,52 @@ export class TokenReaderNFC extends TokenReader {
           console.log(`${reader.name} reader disconnected.`, reader);
         });
 
-        reader.on("card", (card) => {
-          // TODO: handle case where card.uuid is undefined
+        reader.on("card", async (card) => {
+          // TODO: handle case where card.uid is undefined
           console.log(`${card.uid} appeared on reader ${reader.name}`);
-          this.id = card.uid ?? null;
-          this.emit("update");
+
+          if (!card.uid)
+            // TODO: notify user
+            return;
+
+          // a data page is 4 bytes long
+          // data page 00: UUID
+          // data page 01: UUID
+          // data page 02: BCC1/INT./LOCK0-LOCK1
+          // data page 03: 4 byte Capability Container (CC)
+          // data page 04: Type Length Value (TLV): 1st byte: 0x03 (NDEF type), 2nd byte: length of NDEF message, 3rd & 4th byte: either extended length or NDEF data
+          //
+          // Password protect NTAG21x tag using NFC Tools (make read-only):
+          // https://www.youtube.com/watch?v=rDgQgOpm8g8
+
+          const ccLength = 4;
+          const maxTlvLength = 4;
+          // TODO: define reasonable limits for NDEF message size (must be safe for NTAG 213)
+          const maxNdefMessageLength = 80;
+          const length = ccLength + maxTlvLength + maxNdefMessageLength;
+          const bytes = await reader.read(3, length);
+          const cc = CapabilityContainer.decode(bytes);
+
+          if (cc.message.records.length <= 1)
+            // TODO: notify user
+            return;
+
+          const { recordType, data } = cc.message.records[0];
+          if (recordType === "text") {
+            const decoder = new TextDecoder();
+            const cls = decoder.decode(data);
+            this.token = { id: card.uid, class: cls };
+            this.emit("update");
+          }
         });
 
         reader.on("card.off", (card) => {
-          console.log(`${card.uid} disappeared from reader ${reader.name}`);
-          if (this.id === card.uid) {
+          console.log(`${card.uid} disappeared from reader ${reader.name}`, card);
+          if (this.token !== null && this.token.id === card.uid) {
             // Some card readers seem able to connect to several cards simultaneously.
             // Ignore the event if the card that just disappeared is not the one we are currently
             // tracking.
-            this.id = null;
+            this.token = null;
             this.emit("update");
           }
         });
@@ -99,8 +133,8 @@ export class TokenReaderNFC extends TokenReader {
     });
   }
 
-  public get currentToken(): TokenId | null {
-    return this.id;
+  public get currentToken(): Readonly<Token> | null {
+    return this.token;
   }
 
   protected static getNFC(): NFC {
