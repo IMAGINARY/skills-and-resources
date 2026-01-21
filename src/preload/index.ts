@@ -28,6 +28,18 @@ const api: PreloadApi = {
   get nfc() {
     return nfc ?? (nfc = constructNfc());
   },
+  options: {
+    languages: {
+      primary: process.env["SR_LANG_1"] ?? "en",
+      secondary: process.env["SR_LANG_2"] ?? "de",
+    },
+    nfc: {
+      readers: {
+        challenge: new RegExp(process.env["SR_NFC_READER_REGEX_1"] ?? ".* PICC .*(?<!01)$"),
+        inventory: new RegExp(process.env["SR_NFC_READER_REGEX_2"] ?? ".* PICC .* 01$"),
+      },
+    },
+  },
 };
 
 // @ts-ignore (define in dts)

@@ -3,8 +3,8 @@ import { TokenReaderNFC, TokenStateNFC } from "@renderer/token-reader/token-read
 
 import type { Ref } from "vue";
 
-export function useTokenState(nfcReaderName: string): { tokenState: Ref<TokenStateNFC> } {
-  const nfcTokenReader = new TokenReaderNFC(nfcReaderName);
+export function useTokenState(nfcReaderRegExp: RegExp): { tokenState: Ref<TokenStateNFC> } {
+  const nfcTokenReader = new TokenReaderNFC(nfcReaderRegExp);
   const tokenState = ref<TokenStateNFC>(nfcTokenReader.currentToken);
 
   const callback = () => {

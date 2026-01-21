@@ -78,11 +78,11 @@ export class TokenReaderNFC extends TokenReader<TokenStateNFC> {
 
   protected token: TokenStateNFC = { state: TokenStateType.ABSENT };
 
-  constructor(readerName: string) {
+  constructor(readerNameRegexp: RegExp) {
     super();
     const nfc = TokenReaderNFC.getNFC();
     nfc.on("reader", async (reader: NFCReader) => {
-      if (reader.name === readerName) {
+      if (readerNameRegexp.test(reader.name)) {
         console.log(`${reader.name} reader connected.`, reader);
 
         await TokenReaderNFC.applySettings(reader);

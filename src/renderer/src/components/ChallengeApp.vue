@@ -3,7 +3,7 @@ import { useTokenState } from "@renderer/composables/token-state";
 import { useOptionsStore } from "@renderer/stores/options";
 
 const { options } = useOptionsStore();
-const { tokenState } = useTokenState(options.nfc.readerNames.challenge);
+const { tokenState } = useTokenState(options.nfc.readers.challenge);
 </script>
 
 <template>
