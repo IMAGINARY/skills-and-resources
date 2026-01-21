@@ -2,6 +2,10 @@ import type { DeepReadonly } from "vue";
 import options from "@renderer/options/options.yaml";
 
 export type MutableOptions = {
+  languages: {
+    primary: string;
+    secondary: string;
+  };
   nfc: {
     readerNames: {
       challenge: string;
