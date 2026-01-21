@@ -25,6 +25,6 @@ export default defineConfig({
         "@renderer": resolve("src/renderer/src"),
       },
     },
-    plugins: [viteYaml(), vue(), vueDevTools(), nodePolyfills({ include: ["events"] })],
+    plugins: [viteYaml(), vue(), vueDevTools(), nodePolyfills({ include: ["events", "assert"] })],
   },
 });

@@ -1,10 +1,14 @@
-import { defineStore } from "pinia";
-
 import type { Options } from "@renderer/options/options";
 
+import { inject } from "vue";
+import { defineStore } from "pinia";
+import { strict as assert } from "assert";
+
+import { OPTIONS_INJECTION_KEY } from "@renderer/constants";
+
 export const useOptionsStore = defineStore("options", () => {
-  // Dummy state that is overwritten by a pinia plugin in main.ts
-  // Is there a more elegant way to do this and still preserve type safety?
-  const options = undefined as unknown as Options;
+  const options = inject<Options | null>(OPTIONS_INJECTION_KEY, null);
+  assert(options);
+
   return { options };
 });

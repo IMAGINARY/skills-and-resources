@@ -1,0 +1,156 @@
+apps:
+  challenge:
+    title:
+      en: Challenge
+      de: Herausforderung
+    description:
+      en: Select a challenge and start playing!
+      de: Wähle eine Herausforderung aus und spiele!
+  inventory:
+    title:
+      en: Inventory
+      de: Inventar
+    description:
+      en: Change the skills and resources of your character.
+      de: Verändere die Fähigkeiten und Ressourcen deines Charakters.
+
+properties:
+  - id: property_1
+    ui:
+      title:
+        en: property_title_1_en
+        de: property_title_1_de
+      description:
+        en: property_description_1_en
+        de: property_description_1_de
+      icon: ☀️
+  - id: property_2
+    ui:
+      title:
+        en: property_title_2_en
+        de: property_title_2_de
+      description:
+        en: property_description_2_en
+        de: property_description_2_de
+      icon: 🌧️
+  - id: property_3
+    ui:
+      title:
+        en: property_title_3_en
+        de: property_title_3_de
+      description:
+        en: property_description_3_en
+        de: property_description_3_de
+      icon: ❄️
+  - id: property_4
+    ui:
+      title:
+        en: property_title_4_en
+        de: property_title_4_de
+      description:
+        en: property_description_4_en
+        de: property_description_4_de
+      icon: 🌲
+
+items:
+  - id: item_1
+    type: skill
+    providedProperties:
+      - property_1
+    ui:
+      title:
+        en: item_title_1_en
+        de: item_title_1_de
+      description:
+        en: item_description_1_en
+        de: item_description_1_de
+      icon: 🔦
+  - id: item_2
+    type: resource
+    providedProperties:
+      - property_2
+    ui:
+      title:
+        en: item_title_2_en
+        de: item_title_2_de
+      description:
+        en: item_description_2_en
+        de: item_description_2_de
+      icon: 🔥
+  - id: item_3
+    type: resource
+    providedProperties:
+      - property_3
+    ui:
+      title:
+        en: item_title_3_en
+        de: item_title_3_de
+      description:
+        en: item_description_3_en
+        de: item_description_3_de
+      icon: 🔥
+  - id: item_4
+    type: resource
+    providedProperties:
+      - property_3
+      - property_4
+    ui:
+      title:
+        en: item_title_4_en
+        de: item_title_4_de
+      description:
+        en: item_description_4_en
+        de: item_description_4_de
+      icon: 🍽️
+
+characters:
+  - id: character_1
+    staticItems:
+      - item_1
+      - item_2
+    ui:
+      title:
+        en: character_title_1_en
+        de: character_title_1_de
+      description:
+        en: character_description_1_en
+        de: character_description_1_de
+      icon: 🧑
+  - id: character_2
+    staticItems:
+      - item_3
+      - item_4
+    ui:
+      title:
+        en: character_title_2_en
+        de: character_title_2_de
+      description:
+        en: character_description_2_en
+        de: character_description_2_de
+      icon: 🧛
+
+challenges:
+  - id: challenge_1
+    requiredProperties:
+      - property_1
+      - property_2
+    ui:
+      title:
+        en: challenge_title_1_en
+        de: challenge_title_1_de
+      description:
+        en: challenge_description_1_en
+        de: challenge_description_1_de
+      icon: ⛰️
+  - id: challenge_2
+    requiredProperties:
+      - property_3
+      - property_4
+    ui:
+      title:
+        en: challenge_title_2_en
+        de: challenge_title_2_de
+      description:
+        en: challenge_description_2_en
+        de: challenge_description_2_de
+      icon: ⛵
