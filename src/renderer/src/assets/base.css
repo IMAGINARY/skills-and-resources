@@ -3,8 +3,12 @@
   --page-background-color: #4f4f4f;
   --app-background-color: #222222;
   --app-text-color: #ffffff;
+  --app-base-font-size: 32px;
+  --app-base-font-family: sans-serif;
 }
 
-body {
+html {
   background-color: var(--page-background-color);
+  font-size: var(--app-base-font-size);
+  font-family: var(--app-base-font-family);
 }

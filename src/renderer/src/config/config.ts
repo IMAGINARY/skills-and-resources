@@ -5,45 +5,35 @@ import config from "@renderer/config/config.yaml";
 
 export type I18nRecord = string | Record<string, string>;
 
-export type Property = {
-  id: string;
-  ui: {
-    title: I18nRecord;
-    description: I18nRecord;
-    icon: I18nRecord;
-  };
-};
-
 export type ItemType = "skill" | "resource";
 
 export type Item = {
   id: string;
   type: ItemType;
-  providedProperties: string[];
   ui: {
     title: I18nRecord;
     description: I18nRecord;
-    icon: I18nRecord;
+    icon: string;
   };
 };
 
-export type Character = {
+export type CharacterClass = {
   id: string;
   staticItems: string[];
   ui: {
     title: I18nRecord;
     description: I18nRecord;
-    icon: I18nRecord;
+    icon: string;
   };
 };
 
 export type Challenge = {
   id: string;
-  requiredProperties: string[];
+  solution: string[];
   ui: {
     title: I18nRecord;
     description: I18nRecord;
-    icon: I18nRecord;
+    icon: string;
   };
 };
 
@@ -58,9 +48,8 @@ export type MutableConfig = {
       description: I18nRecord;
     };
   };
-  properties: Property[];
   items: Item[];
-  characters: Character[];
+  characterClasses: CharacterClass[];
   challenges: Challenge[];
 };
 
