@@ -31,6 +31,7 @@ const dynamicItems = computed(() =>
 <template>
   <div v-if="characterClass">
     <div>{{ characterClass.ui.icon }}</div>
+    <div>ID: {{ props.character.id }} Class: {{ props.character.class }}</div>
     <div>{{ t1st(characterClass.ui.title) }}</div>
     <div>{{ t2nd(characterClass.ui.title) }}</div>
     <div>{{ t1st(characterClass.ui.description) }}</div>

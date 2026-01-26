@@ -35,5 +35,15 @@ export const useCharacterStore = defineStore("characters", () => {
     character.dynamicItems = [...dynamicItemIds];
   };
 
-  return { characters, updateClass, updateDynamicItems };
+  const getItems = (characterId: string): string[] => {
+    const character = characters.value.find((i) => i.id === characterId);
+    assert(character); // TODO: Handle this error more gracefully
+
+    const characterClass = config.characterClasses.find(({ id }) => id === character.class);
+    assert(characterClass); // TODO: Handle this error more gracefully
+
+    return [...characterClass.staticItems, ...character.dynamicItems];
+  };
+
+  return { characters, updateClass, updateDynamicItems, getItems };
 });
