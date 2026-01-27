@@ -12,7 +12,7 @@ import { TokenStateType } from "@renderer/token-reader/token-reader";
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
-const { updateClass } = useCharacterStore();
+const { updateType } = useCharacterStore();
 
 const { tokenState } = useTokenState(options.nfc.readers.inventory);
 
@@ -26,7 +26,7 @@ const activeCharacter = computed(() => {
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
     const { token } = tokenState.value;
-    updateClass(token.id, token.class);
+    updateType(token.id, token.class);
   }
 });
 </script>

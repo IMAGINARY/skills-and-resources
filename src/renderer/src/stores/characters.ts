@@ -8,7 +8,7 @@ import { CONFIG_INJECTION_KEY } from "@renderer/constants";
 
 export type Character = {
   readonly id: string;
-  class: string;
+  type: string;
   dynamicItems: string[];
 };
 
@@ -17,15 +17,15 @@ export const useCharacterStore = defineStore("characters", () => {
   assert(config);
 
   const characters = ref(new Array<Character>());
-  const updateClass = (characterId: string, characterClass: string) => {
-    const character = characters.value.find((i) => i.id === characterId) ?? false;
+  const updateType = (id: string, type: string) => {
+    const character = characters.value.find((c) => c.id === id) ?? false;
     if (!character) {
-      const newCharacter: Character = { id: characterId, class: characterClass, dynamicItems: [] };
+      const newCharacter: Character = { id, type, dynamicItems: [] };
       characters.value.push(newCharacter);
       return;
     }
 
-    character.class = characterClass;
+    character.type = type;
   };
 
   const updateDynamicItems = (characterId: string, dynamicItemIds: string[]) => {
@@ -39,11 +39,11 @@ export const useCharacterStore = defineStore("characters", () => {
     const character = characters.value.find((i) => i.id === characterId);
     assert(character); // TODO: Handle this error more gracefully
 
-    const characterClass = config.characterClasses.find(({ id }) => id === character.class);
-    assert(characterClass); // TODO: Handle this error more gracefully
+    const characterType = config.characterTypes.find(({ id }) => id === character.type);
+    assert(characterType); // TODO: Handle this error more gracefully
 
-    return [...characterClass.staticItems, ...character.dynamicItems];
+    return [...characterType.staticItems, ...character.dynamicItems];
   };
 
-  return { characters, updateClass, updateDynamicItems, getItems };
+  return { characters, updateType, updateDynamicItems, getItems };
 });

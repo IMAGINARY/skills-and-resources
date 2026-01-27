@@ -17,7 +17,7 @@ export type Item = {
   };
 };
 
-export type CharacterClass = {
+export type CharacterType = {
   id: string;
   staticItems: string[];
   ui: {
@@ -49,7 +49,7 @@ export type MutableConfig = {
     };
   };
   items: Item[];
-  characterClasses: CharacterClass[];
+  characterTypes: CharacterType[];
   challenges: Challenge[];
 };
 

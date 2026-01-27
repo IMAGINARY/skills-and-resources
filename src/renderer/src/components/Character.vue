@@ -12,12 +12,10 @@ const props = defineProps<{
 
 const { config, t1st, t2nd } = useConfigStore();
 
-const characterClass = computed(() =>
-  config.characterClasses.find(({ id }) => id === props.character.class),
-);
+const type = computed(() => config.characterTypes.find(({ id }) => id === props.character.type));
 const staticItems = computed(
   () =>
-    characterClass.value?.staticItems.map(
+    type.value?.staticItems.map(
       (id) => config.items.find(({ id: itemId }) => itemId === id) ?? false,
     ) ?? [],
 );
@@ -29,13 +27,13 @@ const dynamicItems = computed(() =>
 </script>
 
 <template>
-  <div v-if="characterClass">
-    <div>{{ characterClass.ui.icon }}</div>
-    <div>ID: {{ props.character.id }} Class: {{ props.character.class }}</div>
-    <div>{{ t1st(characterClass.ui.title) }}</div>
-    <div>{{ t2nd(characterClass.ui.title) }}</div>
-    <div>{{ t1st(characterClass.ui.description) }}</div>
-    <div>{{ t2nd(characterClass.ui.description) }}</div>
+  <div v-if="type">
+    <div>{{ type.ui.icon }}</div>
+    <div>ID: {{ props.character.id }} Class: {{ props.character.type }}</div>
+    <div>{{ t1st(type.ui.title) }}</div>
+    <div>{{ t2nd(type.ui.title) }}</div>
+    <div>{{ t1st(type.ui.description) }}</div>
+    <div>{{ t2nd(type.ui.description) }}</div>
     <div>
       <template v-for="item in staticItems">
         <ItemThumbnail v-if="item" :item="item" :key="item.id"></ItemThumbnail>

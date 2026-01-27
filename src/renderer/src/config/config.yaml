@@ -56,7 +56,7 @@ items:
         de: item_description_4_de
       icon: 🍽️
 
-characterClasses:
+characterTypes:
   - id: character_1
     staticItems:
       - item_1

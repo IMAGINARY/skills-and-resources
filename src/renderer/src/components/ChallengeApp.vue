@@ -15,7 +15,7 @@ import Challenge from "@renderer/components/Challenge.vue";
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
-const { updateClass, getItems } = useCharacterStore();
+const { updateType, getItems } = useCharacterStore();
 
 const { tokenState } = useTokenState(options.nfc.readers.challenge);
 
@@ -29,7 +29,7 @@ const activeCharacter = computed(() => {
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
     const { token } = tokenState.value;
-    updateClass(token.id, token.class);
+    updateType(token.id, token.class);
   }
 });
 
