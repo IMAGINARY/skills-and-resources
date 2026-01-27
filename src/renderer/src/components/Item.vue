@@ -7,6 +7,7 @@ import ItemThumbnail from "@renderer/components/ItemThumbnail.vue";
 
 defineProps<{
   item: DeepReadonly<Item>;
+  isStatic: boolean;
 }>();
 
 const { t1st, t2nd } = useConfigStore();

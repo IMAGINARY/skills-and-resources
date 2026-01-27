@@ -38,7 +38,7 @@ watch(tokenState, () => {
       <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
     </div>
     <div class="item-list">
-      <Item v-for="item in config.items" :item="item" :key="item.id"></Item>
+      <Item v-for="item in config.items" :item="item" :key="item.id" :is-static="true"></Item>
     </div>
     <div>Inventory Token: {{ tokenState }}</div>
     <Character
