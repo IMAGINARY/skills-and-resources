@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Challenge as ChallengeConfig } from "@renderer/config/config";
 import type { DeepReadonly } from "vue";
 
 import { computed, watch, ref } from "vue";
@@ -15,31 +14,40 @@ import Challenge from "@renderer/components/Challenge.vue";
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
-const { updateType, getItems } = useCharacterStore();
+const { ensureCharacter } = useCharacterStore();
 
 const { tokenState } = useTokenState(options.nfc.readers.challenge);
 
-const activeCharacter = computed(() => {
-  if (tokenState.value.state !== TokenStateType.PRESENT) return false;
-
-  const presentToken = tokenState.value.token;
-  return characters.value.find(({ id }) => id === presentToken.id) ?? false;
-});
+const activeCharacterId = computed(() =>
+  tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
+);
 
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
     const { token } = tokenState.value;
-    updateType(token.id, token.class);
+    ensureCharacter(token.id, token.class);
   }
 });
 
-const activeChallenge = ref<DeepReadonly<ChallengeConfig> | false>(false);
+const activeChallengeId = ref<string | null>(null);
+
+const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
+  return activeChallengeId.value
+    ? (config.challenges.find(({ id }) => id === activeChallengeId.value)?.solution ?? [])
+    : [];
+});
+
+const availableItemIds = computed<DeepReadonly<string[]>>(() => {
+  return activeCharacterId.value
+    ? (characters.value[activeCharacterId.value]?.inventory
+        .map(({ item }) => item)
+        .filter((i) => i !== null) ?? [])
+    : [];
+});
 
 const challengeSolved = computed<boolean>(() => {
-  if (!activeChallenge.value || !activeCharacter.value) return false;
-
-  const requiredItemSet = new Set(activeChallenge.value.solution);
-  const characterItemSet = new Set(getItems(activeCharacter.value.id));
+  const requiredItemSet = new Set(requiredItemIds.value);
+  const characterItemSet = new Set(availableItemIds.value);
   const remainingItemSet = requiredItemSet.difference(characterItemSet);
   return remainingItemSet.size === 0;
 });
@@ -54,21 +62,17 @@ const challengeSolved = computed<boolean>(() => {
     <div class="challenge-list">
       <Challenge
         v-for="challenge in config.challenges"
-        :challenge="challenge"
+        :challenge-id="challenge.id"
         :key="challenge.id"
-        @click="activeChallenge = challenge"
+        @click="activeChallengeId = challenge.id"
       ></Challenge>
     </div>
-    <div v-if="activeChallenge !== false">
-      <div>Active challenge: {{ activeChallenge.id }}</div>
+    <div v-if="activeChallengeId !== null">
+      <div>Active challenge: {{ activeChallengeId }}</div>
       <div>Solved: {{ challengeSolved }}</div>
     </div>
     <div>Challenge Token: {{ tokenState }}</div>
-    <Character
-      v-if="activeCharacter"
-      :character="activeCharacter"
-      :key="activeCharacter.id"
-    ></Character>
+    <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
   </div>
 </template>
 

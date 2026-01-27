@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
-import { storeToRefs } from "pinia";
 import { useTokenState } from "@renderer/composables/token-state";
 import { useOptionsStore } from "@renderer/stores/options";
 import { useConfigStore } from "@renderer/stores/config";
@@ -11,22 +10,18 @@ import { TokenStateType } from "@renderer/token-reader/token-reader";
 
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
-const { characters } = storeToRefs(useCharacterStore());
-const { updateType } = useCharacterStore();
+const { ensureCharacter } = useCharacterStore();
 
 const { tokenState } = useTokenState(options.nfc.readers.inventory);
 
-const activeCharacter = computed(() => {
-  if (tokenState.value.state !== TokenStateType.PRESENT) return false;
-
-  const presentToken = tokenState.value.token;
-  return characters.value.find(({ id }) => id === presentToken.id) ?? false;
-});
+const activeCharacterId = computed(() =>
+  tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
+);
 
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
     const { token } = tokenState.value;
-    updateType(token.id, token.class);
+    ensureCharacter(token.id, token.class);
   }
 });
 </script>
@@ -38,14 +33,10 @@ watch(tokenState, () => {
       <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
     </div>
     <div class="item-list">
-      <Item v-for="item in config.items" :item="item" :key="item.id" :is-static="true"></Item>
+      <Item v-for="item in config.items" :item-id="item.id" :key="item.id" :is-static="true"></Item>
     </div>
     <div>Inventory Token: {{ tokenState }}</div>
-    <Character
-      v-if="activeCharacter"
-      :character="activeCharacter"
-      :key="activeCharacter.id"
-    ></Character>
+    <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
   </div>
 </template>
 

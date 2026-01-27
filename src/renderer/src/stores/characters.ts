@@ -1,49 +1,79 @@
 import type { Config } from "@renderer/config/config";
 
-import { inject, ref } from "vue";
+import { inject, reactive, toValue } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
-import { CONFIG_INJECTION_KEY } from "@renderer/constants";
+import { CONFIG_INJECTION_KEY, INVENTORY_SIZE } from "@renderer/constants";
+
+export type InventorySlot = {
+  readonly isReadonly: boolean;
+  item: string | null;
+};
 
 export type Character = {
   readonly id: string;
   type: string;
-  dynamicItems: string[];
+  inventory: InventorySlot[];
 };
 
 export const useCharacterStore = defineStore("characters", () => {
   const config = inject<Config | null>(CONFIG_INJECTION_KEY, null);
   assert(config);
 
-  const characters = ref(new Array<Character>());
-  const updateType = (id: string, type: string) => {
-    const character = characters.value.find((c) => c.id === id) ?? false;
-    if (!character) {
-      const newCharacter: Character = { id, type, dynamicItems: [] };
-      characters.value.push(newCharacter);
-      return;
+  const randomCharacterType = () => {
+    assert(config.characterTypes.length > 0);
+    const randomIdx = Math.floor(Math.random() * config.characterTypes.length);
+    return config.characterTypes[randomIdx].id;
+  };
+
+  const createInventory = (type: string): InventorySlot[] => {
+    const staticItems = config.characterTypes.find(({ id }) => id === type)?.staticItems;
+    assert(typeof staticItems !== "undefined");
+    const inventory = (Array<InventorySlot>).from({ length: INVENTORY_SIZE }, (_, i) => {
+      return i < staticItems.length
+        ? { isReadonly: true, item: staticItems[i] }
+        : { isReadonly: false, item: null };
+    });
+    return inventory;
+  };
+
+  const characters = reactive<Record<string, Character>>({});
+
+  const ensureCharacter = (id: string, type: string = randomCharacterType()) => {
+    if (characters[id]) {
+      if (characters[id].type !== type) {
+        characters[id].type = type;
+        characters[id].inventory = createInventory(type);
+      }
+    } else {
+      characters[id] = {
+        id,
+        type: toValue(type),
+        inventory: createInventory(type),
+      };
     }
-
-    character.type = type;
   };
 
-  const updateDynamicItems = (characterId: string, dynamicItemIds: string[]) => {
-    const character = characters.value.find((i) => i.id === characterId);
-    assert(character); // TODO: Handle this error more gracefully
-    // TODO: either remove static items from dynamic items or report an error if they are present in both lists
-    character.dynamicItems = [...dynamicItemIds];
+  const setItem = (characterId: string, slotIndex: number, itemId: string) => {
+    if (
+      characters?.[characterId]?.inventory?.[slotIndex] &&
+      characters?.[characterId]?.inventory?.[slotIndex].isReadonly !== true
+    ) {
+      // Deep reactivity ensures this nested update is tracked
+      characters[characterId].inventory[slotIndex].item = itemId;
+    }
   };
 
-  const getItems = (characterId: string): string[] => {
-    const character = characters.value.find((i) => i.id === characterId);
-    assert(character); // TODO: Handle this error more gracefully
-
-    const characterType = config.characterTypes.find(({ id }) => id === character.type);
-    assert(characterType); // TODO: Handle this error more gracefully
-
-    return [...characterType.staticItems, ...character.dynamicItems];
+  const unsetItem = (characterId: string, slotIndex: number) => {
+    if (
+      characters?.[characterId]?.inventory?.[slotIndex] &&
+      characters?.[characterId]?.inventory?.[slotIndex].isReadonly !== true
+    ) {
+      // Deep reactivity ensures this nested update is tracked
+      characters[characterId].inventory[slotIndex].item = null;
+    }
   };
 
-  return { characters, updateType, updateDynamicItems, getItems };
+  return { characters, ensureCharacter, setItem, unsetItem };
 });

@@ -1,36 +1,34 @@
 <script setup lang="ts">
-import { computed, DeepReadonly } from "vue";
-import type { Challenge } from "@renderer/config/config";
+import { computed } from "vue";
 
 import { useConfigStore } from "@renderer/stores/config";
 import ItemThumbnail from "@renderer/components/ItemThumbnail.vue";
 
 const props = defineProps<{
-  challenge: DeepReadonly<Challenge>;
+  challengeId: string;
 }>();
 
-const { config, t1st, t2nd } = useConfigStore();
+const { challenges, t1st, t2nd } = useConfigStore();
 
-const solution = computed(() =>
-  props.challenge.solution.map(
-    (id) => config.items.find(({ id: itemId }) => itemId === id) ?? false,
-  ),
-);
+const challenge = computed(() => challenges[props.challengeId]);
 </script>
 
 <template>
-  <div>
-    <div>{{ props.challenge.ui.icon }}</div>
-    <div>{{ t1st(props.challenge.ui.title) }}</div>
-    <div>{{ t2nd(props.challenge.ui.title) }}</div>
-    <div>{{ t1st(props.challenge.ui.description) }}</div>
-    <div>{{ t2nd(props.challenge.ui.description) }}</div>
+  <div v-if="challenge">
+    <div>{{ challenge.ui.icon }}</div>
+    <div>{{ t1st(challenge.ui.title) }}</div>
+    <div>{{ t2nd(challenge.ui.title) }}</div>
+    <div>{{ t1st(challenge.ui.description) }}</div>
+    <div>{{ t2nd(challenge.ui.description) }}</div>
     <div>
-      <template v-for="item in solution">
-        <ItemThumbnail v-if="item" :item="item" :key="item.id"></ItemThumbnail>
-      </template>
+      <ItemThumbnail
+        v-for="itemId in challenge.solution"
+        :item-id="itemId"
+        :key="itemId"
+      ></ItemThumbnail>
     </div>
   </div>
+  <div v-else>Unknown challenge</div>
 </template>
 
 <style scoped></style>
