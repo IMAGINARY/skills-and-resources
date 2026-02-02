@@ -2,6 +2,7 @@ import "./assets/main.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import ui from "@nuxt/ui/vue-plugin";
 import App from "./App.vue";
 
 import { OPTIONS_INJECTION_KEY, CONFIG_INJECTION_KEY } from "@renderer/constants";
@@ -12,4 +13,5 @@ const app = createApp(App);
 app.provide(OPTIONS_INJECTION_KEY, await loadOptions());
 app.provide(CONFIG_INJECTION_KEY, await loadConfig());
 app.use(createPinia());
+app.use(ui, { router: () => {} });
 app.mount("#app");

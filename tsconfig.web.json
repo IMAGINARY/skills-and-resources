@@ -4,12 +4,15 @@
     "src/renderer/src/env.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
-    "src/preload/*.d.ts"
+    "src/preload/*.d.ts",
+    "auto-imports.d.ts",
+    "components.d.ts"
   ],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
+      "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
       "@renderer/*": ["src/renderer/src/*"]
     },
     "types": ["@modyfi/vite-plugin-yaml/modules"]
