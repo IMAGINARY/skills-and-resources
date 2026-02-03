@@ -38,6 +38,9 @@ const highlightedItemId = ref<string | null>(null);
       <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
     </div>
     <div class="slideover-container">
+      <div>
+        <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
+      </div>
       <div class="item-list p-4 gap-4">
         <Item
           v-for="item in config.items"
@@ -48,8 +51,6 @@ const highlightedItemId = ref<string | null>(null);
           @click="highlightedItemId = item.id"
         ></Item>
       </div>
-      <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
-
       <USlideover
         v-model:open="slideoverOpen"
         :portal="false"
@@ -92,6 +93,9 @@ const highlightedItemId = ref<string | null>(null);
   position: relative;
   overflow: hidden;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .item-list {
