@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from "vue";
+import { computed, ref, watch } from "vue";
 
 import { useTokenState } from "@renderer/composables/token-state";
 import { useOptionsStore } from "@renderer/stores/options";
@@ -27,21 +27,25 @@ watch(tokenState, () => {
 });
 
 const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.PRESENT);
+
+const highlightedItemId = ref<string | null>(null);
 </script>
 
 <template>
   <div class="full-hd-v-box inventory-app">
-    <div>
+    <div class="text-4xl">
       <h1>{{ t1st(config.apps.inventory.title) }}</h1>
       <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
     </div>
     <div class="slideover-container">
-      <div class="item-list">
+      <div class="item-list p-4 gap-4">
         <Item
           v-for="item in config.items"
           :item-id="item.id"
           :key="item.id"
           :is-static="true"
+          :highlight="highlightedItemId === item.id"
+          @click="highlightedItemId = item.id"
         ></Item>
       </div>
       <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
@@ -63,14 +67,14 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
       >
         <template #body>
           <div class="flex-2"></div>
-          <p class="text-4xl">{{ t1st(config.apps.tokenPrompt) }}</p>
-          <p class="text-3xl mt-4">{{ t2nd(config.apps.tokenPrompt) }}</p>
+          <p class="text-8xl">{{ t1st(config.apps.tokenPrompt) }}</p>
+          <p class="text-6xl mt-8">{{ t2nd(config.apps.tokenPrompt) }}</p>
           <div class="flex-1"></div>
-          <div class="text-center">Inventory Token:<br />{{ tokenState }}</div>
+          <div class="text-center text-3xl">Inventory Token:<br />{{ tokenState }}</div>
           <div class="flex-1"></div>
         </template>
         <template #footer>
-          <UIcon name="i-lucide-arrow-down" class="size-50" />
+          <UIcon name="i-lucide-arrow-down" class="size-100" />
         </template>
       </USlideover>
     </div>
@@ -95,6 +99,6 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
   flex-direction: row;
   overflow: scroll;
   flex-wrap: nowrap;
-  column-gap: 1rem;
+  scroll-behavior: smooth;
 }
 </style>
