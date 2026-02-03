@@ -57,6 +57,46 @@ items:
         en: item_description_4_en
         de: item_description_4_de
       icon: 🍽️
+  - id: item_5
+    type: skill
+    ui:
+      title:
+        en: item_title_5_en
+        de: item_title_5_de
+      description:
+        en: item_description_5_en
+        de: item_description_5_de
+      icon: 🔦
+  - id: item_6
+    type: resource
+    ui:
+      title:
+        en: item_title_6_en
+        de: item_title_6_de
+      description:
+        en: item_description_6_en
+        de: item_description_6_de
+      icon: 🔥
+  - id: item_7
+    type: resource
+    ui:
+      title:
+        en: item_title_7_en
+        de: item_title_7_de
+      description:
+        en: item_description_7_en
+        de: item_description_7_de
+      icon: 🔥
+  - id: item_8
+    type: resource
+    ui:
+      title:
+        en: item_title_8_en
+        de: item_title_8_de
+      description:
+        en: item_description_8_en
+        de: item_description_8_de
+      icon: 🍽️
 
 characterTypes:
   - id: character_1
