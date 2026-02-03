@@ -47,6 +47,7 @@ export type MutableConfig = {
       title: I18nRecord;
       description: I18nRecord;
     };
+    tokenPrompt: I18nRecord;
   };
   items: Item[];
   characterTypes: CharacterType[];

@@ -13,7 +13,9 @@ apps:
     description:
       en: Change the skills and resources of your character.
       de: Verändere die Fähigkeiten und Ressourcen deines Charakters.
-
+  tokenPrompt:
+    en: What are you bringing?
+    de: Was bringst du mit?
 items:
   - id: item_1
     type: skill
