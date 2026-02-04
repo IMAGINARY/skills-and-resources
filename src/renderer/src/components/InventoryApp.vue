@@ -57,6 +57,7 @@ const highlightedItemId = ref<string | null>(null);
         :overlay="true"
         :close="false"
         :dismissible="false"
+        :modal="false"
         side="bottom"
         :ui="{
           overlay: 'absolute inset-0',
