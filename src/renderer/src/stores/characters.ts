@@ -7,8 +7,8 @@ import { strict as assert } from "assert";
 import { CONFIG_INJECTION_KEY, INVENTORY_SIZE } from "@renderer/constants";
 
 export type InventorySlot = {
-  readonly isReadonly: boolean;
-  item: string | null;
+  locked: boolean;
+  itemId: string;
 };
 
 export type Character = {
@@ -30,11 +30,8 @@ export const useCharacterStore = defineStore("characters", () => {
   const createInventory = (type: string): InventorySlot[] => {
     const staticItems = config.characterTypes.find(({ id }) => id === type)?.staticItems;
     assert(typeof staticItems !== "undefined");
-    const inventory = (Array<InventorySlot>).from({ length: INVENTORY_SIZE }, (_, i) => {
-      return i < staticItems.length
-        ? { isReadonly: true, item: staticItems[i] }
-        : { isReadonly: false, item: null };
-    });
+    const inventory = staticItems.map((id) => ({ locked: true, itemId: id }));
+
     return inventory;
   };
 
@@ -55,25 +52,46 @@ export const useCharacterStore = defineStore("characters", () => {
     }
   };
 
-  const setItem = (characterId: string, slotIndex: number, itemId: string) => {
-    if (
-      characters?.[characterId]?.inventory?.[slotIndex] &&
-      characters?.[characterId]?.inventory?.[slotIndex].isReadonly !== true
-    ) {
-      // Deep reactivity ensures this nested update is tracked
-      characters[characterId].inventory[slotIndex].item = itemId;
+  /**
+   * Toggles an item in the character inventory and returns whether it is present after the operation.
+   */
+  const toggleItem = (characterId: string, itemId: string): boolean => {
+    if (!characters?.[characterId]) {
+      ensureCharacter(characterId);
+      return toggleItem(characterId, itemId);
+    }
+
+    const idx = characters[characterId].inventory.findIndex(({ itemId: iid }) => iid == itemId);
+    if (idx === -1) {
+      // try to add the item
+
+      if (characters[characterId].inventory.length >= INVENTORY_SIZE)
+        // no space left
+        return false;
+
+      characters[characterId].inventory.push({ locked: false, itemId: itemId });
+      return true;
+    } else {
+      // try to remove the item
+
+      if (characters[characterId].inventory[idx].locked)
+        // item will be kept because it is locked
+        return true;
+
+      characters[characterId].inventory.splice(idx, 1);
+      return true; // item is absent now
     }
   };
 
-  const unsetItem = (characterId: string, slotIndex: number) => {
-    if (
-      characters?.[characterId]?.inventory?.[slotIndex] &&
-      characters?.[characterId]?.inventory?.[slotIndex].isReadonly !== true
-    ) {
-      // Deep reactivity ensures this nested update is tracked
-      characters[characterId].inventory[slotIndex].item = null;
-    }
+  const hasItem = (characterId: string, itemId: string) => {
+    return characters[characterId]?.inventory.findIndex(({ itemId: iid }) => iid == itemId) !== -1;
   };
 
-  return { characters, ensureCharacter, setItem, unsetItem };
+  const isItemLocked = (characterId: string, itemId: string) => {
+    return (
+      characters[characterId]?.inventory.find(({ itemId: iid }) => iid == itemId)?.locked ?? false
+    );
+  };
+
+  return { characters, ensureCharacter, toggleItem, hasItem, isItemLocked };
 });

@@ -10,6 +10,7 @@ import { useCharacterStore } from "@renderer/stores/characters";
 import Character from "@renderer/components/Character.vue";
 import { TokenStateType } from "@renderer/token-reader/token-reader";
 import Challenge from "@renderer/components/Challenge.vue";
+import { useTap } from "@renderer/composables/use-tap";
 
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
@@ -40,7 +41,7 @@ const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
 const availableItemIds = computed<DeepReadonly<string[]>>(() => {
   return activeCharacterId.value
     ? (characters.value[activeCharacterId.value]?.inventory
-        .map(({ item }) => item)
+        .map(({ itemId }) => itemId)
         .filter((i) => i !== null) ?? [])
     : [];
 });
@@ -64,7 +65,7 @@ const challengeSolved = computed<boolean>(() => {
         v-for="challenge in config.challenges"
         :challenge-id="challenge.id"
         :key="challenge.id"
-        v-touch:tap="() => (activeChallengeId = challenge.id)"
+        v-drag="useTap(() => (activeChallengeId = challenge.id))"
       ></Challenge>
     </div>
     <div v-if="activeChallengeId !== null">

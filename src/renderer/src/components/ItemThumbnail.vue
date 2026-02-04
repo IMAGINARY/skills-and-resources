@@ -12,8 +12,10 @@ const item = computed(() => items[props.itemId]);
 </script>
 
 <template>
-  <span v-if="item">{{ item.ui.icon }}</span>
-  <span v-else>❓</span>
+  <span>
+    <template v-if="item">{{ item.ui.icon }}</template>
+    <template v-else>❓</template>
+  </span>
 </template>
 
 <style scoped></style>

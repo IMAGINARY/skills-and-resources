@@ -8,10 +8,11 @@ import { useCharacterStore } from "@renderer/stores/characters";
 import Item from "@renderer/components/Item.vue";
 import Character from "@renderer/components/Character.vue";
 import { TokenStateType } from "@renderer/token-reader/token-reader";
+import { useTap } from "@renderer/composables/use-tap";
 
 const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
-const { ensureCharacter } = useCharacterStore();
+const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
 
 const { tokenState } = useTokenState(options.nfc.readers.inventory);
 
@@ -27,8 +28,6 @@ watch(tokenState, () => {
 });
 
 const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.PRESENT);
-
-const highlightedItemId = ref<string | null>(null);
 </script>
 
 <template>
@@ -38,18 +37,19 @@ const highlightedItemId = ref<string | null>(null);
       <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
     </div>
     <div class="slideover-container">
-      <div>
-        <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
-      </div>
-      <div class="item-list p-4 gap-4">
-        <Item
-          v-for="item in config.items"
-          :item-id="item.id"
-          :key="item.id"
-          :is-static="true"
-          :highlight="highlightedItemId === item.id"
-          v-touch:tap="() => (highlightedItemId = item.id)"
-        ></Item>
+      <div v-if="activeCharacterId" class="character-inventory">
+        <Character :character-id="activeCharacterId"></Character>
+        <div class="item-list p-4 gap-4">
+          <Item
+            v-for="item in config.items"
+            :item-id="item.id"
+            :key="item.id"
+            :is-static="true"
+            :highlight="activeCharacterId ? hasItem(activeCharacterId, item.id) : false"
+            :locked="activeCharacterId ? isItemLocked(activeCharacterId, item.id) : false"
+            v-drag="useTap(toggleItem.bind(undefined, activeCharacterId, item.id))"
+          ></Item>
+        </div>
       </div>
       <USlideover
         v-model:open="slideoverOpen"
@@ -93,6 +93,13 @@ const highlightedItemId = ref<string | null>(null);
 .slideover-container {
   position: relative;
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.character-inventory {
   flex: 1;
   display: flex;
   flex-direction: column;
