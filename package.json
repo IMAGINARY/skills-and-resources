@@ -27,7 +27,8 @@
     "tailwindcss": "^4.1.18",
     "typed-emitter": "^2.1.0",
     "vue": "^3.5.26",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "vue3-touch-events": "^5.0.15"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^2.0.0",

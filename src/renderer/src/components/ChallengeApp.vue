@@ -64,7 +64,7 @@ const challengeSolved = computed<boolean>(() => {
         v-for="challenge in config.challenges"
         :challenge-id="challenge.id"
         :key="challenge.id"
-        @click="activeChallengeId = challenge.id"
+        v-touch:tap="() => (activeChallengeId = challenge.id)"
       ></Challenge>
     </div>
     <div v-if="activeChallengeId !== null">

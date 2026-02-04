@@ -48,7 +48,7 @@ const highlightedItemId = ref<string | null>(null);
           :key="item.id"
           :is-static="true"
           :highlight="highlightedItemId === item.id"
-          @click="highlightedItemId = item.id"
+          v-touch:tap="() => (highlightedItemId = item.id)"
         ></Item>
       </div>
       <USlideover
