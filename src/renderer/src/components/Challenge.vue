@@ -14,15 +14,15 @@ const challenge = computed(() => challenges[props.challengeId]);
 </script>
 
 <template>
-  <div v-if="challenge">
-    <div>{{ challenge.ui.icon }}</div>
+  <div v-if="challenge" class="text-4xl">
+    <div class="text-[4em]">{{ challenge.ui.icon }}</div>
     <div>{{ t1st(challenge.ui.title) }}</div>
     <div>{{ t2nd(challenge.ui.title) }}</div>
     <div>{{ t1st(challenge.ui.description) }}</div>
     <div>{{ t2nd(challenge.ui.description) }}</div>
-    <div>
+    <div class="text-[2em]">
       <ItemThumbnail
-        v-for="itemId in challenge.solution"
+        v-for="{ id: itemId } in challenge.solution"
         :item-id="itemId"
         :key="itemId"
       ></ItemThumbnail>

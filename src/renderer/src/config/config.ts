@@ -27,12 +27,19 @@ export type CharacterType = {
   };
 };
 
+export type ChallengeItem = {
+  id: string;
+  present: I18nRecord;
+  missing: I18nRecord;
+};
+
 export type Challenge = {
   id: string;
-  solution: string[];
+  solution: ChallengeItem[];
   ui: {
     title: I18nRecord;
     description: I18nRecord;
+    solution: I18nRecord;
     icon: string;
   };
 };
