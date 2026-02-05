@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./out/main/index.js",
   "scripts": {
-    "postinstall": "patch-package && electron-rebuild && ./scripts/fix-electron-suid-sandbox",
+    "postinstall": "patch-package && electron-rebuild && ./tools/fix-electron-suid-sandbox",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
