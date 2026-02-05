@@ -1,13 +1,13 @@
-import { TokenError, TokenReader, TokenStateType } from "@renderer/token-reader/token-reader";
-import { PscliteErrorCodes } from "@renderer/token-reader/pcsclite-error-codes";
+import { TokenError, TokenReader, TokenStateType } from "./token-reader.ts";
+import { PscliteErrorCodes } from "./pcsclite-error-codes.ts";
 
+// @ts-expect-error No type declarations available
 import { CapabilityContainer } from "@johntalton/ndef";
 
-import type NFC from "@tockawa/nfc-pcsc";
-import { Reader as NFCReader } from "@tockawa/nfc-pcsc";
-import type { TokenState } from "@renderer/token-reader/token-reader";
+import type PCSC from "@tockawa/nfc-pcsc";
+import type { Reader as NFCReader } from "@tockawa/nfc-pcsc";
+import type { TokenState } from "./token-reader.js";
 
-// TODO: make code datatype an enum. See https://www.typescriptlang.org/docs/handbook/enums.html
 type PCSCLiteError = { message: string; functionName: string; code: number };
 
 export enum TokenErrorTypeNFC {
@@ -43,19 +43,7 @@ function parseErrorMessages(errorMessage: string): PCSCLiteError {
   throw new Error(`Could not parse PCSCLite message: ${errorMessage}`);
 }
 
-function handleError(error: Error) {
-  try {
-    const { code } = parseErrorMessages(error.message);
-    switch (code) {
-      default:
-        console.error(`NFC error`, error);
-    }
-  } catch (err) {
-    console.error(`Unknown PCSCLite error format`, error, err);
-  }
-}
-
-function handleReaderError(reader, error: Error) {
+function handleReaderError(reader: NFCReader, error: Error) {
   try {
     const { code } = parseErrorMessages(error.message);
     switch (code) {
@@ -74,26 +62,22 @@ function handleReaderError(reader, error: Error) {
 }
 
 export class TokenReaderNFC extends TokenReader<TokenStateNFC> {
-  static nfc: NFC | null = null;
-
   protected token: TokenStateNFC = { state: TokenStateType.ABSENT };
 
-  constructor(readerNameRegexp: RegExp) {
+  constructor(nfc: PCSC, readerName: string) {
     super();
-    const nfc = TokenReaderNFC.getNFC();
     nfc.on("reader", async (reader: NFCReader) => {
-      if (readerNameRegexp.test(reader.name)) {
-        console.log(`${reader.name} reader connected.`, reader);
+      if (reader.name === readerName) {
+        console.log(`${reader.name} reader connected.`);
 
         await TokenReaderNFC.applySettings(reader);
         reader.on("end", () => {
-          console.log(`${reader.name} reader disconnected.`, reader);
+          console.log(`${reader.name} reader disconnected.`);
         });
 
         reader.on("card", async () => this.update({ state: TokenStateType.READING }));
 
         reader.on("card", async (card) => {
-          // TODO: handle case where card.uid is undefined
           console.log(`${card.uid} appeared on reader ${reader.name}`);
 
           if (!card.uid)
@@ -120,7 +104,6 @@ export class TokenReaderNFC extends TokenReader<TokenStateNFC> {
           // TODO: define reasonable limits for NDEF message size (must be safe for NTAG 213)
           const maxNdefMessageLength = 80;
           const length = ccLength + maxTlvLength + maxNdefMessageLength;
-          // TODO: handle reader errors
           try {
             const bytes = await reader.read(3, length);
             this.decode(card.uid, bytes);
@@ -148,7 +131,6 @@ export class TokenReaderNFC extends TokenReader<TokenStateNFC> {
         });
 
         reader.on("error", (err) => {
-          // TODO: handle reader errors
           handleReaderError(reader, err);
         });
       }
@@ -201,17 +183,6 @@ export class TokenReaderNFC extends TokenReader<TokenStateNFC> {
 
   public get currentToken(): Readonly<TokenStateNFC> {
     return this.token;
-  }
-
-  protected static getNFC(): NFC {
-    if (TokenReaderNFC.nfc === null) {
-      const nfc = window.api.nfc;
-      nfc.on("error", handleError);
-      TokenReaderNFC.nfc = nfc;
-      return nfc;
-    }
-
-    return TokenReaderNFC.nfc;
   }
 
   protected static async applySettings(reader: NFCReader) {

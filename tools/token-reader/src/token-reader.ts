@@ -1,7 +1,5 @@
 import EventEmitter from "events";
 
-import type TypedEmitter from "typed-emitter";
-
 export type TokenId = string;
 export type TokenClass = string;
 export type Token = { id: TokenId; class: TokenClass };
@@ -18,7 +16,7 @@ export enum TokenStateType {
   ERROR = "error",
 }
 
-export type TokenState<TE extends TokenError<any, any>> =
+export type TokenState<TE extends TokenError<unknown, unknown>> =
   | { state: TokenStateType.ABSENT }
   | { state: TokenStateType.READING }
   | { state: TokenStateType.PRESENT; token: Token }
@@ -29,11 +27,20 @@ export type TokenReaderEvents = {
 };
 
 export abstract class TokenReader<
-  TS extends TokenState<any>,
-> extends (EventEmitter as new () => TypedEmitter<TokenReaderEvents>) {
+  TS extends TokenState<TokenError<unknown, unknown>>,
+> extends EventEmitter {
   protected constructor() {
     super();
   }
 
   public abstract get currentToken(): Readonly<TS>;
+
+  // Type-safe event methods
+  public override on(event: "update", listener: () => void): this {
+    return super.on(event, listener);
+  }
+
+  public override emit(event: "update"): boolean {
+    return super.emit(event);
+  }
 }

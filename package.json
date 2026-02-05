@@ -14,19 +14,15 @@
     "typecheck": "run-s typecheck:*",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "token-reader": "npm run start --prefix tools/token-reader --"
   },
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
-    "@johntalton/ndef": "^1.0.3",
     "@nuxt/ui": "^4.4.0",
-    "@pokusew/pcsclite": "github:pokusew/node-pcsclite#8100373ef05278b274250695577584fb161dec9b",
-    "@tockawa/nfc-pcsc": "^0.9.3",
     "@vueuse/gesture": "^2.0.0",
-    "nan": "^2.24.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
-    "typed-emitter": "^2.1.0",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4"
   },

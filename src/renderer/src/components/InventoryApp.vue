@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, watch } from "vue";
 
-import { useTokenState } from "@renderer/composables/token-state";
-import { useOptionsStore } from "@renderer/stores/options";
+import { useInventoryTokenState } from "@renderer/composables/token-state";
 import { useConfigStore } from "@renderer/stores/config";
 import { useCharacterStore } from "@renderer/stores/characters";
 import Item from "@renderer/components/Item.vue";
 import Character from "@renderer/components/Character.vue";
-import { TokenStateType } from "@renderer/token-reader/token-reader";
+import { TokenStateType } from "@renderer/types/token";
 import { useTap } from "@renderer/composables/use-tap";
 
-const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
 const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
 
-const { tokenState } = useTokenState(options.nfc.readers.inventory);
+const { tokenState } = useInventoryTokenState();
 
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,

@@ -3,21 +3,19 @@ import type { DeepReadonly } from "vue";
 
 import { computed, watch, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useTokenState } from "@renderer/composables/token-state";
-import { useOptionsStore } from "@renderer/stores/options";
+import { useChallengeTokenState } from "@renderer/composables/token-state";
 import { useConfigStore } from "@renderer/stores/config";
 import { useCharacterStore } from "@renderer/stores/characters";
 import Character from "@renderer/components/Character.vue";
-import { TokenStateType } from "@renderer/token-reader/token-reader";
+import { TokenStateType } from "@renderer/types/token";
 import Challenge from "@renderer/components/Challenge.vue";
 import { useTap } from "@renderer/composables/use-tap";
 
-const { options } = useOptionsStore();
 const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { ensureCharacter } = useCharacterStore();
 
-const { tokenState } = useTokenState(options.nfc.readers.challenge);
+const { tokenState } = useChallengeTokenState();
 
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,

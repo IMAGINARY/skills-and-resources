@@ -1,9 +1,18 @@
 import type { DeepReadonly } from "vue";
+import options from "@renderer/options/options.yaml";
 
-export type MutableOptions = typeof window.api.options;
+// TODO: Create types from schema or vice versa
+
+export type MutableOptions = {
+  languages: {
+    primary: string;
+    secondary: string;
+  };
+};
 
 export type Options = DeepReadonly<MutableOptions>;
 
 export async function loadOptions(): Promise<MutableOptions> {
-  return structuredClone(window.api.options);
+  // TODO: Load options from file(s) at runtime
+  return structuredClone(options as MutableOptions);
 }
