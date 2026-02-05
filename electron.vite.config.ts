@@ -8,18 +8,6 @@ import ui from "@nuxt/ui/vite";
 
 export default defineConfig({
   main: {},
-  preload: {
-    build: {
-      rollupOptions: {
-        output: {
-          format: "cjs",
-        },
-      },
-      externalizeDeps: {
-        exclude: ["@tockawa/nfc-pcsc"],
-      },
-    },
-  },
   renderer: {
     resolve: {
       alias: {
