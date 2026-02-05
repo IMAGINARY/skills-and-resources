@@ -1,6 +1,7 @@
 import { Command } from "@commander-js/extra-typings";
-import { createServer } from "./serve.ts";
-import { listReaders } from "./list.ts";
+import { parseNonNegativeInteger } from "./util";
+import { serve } from "./serve";
+import { list } from "./list";
 
 const program = new Command()
   .name("token-reader")
@@ -10,10 +11,9 @@ const program = new Command()
 program
   .command("list")
   .description("List connected readers and exit")
-  .option("-t, --timeout <ms>", "Scan timeout in milliseconds", "2000")
+  .option("-t, --timeout <ms>", "Scan timeout in milliseconds", parseNonNegativeInteger, 2000)
   .action(async (opts) => {
-    await listReaders(parseInt(opts.timeout, 10));
-    process.exit(0);
+    process.exitCode = await list(opts.timeout);
   });
 
 program
@@ -22,16 +22,9 @@ program
   .requiredOption("-i, --inventory <name>", "Inventory reader name")
   .requiredOption("-c, --challenge <name>", "Challenge reader name")
   .option("-H, --host <host>", "Host to bind", "localhost")
-  .option("-p, --port <port>", "Port to bind", "5375")
-  .action((opts) => {
-    createServer({
-      host: opts.host,
-      port: parseInt(opts.port, 10),
-      readers: {
-        inventory: opts.inventory,
-        challenge: opts.challenge,
-      },
-    });
+  .option("-p, --port <port>", "Port to bind", parseNonNegativeInteger, 5375)
+  .action(async ({ host, port, inventory, challenge }) => {
+    process.exitCode = await serve({ host, port, readers: { inventory, challenge } });
   });
 
 program.parse();

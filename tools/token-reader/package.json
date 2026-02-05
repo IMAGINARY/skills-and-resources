@@ -15,16 +15,16 @@
     "@johntalton/ndef": "^1.0.3",
     "@pokusew/pcsclite": "github:pokusew/node-pcsclite#8100373ef05278b274250695577584fb161dec9b",
     "@tockawa/nfc-pcsc": "^0.9.3",
+    "@types/node": "^24.10.4",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.0.0",
     "typed-emitter": "^2.1.0",
     "ws": "^8.19.0"
   },
   "devDependencies": {
-    "@types/node": "^24.10.4",
-    "@types/ws": "^8.18.1",
     "oxfmt": "^0.24.0",
     "oxlint": "^1.39.0",
     "patch-package": "^8.0.1",
-    "tsx": "^4.0.0",
     "typescript": "~5.9.3"
   },
   "engines": {

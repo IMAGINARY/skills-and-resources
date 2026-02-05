@@ -1,9 +1,9 @@
 import ws from "ws";
-import { initializeNFC, shutdownNFC } from "./pcsc.js";
-import { TokenReaderNFC } from "./token-reader-nfc.js";
+import { initializeNFC, shutdownNFC } from "./pcsc";
+import { TokenReaderNFC } from "./token-reader-nfc";
 
 import type { WebSocketServer as WsServerType, WebSocket as WsClientType } from "ws";
-import type { TokenStateNFC } from "./token-reader-nfc.js";
+import type { TokenStateNFC } from "./token-reader-nfc";
 
 // Handle CJS/ESM interop - access Server from the default export at runtime
 const WebSocketServer = (ws as unknown as { Server: typeof WsServerType }).Server;
@@ -24,7 +24,7 @@ interface StateMessage {
   state: TokenStateNFC;
 }
 
-export function createServer(config: ServerConfig) {
+export async function serve(config: ServerConfig): Promise<number> {
   // Initialize NFC before creating readers
   const pcsc = initializeNFC();
 
@@ -63,26 +63,46 @@ export function createServer(config: ServerConfig) {
   });
 
   // Handle graceful shutdown
-  const shutdown = () => {
-    console.log("Received shutdown signal");
-    wss.close(() => {
-      console.log("WebSocket server closed");
-      shutdownNFC();
-      process.exit(0);
-    });
+  const shutdown = async (): Promise<number> => {
+    shutdownNFC();
+
+    // Initiate WebSocket server shutdown
+    const wssShutdownPromise = new Promise<void>((resolve, reject) =>
+      wss.close((err: unknown) => {
+        if (err) return reject(err);
+        return resolve();
+      }),
+    );
+
+    // Server stopped accepting new connection.
+    // Close existing WebSocket clients.
+    for (const client of wss.clients) client.close(1001);
+
+    // Complete WebSocket server shutdown.
+    await wssShutdownPromise.catch(console.error);
+
+    return 0;
   };
 
-  process.on("SIGINT", shutdown);
-  process.on("SIGTERM", shutdown);
-
   console.log(`Token reader server listening on ws://${config.host}:${config.port}`);
+
+  return await new Promise((resolve) => {
+    const callback = async () => {
+      const exitCode = await shutdown();
+      process.off("SIGINT", callback);
+      process.off("SIGTERM", callback);
+
+      resolve(exitCode);
+    };
+    process.on("SIGINT", callback);
+    process.on("SIGTERM", callback);
+  });
 }
 
 function broadcast(wss: InstanceType<typeof WebSocketServer>, message: StateMessage) {
   const data = JSON.stringify(message);
-  for (const client of wss.clients) {
-    if (client.readyState === ws.OPEN) {
-      client.send(data);
-    }
-  }
+  wss.clients
+    .values()
+    .filter((client) => client.readyState === ws.OPEN)
+    .forEach((client) => client.send(data));
 }

@@ -1,25 +1,24 @@
-import { initializeNFC, shutdownNFC } from "./pcsc.ts";
-import type { NFCReader } from "./pcsc.ts";
+import { initializeNFC, shutdownNFC } from "./pcsc";
+import type { NFCReader } from "./pcsc";
 
-export function listReaders(timeout = 2000): Promise<void> {
-  return new Promise((resolve) => {
-    const pcsc = initializeNFC();
-    const readers: string[] = [];
+export async function list(timeout = 2000): Promise<number> {
+  const pcsc = initializeNFC();
+  let numReaders = 0;
 
-    pcsc.on("reader", (reader: NFCReader) => {
-      readers.push(reader.name);
-      console.log(`  ${reader.name}`);
-    });
+  const newReaderCallback = (reader: NFCReader) => {
+    ++numReaders;
+    console.log(`  ${reader.name}`);
+  };
 
-    console.log("Scanning for readers...\n");
+  pcsc.on("reader", newReaderCallback);
 
-    setTimeout(() => {
-      if (readers.length === 0) {
-        console.log("  No readers found.");
-      }
-      console.log(`\n${readers.length} reader(s) found.`);
-      shutdownNFC();
-      resolve();
-    }, timeout);
-  });
+  console.log("Scanning for readers...\n");
+
+  await new Promise((resolve) => setTimeout(resolve, timeout));
+
+  pcsc.off("reader", newReaderCallback);
+  console.log(`\n${numReaders} reader(s) found.`);
+  shutdownNFC();
+
+  return 0;
 }

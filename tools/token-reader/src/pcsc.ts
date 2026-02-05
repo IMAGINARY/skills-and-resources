@@ -29,7 +29,9 @@ export function initializeNFC(): InstanceType<typeof PCSC> {
 }
 
 export function shutdownNFC(): void {
-  console.log("Shutting down NFC...");
+  // Note: nfc.close() blocks indefinitely, so this function should generally
+  // not be called before process.exit(). It's kept for potential future use
+  // if the underlying library is fixed.
 
   // Close all readers
   for (const reader of nfcReaders) {
@@ -41,7 +43,7 @@ export function shutdownNFC(): void {
   }
   nfcReaders.clear();
 
-  // Close NFC instance
+  // Close NFC instance - WARNING: this blocks indefinitely!
   if (nfc !== null) {
     try {
       nfc.close();
