@@ -13,6 +13,7 @@
   "dependencies": {
     "@commander-js/extra-typings": "^12.0.0",
     "@johntalton/ndef": "^1.0.3",
+    "@mnasyrov/pubsub": "^0.2.4",
     "@pokusew/pcsclite": "github:pokusew/node-pcsclite#8100373ef05278b274250695577584fb161dec9b",
     "@tockawa/nfc-pcsc": "^0.9.3",
     "tsx": "^4.0.0",
