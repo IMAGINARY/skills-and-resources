@@ -1,12 +1,8 @@
-import ws from "ws";
+import { WebSocket, WebSocketServer } from "ws";
 import { initializeNFC, shutdownNFC } from "./pcsc";
 import { TokenReaderNFC } from "./token-reader-nfc";
 
-import type { WebSocketServer as WsServerType, WebSocket as WsClientType } from "ws";
 import type { TokenStateNFC } from "./token-reader-nfc";
-
-// Handle CJS/ESM interop - access Server from the default export at runtime
-const WebSocketServer = (ws as unknown as { Server: typeof WsServerType }).Server;
 
 type ReaderRole = "inventory" | "challenge";
 
@@ -48,7 +44,7 @@ export async function serve(config: ServerConfig): Promise<number> {
   }
 
   // Handle new connections
-  wss.on("connection", (client: WsClientType) => {
+  wss.on("connection", (client: WebSocket) => {
     console.log("Client connected");
 
     // Send current state of all readers
@@ -99,10 +95,9 @@ export async function serve(config: ServerConfig): Promise<number> {
   });
 }
 
-function broadcast(wss: InstanceType<typeof WebSocketServer>, message: StateMessage) {
+function broadcast(wss: WebSocketServer, message: StateMessage) {
   const data = JSON.stringify(message);
-  wss.clients
-    .values()
-    .filter((client) => client.readyState === ws.OPEN)
+  [...wss.clients]
+    .filter((client) => client.readyState === WebSocket.OPEN)
     .forEach((client) => client.send(data));
 }
