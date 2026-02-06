@@ -38,7 +38,7 @@ function formatCharacterDisplay(character: Character | null): string {
 
 function Simulator({ characters, onStateChange }: SimulatorProps) {
   const { exit } = useApp();
-  const [activeReader, setActiveReader] = useState<ReaderRole>("inventory");
+  const [activeReader, setActiveReader] = useState<ReaderRole>("challenge");
   const [inventoryCharacter, setInventoryCharacter] = useState<Character | null>(null);
   const [challengeCharacter, setChallengeCharacter] = useState<Character | null>(null);
 
@@ -103,19 +103,19 @@ function Simulator({ characters, onStateChange }: SimulatorProps) {
       <Text dimColor>─────────────────────────────────────────────────────</Text>
       <Box marginTop={1}>
         <Box flexDirection="column" marginRight={4} width={40}>
-          <Text bold color={activeReader === "inventory" ? "green" : "white"}>
-            {activeReader === "inventory" ? "▶ " : "  "}Inventory
-          </Text>
-          <Text dimColor>
-            {formatCharacterDisplay(inventoryCharacter)}
-          </Text>
-        </Box>
-        <Box flexDirection="column" width={40}>
           <Text bold color={activeReader === "challenge" ? "green" : "white"}>
             {activeReader === "challenge" ? "▶ " : "  "}Challenge
           </Text>
           <Text dimColor>
             {formatCharacterDisplay(challengeCharacter)}
+          </Text>
+        </Box>
+        <Box flexDirection="column" width={40}>
+          <Text bold color={activeReader === "inventory" ? "green" : "white"}>
+            {activeReader === "inventory" ? "▶ " : "  "}Inventory
+          </Text>
+          <Text dimColor>
+            {formatCharacterDisplay(inventoryCharacter)}
           </Text>
         </Box>
       </Box>
