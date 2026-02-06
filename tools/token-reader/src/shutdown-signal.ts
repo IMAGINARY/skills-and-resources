@@ -15,4 +15,4 @@ const appShutdownPromise = new Promise<void>((resolve) => {
   appShutdownSignal.addEventListener("abort", () => resolve(), { once: true });
 });
 
-export { appShutdownSignal, appShutdownPromise };
+export { shutdown, appShutdownSignal, appShutdownPromise };
