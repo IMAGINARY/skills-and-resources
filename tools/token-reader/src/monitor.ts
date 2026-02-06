@@ -29,7 +29,7 @@ async function withConnection(url: URL, onMessage: (msg: unknown) => void): Prom
   let shouldRetry = true;
   let exitCode = 0;
 
-  client.addEventListener("message", (event) => console.log(event.data));
+  client.addEventListener("message", (event) => onMessage(event.data));
 
   try {
     await new Promise<void>((resolve) => {
