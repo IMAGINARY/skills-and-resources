@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted, readonly } from "vue";
+import { ref, onMounted, onUnmounted, readonly, computed } from "vue";
 
 import type { Ref, DeepReadonly } from "vue";
 import type { TokenStateNFC, TokenReaderMessage } from "@renderer/types/token";
@@ -11,8 +11,12 @@ const WS_URL = "ws://localhost:5375";
 // Shared WebSocket connection and state
 let ws: WebSocket | null = null;
 let connectionPromise: Promise<void> | null = null;
-const inventoryState = ref<TokenStateNFC>({ state: TokenStateType.ABSENT });
-const challengeState = ref<TokenStateNFC>({ state: TokenStateType.ABSENT });
+const state = ref<TokenReaderMessage>({
+  inventory: { state: TokenStateType.ABSENT },
+  challenge: { state: TokenStateType.ABSENT },
+});
+const inventoryState = computed(() => state.value.inventory);
+const challengeState = computed(() => state.value.challenge);
 const connectionState = ref<"connecting" | "connected" | "disconnected" | "error">("disconnected");
 let reconnectTimeout: ReturnType<typeof setTimeout> | null = null;
 let subscriberCount = 0;
@@ -34,12 +38,7 @@ function connect(): Promise<void> {
 
     ws.onmessage = (event) => {
       try {
-        const message = JSON.parse(event.data) as TokenReaderMessage;
-        if (message.reader === "inventory") {
-          inventoryState.value = message.state;
-        } else if (message.reader === "challenge") {
-          challengeState.value = message.state;
-        }
+        state.value = JSON.parse(event.data) as TokenReaderMessage; // TODO: Validate instead of typecasting
       } catch (err) {
         console.error("Failed to parse WebSocket message:", err);
       }
@@ -52,8 +51,10 @@ function connect(): Promise<void> {
       console.log("Token reader WebSocket disconnected");
 
       // Reset states to absent on disconnect
-      inventoryState.value = { state: TokenStateType.ABSENT };
-      challengeState.value = { state: TokenStateType.ABSENT };
+      state.value = {
+        inventory: { state: TokenStateType.ABSENT },
+        challenge: { state: TokenStateType.ABSENT },
+      };
 
       // Attempt reconnect if there are still subscribers
       if (subscriberCount > 0 && !reconnectTimeout) {

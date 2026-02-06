@@ -34,7 +34,4 @@ export type TokenStateNFC =
   | { state: TokenStateType.ERROR; error: TokenErrorNFC };
 
 // WebSocket message format from the token-reader server
-export type TokenReaderMessage = {
-  reader: "inventory" | "challenge";
-  state: TokenStateNFC;
-};
+export type TokenReaderMessage = { inventory: TokenStateNFC; challenge: TokenStateNFC };
