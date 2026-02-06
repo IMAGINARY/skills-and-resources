@@ -1,4 +1,5 @@
 import { sleep } from "./util.ts";
+import { appShutdownPromise } from "./shutdown-signal.ts";
 
 export interface MonitorConfig {
   host: string;
@@ -11,7 +12,7 @@ export async function monitor(config: MonitorConfig): Promise<number> {
   const url = new URL(`ws://${host}:${port}`);
 
   do {
-    const { exitCode, shouldRetry } = await connect(url);
+    const { exitCode, shouldRetry } = await withConnection(url, (msg) => console.log(msg));
     if (!retry || !shouldRetry) return exitCode;
 
     await sleep(1000);
@@ -22,44 +23,40 @@ export async function monitor(config: MonitorConfig): Promise<number> {
 
 type ConnectResult = { exitCode: number; shouldRetry: boolean };
 
-function connect(url: URL): Promise<ConnectResult> {
+async function withConnection(url: URL, onMessage: (msg: unknown) => void): Promise<ConnectResult> {
   console.log(`Connecting to ${url}...`);
   const client = new WebSocket(url);
+  let shouldRetry = true;
+  let exitCode = 0;
 
-  return new Promise((resolve) => {
-    let shouldRetry = true;
-    const onOpen = () => console.log("Connected");
-    const onMessage = (event: MessageEvent) => console.log(event.data);
-    const onClose = () => {
-      console.log("Connection closed");
-      cleanup();
-      resolve({ exitCode: 0, shouldRetry });
-    };
-    const onError = () => {
-      console.error("Connection error");
-      cleanup();
-      resolve({ exitCode: 1, shouldRetry });
-    };
+  client.addEventListener("message", (event) => console.log(event.data));
 
-    const cleanup = () => {
-      client.removeEventListener("open", onOpen);
-      client.removeEventListener("message", onMessage);
-      client.removeEventListener("close", onClose);
-      client.removeEventListener("error", onError);
-    };
+  try {
+    await new Promise<void>((resolve) => {
+      const onOpen = () => console.log("Connected");
+      const onClose = () => {
+        console.log("Connection closed");
+        resolve();
+      };
+      const onError = (event: Event) => {
+        console.error("Connection error", event);
+        exitCode = 1;
+        resolve();
+      };
 
-    client.addEventListener("open", onOpen);
-    client.addEventListener("message", onMessage);
-    client.addEventListener("close", onClose);
-    client.addEventListener("error", onError);
+      client.addEventListener("open", onOpen, { once: true });
+      client.addEventListener("close", onClose, { once: true });
+      client.addEventListener("error", onError, { once: true });
 
-    const shutdownSignals = ["SIGINT", "SIGTERM"];
-    const shutdown = () => {
-      shutdownSignals.forEach((signal) => process.off(signal, shutdown));
-      shouldRetry = false;
-      client.close();
-    };
+      appShutdownPromise.then(() => {
+        shouldRetry = false;
+        client.close();
+      });
+    });
+    // oxlint-disable-next-line no-unused-vars
+  } catch (err) {
+    exitCode = 1;
+  }
 
-    shutdownSignals.forEach((signal) => process.on(signal, shutdown));
-  });
+  return { exitCode, shouldRetry };
 }

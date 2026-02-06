@@ -3,6 +3,7 @@ import { initializeNFC, shutdownNFC } from "./pcsc";
 import { TokenReaderNFC } from "./token-reader-nfc";
 
 import type { TokenStateNFC } from "./token-reader-nfc";
+import { appShutdownPromise } from "./shutdown-signal.ts";
 
 type ReaderRole = "inventory" | "challenge";
 
@@ -59,7 +60,7 @@ export async function serve(config: ServerConfig): Promise<number> {
   });
 
   // Handle graceful shutdown
-  const shutdown = async (): Promise<number> => {
+  const shutdownServer = async (): Promise<number> => {
     shutdownNFC();
 
     // Initiate WebSocket server shutdown
@@ -82,17 +83,9 @@ export async function serve(config: ServerConfig): Promise<number> {
 
   console.log(`Token reader server listening on ws://${config.host}:${config.port}`);
 
-  return await new Promise((resolve) => {
-    const callback = async () => {
-      const exitCode = await shutdown();
-      process.off("SIGINT", callback);
-      process.off("SIGTERM", callback);
-
-      resolve(exitCode);
-    };
-    process.on("SIGINT", callback);
-    process.on("SIGTERM", callback);
-  });
+  await appShutdownPromise;
+  const exitCode = await shutdownServer();
+  return exitCode;
 }
 
 function broadcast(wss: WebSocketServer, message: StateMessage) {
