@@ -6,7 +6,7 @@ import type { TokenStateNFC, TokenReaderMessage } from "@renderer/types/token";
 import { TokenStateType } from "@renderer/types/token";
 
 // Default WebSocket server URL
-const WS_URL = "ws://localhost:5375";
+const WS_URL = "ws://localhost:8382";
 
 // Shared WebSocket connection and state
 let ws: WebSocket | null = null;
