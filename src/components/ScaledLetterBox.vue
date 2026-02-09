@@ -8,7 +8,6 @@ const emit = defineEmits<{
 }>();
 
 const outerElement = ref<HTMLDivElement | null>(null);
-const innerElement = ref<HTMLDivElement | null>(null);
 
 const transformInfo = ref({ translateX: 0, translateY: 0, scale: 1 });
 
@@ -39,7 +38,6 @@ onMounted(() => {
 <template>
   <div ref="outerElement" class="outer">
     <div
-      ref="innerElement"
       class="inner"
       :style="{
         '--target-width': props.targetSize.width,
