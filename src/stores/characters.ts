@@ -24,6 +24,7 @@ export const useCharacterStore = defineStore("characters", () => {
   const randomCharacterType = () => {
     assert(config.characterTypes.length > 0);
     const randomIdx = Math.floor(Math.random() * config.characterTypes.length);
+    assert(typeof config.characterTypes[randomIdx] !== "undefined");
     return config.characterTypes[randomIdx].id;
   };
 
@@ -62,7 +63,7 @@ export const useCharacterStore = defineStore("characters", () => {
     }
 
     const idx = characters[characterId].inventory.findIndex(({ itemId: iid }) => iid == itemId);
-    if (idx === -1) {
+    if (typeof characters[characterId].inventory[idx] === "undefined") {
       // try to add the item
 
       if (characters[characterId].inventory.length >= INVENTORY_SIZE)

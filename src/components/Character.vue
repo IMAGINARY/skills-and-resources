@@ -15,24 +15,25 @@ const { characterTypes, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { toggleItem } = useCharacterStore();
 
+const character = computed(() => characters.value[props.characterId] ?? null);
+
 const type = computed(() => {
-  return characters.value[props.characterId]
-    ? characterTypes[characters.value[props.characterId].type]
-    : null;
+  const char = character.value;
+  return char ? characterTypes[char.type] : null;
 });
 </script>
 
 <template>
-  <template v-if="characters[characterId]">
+  <template v-if="character">
     <div v-if="type">
       <div>{{ type.ui.icon }}</div>
-      <div>ID: {{ props.characterId }} Class: {{ characters[characterId].type }}</div>
+      <div>ID: {{ props.characterId }} Class: {{ character.type }}</div>
       <div>{{ t1st(type.ui.title) }}</div>
       <div>{{ t2nd(type.ui.title) }}</div>
       <div>{{ t1st(type.ui.description) }}</div>
       <div>{{ t2nd(type.ui.description) }}</div>
       <div>
-        <template v-for="{ locked, itemId } in characters[characterId].inventory" :key="itemId">
+        <template v-for="{ locked, itemId } in character.inventory" :key="itemId">
           <span class="relative text-8xl">
             <ItemThumbnail :item-id="itemId"></ItemThumbnail>
             <span v-if="locked" class="absolute bottom-0 right-0 text-[0.5em]">🔒</span>
@@ -46,7 +47,7 @@ const type = computed(() => {
         </template>
       </div>
     </div>
-    <div v-else>Unknown character type: {{ characters[characterId].type }}</div>
+    <div v-else>Unknown character type: {{ character.type }}</div>
   </template>
   <div v-else>Unknown character</div>
 </template>

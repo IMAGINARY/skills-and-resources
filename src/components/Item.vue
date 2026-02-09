@@ -14,7 +14,7 @@ const props = defineProps<{
 
 const { items, t1st, t2nd } = useConfigStore();
 
-const item = computed<DeepReadonly<Item>>(() => items[props.itemId]);
+const item = computed<DeepReadonly<Item | null>>(() => items[props.itemId] ?? null);
 </script>
 
 <template>
