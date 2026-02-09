@@ -22,6 +22,7 @@ export interface SimulateConfig {
 }
 
 interface CharacterItem {
+  key: string;
   label: string;
   value: Character;
 }
@@ -43,6 +44,7 @@ function Simulator({ characters, onStateChange }: SimulatorProps) {
   const [challengeCharacter, setChallengeCharacter] = useState<Character | null>(null);
 
   const items: CharacterItem[] = characters.map((c) => ({
+    key: `${c.uuid.replaceAll("\\", "\\\\").replaceAll("-", "\\-")}-${c.name.replaceAll("\\", "\\\\").replaceAll("-", "\\-")}`,
     label: `${c.name} [${c.uuid}]`,
     value: c,
   }));
