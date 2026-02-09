@@ -8,6 +8,7 @@ export type MutableOptions = {
     primary: string;
     secondary: string;
   };
+  websocketTokenReaderUrl: string;
 };
 
 export type Options = DeepReadonly<MutableOptions>;

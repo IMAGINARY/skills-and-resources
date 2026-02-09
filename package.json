@@ -20,6 +20,7 @@
   "dependencies": {
     "@electron-toolkit/utils": "^4.0.0",
     "@nuxt/ui": "^4.4.0",
+    "@vueuse/core": "^14.2.0",
     "@vueuse/gesture": "^2.0.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",

@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
 
-import { useInventoryTokenState } from "@renderer/composables/token-state";
+import { useTokenStore } from "@renderer/stores/token";
 import { useConfigStore } from "@renderer/stores/config";
 import { useCharacterStore } from "@renderer/stores/characters";
 import Item from "@renderer/components/Item.vue";
 import Character from "@renderer/components/Character.vue";
 import { TokenStateType } from "@renderer/types/token";
 import { useTap } from "@renderer/composables/use-tap";
+import { storeToRefs } from "pinia";
 
 const { config, t1st, t2nd } = useConfigStore();
 const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
 
-const { tokenState } = useInventoryTokenState();
+const { inventory: tokenState } = storeToRefs(useTokenStore());
 
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,

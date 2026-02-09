@@ -3,9 +3,9 @@ import type { DeepReadonly } from "vue";
 
 import { computed, watch, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useChallengeTokenState } from "@renderer/composables/token-state";
 import { useConfigStore } from "@renderer/stores/config";
 import { useCharacterStore } from "@renderer/stores/characters";
+import { useTokenStore } from "@renderer/stores/token";
 import Character from "@renderer/components/Character.vue";
 import { TokenStateType } from "@renderer/types/token";
 import Challenge from "@renderer/components/Challenge.vue";
@@ -15,7 +15,7 @@ const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { ensureCharacter } = useCharacterStore();
 
-const { tokenState } = useChallengeTokenState();
+const { challenge: tokenState } = storeToRefs(useTokenStore());
 
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
