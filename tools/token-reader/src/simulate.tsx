@@ -108,26 +108,22 @@ function Simulator({ characters, onStateChange }: SimulatorProps) {
           <Text bold color={activeReader === "challenge" ? "green" : "white"}>
             {activeReader === "challenge" ? "▶ " : "  "}Challenge
           </Text>
-          <Text dimColor>
-            {formatCharacterDisplay(challengeCharacter)}
-          </Text>
+          <Text dimColor>{formatCharacterDisplay(challengeCharacter)}</Text>
         </Box>
         <Box flexDirection="column" width={40}>
           <Text bold color={activeReader === "inventory" ? "green" : "white"}>
             {activeReader === "inventory" ? "▶ " : "  "}Inventory
           </Text>
-          <Text dimColor>
-            {formatCharacterDisplay(inventoryCharacter)}
-          </Text>
+          <Text dimColor>{formatCharacterDisplay(inventoryCharacter)}</Text>
         </Box>
       </Box>
       <Box marginTop={1} flexDirection="column">
-        <Text bold>
-          Select character for {activeReader}:
-        </Text>
+        <Text bold>Select character for {activeReader}:</Text>
         <SelectInput
           items={items}
-          initialIndex={getSelectedIndex(activeReader === "inventory" ? inventoryCharacter : challengeCharacter)}
+          initialIndex={getSelectedIndex(
+            activeReader === "inventory" ? inventoryCharacter : challengeCharacter,
+          )}
           onSelect={handleSelect}
         />
       </Box>
@@ -140,9 +136,10 @@ function Simulator({ characters, onStateChange }: SimulatorProps) {
   );
 }
 
-function createSimulatorPublisher(
-  characters: Character[],
-): { publisher: Publisher<StateMessage>; waitUntilExit: () => Promise<void> } {
+function createSimulatorPublisher(characters: Character[]): {
+  publisher: Publisher<StateMessage>;
+  waitUntilExit: () => Promise<void>;
+} {
   const emitter = new Emitter<StateMessage>();
   const publisher: Publisher<StateMessage> = emitter;
 
@@ -156,7 +153,7 @@ function createSimulatorPublisher(
   console.log(`Characters: ${characters.map((c) => `${c.name} [${c.uuid}]`).join(", ")}`);
 
   const { waitUntilExit } = render(
-    <Simulator characters={characters} onStateChange={handleStateChange} />
+    <Simulator characters={characters} onStateChange={handleStateChange} />,
   );
 
   return { publisher, waitUntilExit };
