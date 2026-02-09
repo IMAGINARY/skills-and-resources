@@ -3,13 +3,13 @@ import type { DeepReadonly } from "vue";
 
 import { computed, watch, ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useConfigStore } from "@renderer/stores/config";
-import { useCharacterStore } from "@renderer/stores/characters";
-import { useTokenStore } from "@renderer/stores/token";
-import Character from "@renderer/components/Character.vue";
-import { TokenStateType } from "@renderer/types/token";
-import Challenge from "@renderer/components/Challenge.vue";
-import { useTap } from "@renderer/composables/use-tap";
+import { useConfigStore } from "@/stores/config";
+import { useCharacterStore } from "@/stores/characters";
+import { useTokenStore } from "@/stores/token";
+import Character from "@/components/Character.vue";
+import { TokenStateType } from "@/types/token";
+import Challenge from "@/components/Challenge.vue";
+import { useTap } from "@/composables/use-tap";
 
 const { config, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());

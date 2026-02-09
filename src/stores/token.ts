@@ -3,14 +3,14 @@ import { computed } from "vue";
 import { useWebSocket } from "@vueuse/core";
 import { Value } from "typebox/value";
 
-import { TokenStateType } from "@renderer/types/token";
-import { MAX_WEBSOCKET_RETRY_DELAY } from "@renderer/constants";
-import { useOptionsStore } from "@renderer/stores/options";
-import { TokenReaderMessageSchema } from "@renderer/types/token";
+import { TokenStateType } from "@/types/token";
+import { MAX_WEBSOCKET_RETRY_DELAY } from "@/constants";
+import { useOptionsStore } from "@/stores/options";
+import { TokenReaderMessageSchema } from "@/types/token";
 
 import type { DeepReadonly } from "vue";
 
-import type { TokenReaderMessage } from "@renderer/types/token";
+import type { TokenReaderMessage } from "@/types/token";
 
 export const useTokenStore = defineStore("token", () => {
   const { options } = useOptionsStore();

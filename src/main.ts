@@ -6,9 +6,9 @@ import ui from "@nuxt/ui/vue-plugin";
 import { GesturePlugin } from "@vueuse/gesture";
 import App from "./App.vue";
 
-import { OPTIONS_INJECTION_KEY, CONFIG_INJECTION_KEY } from "@renderer/constants";
-import { loadOptions } from "@renderer/options/options";
-import { loadConfig } from "@renderer/config/config";
+import { OPTIONS_INJECTION_KEY, CONFIG_INJECTION_KEY } from "@/constants";
+import { loadOptions } from "@/options/options";
+import { loadConfig } from "@/config/config";
 
 const app = createApp(App);
 app.provide(OPTIONS_INJECTION_KEY, await loadOptions());

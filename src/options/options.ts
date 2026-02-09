@@ -1,5 +1,5 @@
 import type { DeepReadonly } from "vue";
-import options from "@renderer/options/options.yaml";
+import options from "@/options/options.yaml";
 
 // TODO: Create types from schema or vice versa
 

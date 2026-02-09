@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useConfigStore } from "@renderer/stores/config";
+import { useConfigStore } from "@/stores/config";
 import { computed } from "vue";
 
 const { items } = useConfigStore();

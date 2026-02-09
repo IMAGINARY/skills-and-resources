@@ -1,5 +1,5 @@
 import type { DeepReadonly } from "vue";
-import config from "@renderer/config/config.yaml";
+import config from "@/config/config.yaml";
 
 // TODO: Create types from schema or vice versa
 

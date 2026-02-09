@@ -1,10 +1,10 @@
-import type { Config, I18nRecord, Item, Challenge, CharacterType } from "@renderer/config/config";
+import type { Config, I18nRecord, Item, Challenge, CharacterType } from "@/config/config";
 
 import { computed, DeepReadonly, inject } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
-import { CONFIG_INJECTION_KEY } from "@renderer/constants";
+import { CONFIG_INJECTION_KEY } from "@/constants";
 import { useOptionsStore } from "./options";
 
 const t = (i18nRecord: I18nRecord, languageCode: string) => {

@@ -1,9 +1,9 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
-    "src/renderer/src/env.d.ts",
-    "src/renderer/src/**/*",
-    "src/renderer/src/**/*.vue",
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
     "auto-imports.d.ts",
     "components.d.ts"
   ],
@@ -12,7 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
-      "@renderer/*": ["src/renderer/src/*"]
+      "@/*": ["src/*"]
     },
     "types": ["@modyfi/vite-plugin-yaml/modules"]
   }

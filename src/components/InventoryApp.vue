@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
 
-import { useTokenStore } from "@renderer/stores/token";
-import { useConfigStore } from "@renderer/stores/config";
-import { useCharacterStore } from "@renderer/stores/characters";
-import Item from "@renderer/components/Item.vue";
-import Character from "@renderer/components/Character.vue";
-import { TokenStateType } from "@renderer/types/token";
-import { useTap } from "@renderer/composables/use-tap";
+import { useTokenStore } from "@/stores/token";
+import { useConfigStore } from "@/stores/config";
+import { useCharacterStore } from "@/stores/characters";
+import Item from "@/components/Item.vue";
+import Character from "@/components/Character.vue";
+import { TokenStateType } from "@/types/token";
+import { useTap } from "@/composables/use-tap";
 import { storeToRefs } from "pinia";
 
 const { config, t1st, t2nd } = useConfigStore();

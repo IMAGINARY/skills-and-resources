@@ -1,10 +1,10 @@
-import type { Config } from "@renderer/config/config";
+import type { Config } from "@/config/config";
 
 import { inject, reactive, toValue } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
-import { CONFIG_INJECTION_KEY, INVENTORY_SIZE } from "@renderer/constants";
+import { CONFIG_INJECTION_KEY, INVENTORY_SIZE } from "@/constants";
 
 export type InventorySlot = {
   locked: boolean;

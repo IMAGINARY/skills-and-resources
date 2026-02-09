@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { DeepReadonly } from "vue";
 import { computed } from "vue";
-import type { Item } from "@renderer/config/config";
+import type { Item } from "@/config/config";
 
-import { useConfigStore } from "@renderer/stores/config";
-import ItemThumbnail from "@renderer/components/ItemThumbnail.vue";
+import { useConfigStore } from "@/stores/config";
+import ItemThumbnail from "@/components/ItemThumbnail.vue";
 
 const props = defineProps<{
   itemId: string;

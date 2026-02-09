@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
-import { useTap } from "@renderer/composables/use-tap";
+import { useTap } from "@/composables/use-tap";
 
-import { useConfigStore } from "@renderer/stores/config";
-import ItemThumbnail from "@renderer/components/ItemThumbnail.vue";
-import { useCharacterStore } from "@renderer/stores/characters";
+import { useConfigStore } from "@/stores/config";
+import ItemThumbnail from "@/components/ItemThumbnail.vue";
+import { useCharacterStore } from "@/stores/characters";
 
 const props = defineProps<{
   characterId: string;

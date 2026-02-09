@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useConfigStore } from "@renderer/stores/config";
-import ItemThumbnail from "@renderer/components/ItemThumbnail.vue";
+import { useConfigStore } from "@/stores/config";
+import ItemThumbnail from "@/components/ItemThumbnail.vue";
 
 const props = defineProps<{
   challengeId: string;
