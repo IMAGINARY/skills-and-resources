@@ -1,5 +1,5 @@
 {
-  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "env.d.ts",
     "src/**/*",
@@ -10,6 +10,13 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "sourceMap": false,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
       "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
       "@/*": ["src/*"]
