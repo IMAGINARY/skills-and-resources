@@ -1,0 +1,4 @@
+languages:
+  primary: "de"
+  secondary: "en"
+websocketTokenReaderUrl: "ws://localhost:8382"
