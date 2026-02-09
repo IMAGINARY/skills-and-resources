@@ -1,6 +1,8 @@
 // Token types shared between the token-reader server and the renderer client.
 // These must match the types in tools/token-reader/src/token-reader.ts
-import { Type, Static } from "typebox";
+import { Type } from "typebox";
+
+import type { Static } from "typebox";
 
 // Base types
 export const TokenIdSchema = Type.String({ $id: "TokenId" });

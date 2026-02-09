@@ -1,6 +1,7 @@
 import type { Config, I18nRecord, Item, Challenge, CharacterType } from "@/config/config";
+import type {DeepReadonly} from "vue";
 
-import { computed, DeepReadonly, inject } from "vue";
+import { computed , inject } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
