@@ -14,8 +14,9 @@ const t = (i18nRecord: I18nRecord, languageCode: string) => {
 };
 
 export const useConfigStore = defineStore("config", () => {
-  const config = inject<Config | null>(CONFIG_INJECTION_KEY, null);
-  assert(config);
+  const nullableConfig = inject<Config | null>(CONFIG_INJECTION_KEY, null);
+  assert(nullableConfig !== null);
+  const config = nullableConfig!;
 
   const asMap = <T extends { id: string }>(a: readonly T[]): Record<string, T> => {
     const m = {};
