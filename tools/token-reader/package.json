@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "fix-install": "npm clean-install --ignore-scripts && npm install && npm rebuild",
     "postinstall": "patch-package",
     "start": "tsx src/index.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",

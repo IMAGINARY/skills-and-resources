@@ -43,8 +43,13 @@ smart card readers to the web app via a WebSocket server. Install its
 dependencies separately:
 
 ```bash
-npm install --prefix tools/token-reader
+npm run fix-install --prefix tools/token-reader
 ```
+
+Do not use the standard `npm install` unless you are using Node.js `>=20.20.0 <21`
+(the native dependency`@pokusew/pcsclite` requires this version range to compile
+without patching the source code). Using the special `fix-install` script will make
+it work with newer Node.js versions, though (tested using Node.js 24.1).
 
 Run it from the repository root via the convenience script:
 
@@ -120,11 +125,6 @@ when used incorrectly.
 
 # Development
 
-## Prerequisites
-
-Node.js `>=20.20.0 <21` is required (the native dependency `@pokusew/pcsclite`
-requires this version range to compile).
-
 ## Web App
 
 Install dependencies and start the development server:
@@ -147,7 +147,15 @@ The following `npm run` scripts are available:
 ## Token Reader Tool
 
 The token reader tool has its own `package.json` in
-[`tools/token-reader/`](tools/token-reader/). The following additional `npm
+[`tools/token-reader/`](tools/token-reader/). Install the dependencies via
+
+```bash
+npm run fix-install
+```
+
+See the [Token Reader Tool](#token-reader-tool) section above for more details.
+
+The following additional `npm
 run` scripts are available within that directory:
 
 - `typecheck`: Run TypeScript type checking
