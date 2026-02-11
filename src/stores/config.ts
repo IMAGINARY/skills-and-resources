@@ -1,4 +1,10 @@
-import type { Config, I18nRecord, Item, Challenge, CharacterType } from "@/config/config";
+import type {
+  Config,
+  I18nRecord,
+  ItemConfig,
+  ChallengeConfig,
+  CharacterTypeConfig,
+} from "@/config/config";
 import type { DeepReadonly } from "vue";
 
 import { computed, inject } from "vue";
@@ -15,7 +21,7 @@ const t = (i18nRecord: I18nRecord, languageCode: string) => {
 };
 
 export const useConfigStore = defineStore("config", () => {
-  const nullableConfig = inject<Config | null>(CONFIG_INJECTION_KEY, null);
+  const nullableConfig = inject<DeepReadonly<Config> | null>(CONFIG_INJECTION_KEY, null);
   assert(nullableConfig !== null);
   const config = nullableConfig!;
 
@@ -29,9 +35,11 @@ export const useConfigStore = defineStore("config", () => {
   };
 
   const { app, content } = config;
-  const items: DeepReadonly<Record<string, Item>> = asMap(content.items);
-  const characterTypes: DeepReadonly<Record<string, CharacterType>> = asMap(content.characterTypes);
-  const challenges: DeepReadonly<Record<string, Challenge>> = asMap(content.challenges);
+  const items: DeepReadonly<Record<string, ItemConfig>> = asMap(content.items);
+  const characterTypes: DeepReadonly<Record<string, CharacterTypeConfig>> = asMap(
+    content.characterTypes,
+  );
+  const challenges: DeepReadonly<Record<string, ChallengeConfig>> = asMap(content.challenges);
 
   const { options } = useOptionsStore();
 

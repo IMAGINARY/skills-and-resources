@@ -8,7 +8,7 @@ export type I18nRecord = string | Record<string, string>;
 
 export type ItemType = "skill" | "resource";
 
-export type Item = {
+export type ItemConfig = {
   id: string;
   type: ItemType;
   title: I18nRecord;
@@ -16,7 +16,7 @@ export type Item = {
   icon: string;
 };
 
-export type CharacterType = {
+export type CharacterTypeConfig = {
   id: string;
   staticItems: string[];
   title: I18nRecord;
@@ -24,16 +24,16 @@ export type CharacterType = {
   icon: string;
 };
 
-export type ChallengeItem = {
+export type ChallengeItemConfig = {
   id: string;
   present: I18nRecord;
   missing: I18nRecord;
 };
 
-export type Challenge = {
+export type ChallengeConfig = {
   id: string;
   solution: {
-    items: ChallengeItem[];
+    items: ChallengeItemConfig[];
     success: I18nRecord;
   };
   title: I18nRecord;
@@ -54,22 +54,20 @@ export type AppConfig = {
 };
 
 export type ContentConfig = {
-  items: Item[];
-  characterTypes: CharacterType[];
-  challenges: Challenge[];
+  items: ItemConfig[];
+  characterTypes: CharacterTypeConfig[];
+  challenges: ChallengeConfig[];
 };
 
-export type MutableConfig = {
+export type Config = {
   app: AppConfig;
   content: ContentConfig;
 };
 
-export type Config = DeepReadonly<MutableConfig>;
-
-export async function loadConfig(): Promise<MutableConfig> {
+export async function loadConfig(): Promise<DeepReadonly<Config>> {
   // TODO: Load config from file(s) at runtime
   return structuredClone({
     app: app as AppConfig,
     content: content as ContentConfig,
-  } as MutableConfig);
+  } as Config);
 }

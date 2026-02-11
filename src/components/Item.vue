@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DeepReadonly } from "vue";
 import { computed } from "vue";
-import type { Item } from "@/config/config";
+import type { ItemConfig } from "@/config/config";
 
 import { useConfigStore } from "@/stores/config";
 import ItemThumbnail from "@/components/ItemThumbnail.vue";
@@ -14,7 +14,7 @@ const props = defineProps<{
 
 const { items, t1st, t2nd } = useConfigStore();
 
-const item = computed<DeepReadonly<Item | null>>(() => items[props.itemId] ?? null);
+const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId] ?? null);
 </script>
 
 <template>
