@@ -110,7 +110,7 @@ items:
 
 characterTypes:
   - id: character_1
-    staticItems:
+    items:
       - first-aid
       - self-protection
     title: Emma (19)
@@ -119,7 +119,7 @@ characterTypes:
       de: Emma hat gerade Führerschein und Erste-Hilfe-Kurs gemacht. In Stresssituationen hält sie sich an klare Abläufe – das gibt ihr Sicherheit. In ihrer Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
     icon: 👩‍🦰
   - id: character_2
-    staticItems:
+    items:
       - warning-app
       - power-bank
     title: Malte (21)
@@ -128,7 +128,7 @@ characterTypes:
       de: Malte organisiert fast alles über sein Smartphone. Er merkt früh, wenn etwas nicht stimmt, und checkt sofort verlässliche Infos. Er ist einmal mit leerem Akku gestrandet – seitdem verlässt er das Haus nie ohne Backup.
     icon: 🤖
   - id: character_3
-    staticItems:
+    items:
       - crank-radio
       - cooking-option
     title: Martin (35)
@@ -137,7 +137,7 @@ characterTypes:
       de: "Martin ist gern draußen: Camping, Wandern, Festivals. Er mag es, wenn Dinge auch ohne Steckdose funktionieren. Improvisieren gehört für ihn dazu – notfalls gibt es eben Nudeln aus dem Topf."
     icon: 🧔‍♂️
   - id: character_4
-    staticItems:
+    items:
       - warning-app
       - supplies
     title: Sabine (38)
@@ -146,7 +146,7 @@ characterTypes:
       de: "Sabine jongliert Job, Kinder und Alltag. In Ausnahmesituationen versucht sie, Ruhe zu bewahren – vor allem für andere. Ihr Motto beim Einkaufen: Lieber vorbereitet sein als später improvisieren."
     icon: 👱‍♀️
   - id: character_5
-    staticItems:
+    items:
       - care-competence
       - medkit
     title: Paul (45)
@@ -155,7 +155,7 @@ characterTypes:
       de: Paul unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, was unverzichtbar ist und was nicht warten darf. Sein Rucksack ist immer gut sortiert – auch wenn er dafür manchmal den Haustürschlüssel sucht.
     icon: 👨‍🦱
   - id: character_6
-    staticItems:
+    items:
       - local-knowledge
       - emergency-bag
     title: Renate (56)

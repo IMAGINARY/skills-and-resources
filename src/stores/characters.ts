@@ -30,9 +30,9 @@ export const useCharacterStore = defineStore("characters", () => {
   };
 
   const createInventory = (type: string): InventorySlot[] => {
-    const staticItems = content.characterTypes.find(({ id }) => id === type)?.staticItems;
-    assert(typeof staticItems !== "undefined");
-    const inventory = staticItems.map((id) => ({ locked: true, itemId: id }));
+    const items = content.characterTypes.find(({ id }) => id === type)?.items;
+    assert(typeof items !== "undefined");
+    const inventory = items.map((id) => ({ locked: true, itemId: id }));
 
     return inventory;
   };

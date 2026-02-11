@@ -62,7 +62,7 @@ export const CharacterTypeConfigSchema = Type.Object(
       title: "ID",
       description: "Unique identifier for the character type.",
     }),
-    staticItems: Type.Array(Type.String({ description: "Item id." }), {
+    items: Type.Array(Type.String({ description: "Item id." }), {
       title: "Static Items",
       description: "List of item ids that are permanently assigned to this character type.",
     }),
