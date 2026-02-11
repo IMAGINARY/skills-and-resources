@@ -30,10 +30,19 @@ support loading them at runtime.
 
 ## Configuration
 
-The exhibit content — items (skills and resources), character types, and
-challenges — is defined in
-[`src/config/config.yaml`](src/config/config.yaml). The YAML file is loaded at
-build time via `@modyfi/vite-plugin-yaml`.
+The exhibit configuration is split into two YAML files, both loaded at build
+time via `@modyfi/vite-plugin-yaml`:
+
+- [`src/config/app.yaml`](src/config/app.yaml) — UI strings (section titles,
+  descriptions, token prompt)
+- [`src/config/content.yaml`](src/config/content.yaml) — exhibit content
+  (items/skills/resources, character types, and challenges)
+
+A JSON Schema for validating the configuration format is available at
+[`specs/config.schema.json`](specs/config.schema.json). The configuration is
+validated against this schema during startup. A
+[third-party online viewer](https://json-schema.app/view/%23?url=https%3A%2F%2Fraw.githubusercontent.com%2FIMAGINARY%2Fskills-and-resources%2Frefs%2Fheads%2Fmain%2Fspecs%2Fconfig.schema.json)
+for the schema is also available.
 
 ## Token Reader Tool
 
