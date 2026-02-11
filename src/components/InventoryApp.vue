@@ -10,7 +10,7 @@ import { TokenStateType } from "@/types/token";
 import { useTap } from "@/composables/use-tap";
 import { storeToRefs } from "pinia";
 
-const { config, t1st, t2nd } = useConfigStore();
+const { app, content, t1st, t2nd } = useConfigStore();
 const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
 
 const { inventory: tokenState } = storeToRefs(useTokenStore());
@@ -32,15 +32,15 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
 <template>
   <div class="full-hd-v-box inventory-app">
     <div class="text-4xl">
-      <h1>{{ t1st(config.apps.inventory.title) }}</h1>
-      <h2>{{ t2nd(config.apps.inventory.title) }}</h2>
+      <h1>{{ t1st(app.inventory.title) }}</h1>
+      <h2>{{ t2nd(app.inventory.title) }}</h2>
     </div>
     <div class="slideover-container">
       <div v-if="activeCharacterId" class="character-inventory">
         <Character :character-id="activeCharacterId"></Character>
         <div class="item-list p-4 gap-4">
           <Item
-            v-for="item in config.items"
+            v-for="item in content.items"
             :item-id="item.id"
             :key="item.id"
             :is-static="true"
@@ -68,8 +68,8 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
       >
         <template #body>
           <div class="flex-2"></div>
-          <p class="text-8xl">{{ t1st(config.apps.tokenPrompt) }}</p>
-          <p class="text-6xl mt-8">{{ t2nd(config.apps.tokenPrompt) }}</p>
+          <p class="text-8xl">{{ t1st(app.tokenPrompt) }}</p>
+          <p class="text-6xl mt-8">{{ t2nd(app.tokenPrompt) }}</p>
           <div class="flex-1"></div>
           <div class="text-center text-3xl">Inventory Token:<br />{{ tokenState }}</div>
           <div class="flex-1"></div>

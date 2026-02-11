@@ -11,7 +11,7 @@ import { TokenStateType } from "@/types/token";
 import Challenge from "@/components/Challenge.vue";
 import { useTap } from "@/composables/use-tap";
 
-const { config, t1st, t2nd } = useConfigStore();
+const { app, content, t1st, t2nd } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { ensureCharacter } = useCharacterStore();
 
@@ -32,7 +32,7 @@ const activeChallengeId = ref<string | null>(null);
 
 const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
   return activeChallengeId.value
-    ? (config.challenges
+    ? (content.challenges
         .find(({ id }) => id === activeChallengeId.value)
         ?.solution?.items?.map(({ id }) => id) ?? [])
     : [];
@@ -57,12 +57,12 @@ const challengeSolved = computed<boolean>(() => {
 <template>
   <div class="full-hd-v-box challenge-app">
     <div>
-      <h1>{{ t1st(config.apps.challenge.title) }}</h1>
-      <h2>{{ t2nd(config.apps.challenge.title) }}</h2>
+      <h1>{{ t1st(app.challenge.title) }}</h1>
+      <h2>{{ t2nd(app.challenge.title) }}</h2>
     </div>
     <div class="challenge-list">
       <Challenge
-        v-for="challenge in config.challenges"
+        v-for="challenge in content.challenges"
         :challenge-id="challenge.id"
         :key="challenge.id"
         v-drag="useTap(() => (activeChallengeId = challenge.id))"

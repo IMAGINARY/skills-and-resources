@@ -1,5 +1,6 @@
 import type { DeepReadonly } from "vue";
-import config from "@/config/config.yaml";
+import app from "@/config/app.yaml";
+import content from "@/config/content.yaml";
 
 // TODO: Create types from schema or vice versa
 
@@ -40,26 +41,35 @@ export type Challenge = {
   icon: string;
 };
 
-export type MutableConfig = {
-  apps: {
-    challenge: {
-      title: I18nRecord;
-      description: I18nRecord;
-    };
-    inventory: {
-      title: I18nRecord;
-      description: I18nRecord;
-    };
-    tokenPrompt: I18nRecord;
+export type AppConfig = {
+  challenge: {
+    title: I18nRecord;
+    description: I18nRecord;
   };
+  inventory: {
+    title: I18nRecord;
+    description: I18nRecord;
+  };
+  tokenPrompt: I18nRecord;
+};
+
+export type ContentConfig = {
   items: Item[];
   characterTypes: CharacterType[];
   challenges: Challenge[];
+};
+
+export type MutableConfig = {
+  app: AppConfig;
+  content: ContentConfig;
 };
 
 export type Config = DeepReadonly<MutableConfig>;
 
 export async function loadConfig(): Promise<MutableConfig> {
   // TODO: Load config from file(s) at runtime
-  return structuredClone(config as MutableConfig);
+  return structuredClone({
+    app: app as AppConfig,
+    content: content as ContentConfig,
+  } as MutableConfig);
 }

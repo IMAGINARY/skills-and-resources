@@ -28,9 +28,10 @@ export const useConfigStore = defineStore("config", () => {
     return m;
   };
 
-  const items: DeepReadonly<Record<string, Item>> = asMap(config.items);
-  const characterTypes: DeepReadonly<Record<string, CharacterType>> = asMap(config.characterTypes);
-  const challenges: DeepReadonly<Record<string, Challenge>> = asMap(config.challenges);
+  const { app, content } = config;
+  const items: DeepReadonly<Record<string, Item>> = asMap(content.items);
+  const characterTypes: DeepReadonly<Record<string, CharacterType>> = asMap(content.characterTypes);
+  const challenges: DeepReadonly<Record<string, Challenge>> = asMap(content.challenges);
 
   const { options } = useOptionsStore();
 
@@ -38,5 +39,5 @@ export const useConfigStore = defineStore("config", () => {
   const t1st = (i18nRecord: I18nRecord) => computed(() => t(i18nRecord, lang1st));
   const t2nd = (i18nRecord: I18nRecord) => computed(() => t(i18nRecord, lang2nd));
 
-  return { config, items, characterTypes, challenges, t1st, t2nd };
+  return { app, content, items, characterTypes, challenges, t1st, t2nd };
 });

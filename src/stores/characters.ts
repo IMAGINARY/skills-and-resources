@@ -20,16 +20,17 @@ export type Character = {
 export const useCharacterStore = defineStore("characters", () => {
   const config = inject<Config | null>(CONFIG_INJECTION_KEY, null);
   assert(config);
+  const { content } = config;
 
   const randomCharacterType = () => {
-    assert(config.characterTypes.length > 0);
-    const randomIdx = Math.floor(Math.random() * config.characterTypes.length);
-    assert(typeof config.characterTypes[randomIdx] !== "undefined");
-    return config.characterTypes[randomIdx].id;
+    assert(content.characterTypes.length > 0);
+    const randomIdx = Math.floor(Math.random() * content.characterTypes.length);
+    assert(typeof content.characterTypes[randomIdx] !== "undefined");
+    return content.characterTypes[randomIdx].id;
   };
 
   const createInventory = (type: string): InventorySlot[] => {
-    const staticItems = config.characterTypes.find(({ id }) => id === type)?.staticItems;
+    const staticItems = content.characterTypes.find(({ id }) => id === type)?.staticItems;
     assert(typeof staticItems !== "undefined");
     const inventory = staticItems.map((id) => ({ locked: true, itemId: id }));
 

@@ -1,22 +1,3 @@
-apps:
-  challenge:
-    title:
-      en: Challenge
-      de: Herausforderung
-    description:
-      en: Select a challenge and start playing!
-      de: Wähle eine Herausforderung aus und spiele!
-  inventory:
-    title:
-      en: Inventory
-      de: Inventar
-    description:
-      en: Change the skills and resources of your character.
-      de: Verändere die Fähigkeiten und Ressourcen deines Charakters.
-  tokenPrompt:
-    en: What are you bringing?
-    de: Was bringst du mit?
-
 items:
   - id: first-aid
     type: skill
