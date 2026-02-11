@@ -50,6 +50,7 @@ export const ItemConfigSchema = Type.Object(
     $id: "ItemConfig",
     title: "Item Config",
     description: "Configuration for a single skill or resource item in the inventory.",
+    additionalProperties: false,
   },
 );
 export type ItemConfig = Static<typeof ItemConfigSchema>;
@@ -82,6 +83,7 @@ export const CharacterTypeConfigSchema = Type.Object(
     $id: "CharacterTypeConfig",
     title: "Character Type Config",
     description: "Configuration for a character type that players can assume via an NFC token.",
+    additionalProperties: false,
   },
 );
 export type CharacterTypeConfig = Static<typeof CharacterTypeConfigSchema>;
@@ -107,6 +109,7 @@ export const ChallengeItemConfigSchema = Type.Object(
     title: "Challenge Item Config",
     description:
       "Describes how a specific item relates to a challenge, including feedback for presence and absence.",
+    additionalProperties: false,
   },
 );
 export type ChallengeItemConfig = Static<typeof ChallengeItemConfigSchema>;
@@ -133,6 +136,7 @@ export const ChallengeConfigSchema = Type.Object(
         title: "Solution",
         description:
           "The expected solution for the challenge, consisting of required items and a success message.",
+        additionalProperties: false,
       },
     ),
     title: Type.Union([Type.String(), Type.Record(Type.String(), Type.String())], {
@@ -153,6 +157,7 @@ export const ChallengeConfigSchema = Type.Object(
     title: "Challenge Config",
     description:
       "Configuration for a challenge scenario that players attempt to solve with their inventory items.",
+    additionalProperties: false,
   },
 );
 export type ChallengeConfig = Static<typeof ChallengeConfigSchema>;
@@ -174,6 +179,7 @@ export const AppConfigSchema = Type.Object(
       {
         title: "Challenge",
         description: "UI text configuration for the challenge sub-app.",
+        additionalProperties: false,
       },
     ),
     inventory: Type.Object(
@@ -190,6 +196,7 @@ export const AppConfigSchema = Type.Object(
       {
         title: "Inventory",
         description: "UI text configuration for the inventory sub-app.",
+        additionalProperties: false,
       },
     ),
     tokenPrompt: Type.Union([Type.String(), Type.Record(Type.String(), Type.String())], {
@@ -201,6 +208,7 @@ export const AppConfigSchema = Type.Object(
     $id: "AppConfig",
     title: "App Config",
     description: "Top-level UI text and labels for the two sub-apps (challenge and inventory).",
+    additionalProperties: false,
   },
 );
 export type AppConfig = Static<typeof AppConfigSchema>;
@@ -225,6 +233,7 @@ export const ContentConfigSchema = Type.Object(
     $id: "ContentConfig",
     title: "Content Config",
     description: "Content definitions including items, character types, and challenge scenarios.",
+    additionalProperties: false,
   },
 );
 export type ContentConfig = Static<typeof ContentConfigSchema>;
@@ -239,6 +248,7 @@ export const ConfigSchema = Type.Object(
     $id: "Config",
     title: "Config",
     description: "Root configuration combining app-level UI text and all content definitions.",
+    additionalProperties: false,
   },
 );
 export type Config = Static<typeof ConfigSchema>;
