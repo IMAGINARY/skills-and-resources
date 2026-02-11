@@ -19,33 +19,33 @@
   },
   "dependencies": {
     "@nuxt/ui": "^4.4.0",
-    "@vueuse/core": "^14.2.0",
+    "@vueuse/core": "^14.2.1",
     "@vueuse/gesture": "^2.0.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
     "typebox": "^1.0.81",
-    "vue": "^3.5.26",
+    "vue": "^3.5.28",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@modyfi/vite-plugin-yaml": "^1.1.1",
-    "@tsconfig/node24": "^24.0.3",
+    "@tsconfig/node24": "^24.0.4",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.10.4",
-    "@vitejs/plugin-vue": "^6.0.3",
+    "@types/node": "^24.10.13",
+    "@vitejs/plugin-vue": "^6.0.4",
     "@vue/tsconfig": "^0.8.1",
     "js-yaml": "^4.1.1",
     "npm-check-updates": "^19.3.2",
     "npm-run-all": "^4.1.5",
-    "oxfmt": "^0.24.0",
-    "oxlint": "^1.39.0",
+    "oxfmt": "^0.31.0",
+    "oxlint": "^1.46.0",
     "patch-package": "^8.0.1",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-node-polyfills": "^0.25.0",
-    "vite-plugin-vue-devtools": "^8.0.5",
-    "vue-tsc": "^3.2.2"
+    "vite-plugin-vue-devtools": "^8.0.6",
+    "vue-tsc": "^3.2.4"
   },
   "engines": {
     "node": ">=20.20.0 <21"

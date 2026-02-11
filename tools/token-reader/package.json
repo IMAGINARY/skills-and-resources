@@ -13,25 +13,25 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@commander-js/extra-typings": "^12.0.0",
+    "@commander-js/extra-typings": "^12.1.0",
     "@johntalton/ndef": "^1.0.3",
     "@mnasyrov/pubsub": "^0.2.4",
     "@pokusew/pcsclite": "github:pokusew/node-pcsclite#8100373ef05278b274250695577584fb161dec9b",
     "@tockawa/nfc-pcsc": "^0.9.3",
-    "ink": "^6.6.0",
+    "ink": "^6.7.0",
     "ink-select-input": "^6.2.0",
     "react": "^19.2.4",
-    "tsx": "^4.0.0",
+    "tsx": "^4.21.0",
     "typed-emitter": "^2.1.0",
     "ws": "^8.19.0"
   },
   "devDependencies": {
-    "@types/node": "^24.10.4",
-    "@types/react": "^19.2.13",
+    "@types/node": "^24.10.13",
+    "@types/react": "^19.2.14",
     "@types/ws": "^8.18.1",
     "npm-check-updates": "^19.3.2",
-    "oxfmt": "^0.24.0",
-    "oxlint": "^1.39.0",
+    "oxfmt": "^0.31.0",
+    "oxlint": "^1.46.0",
     "patch-package": "^8.0.1",
     "typescript": "~5.9.3"
   },
