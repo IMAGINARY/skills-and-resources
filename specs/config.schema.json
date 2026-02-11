@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "app",
+    "content"
+  ],
+  "properties": {
+    "app": {
+      "$ref": "#/$defs/AppConfig"
+    },
+    "content": {
+      "$ref": "#/$defs/ContentConfig"
+    }
+  },
+  "title": "Config",
+  "description": "Root configuration combining app-level UI text and all content definitions.",
+  "additionalProperties": false,
+  "$id": "Config",
+  "$defs": {
+    "I18nRecord": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "title": "I18n Record",
+      "description": "An internationalized text value: either a plain string or a record mapping locale codes to translated strings.",
+      "$id": "I18nRecord"
+    },
+    "ItemType": {
+      "enum": [
+        "skill",
+        "resource"
+      ],
+      "title": "Item Type",
+      "description": "The category of an inventory item: a personal skill or a physical resource.",
+      "$id": "ItemType"
+    },
+    "ItemConfig": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "title",
+        "description",
+        "icon"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Item ID",
+          "description": "Unique identifier for the item."
+        },
+        "type": {
+          "$ref": "#/$defs/ItemType"
+        },
+        "title": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Title",
+          "description": "Display title of the item."
+        },
+        "description": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Description",
+          "description": "Longer description explaining the item."
+        },
+        "icon": {
+          "type": "string",
+          "title": "Icon",
+          "description": "Emoji or icon identifier representing the item."
+        }
+      },
+      "title": "Item Config",
+      "description": "Configuration for a single skill or resource item in the inventory.",
+      "additionalProperties": false,
+      "$id": "ItemConfig"
+    },
+    "CharacterTypeConfig": {
+      "type": "object",
+      "required": [
+        "id",
+        "items",
+        "title",
+        "description",
+        "icon"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Character type ID",
+          "description": "Unique identifier for the character type."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Item ID."
+          },
+          "title": "Items",
+          "description": "List of item ids that are permanently assigned to this character type."
+        },
+        "title": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Title",
+          "description": "Display name of the character (including age)."
+        },
+        "description": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Description",
+          "description": "Background story and personality description of the character."
+        },
+        "icon": {
+          "type": "string",
+          "title": "Icon",
+          "description": "Emoji or icon identifier representing the character."
+        }
+      },
+      "title": "Character Type Config",
+      "description": "Configuration for a character type that players can assume via an NFC token.",
+      "additionalProperties": false,
+      "$id": "CharacterTypeConfig"
+    },
+    "ChallengeItemConfig": {
+      "type": "object",
+      "required": [
+        "id",
+        "present",
+        "missing"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Item ID",
+          "description": "Item ID referencing an item required by this challenge."
+        },
+        "present": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Present Text",
+          "description": "Feedback text shown when the player has this item."
+        },
+        "missing": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Missing Text",
+          "description": "Feedback text shown when the player is missing this item."
+        }
+      },
+      "title": "Challenge Item Config",
+      "description": "Describes how a specific item relates to a challenge, including feedback for presence and absence.",
+      "additionalProperties": false,
+      "$id": "ChallengeItemConfig"
+    },
+    "ChallengeConfig": {
+      "type": "object",
+      "required": [
+        "id",
+        "solution",
+        "title",
+        "description",
+        "icon"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Challenge ID",
+          "description": "Unique identifier for the challenge."
+        },
+        "solution": {
+          "type": "object",
+          "required": [
+            "items",
+            "success"
+          ],
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChallengeItemConfig"
+              },
+              "title": "Items",
+              "description": "Items that form the solution to this challenge."
+            },
+            "success": {
+              "$ref": "#/$defs/I18nRecord",
+              "title": "Success Message",
+              "description": "Message displayed when the player has all required items."
+            }
+          },
+          "title": "Solution",
+          "description": "The expected solution for the challenge, consisting of required items and a success message.",
+          "additionalProperties": false
+        },
+        "title": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Title",
+          "description": "Display title of the challenge scenario."
+        },
+        "description": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Description",
+          "description": "Narrative description of the challenge scenario."
+        },
+        "icon": {
+          "type": "string",
+          "title": "Icon",
+          "description": "Emoji or icon identifier representing the challenge."
+        }
+      },
+      "title": "Challenge Config",
+      "description": "Configuration for a challenge scenario that players attempt to solve with their inventory items.",
+      "additionalProperties": false,
+      "$id": "ChallengeConfig"
+    },
+    "AppConfig": {
+      "type": "object",
+      "required": [
+        "challenge",
+        "inventory",
+        "tokenPrompt"
+      ],
+      "properties": {
+        "challenge": {
+          "type": "object",
+          "required": [
+            "title",
+            "description"
+          ],
+          "properties": {
+            "title": {
+              "$ref": "#/$defs/I18nRecord",
+              "title": "Title",
+              "description": "Heading for the challenge app panel."
+            },
+            "description": {
+              "$ref": "#/$defs/I18nRecord",
+              "title": "Description",
+              "description": "Introductory text shown in the challenge app panel."
+            }
+          },
+          "title": "Challenge",
+          "description": "UI text configuration for the challenge sub-app.",
+          "additionalProperties": false
+        },
+        "inventory": {
+          "type": "object",
+          "required": [
+            "title",
+            "description"
+          ],
+          "properties": {
+            "title": {
+              "$ref": "#/$defs/I18nRecord",
+              "title": "Title",
+              "description": "Heading for the inventory app panel."
+            },
+            "description": {
+              "$ref": "#/$defs/I18nRecord",
+              "title": "Description",
+              "description": "Introductory text shown in the inventory app panel."
+            }
+          },
+          "title": "Inventory",
+          "description": "UI text configuration for the inventory sub-app.",
+          "additionalProperties": false
+        },
+        "tokenPrompt": {
+          "$ref": "#/$defs/I18nRecord",
+          "title": "Token Prompt",
+          "description": "Prompt text asking the player to place their NFC token."
+        }
+      },
+      "title": "App Config",
+      "description": "Top-level UI text and labels for the two sub-apps (challenge and inventory).",
+      "additionalProperties": false,
+      "$id": "AppConfig"
+    },
+    "ContentConfig": {
+      "type": "object",
+      "required": [
+        "items",
+        "characterTypes",
+        "challenges"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ItemConfig"
+          },
+          "title": "Items",
+          "description": "All available skills and resources."
+        },
+        "characterTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CharacterTypeConfig"
+          },
+          "title": "Character Types",
+          "description": "All available character types that can be assigned via NFC tokens."
+        },
+        "challenges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ChallengeConfig"
+          },
+          "title": "Challenges",
+          "description": "All challenge scenarios available in the exhibit."
+        }
+      },
+      "title": "Content Config",
+      "description": "Content definitions including items, character types, and challenge scenarios.",
+      "additionalProperties": false,
+      "$id": "ContentConfig"
+    }
+  }
+}
