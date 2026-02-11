@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "check-updates": "npm-check-updates",
     "fix-install": "npm clean-install --ignore-scripts && npm install && npm rebuild",
     "postinstall": "patch-package",
     "start": "tsx src/index.ts",
@@ -28,6 +29,7 @@
     "@types/node": "^24.10.4",
     "@types/react": "^19.2.13",
     "@types/ws": "^8.18.1",
+    "npm-check-updates": "^19.3.2",
     "oxfmt": "^0.24.0",
     "oxlint": "^1.39.0",
     "patch-package": "^8.0.1",
