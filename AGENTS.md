@@ -38,10 +38,20 @@ Node `>=20.20.0 <21` (specified in both `package.json` files)
 - **Imports**: Group: 1) external packages, 2) internal `@/` aliases, 3) relative paths
 - **Vue**: Use `<script setup lang="ts">` with Composition API; order: script, template, style
 - **Naming**: camelCase for variables/functions, PascalCase for components/types
-- **Assertions**: Use `import { strict as assert } from "assert"` for runtime checks
+- **Assertions**: Use `import { strict as assert } from "assert"` for runtime checks (polyfilled
+  in-browser via `vite-plugin-node-polyfills`)
 - **Linting**: oxlint with plugins: eslint, typescript, unicorn, oxc, import, vue
 - **UI Components**: Use NuxtUI v4 components; prefer built-in components over custom ones
 - **Config/Options**: YAML files in `src/config/` and `src/options/`, loaded via
-  `@modyfi/vite-plugin-yaml`; types defined manually alongside each YAML file
+  `@modyfi/vite-plugin-yaml`; types defined manually alongside each YAML file (no runtime
+  validation; both files have a TODO to adopt schema-based types)
+- **TypeBox**: The `typebox` package (v1, imported as `"typebox"` / `"typebox/value"`) is used for
+  runtime schema validation of the WebSocket token-reader protocol. Schemas are defined in
+  `src/types/token.ts` using `Type.*` builders with companion `Static<>` types. Incoming messages
+  are validated at runtime via `Value.Parse()` in `src/stores/token.ts`. Note: the token-reader tool
+  (`tools/token-reader/`) defines its own parallel plain-TS types that must be kept in sync manually.
 - **State**: Pinia stores in `src/stores/`; config and options injected via `provide`/`inject`
-- **Project**: Vite + Vue 3 + Pinia + NuxtUI v4 + VueUse + TypeScript (ES modules)
+- **Routing**: No client-side routing; `vue-router` is a dependency only because NuxtUI requires it,
+  but is configured with `router: false` in the Vite plugin
+- **Project**: Vite 7 + Vue 3 + Pinia + NuxtUI v4 + Tailwind CSS 4 + VueUse + TypeBox +
+  TypeScript (ES modules)
