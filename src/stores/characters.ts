@@ -1,4 +1,4 @@
-import type { Config } from "@/config/config";
+import type { Config } from "@/types/config";
 
 import { inject, reactive, toValue } from "vue";
 import { defineStore } from "pinia";

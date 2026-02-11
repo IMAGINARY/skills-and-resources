@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DeepReadonly } from "vue";
 import { computed } from "vue";
-import type { ItemConfig } from "@/config/config";
+import type { ItemConfig } from "@/types/config";
 
 import { useConfigStore } from "@/stores/config";
 import ItemThumbnail from "@/components/ItemThumbnail.vue";

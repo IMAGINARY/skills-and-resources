@@ -4,7 +4,7 @@ import type {
   ItemConfig,
   ChallengeConfig,
   CharacterTypeConfig,
-} from "@/config/config";
+} from "@/types/config";
 import type { DeepReadonly } from "vue";
 
 import { computed, inject } from "vue";
