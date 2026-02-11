@@ -10,21 +10,17 @@ export type ItemType = "skill" | "resource";
 export type Item = {
   id: string;
   type: ItemType;
-  ui: {
-    title: I18nRecord;
-    description: I18nRecord;
-    icon: string;
-  };
+  title: I18nRecord;
+  description: I18nRecord;
+  icon: string;
 };
 
 export type CharacterType = {
   id: string;
   staticItems: string[];
-  ui: {
-    title: I18nRecord;
-    description: I18nRecord;
-    icon: string;
-  };
+  title: I18nRecord;
+  description: I18nRecord;
+  icon: string;
 };
 
 export type ChallengeItem = {
@@ -35,13 +31,13 @@ export type ChallengeItem = {
 
 export type Challenge = {
   id: string;
-  solution: ChallengeItem[];
-  ui: {
-    title: I18nRecord;
-    description: I18nRecord;
-    solution: I18nRecord;
-    icon: string;
+  solution: {
+    items: ChallengeItem[];
+    success: I18nRecord;
   };
+  title: I18nRecord;
+  description: I18nRecord;
+  icon: string;
 };
 
 export type MutableConfig = {

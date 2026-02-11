@@ -20,382 +20,364 @@ apps:
 items:
   - id: first-aid
     type: skill
-    ui:
-      title:
-        en: First aid
-        de: Erste Hilfe
-      description:
-        en: You can provide basic medical first aid, such as placing someone in the recovery position or safely treating minor wounds.
-        de: Du kannst medizinische Erstversorgung leisten, z. B. stabile Seitenlage anwenden oder kleinere Wunden sicher versorgen.
-      icon: 👨‍⚕️
+    title:
+      en: First aid
+      de: Erste Hilfe
+    description:
+      en: You can provide basic medical first aid, such as placing someone in the recovery position or safely treating minor wounds.
+      de: Du kannst medizinische Erstversorgung leisten, z. B. stabile Seitenlage anwenden oder kleinere Wunden sicher versorgen.
+    icon: 👨‍⚕️
   - id: care-competence
     type: skill
-    ui:
-      title:
-        en: Care competence
-        de: Pflegekompetenz
-      description:
-        en: You understand the needs of people who require care in your close environment and can support them even in exceptional situations.
-        de: Du kennst die Bedürfnisse pflegebedürftiger Personen in deinem näheren Umfeld und kannst sie auch in Ausnahmesituationen unterstützen.
-      icon: 🧑‍⚕️
+    title:
+      en: Care competence
+      de: Pflegekompetenz
+    description:
+      en: You understand the needs of people who require care in your close environment and can support them even in exceptional situations.
+      de: Du kennst die Bedürfnisse pflegebedürftiger Personen in deinem näheren Umfeld und kannst sie auch in Ausnahmesituationen unterstützen.
+    icon: 🧑‍⚕️
   - id: warning-app
     type: skill
-    ui:
-      title:
-        en: Warning App
-        de: Warn-App
-      description:
-        en: Using your phone, you stay informed and know where to find reliable and official information in an emergency.
-        de: Über dein Handy bleibst du informiert und weißt, wo du im Ernstfall verlässliche und offizielle Informationen findest.
-      icon: 📱
+    title:
+      en: Warning App
+      de: Warn-App
+    description:
+      en: Using your phone, you stay informed and know where to find reliable and official information in an emergency.
+      de: Über dein Handy bleibst du informiert und weißt, wo du im Ernstfall verlässliche und offizielle Informationen findest.
+    icon: 📱
   - id: local-knowledge
     type: skill
-    ui:
-      title:
-        en: Local Knowledge
-        de: Lokales Wissen
-      description:
-        en: You know which crisis scenarios may occur in your area and are familiar with assembly points and critical infrastructure in your building.
-        de: Du weißt, welche Krisenszenarien es in deiner Gegend geben kann, und kennst Sammelpunkte und wichtige Infrastruktur in deinem Gebäude.
-      icon: 🗺️
+    title:
+      en: Local Knowledge
+      de: Lokales Wissen
+    description:
+      en: You know which crisis scenarios may occur in your area and are familiar with assembly points and critical infrastructure in your building.
+      de: Du weißt, welche Krisenszenarien es in deiner Gegend geben kann, und kennst Sammelpunkte und wichtige Infrastruktur in deinem Gebäude.
+    icon: 🗺️
   - id: emergency-bag
     type: skill
-    ui:
-      title:
-        en: Emergency Bag
-        de: Notgepäck
-      description:
-        en: Emergency Bag You know what to pack in an emergency – for example water, essential medication, personal documents, and warm clothing.
-        de: Du weißt, was du im Notfall einpacken musst – zum Beispiel Wasser, wichtige Medikamente, persönliche Dokumente und warme Kleidung.
-      icon: 🧳
+    title:
+      en: Emergency Bag
+      de: Notgepäck
+    description:
+      en: Emergency Bag You know what to pack in an emergency – for example water, essential medication, personal documents, and warm clothing.
+      de: Du weißt, was du im Notfall einpacken musst – zum Beispiel Wasser, wichtige Medikamente, persönliche Dokumente und warme Kleidung.
+    icon: 🧳
   - id: self-protection
     type: skill
-    ui:
-      title:
-        en: Self-Protection
-        de: Eigenschutz
-      description:
-        en: You know how to act in critical situations without unnecessarily endangering yourself or others.
-        de: Du weißt, wie man in kritischen Situationen handelt, ohne sich selbst oder andere unnötig in Gefahr zu bringen.
-      icon: 👷
+    title:
+      en: Self-Protection
+      de: Eigenschutz
+    description:
+      en: You know how to act in critical situations without unnecessarily endangering yourself or others.
+      de: Du weißt, wie man in kritischen Situationen handelt, ohne sich selbst oder andere unnötig in Gefahr zu bringen.
+    icon: 👷
   - id: supplies
     type: resource
-    ui:
-      title:
-        en: Supplies
-        de: Vorräte
-      description:
-        en: With sufficient water and food, you can stay at home calmly for several days.
-        de: Mit ausreichend Wasser und Lebensmitteln kannst du für ein paar Tage entspannt zu Hause bleiben.
-      icon: 🥫
+    title:
+      en: Supplies
+      de: Vorräte
+    description:
+      en: With sufficient water and food, you can stay at home calmly for several days.
+      de: Mit ausreichend Wasser und Lebensmitteln kannst du für ein paar Tage entspannt zu Hause bleiben.
+    icon: 🥫
   - id: flashlight
     type: resource
-    ui:
-      title:
-        en: Flashlight
-        de: Taschenlampe
-      description:
-        en: A flashlight allows you to move safely and maintain orientation even in darkness or during a power outage.
-        de: Mit einer Taschenlampe findest du dich auch bei Dunkelheit oder Stromausfall sicher zurecht.
-      icon: 🔦
+    title:
+      en: Flashlight
+      de: Taschenlampe
+    description:
+      en: A flashlight allows you to move safely and maintain orientation even in darkness or during a power outage.
+      de: Mit einer Taschenlampe findest du dich auch bei Dunkelheit oder Stromausfall sicher zurecht.
+    icon: 🔦
   - id: power-bank
     type: resource
-    ui:
-      title:
-        en: Power Bank
-        de: Powerbank
-      description:
-        en: With a charged power bank, you can continue using essential electronic devices for some time even without electricity.
-        de: Mit einer geladenen Powerbank kannst du wichtige elektronische Geräte auch ohne Strom noch eine Zeit lang nutzen.
-      icon: 🔋
+    title:
+      en: Power Bank
+      de: Powerbank
+    description:
+      en: With a charged power bank, you can continue using essential electronic devices for some time even without electricity.
+      de: Mit einer geladenen Powerbank kannst du wichtige elektronische Geräte auch ohne Strom noch eine Zeit lang nutzen.
+    icon: 🔋
   - id: crank-radio
     type: skill
-    ui:
-      title:
-        en: Crank Radio
-        de: Kurbelradio
-      description:
-        en: A radio allows you to stay informed even without internet or mobile service.
-        de: Mit einem Radio bleibst du auch ohne Internet oder Mobilfunk gut informiert.
-      icon: 📻
+    title:
+      en: Crank Radio
+      de: Kurbelradio
+    description:
+      en: A radio allows you to stay informed even without internet or mobile service.
+      de: Mit einem Radio bleibst du auch ohne Internet oder Mobilfunk gut informiert.
+    icon: 📻
   - id: cooking-option
     type: resource
-    ui:
-      title:
-        en: Cooking Option
-        de: Kochmöglichkeit
-      description:
-        en: With a gas stove, you can prepare warm meals for yourself and others even without electricity.
-        de: Mit einem Gaskocher kannst du dir und anderen auch ohne Strom warme Mahlzeiten zubereiten.
-      icon: 🔥
+    title:
+      en: Cooking Option
+      de: Kochmöglichkeit
+    description:
+      en: With a gas stove, you can prepare warm meals for yourself and others even without electricity.
+      de: Mit einem Gaskocher kannst du dir und anderen auch ohne Strom warme Mahlzeiten zubereiten.
+    icon: 🔥
   - id: medkit
     type: resource
-    ui:
-      title:
-        en: Medical Kit
-        de: Medikit
-      description:
-        en: With bandages, painkillers, and other medication, you can take care of yourself and others.
-        de: Mit Pflastern, Schmerzmitteln und weiteren Medikamenten kannst du dich und andere versorgen.
-      icon: 🩹
+    title:
+      en: Medical Kit
+      de: Medikit
+    description:
+      en: With bandages, painkillers, and other medication, you can take care of yourself and others.
+      de: Mit Pflastern, Schmerzmitteln und weiteren Medikamenten kannst du dich und andere versorgen.
+    icon: 🩹
 
 characterTypes:
   - id: character_1
     staticItems:
       - first-aid
       - self-protection
-    ui:
-      title: Emma (19)
-      description:
-        en: Emma has just completed her driver’s license and first-aid course. In stressful situations, she sticks to clear procedures – it gives her a sense of security. The small cheat sheet from the course is still in her jacket pocket. Just in case.
-        de: Emma hat gerade Führerschein und Erste-Hilfe-Kurs gemacht. In Stresssituationen hält sie sich an klare Abläufe – das gibt ihr Sicherheit. In ihrer Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
-      icon: 👩‍🦰
+    title: Emma (19)
+    description:
+      en: Emma has just completed her driver's license and first-aid course. In stressful situations, she sticks to clear procedures – it gives her a sense of security. The small cheat sheet from the course is still in her jacket pocket. Just in case.
+      de: Emma hat gerade Führerschein und Erste-Hilfe-Kurs gemacht. In Stresssituationen hält sie sich an klare Abläufe – das gibt ihr Sicherheit. In ihrer Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
+    icon: 👩‍🦰
   - id: character_2
     staticItems:
       - warning-app
       - power-bank
-    ui:
-      title: Malte (21)
-      description:
-        en: Malte organizes almost everything via his smartphone. He notices early when something feels off and immediately checks reliable information. After once being stranded with an empty battery, he never leaves home without backup.
-        de: Malte organisiert fast alles über sein Smartphone. Er merkt früh, wenn etwas nicht stimmt, und checkt sofort verlässliche Infos. Er ist einmal mit leerem Akku gestrandet – seitdem verlässt er das Haus nie ohne Backup.
-      icon: 🤖
+    title: Malte (21)
+    description:
+      en: Malte organizes almost everything via his smartphone. He notices early when something feels off and immediately checks reliable information. After once being stranded with an empty battery, he never leaves home without backup.
+      de: Malte organisiert fast alles über sein Smartphone. Er merkt früh, wenn etwas nicht stimmt, und checkt sofort verlässliche Infos. Er ist einmal mit leerem Akku gestrandet – seitdem verlässt er das Haus nie ohne Backup.
+    icon: 🤖
   - id: character_3
     staticItems:
       - crank-radio
       - cooking-option
-    ui:
-      title: Martin (35)
-      description:
-        en: "Martin loves being outdoors: camping, hiking, festivals. He likes things that work without a power socket. Improvisation is part of his routine – if necessary, pasta from a pot will do."
-        de: "Martin ist gern draußen: Camping, Wandern, Festivals. Er mag es, wenn Dinge auch ohne Steckdose funktionieren. Improvisieren gehört für ihn dazu – notfalls gibt es eben Nudeln aus dem Topf."
-      icon: 🧔‍♂️
+    title: Martin (35)
+    description:
+      en: "Martin loves being outdoors: camping, hiking, festivals. He likes things that work without a power socket. Improvisation is part of his routine – if necessary, pasta from a pot will do."
+      de: "Martin ist gern draußen: Camping, Wandern, Festivals. Er mag es, wenn Dinge auch ohne Steckdose funktionieren. Improvisieren gehört für ihn dazu – notfalls gibt es eben Nudeln aus dem Topf."
+    icon: 🧔‍♂️
   - id: character_4
     staticItems:
       - warning-app
       - supplies
-    ui:
-      title: Sabine (38)
-      description:
-        en: "Sabine juggles work, children, and daily life. In exceptional situations, she tries to stay calm – especially for others. Her shopping motto: better prepared than improvising later."
-        de: "Sabine jongliert Job, Kinder und Alltag. In Ausnahmesituationen versucht sie, Ruhe zu bewahren – vor allem für andere. Ihr Motto beim Einkaufen: Lieber vorbereitet sein als später improvisieren."
-      icon: 👱‍♀️
+    title: Sabine (38)
+    description:
+      en: "Sabine juggles work, children, and daily life. In exceptional situations, she tries to stay calm – especially for others. Her shopping motto: better prepared than improvising later."
+      de: "Sabine jongliert Job, Kinder und Alltag. In Ausnahmesituationen versucht sie, Ruhe zu bewahren – vor allem für andere. Ihr Motto beim Einkaufen: Lieber vorbereitet sein als später improvisieren."
+    icon: 👱‍♀️
   - id: character_5
     staticItems:
       - care-competence
       - medkit
-    ui:
-      title: Paul (45)
-      description:
-        en: Paul regularly supports his mother, who requires care. He knows what is essential and what cannot wait. His backpack is always well organized – even if he sometimes forgets where he put his keys.
-        de: Paul unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, was unverzichtbar ist und was nicht warten darf. Sein Rucksack ist immer gut sortiert – auch wenn er dafür manchmal den Haustürschlüssel sucht.
-      icon: 👨‍🦱
+    title: Paul (45)
+    description:
+      en: Paul regularly supports his mother, who requires care. He knows what is essential and what cannot wait. His backpack is always well organized – even if he sometimes forgets where he put his keys.
+      de: Paul unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, was unverzichtbar ist und was nicht warten darf. Sein Rucksack ist immer gut sortiert – auch wenn er dafür manchmal den Haustürschlüssel sucht.
+    icon: 👨‍🦱
   - id: character_6
     staticItems:
       - local-knowledge
       - emergency-bag
-    ui:
-      title: Renate (56)
-      description:
-        en: Renate has lived in the region for a long time and has experienced severe weather before. She knows risky areas and safe routes. When others panic, she stays calm – experience beats haste.
-        de: Renate lebt schon lange in der Region und hat Unwetter schon öfter erlebt. Sie kennt riskante Stellen und sichere Wege. Wenn andere hektisch werden, bleibt sie gelassen – Erfahrung schlägt Eile.
-      icon: 👵
+    title: Renate (56)
+    description:
+      en: Renate has lived in the region for a long time and has experienced severe weather before. She knows risky areas and safe routes. When others panic, she stays calm – experience beats haste.
+      de: Renate lebt schon lange in der Region und hat Unwetter schon öfter erlebt. Sie kennt riskante Stellen und sichere Wege. Wenn andere hektisch werden, bleibt sie gelassen – Erfahrung schlägt Eile.
+    icon: 👵
 
 challenges:
   - id: christmas-market
+    title:
+      en: Unrest at the Christmas Market
+      de: Unruhe auf dem Weihnachtsmarkt
+    description:
+      en: You are visiting a Christmas market with your friend. The crowd is dense, and rumors are spreading everywhere. Some people say there has been an accident and that everyone must leave the area immediately.
+      de: Du bist mit deiner Freundin auf einem Weihnachtsmarkt unterwegs. Die Menschenmenge ist dicht, überall kursieren Gerüchte. Manche sagen, es habe einen Unfall gegeben und alle müssten sofort den Platz verlassen.
+    icon: 🎄
     solution:
-      - id: warning-app
-        present:
-          en: You receive official information and instructions as soon as they are available.
-          de: Sobald es Informationen und Anweisungen von außen gibt, weißt du Bescheid und kannst handeln.
-        missing:
-          en: Find a way to receive important information on your phone and keep an overview.
-          de: Finde einen Weg, um mit deinem Handy wichtige Informationen empfangen zu können und den Überblick zu behalten.
-      - id: self-protection
-        present:
-          en: You don’t let panic take over and avoid unnecessary risks.
-          de: Du lässt dich nicht von Panik mitreißen und bringst dich nicht unnötig in Gefahr.
-        missing:
-          en: Be careful not to underestimate chaotic situations or act hastily.
-          de: Achte darauf, eine chaotische Situation wie diese nicht zu unterschätzen und überstürzt zu handeln.
-      - id: power-bank
-        present:
-          en: Your phone remains usable if the situation changes.
-          de: Dein Handy bleibt einsatzbereit, falls sich die Lage doch verändert.
-        missing:
-          en: With an empty battery, orientation and communication quickly become difficult.
-          de: Mit leerem Akku wird Orientierung und Kommunikation schnell schwierig.
-    ui:
-      title:
-        en: Unrest at the Christmas Market
-        de: Unruhe auf dem Weihnachtsmarkt
-      description:
-        en: You are visiting a Christmas market with your friend. The crowd is dense, and rumors are spreading everywhere. Some people say there has been an accident and that everyone must leave the area immediately.
-        de: Du bist mit deiner Freundin auf einem Weihnachtsmarkt unterwegs. Die Menschenmenge ist dicht, überall kursieren Gerüchte. Manche sagen, es habe einen Unfall gegeben und alle müssten sofort den Platz verlassen.
-      solution:
+      items:
+        - id: warning-app
+          present:
+            en: You receive official information and instructions as soon as they are available.
+            de: Sobald es Informationen und Anweisungen von außen gibt, weißt du Bescheid und kannst handeln.
+          missing:
+            en: Find a way to receive important information on your phone and keep an overview.
+            de: Finde einen Weg, um mit deinem Handy wichtige Informationen empfangen zu können und den Überblick zu behalten.
+        - id: self-protection
+          present:
+            en: You don't let panic take over and avoid unnecessary risks.
+            de: Du lässt dich nicht von Panik mitreißen und bringst dich nicht unnötig in Gefahr.
+          missing:
+            en: Be careful not to underestimate chaotic situations or act hastily.
+            de: Achte darauf, eine chaotische Situation wie diese nicht zu unterschätzen und überstürzt zu handeln.
+        - id: power-bank
+          present:
+            en: Your phone remains usable if the situation changes.
+            de: Dein Handy bleibt einsatzbereit, falls sich die Lage doch verändert.
+          missing:
+            en: With an empty battery, orientation and communication quickly become difficult.
+            de: Mit leerem Akku wird Orientierung und Kommunikation schnell schwierig.
+      success:
         en: Well done! You stay calm and assess the situation instead of being swept up by rumors. Using the warning app, you quickly find out that there is no official alert. The rumors turn out to be false – you can continue enjoying the market.
         de: Gut gemacht! Ihr bleibt ruhig und prüft die Situation, statt euch von Gerüchten anstecken zu lassen. Über die Warn-App findet ihr schnell heraus, dass es keine offizielle Meldung gibt. Die Gerüchte bestätigen sich nicht – ihr könnt den Markt entspannt weiter genießen.
-      icon: 🎄
   - id: injury-after-storm
+    title:
+      en: Injury after the storm
+      de: Verletzung nach dem Sturm
+    description:
+      en: After a storm, your neighbor tries to clear a fallen tree from the driveway and injures himself. Due to the severe weather, emergency services are overloaded and delayed.
+      de: Nach einem Sturm versucht dein Nachbar, einen umgestürzten Baum von der Einfahrt zu räumen. Dabei verletzt er sich. Wegen des Unwetters ist der Rettungsdienst überlastet und kommt erst verspätet.
+    icon: 🌪️
     solution:
-      - id: first-aid
-        present:
-          en: You can help immediately and stabilize your neighbor until emergency services arrive.
-          de: Du kannst schnell helfen und stabilisierst deine Nachbarin, bis der Rettungsdienst kommt.
-        missing:
-          en: Waiting for emergency services costs valuable time.
-          de: Deine Nachbarin braucht möglichst schnell Hilfe, denn auf den Rettungsdienst warten kostet wertvolle Zeit.
-      - id: medkit
-        present:
-          en: You have everything you need to treat wounds and relieve pain.
-          de: Du hast alles Nötige zur Hand und kannst Schmerzen lindern und Wunden versorgen.
-        missing:
-          en: Your neighbor is in severe pain – how could you ease it?
-          de: Dein Nachbar hat durch ihre Verletzung starke Schmerzen. Wie kannst du ihre Beschwerden etwas lindern?
-    ui:
-      title:
-        en: Injury after the storm
-        de: Verletzung nach dem Sturm
-      description:
-        en: After a storm, your neighbor tries to clear a fallen tree from the driveway and injures himself. Due to the severe weather, emergency services are overloaded and delayed.
-        de: Nach einem Sturm versucht dein Nachbar, einen umgestürzten Baum von der Einfahrt zu räumen. Dabei verletzt er sich. Wegen des Unwetters ist der Rettungsdienst überlastet und kommt erst verspätet.
-      solution:
+      items:
+        - id: first-aid
+          present:
+            en: You can help immediately and stabilize your neighbor until emergency services arrive.
+            de: Du kannst schnell helfen und stabilisierst deine Nachbarin, bis der Rettungsdienst kommt.
+          missing:
+            en: Waiting for emergency services costs valuable time.
+            de: Deine Nachbarin braucht möglichst schnell Hilfe, denn auf den Rettungsdienst warten kostet wertvolle Zeit.
+        - id: medkit
+          present:
+            en: You have everything you need to treat wounds and relieve pain.
+            de: Du hast alles Nötige zur Hand und kannst Schmerzen lindern und Wunden versorgen.
+          missing:
+            en: Your neighbor is in severe pain – how could you ease it?
+            de: Dein Nachbar hat durch ihre Verletzung starke Schmerzen. Wie kannst du ihre Beschwerden etwas lindern?
+      success:
         en: Well done! You act quickly and calmly. With your first-aid knowledge and the supplies you have at home, you can treat and stabilize your neighbor until professional help arrives.
         de: Gut gemacht! Du handelst schnell und ruhig. Mit deinem Wissen aus der Ersten Hilfe und der Wundversorgung, die du Zuhause hast, kannst du deinen Nachbarn versorgen und stabilisieren, bis professionelle Hilfe eintrifft.
-      icon: 🌪️
   - id: flooded-basement
+    title:
+      en: Checking Basement After Heavy Rain
+      de: Keller prüfen nach Dauerregen
+    description:
+      en: It has been raining heavily all night. You fear that your basement might be flooded and go to check.
+      de: Es hat die ganze Nacht stark geregnet. Du befürchtest, dass euer Keller überflutet ist, und gehst nachsehen.
+    icon: 💧
     solution:
-      - id: self-protection
-        present:
-          en: You avoid risks and assess the situation carefully before acting.
-          de: Du gehst kein Risiko ein und betrittst den Keller nicht, ohne dir vorher ein genaues Bild über die Lage gemacht zu haben.
-        missing:
-          en: Acting unprepared around water and electricity can be very dangerous.
-          de: Unvorbereitetes Handeln kann bei Wasser und Strom sehr gefährlich werden.
-      - id: local-knowledge
-        present:
-          en: You know where to shut off electricity and gas, preventing greater damage.
-          de: Du weißt, wo Strom und Gas abgeschaltet werden, und kannst größeren Schaden verhindern.
-        missing:
-          en: Valuable time is lost if you don't know how to shut them off.
-          de: Wertvolle Zeit vergeht, weil du nicht weißt, wie Strom und Gas abgeschaltet werden können.
-      - id: flashlight
-        present:
-          en: Light helps you assess the situation even without power.
-          de: Das Licht hilft dir, auch ohne Strom die Lage im Keller zu überblicken.
-        missing:
-          en: The basement has only a small window and is too dark to see clearly.
-          de: Der Keller hat nur ein kleines Fenster und es ist zu dunkel, um zu sehen, wie die Lage ist.
-    ui:
-      title:
-        en: Checking Basement After Heavy Rain
-        de: Keller prüfen nach Dauerregen
-      description:
-        en: It has been raining heavily all night. You fear that your basement might be flooded and go to check.
-        de: Es hat die ganze Nacht stark geregnet. Du befürchtest, dass euer Keller überflutet ist, und gehst nachsehen.
-      solution:
+      items:
+        - id: self-protection
+          present:
+            en: You avoid risks and assess the situation carefully before acting.
+            de: Du gehst kein Risiko ein und betrittst den Keller nicht, ohne dir vorher ein genaues Bild über die Lage gemacht zu haben.
+          missing:
+            en: Acting unprepared around water and electricity can be very dangerous.
+            de: Unvorbereitetes Handeln kann bei Wasser und Strom sehr gefährlich werden.
+        - id: local-knowledge
+          present:
+            en: You know where to shut off electricity and gas, preventing greater damage.
+            de: Du weißt, wo Strom und Gas abgeschaltet werden, und kannst größeren Schaden verhindern.
+          missing:
+            en: Valuable time is lost if you don't know how to shut them off.
+            de: Wertvolle Zeit vergeht, weil du nicht weißt, wie Strom und Gas abgeschaltet werden können.
+        - id: flashlight
+          present:
+            en: Light helps you assess the situation even without power.
+            de: Das Licht hilft dir, auch ohne Strom die Lage im Keller zu überblicken.
+          missing:
+            en: The basement has only a small window and is too dark to see clearly.
+            de: Der Keller hat nur ein kleines Fenster und es ist zu dunkel, um zu sehen, wie die Lage ist.
+      success:
         en: Well done! Using the flashlight, you detect the flooding early and avoid unnecessary risks. You do not enter the basement further and immediately shut off electricity and gas.
         de: Gut gemacht! Mit der Taschenlampe erkennst du die Überflutung rechtzeitig und gehst kein unnötiges Risiko ein. Du betrittst den Keller nicht weiter und schaltest sofort Strom und Gas ab.
-      icon: 💧
   - id: blackout
+    title:
+      en: "Blackout: More Than a Power Outage"
+      de: Blackout – mehr als ein Stromausfall
+    description:
+      en: The power is out – not just in your house, but across the entire state, and it has been that way since the day before yesterday. Internet and mobile networks no longer work, traffic lights are down, and water pressure is low. You are at home with your family.
+      de: Der Strom ist weg – nicht nur in deinem Haus, sondern im ganzen Bundesland und das seit Vorgestern. Internet und Mobilfunk funktionieren nicht mehr, Ampeln fallen aus und der Wasserdruck ist niedrig. Du bist mit deiner Familie zu Hause.
+    icon: ⚡
     solution:
-      - id: cooking-option
-        present:
-          en: You can prepare warm meals and boil water.
-          de: Du kannst dich mit warmen Mahlzeiten stärken und heißes Wasser kochen.
-        missing:
-          en: Without electricity, many foods become unusable.
-          de: Ohne Strom bleiben viele Lebensmittel unbrauchbar.
-      - id: crank-radio
-        present:
-          en: You receive important information even without power.
-          de: Auch ohne Strom verpasst du mit dem Radio keine wichtigen Informationen und kannst handeln.
-        missing:
-          en: Without information, the situation quickly feels unsafe.
-          de: Ohne Informationen fühlt sich die Situation schnell unsicher an.
-      - id: supplies
-        present:
-          en: You are well supplied even if the blackout lasts several days.
-          de: Selbst wenn der Blackout einige Tage anhält, bist du mit ausreichend Nahrung versorgt.
-        missing:
-          en: Food and water must be rationed strictly.
-          de: Ihr müsst stark einschränken, wie viel ihr esst und trinkt, um die Situation gut zu überstehen.
-      - id: flashlight
-        present:
-          en: You can move safely and maintain orientation.
-          de: Auch ohne Strom kannst du dich so sicher bewegen und orientieren.
-        missing:
-          en: Darkness increases uncertainty and accident risk.
-          de: Dunkelheit erhöht Unsicherheit und Unfallrisiken.
-    ui:
-      title:
-        en: "Blackout: More Than a Power Outage"
-        de: Blackout – mehr als ein Stromausfall
-      description:
-        en: The power is out – not just in your house, but across the entire state, and it has been that way since the day before yesterday. Internet and mobile networks no longer work, traffic lights are down, and water pressure is low. You are at home with your family.
-        de: Der Strom ist weg – nicht nur in deinem Haus, sondern im ganzen Bundesland und das seit Vorgestern. Internet und Mobilfunk funktionieren nicht mehr, Ampeln fallen aus und der Wasserdruck ist niedrig. Du bist mit deiner Familie zu Hause.
-      solution:
+      items:
+        - id: cooking-option
+          present:
+            en: You can prepare warm meals and boil water.
+            de: Du kannst dich mit warmen Mahlzeiten stärken und heißes Wasser kochen.
+          missing:
+            en: Without electricity, many foods become unusable.
+            de: Ohne Strom bleiben viele Lebensmittel unbrauchbar.
+        - id: crank-radio
+          present:
+            en: You receive important information even without power.
+            de: Auch ohne Strom verpasst du mit dem Radio keine wichtigen Informationen und kannst handeln.
+          missing:
+            en: Without information, the situation quickly feels unsafe.
+            de: Ohne Informationen fühlt sich die Situation schnell unsicher an.
+        - id: supplies
+          present:
+            en: You are well supplied even if the blackout lasts several days.
+            de: Selbst wenn der Blackout einige Tage anhält, bist du mit ausreichend Nahrung versorgt.
+          missing:
+            en: Food and water must be rationed strictly.
+            de: Ihr müsst stark einschränken, wie viel ihr esst und trinkt, um die Situation gut zu überstehen.
+        - id: flashlight
+          present:
+            en: You can move safely and maintain orientation.
+            de: Auch ohne Strom kannst du dich so sicher bewegen und orientieren.
+          missing:
+            en: Darkness increases uncertainty and accident risk.
+            de: Dunkelheit erhöht Unsicherheit und Unfallrisiken.
+      success:
         en: Well done! You remain calm and capable of acting. You can prepare warm meals, stay informed via radio, and have light at night. The situation feels manageable.
         de: Gut gemacht! Ihr bleibt ruhig und handlungsfähig. Ihr könnt euch etwas Warmes zu essen machen, seid über das Radio informiert und habt auch nachts Licht. So fühlt sich die Situation kontrollierbar an.
-      icon: ⚡
   - id: storm-surge-evacuation
+    title:
+      en: Evacuation During a Storm Surge
+      de: Evakuierung bei Sturmflut
+    description:
+      en: You hear in the news that a storm surge is expected. Some neighborhoods are to be evacuated, others are considered safe. You must decide whether to leave and where to go.
+      de: Über die Nachrichten erfährst du, dass eine Sturmflut angekündigt ist. Einige Stadtteile sollen evakuiert werden, andere gelten als sicher. Du musst entscheiden, ob und wohin du gehst.
+    icon: 🌊
     solution:
-      - id: local-knowledge
-        present:
-          en: You know safe routes and which areas to avoid.
-          de: Du kennst dich in deiner Umgebung gut aus und weißt, welche Wege sicher sind und welche du vermeiden solltest.
-        missing:
-          en: You leave quickly but take a longer, unsafe route.
-          de: Du verlässt dein schnell Zuhause und gehst einen beliebigen Weg, ohne zu wissen, dass dieser länger und unsicher ist.
-      - id: warning-app
-        present:
-          en: Clear instructions allow you to react in time.
-          de: Durch die schnellen Informationen und klaren Anweisungen kannst du rechtzeitig reagieren.
-        missing:
-          en: Late information makes the situation more dangerous.
-          de: Du erfährst erst spät über Hinweise und Anweisungen, wodurch die Situation gefährlicher wird.
-      - id: emergency-bag
-        present:
-          en: Everything you need is ready so you can leave immediately.
-          de: Alles, was du brauchst, ist griffbereit, so kannst du sofort dein Zuhause verlassen.
-        missing:
-          en: Important items may be forgotten in the rush.
-          de: In der Eile vergisst du möglicherweise, wichtige Dinge mitzunehmen.
-    ui:
-      title:
-        en: Evacuation During a Storm Surge
-        de: Evakuierung bei Sturmflut
-      description:
-        en: You hear in the news that a storm surge is expected. Some neighborhoods are to be evacuated, others are considered safe. You must decide whether to leave and where to go.
-        de: Über die Nachrichten erfährst du, dass eine Sturmflut angekündigt ist. Einige Stadtteile sollen evakuiert werden, andere gelten als sicher. Du musst entscheiden, ob und wohin du gehst.
-      solution:
+      items:
+        - id: local-knowledge
+          present:
+            en: You know safe routes and which areas to avoid.
+            de: Du kennst dich in deiner Umgebung gut aus und weißt, welche Wege sicher sind und welche du vermeiden solltest.
+          missing:
+            en: You leave quickly but take a longer, unsafe route.
+            de: Du verlässt dein schnell Zuhause und gehst einen beliebigen Weg, ohne zu wissen, dass dieser länger und unsicher ist.
+        - id: warning-app
+          present:
+            en: Clear instructions allow you to react in time.
+            de: Durch die schnellen Informationen und klaren Anweisungen kannst du rechtzeitig reagieren.
+          missing:
+            en: Late information makes the situation more dangerous.
+            de: Du erfährst erst spät über Hinweise und Anweisungen, wodurch die Situation gefährlicher wird.
+        - id: emergency-bag
+          present:
+            en: Everything you need is ready so you can leave immediately.
+            de: Alles, was du brauchst, ist griffbereit, so kannst du sofort dein Zuhause verlassen.
+          missing:
+            en: Important items may be forgotten in the rush.
+            de: In der Eile vergisst du möglicherweise, wichtige Dinge mitzunehmen.
+      success:
         en: Well done! Thanks to the warning app, you know you live in an affected area. You quickly pack your emergency bag with all essential items and take the safest route out of the danger zone.
         de: Gut gemacht! Dank der Warn-App, weiß du, dass du in einem betroffenen Gebiet wohnst. Du packst schnell dein Notgepäck mit allen wichtigen Sachen und machst dich auf den sichersten Weg raus aus dem Gefahrengebiet.
-      icon: 🌊
   - id: power-outage-home-care
+    title:
+      en: Power Outage During Home Care
+      de: Stromausfall bei häuslicher Pflege
+    description:
+      en: The power has been out for over half an hour. Your mother is receiving home care and relies on an electric ventilator. You immediately head to her place.
+      de: Der Strom ist seit über einer halben Stunde weg. Deine Mutter wird zu Hause gepflegt und ist auf ein elektrisches Beatmungsgerät angewiesen. Du machst dich sofort auf den Weg zu ihr.
+    icon: 🏥
     solution:
-      - id: care-competence
-        present:
-          en: Your experience enables calm and safe action.
-          de: Deine Erfahrung mit pflegebedürftigen Personen lässt dich im Notfall ruhig und sicher handeln.
-        missing:
-          en: Consider how to support the person without usual aids.
-          de: Überlege, wie du die pflegebedürftige Person auch ohne die gewohnten Hilfen besser unterstützen kannst.
-      - id: medkit
-        present:
-          en: Essential medication and tools are available.
-          de: Wichtige Medikamente und Hilfsmittel stehen im Notfall bereit.
-        missing:
-          en: You cannot help with pain or complications.
-          de: Bei Schmerzen oder anderen Problemen kannst du so nicht helfen.
-    ui:
-      title:
-        en: Power Outage During Home Care
-        de: Stromausfall bei häuslicher Pflege
-      description:
-        en: The power has been out for over half an hour. Your mother is receiving home care and relies on an electric ventilator. You immediately head to her place.
-        de: Der Strom ist seit über einer halben Stunde weg. Deine Mutter wird zu Hause gepflegt und ist auf ein elektrisches Beatmungsgerät angewiesen. Du machst dich sofort auf den Weg zu ihr.
-      solution:
+      items:
+        - id: care-competence
+          present:
+            en: Your experience enables calm and safe action.
+            de: Deine Erfahrung mit pflegebedürftigen Personen lässt dich im Notfall ruhig und sicher handeln.
+          missing:
+            en: Consider how to support the person without usual aids.
+            de: Überlege, wie du die pflegebedürftige Person auch ohne die gewohnten Hilfen besser unterstützen kannst.
+        - id: medkit
+          present:
+            en: Essential medication and tools are available.
+            de: Wichtige Medikamente und Hilfsmittel stehen im Notfall bereit.
+          missing:
+            en: You cannot help with pain or complications.
+            de: Bei Schmerzen oder anderen Problemen kannst du so nicht helfen.
+      success:
         en: Well done! Your experience helps you stay calm and act purposefully. You check the battery level of the ventilator and prepare the manual ventilation bag. You support your mother as best as possible and can call professional help if needed.
         de: Gut gemacht! Deine Erfahrung hilft dir, ruhig zu bleiben und gezielt zu handeln. Du prüfst den Akkustand des Beatmungsgeräts und hältst den Beatmungsbeutel für die Handbeatmung bereit. Damit unterstützt du deine Mutter bestmöglich und kannst im Zweifel professionelle Hilfe holen.
-      icon: 🏥

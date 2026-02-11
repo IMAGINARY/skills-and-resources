@@ -33,14 +33,14 @@ const item = computed<DeepReadonly<Item | null>>(() => items[props.itemId] ?? nu
       <div class="flex items-center text-2xl">
         <ItemThumbnail :item-id="item.id" class="text-5xl" />
         <div class="ms-5">
-          <div>{{ t1st(item.ui.title) }}</div>
-          <div>{{ t2nd(item.ui.title) }}</div>
+          <div>{{ t1st(item.title) }}</div>
+          <div>{{ t2nd(item.title) }}</div>
         </div>
       </div>
     </template>
     <div class="mt-3 text-2xl">
-      <p>{{ t1st(item.ui.description) }}</p>
-      <p>{{ t2nd(item.ui.description) }}</p>
+      <p>{{ t1st(item.description) }}</p>
+      <p>{{ t2nd(item.description) }}</p>
     </div>
     <template #footer v-if="locked"><span class="text-5xl">🔒</span></template>
   </UCard>

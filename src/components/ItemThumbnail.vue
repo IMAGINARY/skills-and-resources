@@ -13,7 +13,7 @@ const item = computed(() => items[props.itemId]);
 
 <template>
   <span>
-    <template v-if="item">{{ item.ui.icon }}</template>
+    <template v-if="item">{{ item.icon }}</template>
     <template v-else>❓</template>
   </span>
 </template>

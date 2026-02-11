@@ -34,7 +34,7 @@ const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
   return activeChallengeId.value
     ? (config.challenges
         .find(({ id }) => id === activeChallengeId.value)
-        ?.solution?.map(({ id }) => id) ?? [])
+        ?.solution?.items?.map(({ id }) => id) ?? [])
     : [];
 });
 
