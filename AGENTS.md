@@ -13,6 +13,8 @@ physical NFC readers to the web app via WebSocket. Config and options are loaded
 - `npm run dev` - Start development server with HMR
 - `npm run build` - Typecheck and build for production
 - `npm run preview` - Preview production build locally
+- `npm run generate` - Run all generate scripts
+- `npm run generate:config-schema` - Generate JSON Schema from TypeBox config schema
 - `npm run typecheck` - Run TypeScript type checking only (`vue-tsc` against `tsconfig.web.json`)
 - `npm run lint` - Run oxlint
 - `npm run lint:fix` - Run oxlint with auto-fix
@@ -42,12 +44,20 @@ Node `>=20.20.0 <21` (specified in both `package.json` files)
   in-browser via `vite-plugin-node-polyfills`)
 - **Linting**: oxlint with plugins: eslint, typescript, unicorn, oxc, import, vue
 - **UI Components**: Use NuxtUI v4 components; prefer built-in components over custom ones
-- **Config/Options**: YAML files in `src/config/` and `src/options/`, loaded via
-  `@modyfi/vite-plugin-yaml`; types defined manually alongside each YAML file (no runtime
-  validation; both files have a TODO to adopt schema-based types)
+- **Config**: Split into `src/config/app.yaml` (UI strings) and `src/config/content.yaml` (exhibit
+  content), loaded via `@modyfi/vite-plugin-yaml`. Types are derived from a TypeBox schema in
+  `src/types/config.ts` (via `Static<>`). The merged config is validated at runtime against the
+  TypeBox schema during startup (`Value.Check` in `src/config/config.ts`). A JSON Schema for
+  external tooling is generated from the TypeBox schema into `specs/config.schema.json` via
+  `npm run generate:config-schema`.
+- **Options**: `src/options/options.yaml`, loaded via `@modyfi/vite-plugin-yaml`; types are still
+  defined manually in `src/options/options.ts` (no runtime validation; has a TODO to adopt
+  schema-based types)
 - **TypeBox**: The `typebox` package (v1, imported as `"typebox"` / `"typebox/value"`) is used for
-  runtime schema validation of the WebSocket token-reader protocol. Schemas are defined in
-  `src/types/token.ts` using `Type.*` builders with companion `Static<>` types. Incoming messages
+  runtime schema validation of the config file format and the WebSocket token-reader protocol.
+  Config schemas are defined in `src/types/config.ts` using `Type.*` builders with companion
+  `Static<>` types; the merged config is validated at startup via `Value.Check()` in
+  `src/config/config.ts`. Token schemas are defined in `src/types/token.ts`; incoming messages
   are validated at runtime via `Value.Parse()` in `src/stores/token.ts`. Note: the token-reader tool
   (`tools/token-reader/`) defines its own parallel plain-TS types that must be kept in sync manually.
 - **State**: Pinia stores in `src/stores/`; config and options injected via `provide`/`inject`
