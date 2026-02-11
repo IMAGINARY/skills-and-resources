@@ -85,7 +85,7 @@ NFC tags. Each tag represents one character and must be prepared as follows:
 
 1. **Write an NDEF text record** containing the character type ID (e.g.
    `character_1`, `character_2`, …). The IDs must match the `characterTypes[].id`
-   values in [`src/config/config.yaml`](src/config/config.yaml). The NDEF
+   values in [`src/config/content.yaml`](src/config/content.yaml). The NDEF
    record must be of type `text` — no other record types are supported.
 
 2. **Enable the NFC counter** (recommended). By reading the counter, it is
@@ -148,6 +148,8 @@ The following `npm run` scripts are available:
 - `dev`: Start a development server with hot-reloading
 - `build`: Type-check and build for production
 - `preview`: Preview the production build locally
+- `generate`: Run all generate scripts
+- `generate:config-schema`: Generate JSON Schema from the TypeBox config schema
 - `typecheck`: Run TypeScript type checking (`vue-tsc`)
 - `lint`: Lint with oxlint
 - `lint:fix`: Lint with auto-fix
