@@ -1,3 +1,5 @@
+import { WebSocket } from "ws";
+
 import { sleep } from "./util.ts";
 import { appShutdownPromise } from "./shutdown-signal.ts";
 
@@ -38,7 +40,7 @@ async function withConnection(url: URL, onMessage: (msg: unknown) => void): Prom
         console.log("Connection closed");
         resolve();
       };
-      const onError = (event: Event) => {
+      const onError = (event: WebSocket.ErrorEvent) => {
         console.error("Connection error", event);
         exitCode = 1;
         resolve();
