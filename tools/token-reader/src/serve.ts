@@ -38,14 +38,12 @@ function createStateMessagePublisher(config: {
   const emitter = new Emitter<StateMessage>();
   const publisher: Publisher<StateMessage> = emitter;
 
-  const handleReader = (reader: Reader) => {
+  const handleReader = async (reader: Reader) => {
     console.log(`Reader ${reader.name} connected`);
     if (reader.name !== config.challenge && reader.name !== config.inventory) {
       console.log(`Reader ${reader.name} not matching inventory or challenge, ignoring`);
       return;
     }
-
-    // TODO: Set up reader to only detect ISO 14443-3A tags (detectMifare: true, other PICCs false)
 
     const role: ReaderRole = reader.name === config.challenge ? "challenge" : "inventory";
     console.log(`Using reader ${reader.name} for ${role} tokens`);
@@ -53,6 +51,23 @@ function createStateMessagePublisher(config: {
     reader.once("end", () => {
       console.log(`Reader ${reader.name} disconnected`);
     });
+
+    if (reader instanceof ACR122Reader) {
+      // Set up the reader to ignore tags other than ISO 14443-3A
+      const result = await reader.setPiccOperatingParameter({
+        autoPolling: true,
+        autoAtsGeneration: true,
+        shortPollingInterval: true,
+        detectFelica424K: false,
+        detectFelica212K: false,
+        detectIso14443B: false, // = ISO 14443-4B
+        detectIso14443A: false, // = ISO 14443-4A
+        detectMifare: true, // = ISO 14443-3A (MIFARE / NTAG)
+      });
+      if (result.ok)
+        console.log(`Reader ${reader.name} configured exclusively for ISO 14443-3A tags`);
+      else console.warn(`Reader ${reader.name} configuration failed: ${result.error}`);
+    }
 
     const emit = (state: TokenStateNFC) => {
       readerStates[role] = state;
