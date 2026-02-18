@@ -6,6 +6,7 @@
  */
 
 import pcsclite from "@pokusew/pcsclite";
+import { NfcForumType2TagType } from "./constants.ts";
 
 // ---------------------------------------------------------------------------
 // Internal pcsclite types
@@ -80,19 +81,18 @@ export type TagType = (typeof TagType)[keyof typeof TagType];
 // ---------------------------------------------------------------------------
 
 /**
- * Represents a card/tag currently present on a reader.
+ * Represents a NFC Forum Type 2 Tag currently present on a reader.
  *
  * The `uid` is extracted via a GET_DATA APDU after the card is connected.
- * The `data` is auto-read from the tag's user data pages based on the
- * detected tag type.
+ * The `data` is auto-read from the tag's data pages.
  */
-export interface Card {
+export interface NfcForumType2TagCard {
   /** The tag's UID (4, 7, or 10 bytes) as a hex string. */
   uid: string;
-  /** User data read from the tag's data pages. */
-  data: Buffer;
   /** Detected tag IC type, if recognized. */
-  type: TagType;
+  type: NfcForumType2TagType;
+  /** Tag data including headers and user data pages */
+  data: Buffer;
 }
 
 // ---------------------------------------------------------------------------

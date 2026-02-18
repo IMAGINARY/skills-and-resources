@@ -5,8 +5,7 @@
 
 import { TypedEventEmitter } from "./TypedEventEmitter.ts";
 import { type Result, Ok, Err } from "./result.ts";
-import type { CardReader } from "./types.ts";
-import type { Card } from "./types.ts";
+import type { CardReader, NfcForumType2TagCard } from "./types.ts";
 import { TagType } from "./types.ts";
 import {
   ReaderClosedError,
@@ -33,7 +32,10 @@ import {
   DEFAULT_RESPONSE_MAX_LENGTH,
   parseAtr,
   parseGetVersion,
-  TAG_DATA_RANGE,
+  NFC_FORUM_TYPE2_TAG_START_PAGE,
+  NFC_FORUM_TYPE2_TAG_PAGE_COUNT,
+  NfcForumType2TagType,
+  isNfcForumType2TagType,
 } from "./constants.ts";
 
 // ---------------------------------------------------------------------------
@@ -77,16 +79,20 @@ export interface ReaderEventMap {
    */
   "card.on": () => void;
   /**
-   * A card/tag was placed on the reader.
-   * The Card object contains the UID and auto-read user data.
+   * An NFC Forum Type 2 Tag was detected on the reader.
+   *
+   * Emitted after the `card` event when the detected tag conforms
+   * to the NFC Forum Type 2 Tag specification (NTAG family, MIFARE
+   * Ultralight family). The payload contains the UID, tag type, and
+   * user data read from the tag.
    */
-  card: (card: Card) => void;
+  card: (card: NfcForumType2TagCard) => void;
   /**
    * The card/tag was removed from the reader.
    * The Card object from the previous `card` event is passed
    * for reference (contains UID and data).
    */
-  "card.off": (card: Card) => void;
+  "card.off": () => void;
   /** An error occurred on this reader. */
   error: (error: Error) => void;
   /** The reader was disconnected / removed from the system. */
@@ -123,7 +129,7 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
   readonly name: string;
 
   /** Currently active card, or null if no card is present. */
-  private _card: Card | null = null;
+  private _card: NfcForumType2TagCard | null = null;
   /** PC/SC protocol obtained during connect (T=0 or T=1). */
   private _protocol: number | null = null;
   /** Whether this Reader has been closed. */
@@ -144,7 +150,7 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
   // -----------------------------------------------------------------------
 
   /** The card currently on the reader, if any. */
-  get card(): Result<Card | null> {
+  get card(): Result<NfcForumType2TagCard | null> {
     if (this._closed) return Err(new ReaderClosedError(this.name));
     return Ok(this._card);
   }
@@ -174,13 +180,9 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
 
       // Card removed
       if (changes & ReaderState.EMPTY && status.state & ReaderState.EMPTY) {
-        const previousCard = this._card;
         this._card = null;
         this._protocol = null;
-
-        if (previousCard) {
-          this.emit("card.off", previousCard);
-        }
+        this.emit("card.off");
       }
     });
   }
@@ -219,13 +221,12 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
 
     // Identify the tag type (ATR + GET VERSION refinement)
     const tagType = await this.identifyTag(atr);
-
-    // Reject tags without page-based data support
-    const range = TAG_DATA_RANGE[tagType];
-    if (!range) {
+    if (!isNfcForumType2TagType(tagType)) {
       this.emit("error", new UnsupportedTagError(tagType));
       return;
     }
+
+    const nfcForumType2TagType: NfcForumType2TagType = tagType;
 
     // Read UID
     const uidResult = await this.getUid();
@@ -235,16 +236,16 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
     }
 
     // Read user data pages
-    const dataResult = await this.readDataPages(tagType);
+    const dataResult = await this.readDataPages(nfcForumType2TagType);
     if (!dataResult.ok) {
       this.emit("error", dataResult.error);
       return;
     }
 
-    const card: Card = {
+    const card: NfcForumType2TagCard = {
       uid: uidResult.value,
       data: dataResult.value,
-      type: tagType,
+      type: nfcForumType2TagType,
     };
 
     this._card = card;
@@ -496,7 +497,8 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
   /**
    * Reads user data pages from the tag based on the detected tag type.
    *
-   * Uses the {@link TAG_DATA_RANGE} mapping to determine the correct
+   * Uses the {@link NFC_FORUM_TYPE2_TAG_START_PAGE} and
+   * {@link NFC_FORUM_TYPE2_TAG_PAGE_COUNT} mapping to determine the correct
    * page range. For tag types that support FAST_READ (NTAG21x, MIFARE
    * Ultralight EV1), uses the bulk FAST_READ command via PN532
    * InCommunicateThru. Falls back to sequential READ BINARY APDUs for
@@ -506,7 +508,7 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
    * Only called for tag types that have a known data range
    * (unsupported tags are rejected before reaching this method).
    */
-  private async readDataPages(tagType: TagType): Promise<Result<Buffer>> {
+  private async readDataPages(tagType: NfcForumType2TagType): Promise<Result<Buffer>> {
     if (FAST_READ_TAG_TYPES.has(tagType)) {
       return this.readDataPagesFastRead(tagType);
     }
@@ -524,8 +526,11 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
    * Response format from InCommunicateThru:
    *   D5 43 <status> <page data...> 90 00
    */
-  private async readDataPagesFastRead(tagType: TagType): Promise<Result<Buffer>> {
-    const range = TAG_DATA_RANGE[tagType]!;
+  private async readDataPagesFastRead(tagType: NfcForumType2TagType): Promise<Result<Buffer>> {
+    const range = {
+      startPage: NFC_FORUM_TYPE2_TAG_START_PAGE,
+      pageCount: NFC_FORUM_TYPE2_TAG_PAGE_COUNT[tagType],
+    };
     const { startPage, pageCount } = range;
     const endPage = startPage + pageCount - 1;
     const totalBytes = pageCount * PAGE_SIZE;
@@ -605,8 +610,11 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
    * This is the fallback method for tags that don't support FAST_READ
    * (plain MIFARE Ultralight, Ultralight C, NTAG203).
    */
-  private async readDataPagesSequential(tagType: TagType): Promise<Result<Buffer>> {
-    const range = TAG_DATA_RANGE[tagType]!;
+  private async readDataPagesSequential(tagType: NfcForumType2TagType): Promise<Result<Buffer>> {
+    const range = {
+      startPage: NFC_FORUM_TYPE2_TAG_START_PAGE,
+      pageCount: NFC_FORUM_TYPE2_TAG_PAGE_COUNT[tagType],
+    };
     const { startPage, pageCount } = range;
     const totalBytes = pageCount * PAGE_SIZE;
 

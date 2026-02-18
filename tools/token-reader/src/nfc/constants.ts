@@ -241,19 +241,54 @@ export function parseAtr(atr: Buffer): {
  * Each page is {@link PAGE_SIZE} (4) bytes. Total user data =
  * `pageCount * PAGE_SIZE` bytes.
  */
-// TODO: Split into NFC_FORUM_TYPE2_TAG_START_PAGE=3 and NFC_FORUM_TYPE2_TAG_NUM_PAGES= { ...}
-export const TAG_DATA_RANGE: Partial<Record<TagType, { startPage: number; pageCount: number }>> = {
+/**
+ * Tag types that conform to the NFC Forum Type 2 Tag specification.
+ *
+ * NFC Forum Type 2 Tags are based on ISO 14443-3A and share a common
+ * page-based memory layout: 4-byte pages with a Capability Container
+ * (CC) at page 3 and user data starting at page 4. This includes:
+ *
+ * - NTAG family (203, 210, 212, 213, 215, 216)
+ * - MIFARE Ultralight family (Ultralight, Ultralight C, Ultralight EV1)
+ */
+export type NfcForumType2TagType =
+  | typeof TagType.NTAG_203
+  | typeof TagType.NTAG_210
+  | typeof TagType.NTAG_212
+  | typeof TagType.NTAG_213
+  | typeof TagType.NTAG_215
+  | typeof TagType.NTAG_216
+  | typeof TagType.MIFARE_ULTRALIGHT
+  | typeof TagType.MIFARE_ULTRALIGHT_C
+  | typeof TagType.MIFARE_ULTRALIGHT_EV1;
+export function isNfcForumType2TagType(tagType: TagType): tagType is NfcForumType2TagType {
+  return NFC_FORUM_TYPE_2_TAG_TYPES.has(tagType);
+}
+export const NFC_FORUM_TYPE_2_TAG_TYPES: ReadonlySet<TagType> = new Set<NfcForumType2TagType>([
+  TagType.NTAG_203,
+  TagType.NTAG_210,
+  TagType.NTAG_212,
+  TagType.NTAG_213,
+  TagType.NTAG_215,
+  TagType.NTAG_216,
+  TagType.MIFARE_ULTRALIGHT,
+  TagType.MIFARE_ULTRALIGHT_C,
+  TagType.MIFARE_ULTRALIGHT_EV1,
+]);
+
+export const NFC_FORUM_TYPE2_TAG_START_PAGE = 3;
+export const NFC_FORUM_TYPE2_TAG_PAGE_COUNT: Record<NfcForumType2TagType, number> = {
   // NTAG family
-  [TagType.NTAG_213]: { startPage: 3, pageCount: 1 + 36 }, // page 3 for CC + pages 4-39 for 144 bytes user data
-  [TagType.NTAG_215]: { startPage: 3, pageCount: 1 + 126 }, // page 3 for CC + pages 4-129 for 504 bytes user data
-  [TagType.NTAG_216]: { startPage: 3, pageCount: 1 + 222 }, // page 3 for CC + pages 4-225 for 888 bytes user data
-  [TagType.NTAG_203]: { startPage: 3, pageCount: 1 + 36 }, // page 3 for CC + pages 4-39 for 144 bytes user data
-  [TagType.NTAG_210]: { startPage: 3, pageCount: 1 + 4 }, // page 3 for CC + pages 4-7 for 16 bytes user data
-  [TagType.NTAG_212]: { startPage: 3, pageCount: 1 + 32 }, // page 3 for CC + pages 4-35 for 128 bytes user data
+  [TagType.NTAG_213]: 1 + 36, // page 3 for CC + pages 4-39 for 144 bytes user data
+  [TagType.NTAG_215]: 1 + 126, // page 3 for CC + pages 4-129 for 504 bytes user data
+  [TagType.NTAG_216]: 1 + 222, // page 3 for CC + pages 4-225 for 888 bytes user data
+  [TagType.NTAG_203]: 1 + 36, // page 3 for CC + pages 4-39 for 144 bytes user data
+  [TagType.NTAG_210]: 1 + 4, // page 3 for CC + pages 4-7 for 16 bytes user data
+  [TagType.NTAG_212]: 1 + 32, // page 3 for CC + pages 4-35 for 128 bytes user data
   // MIFARE Ultralight family
-  [TagType.MIFARE_ULTRALIGHT]: { startPage: 3, pageCount: 1 + 12 }, // pages 4-15,  48 bytes
-  [TagType.MIFARE_ULTRALIGHT_C]: { startPage: 3, pageCount: 1 + 36 }, // pages 4-39,  144 bytes
-  [TagType.MIFARE_ULTRALIGHT_EV1]: { startPage: 3, pageCount: 1 + 36 }, // pages 4-39,  144 bytes (UL EV1 varies; 36 is a safe default)
+  [TagType.MIFARE_ULTRALIGHT]: 1 + 12, // pages 4-15,  48 bytes
+  [TagType.MIFARE_ULTRALIGHT_C]: 1 + 36, // pages 4-39,  144 bytes
+  [TagType.MIFARE_ULTRALIGHT_EV1]: 1 + 36, // pages 4-39,  144 bytes (UL EV1 varies; 36 is a safe default)
 };
 
 // ---------------------------------------------------------------------------
