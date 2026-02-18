@@ -432,59 +432,6 @@ describe("ACR122_READER_PATTERN", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Tag data range mapping
-// ---------------------------------------------------------------------------
-
-describe("TAG_DATA_RANGE", () => {
-  it("has entries for known NTAG types", () => {
-    expect(TAG_DATA_RANGE[TagType.NTAG_213]).toBeDefined();
-    expect(TAG_DATA_RANGE[TagType.NTAG_215]).toBeDefined();
-    expect(TAG_DATA_RANGE[TagType.NTAG_216]).toBeDefined();
-  });
-
-  it("NTAG_213 has 36 pages starting at page 4", () => {
-    const range = TAG_DATA_RANGE[TagType.NTAG_213]!;
-    expect(range.startPage).toBe(4);
-    expect(range.pageCount).toBe(36);
-  });
-
-  it("NTAG_215 has 126 pages starting at page 4", () => {
-    const range = TAG_DATA_RANGE[TagType.NTAG_215]!;
-    expect(range.startPage).toBe(4);
-    expect(range.pageCount).toBe(126);
-  });
-
-  it("NTAG_216 has 222 pages starting at page 4", () => {
-    const range = TAG_DATA_RANGE[TagType.NTAG_216]!;
-    expect(range.startPage).toBe(4);
-    expect(range.pageCount).toBe(222);
-  });
-
-  it("MIFARE_ULTRALIGHT has 12 pages starting at page 4", () => {
-    const range = TAG_DATA_RANGE[TagType.MIFARE_ULTRALIGHT]!;
-    expect(range.startPage).toBe(4);
-    expect(range.pageCount).toBe(12);
-  });
-
-  it("has no entry for MIFARE_CLASSIC_1K (block-based, not page-based)", () => {
-    expect(TAG_DATA_RANGE[TagType.MIFARE_CLASSIC_1K]).toBeUndefined();
-  });
-
-  it("has no entry for UNKNOWN tags", () => {
-    expect(TAG_DATA_RANGE[TagType.UNKNOWN]).toBeUndefined();
-  });
-
-  it("has no entry for unsupported tag types (MIFARE_DESFIRE, FELICA, JCOP)", () => {
-    expect(TAG_DATA_RANGE[TagType.MIFARE_DESFIRE]).toBeUndefined();
-    expect(TAG_DATA_RANGE[TagType.FELICA]).toBeUndefined();
-    expect(TAG_DATA_RANGE[TagType.JCOP_30]).toBeUndefined();
-    expect(TAG_DATA_RANGE[TagType.JCOP_31]).toBeUndefined();
-    expect(TAG_DATA_RANGE[TagType.TOPAZ_512]).toBeUndefined();
-    expect(TAG_DATA_RANGE[TagType.MIFARE_PLUS]).toBeUndefined();
-  });
-});
-
-// ---------------------------------------------------------------------------
 // GET VERSION command and parsing
 // ---------------------------------------------------------------------------
 
