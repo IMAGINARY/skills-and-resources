@@ -10,6 +10,9 @@
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
+    "test": "vitest run",
+    "test:hardware": "PCSC_TEST_HARDWARE=1 vitest run --reporter=verbose",
+    "test:watch": "vitest",
     "format": "oxfmt"
   },
   "dependencies": {
@@ -33,7 +36,8 @@
     "oxfmt": "^0.31.0",
     "oxlint": "^1.46.0",
     "patch-package": "^8.0.1",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=20.20.0 <21"
