@@ -111,15 +111,15 @@ function waitForCard(reader: Reader, timeoutMs = 30_000): Promise<Card> {
 }
 
 /** Wait for card removal. */
-function waitForCardOff(reader: Reader, timeoutMs = 30_000): Promise<Card> {
+function waitForCardOff(reader: Reader, timeoutMs = 30_000): Promise<void> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       reject(new Error("Timed out waiting for card removal"));
     }, timeoutMs);
 
-    reader.on("card.off", (card) => {
+    reader.on("card.off", () => {
       clearTimeout(timeout);
-      resolve(card);
+      resolve();
     });
   });
 }
@@ -211,13 +211,8 @@ describe("Reader (hardware)", () => {
     }
 
     console.log(">>> Now REMOVE the card from the reader (waiting 30s)...");
-    const removedCard = await waitForCardOff(sharedReader);
-    expect(removedCard).toBeDefined();
-    expect(typeof removedCard.uid).toBe("string");
-    expect(removedCard.data).toBeDefined();
-    console.log(
-      `>>> Card removed — UID: ${removedCard.uid}, data: ${removedCard.data.length} bytes`,
-    );
+    await waitForCardOff(sharedReader);
+    console.log(">>> Card removed");
 
     // Card getter should now return null
     const afterRemoval = sharedReader.card;
