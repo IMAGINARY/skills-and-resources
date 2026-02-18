@@ -109,6 +109,10 @@ function createStateMessagePublisher(config: {
         }
 
         piccControl: if (!piccOperatingParameterSettingCompleted) {
+          // NOOP for now. Don't have cards for actually testing this.
+          piccOperatingParameterSettingCompleted = true;
+          break piccControl;
+          /* Original code
           if (!(reader instanceof ACR122Reader)) {
             console.warn(
               `Reader ${reader.name} does not support setting PICC operating parameters, skipping`,
@@ -131,6 +135,7 @@ function createStateMessagePublisher(config: {
           if (result.ok)
             console.log(`Reader ${reader.name} configured exclusively for ISO 14443-3A tags`);
           else console.warn(`Reader ${reader.name} configuration failed: ${result.error}`);
+          */
         }
       }
     });
