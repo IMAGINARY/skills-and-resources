@@ -1,0 +1,13 @@
+diff --git a/node_modules/@johntalton/ndef/src/capability_container.js b/node_modules/@johntalton/ndef/src/capability_container.js
+index cc979bb..46cfade 100644
+--- a/node_modules/@johntalton/ndef/src/capability_container.js
++++ b/node_modules/@johntalton/ndef/src/capability_container.js
+@@ -168,8 +168,6 @@ export class CapabilityContainer {
+ 
+ 			// immediately check if this is the Terminator as the remain bytes are not valid
+ 			if(tlvType === TLV_TYPE_TERMINATOR) {
+-				//
+-				console.log('TLV Terminator reached', cursor, u8.byteLength)
+ 				break
+ 			}
+ 
