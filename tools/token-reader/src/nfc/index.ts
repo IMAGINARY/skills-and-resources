@@ -8,7 +8,7 @@ export type { NfcEventMap } from "./NFC.ts";
 export type { ReaderEventMap } from "./Reader.ts";
 
 // Types
-export type { Card, TagType, PiccOperatingParameter, LedState, LedBuzzerOptions } from "./types.ts";
+export type { TagType, PiccOperatingParameter, LedState, LedBuzzerOptions } from "./types.ts";
 export { TagType as TagTypes } from "./types.ts";
 
 // Errors

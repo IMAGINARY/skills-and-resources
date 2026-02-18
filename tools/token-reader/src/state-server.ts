@@ -1,9 +1,43 @@
 import { WebSocket, WebSocketServer } from "ws";
 import { appShutdownPromise } from "./shutdown-signal.ts";
-import { TokenStateType } from "./token-reader.ts";
 
 import type { Publisher } from "@mnasyrov/pubsub";
-import type { TokenStateNFC } from "./token-reader-nfc";
+
+export type TokenId = string;
+export type TokenClass = string;
+export type Token = { id: TokenId; class: TokenClass };
+
+export type TokenError<ErrorType, ErrorDetails> = {
+  type: ErrorType;
+  details: ErrorDetails;
+};
+
+export enum TokenStateType {
+  ABSENT = "absent",
+  READING = "reading",
+  PRESENT = "present",
+  ERROR = "error",
+}
+
+export type TokenState<TE extends TokenError<unknown, unknown>> =
+  | { state: TokenStateType.ABSENT }
+  | { state: TokenStateType.READING }
+  | { state: TokenStateType.PRESENT; token: Token }
+  | { state: TokenStateType.ERROR; error: TE };
+
+export enum TokenErrorTypeNFC {
+  READER_ERROR,
+  READ_INTERRUPTED,
+  UID_INVALID,
+  DATA_INVALID,
+  TIMEOUT,
+}
+
+export type TokenErrorDetailsNFC = string;
+
+export type TokenErrorNFC = TokenError<TokenErrorTypeNFC, TokenErrorDetailsNFC>;
+
+export type TokenStateNFC = TokenState<TokenErrorNFC>;
 
 export type ReaderRole = "inventory" | "challenge";
 

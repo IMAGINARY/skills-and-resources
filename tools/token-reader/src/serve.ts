@@ -1,15 +1,20 @@
 import type { Publisher } from "@mnasyrov/pubsub";
 import { Emitter } from "@mnasyrov/pubsub";
-import type { ReaderRole, StateMessage } from "./state-server.ts";
-import { createInitialState, serveWebSocket } from "./state-server.ts";
-import { ACR122Reader, Card, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
+import type { ReaderRole, StateMessage, Token } from "./state-server.ts";
+import {
+  createInitialState,
+  serveWebSocket,
+  TokenStateType,
+  TokenStateNFC,
+  TokenErrorTypeNFC,
+} from "./state-server.ts";
+import { ACR122Reader, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
 import { appShutdownPromise } from "./shutdown-signal.ts";
-import { TokenErrorTypeNFC, TokenStateNFC } from "./token-reader-nfc.ts";
-import { Token, TokenStateType } from "./token-reader.ts";
 
 // @ts-expect-error No type declarations available
 import { CapabilityContainer } from "@johntalton/ndef";
 import { wrapException } from "./nfc/result.ts";
+import { NfcForumType2TagCard } from "./nfc/types.ts";
 
 export interface ServerConfig {
   host: string;
@@ -81,7 +86,7 @@ function createStateMessagePublisher(config: {
     });
 
     let buzzerDisablingCompleted = false;
-    reader.on("card", async (card: Card) => {
+    reader.on("card", async (card: NfcForumType2TagCard) => {
       console.debug(
         `${role}: uid: ${card.uid}, raw data (${card.data.length} bytes): ${card.data.toString()}`,
       );

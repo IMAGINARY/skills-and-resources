@@ -20,7 +20,6 @@
     "@johntalton/ndef": "^1.0.3",
     "@mnasyrov/pubsub": "^0.2.4",
     "@pokusew/pcsclite": "github:pokusew/node-pcsclite#8100373ef05278b274250695577584fb161dec9b",
-    "@tockawa/nfc-pcsc": "^0.9.3",
     "ink": "^6.7.0",
     "ink-select-input": "^6.2.0",
     "react": "^19.2.4",
