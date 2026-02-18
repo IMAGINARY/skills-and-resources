@@ -57,23 +57,6 @@ function createStateMessagePublisher(config: {
       console.log(`Reader ${reader.name} disconnected`);
     });
 
-    if (reader instanceof ACR122Reader) {
-      // Set up the reader to ignore tags other than ISO 14443-3A
-      const result = await reader.setPiccOperatingParameter({
-        autoPolling: true,
-        autoAtsGeneration: true,
-        shortPollingInterval: true,
-        detectFelica424K: false,
-        detectFelica212K: false,
-        detectIso14443B: false, // = ISO 14443-4B
-        detectIso14443A: false, // = ISO 14443-4A
-        detectMifare: true, // = ISO 14443-3A (MIFARE / NTAG)
-      });
-      if (result.ok)
-        console.log(`Reader ${reader.name} configured exclusively for ISO 14443-3A tags`);
-      else console.warn(`Reader ${reader.name} configuration failed: ${result.error}`);
-    }
-
     const emit = (state: TokenStateNFC) => {
       readerStates[role] = state;
       emitter.emit(structuredClone(readerStates));
@@ -86,6 +69,7 @@ function createStateMessagePublisher(config: {
     });
 
     let buzzerDisablingCompleted = false;
+    let piccOperatingParameterSettingCompleted = false;
     reader.on("card", async (card: NfcForumType2TagCard) => {
       console.debug(
         `${role}: uid: ${card.uid}, raw data (${card.data.length} bytes): ${card.data.toString()}`,
@@ -104,22 +88,50 @@ function createStateMessagePublisher(config: {
       console.log(`${role}: uid: ${token.id}, class: ${token.class}`);
       emit({ state: TokenStateType.PRESENT, token });
 
-      // Card has been read - reader should be idle -> take care of buzzer muting
-      buzzerControl: if (!buzzerDisablingCompleted) {
-        if (!(reader instanceof ACR122Reader)) {
-          console.warn(`Reader ${reader.name} does not support buzzer disabling, skipping`);
+      // Card has been read - reader should be idle
+      // -> take care of buzzer muting and set PICC operating parameter
+      {
+        buzzerControl: if (!buzzerDisablingCompleted) {
+          if (!(reader instanceof ACR122Reader)) {
+            console.warn(`Reader ${reader.name} does not support buzzer disabling, skipping`);
+            buzzerDisablingCompleted = true;
+            break buzzerControl;
+          }
+          const acr122Reader: ACR122Reader = reader;
+          const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(false);
+          if (!buzzerResult.ok) {
+            console.warn(`Buzzer disabling failed (will retry later): ${buzzerResult.error}`);
+            break buzzerControl;
+          }
+
+          console.log(`Buzzer disabled successfully`);
           buzzerDisablingCompleted = true;
-          break buzzerControl;
-        }
-        const acr122Reader: ACR122Reader = reader;
-        const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(false);
-        if (!buzzerResult.ok) {
-          console.warn(`Buzzer disabling failed (will retry later): ${buzzerResult.error}`);
-          break buzzerControl;
         }
 
-        console.log(`Buzzer disabled successfully`);
-        buzzerDisablingCompleted = true;
+        piccControl: if (!piccOperatingParameterSettingCompleted) {
+          if (!(reader instanceof ACR122Reader)) {
+            console.warn(
+              `Reader ${reader.name} does not support setting PICC operating parameters, skipping`,
+            );
+            piccOperatingParameterSettingCompleted = true;
+            break piccControl;
+          }
+
+          // Set up the reader to ignore tags other than ISO 14443-3A
+          const result = await reader.setPiccOperatingParameter({
+            autoPolling: true,
+            autoAtsGeneration: true,
+            shortPollingInterval: true,
+            detectFelica424K: false,
+            detectFelica212K: false,
+            detectIso14443B: false, // = ISO 14443-4B
+            detectIso14443A: false, // = ISO 14443-4A
+            detectMifare: true, // = ISO 14443-3A (MIFARE / NTAG)
+          });
+          if (result.ok)
+            console.log(`Reader ${reader.name} configured exclusively for ISO 14443-3A tags`);
+          else console.warn(`Reader ${reader.name} configuration failed: ${result.error}`);
+        }
       }
     });
 
