@@ -26,11 +26,9 @@ export type TokenState<TE extends TokenError<unknown, unknown>> =
   | { state: TokenStateType.ERROR; error: TE };
 
 export enum TokenErrorTypeNFC {
-  READER_ERROR,
-  READ_INTERRUPTED,
-  UID_INVALID,
-  DATA_INVALID,
-  TIMEOUT,
+  UNKNOWN_ERROR = "UNKNOWN_ERROR",
+  READ_INTERRUPTED = "READ_INTERRUPTED",
+  DATA_INVALID = "DATA_INVALID",
 }
 
 export type TokenErrorDetailsNFC = string;

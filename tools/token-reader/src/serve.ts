@@ -151,7 +151,7 @@ function createStateMessagePublisher(config: {
       // TODO: Differentiate between different types of errors
       emit({
         state: TokenStateType.ERROR,
-        error: { type: TokenErrorTypeNFC.READER_ERROR, details: error.message },
+        error: { type: TokenErrorTypeNFC.UNKNOWN_ERROR, details: error.message },
       });
     });
   };

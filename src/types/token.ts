@@ -42,28 +42,22 @@ export const TokenStateType = {
   ERROR: TokenStateTypeErrorSchema.const,
 } as const;
 
-const TokenErrorTypeNFCReadingErrorSchema = Type.Literal(0);
-const TokenErrorTypeNFCReadInterruptedSchema = Type.Literal(1);
-const TokenErrorTypeNFCUidInvalidSchema = Type.Literal(2);
-const TokenErrorTypeNFCDataInvalidSchema = Type.Literal(3);
-const TokenErrorTypeNFCTimeoutSchema = Type.Literal(4);
+const TokenErrorTypeNFCUnknownErrorSchema = Type.Literal("UNKNOWN_ERROR");
+const TokenErrorTypeNFCReadInterruptedSchema = Type.Literal("READ_INTERRUPTED");
+const TokenErrorTypeNFCDataInvalidSchema = Type.Literal("DATA_INVALID");
 export const TokenErrorTypeNFCSchema = Type.Union(
   [
-    TokenErrorTypeNFCReadingErrorSchema,
+    TokenErrorTypeNFCUnknownErrorSchema,
     TokenErrorTypeNFCReadInterruptedSchema,
-    TokenErrorTypeNFCUidInvalidSchema,
     TokenErrorTypeNFCDataInvalidSchema,
-    TokenErrorTypeNFCTimeoutSchema,
   ],
   { $id: "TokenErrorTypeNFC" },
 );
 export type TokenErrorTypeNFC = Static<typeof TokenErrorTypeNFCSchema>;
 export const TokenErrorTypeNFC = {
-  READER_ERROR: TokenErrorTypeNFCReadingErrorSchema.const,
-  READ_INTERRUPTED: TokenErrorTypeNFCReadInterruptedSchema.const,
-  UID_INVALID: TokenErrorTypeNFCUidInvalidSchema.const,
-  DATA_INVALID: TokenErrorTypeNFCDataInvalidSchema.const,
-  TIMEOUT: TokenErrorTypeNFCTimeoutSchema.const,
+  [TokenErrorTypeNFCUnknownErrorSchema.const]: TokenErrorTypeNFCUnknownErrorSchema.const,
+  [TokenErrorTypeNFCReadInterruptedSchema.const]: TokenErrorTypeNFCReadInterruptedSchema.const,
+  [TokenErrorTypeNFCDataInvalidSchema.const]: TokenErrorTypeNFCDataInvalidSchema.const,
 } as const;
 
 export const TokenErrorDetailsNFCSchema = Type.String({ $id: "TokenErrorDetailsNFC" });
