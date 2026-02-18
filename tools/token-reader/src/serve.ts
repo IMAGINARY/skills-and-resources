@@ -44,17 +44,19 @@ function createStateMessagePublisher(config: {
   const publisher: Publisher<StateMessage> = emitter;
 
   const handleReader = async (reader: Reader) => {
-    console.log(`Reader ${reader.name} connected`);
+    console.log(`general: + reader ${reader.name} connected`);
     if (reader.name !== config.challenge && reader.name !== config.inventory) {
-      console.log(`Reader ${reader.name} not matching inventory or challenge, ignoring`);
+      console.warn(
+        `general: ? reader ${reader.name} not matching inventory or challenge, ignoring`,
+      );
       return;
     }
 
     const role: ReaderRole = reader.name === config.challenge ? "challenge" : "inventory";
-    console.log(`Using reader ${reader.name} for ${role} tokens`);
+    console.log(`${role}: # using reader ${reader.name}`);
 
     reader.once("end", () => {
-      console.log(`Reader ${reader.name} disconnected`);
+      console.log(`${role}: - reader ${reader.name} disconnected`);
     });
 
     const emit = (state: TokenStateNFC) => {
@@ -63,7 +65,7 @@ function createStateMessagePublisher(config: {
     };
 
     reader.on("card.on", () => {
-      console.log(`${role}: new card`);
+      console.log(`${role}: + card`);
       const state: TokenStateNFC = { state: TokenStateType.READING };
       emit(state);
     });
@@ -72,11 +74,11 @@ function createStateMessagePublisher(config: {
     let piccOperatingParameterSettingCompleted = false;
     reader.on("card", async (card: NfcForumType2TagCard) => {
       console.debug(
-        `${role}: uid: ${card.uid}, raw data (${card.data.length} bytes): ${card.data.toString()}`,
+        `${role}: # uid: ${card.uid}, raw data (${card.data.length} bytes): ${card.data.toString()}`,
       );
       const decodeDataResult = decodeData(card.data);
       if (!decodeDataResult.ok) {
-        console.error(`${role}: decode failed: ${decodeDataResult.error}`);
+        console.error(`${role}: ! decode failed: ${decodeDataResult.error}`);
         emit({
           state: TokenStateType.ERROR,
           error: { type: TokenErrorTypeNFC.DATA_INVALID, details: decodeDataResult.error },
@@ -85,7 +87,7 @@ function createStateMessagePublisher(config: {
       }
 
       const token: Token = { id: card.uid, class: decodeDataResult.value };
-      console.log(`${role}: uid: ${token.id}, class: ${token.class}`);
+      console.log(`${role}: * uid: ${token.id}, class: ${token.class}`);
       emit({ state: TokenStateType.PRESENT, token });
 
       // Card has been read - reader should be idle
@@ -93,18 +95,20 @@ function createStateMessagePublisher(config: {
       {
         buzzerControl: if (!buzzerDisablingCompleted) {
           if (!(reader instanceof ACR122Reader)) {
-            console.warn(`Reader ${reader.name} does not support buzzer disabling, skipping`);
+            console.warn(`${role}: ? reader does not support buzzer disabling, skipping`);
             buzzerDisablingCompleted = true;
             break buzzerControl;
           }
           const acr122Reader: ACR122Reader = reader;
           const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(false);
           if (!buzzerResult.ok) {
-            console.warn(`Buzzer disabling failed (will retry later): ${buzzerResult.error}`);
+            console.warn(
+              `${role}: ! buzzer disabling failed (will retry later): ${buzzerResult.error}`,
+            );
             break buzzerControl;
           }
 
-          console.log(`Buzzer disabled successfully`);
+          console.log(`${role}: # buzzer disabled successfully`);
           buzzerDisablingCompleted = true;
         }
 
@@ -115,7 +119,7 @@ function createStateMessagePublisher(config: {
           /* Original code
           if (!(reader instanceof ACR122Reader)) {
             console.warn(
-              `Reader ${reader.name} does not support setting PICC operating parameters, skipping`,
+              `${role}: ? reader does not support setting PICC operating parameters, skipping`,
             );
             piccOperatingParameterSettingCompleted = true;
             break piccControl;
@@ -133,21 +137,21 @@ function createStateMessagePublisher(config: {
             detectMifare: true, // = ISO 14443-3A (MIFARE / NTAG)
           });
           if (result.ok)
-            console.log(`Reader ${reader.name} configured exclusively for ISO 14443-3A tags`);
-          else console.warn(`Reader ${reader.name} configuration failed: ${result.error}`);
+            console.log(`${role}: # reader configured exclusively for ISO 14443-3A tags`);
+          else console.warn(`${role}: ! reader configuration failed: ${result.error}`);
           */
         }
       }
     });
 
     reader.on("card.off", () => {
-      console.log(`Card removed from ${role}`);
+      console.log(`${role}: - card`);
       const state: TokenStateNFC = { state: TokenStateType.ABSENT };
       emit(state);
     });
 
     reader.on("error", (error) => {
-      console.error(`Reader error on ${reader.name}:`, error);
+      console.error(`${role}: !`, error);
       // TODO: Differentiate between different types of errors
       emit({
         state: TokenStateType.ERROR,
@@ -156,6 +160,7 @@ function createStateMessagePublisher(config: {
     });
   };
   nfc.on("reader", handleReader);
+  nfc.on("error", (error) => console.error("general: !", error));
 
   // TODO: handle NFC-level errors
 
