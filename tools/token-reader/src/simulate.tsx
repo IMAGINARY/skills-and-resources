@@ -3,11 +3,14 @@ import { render, Box, Text, useInput, useApp } from "ink";
 import SelectInput from "ink-select-input";
 import { Emitter } from "@mnasyrov/pubsub";
 import { shutdown } from "./shutdown-signal.ts";
-import { TokenStateType } from "./token-reader.ts";
-import { createInitialState, serveWebSocket } from "./state-server.ts";
+import {
+  createInitialState,
+  serveWebSocket,
+  TokenStateType,
+  TokenStateNFC,
+} from "./state-server.ts";
 
 import type { Publisher } from "@mnasyrov/pubsub";
-import type { TokenStateNFC } from "./token-reader-nfc";
 import type { ReaderRole, StateMessage } from "./state-server.ts";
 
 export interface Character {
