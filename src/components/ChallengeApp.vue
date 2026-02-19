@@ -6,14 +6,21 @@ import { storeToRefs } from "pinia";
 import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useTokenStore } from "@/stores/token";
+import { useLanguageStore, provideLanguage } from "@/stores/language";
 import Character from "@/components/Character.vue";
 import { TokenStateType } from "@/types/token";
 import Challenge from "@/components/Challenge.vue";
 import { useTap } from "@/composables/use-tap";
+import { Language } from "@/types/config.ts";
 
-const { app, content, t1st, t2nd } = useConfigStore();
+const { app, content } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { ensureCharacter } = useCharacterStore();
+
+const language = ref<Language>(Language.PRIMARY);
+const { useT } = useLanguageStore();
+const t = useT(language);
+provideLanguage(language); // use this language for all child components
 
 const { challenge: tokenState } = storeToRefs(useTokenStore());
 
@@ -56,13 +63,14 @@ const challengeSolved = computed<boolean>(() => {
 
 <template>
   <div class="full-hd-v-box challenge-app">
+    <LanguageSelector></LanguageSelector>
     <div>
-      <h1>{{ t1st(app.challenge.title) }}</h1>
-      <h2>{{ t2nd(app.challenge.title) }}</h2>
+      <h1>{{ t(app.challenge.title) }}</h1>
     </div>
     <div class="challenge-list">
       <Challenge
         v-for="challenge in content.challenges"
+        :language="language"
         :challenge-id="challenge.id"
         :key="challenge.id"
         v-drag="useTap(() => (activeChallengeId = challenge.id))"
@@ -73,7 +81,11 @@ const challengeSolved = computed<boolean>(() => {
       <div>Solved: {{ challengeSolved }}</div>
     </div>
     <div>Challenge Token: {{ tokenState }}</div>
-    <Character v-if="activeCharacterId" :character-id="activeCharacterId"></Character>
+    <Character
+      v-if="activeCharacterId"
+      :language="language"
+      :character-id="activeCharacterId"
+    ></Character>
   </div>
 </template>
 

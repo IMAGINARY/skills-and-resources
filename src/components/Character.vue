@@ -6,14 +6,19 @@ import { useTap } from "@/composables/use-tap";
 import { useConfigStore } from "@/stores/config";
 import ItemThumbnail from "@/components/ItemThumbnail.vue";
 import { useCharacterStore } from "@/stores/characters";
+import { useLanguageStore } from "@/stores/language";
+import { Language } from "@/types/config.ts";
 
 const props = defineProps<{
+  language: Language;
   characterId: string;
 }>();
 
-const { characterTypes, t1st, t2nd } = useConfigStore();
+const { characterTypes } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
 const { toggleItem } = useCharacterStore();
+const { useT } = useLanguageStore();
+const t = useT();
 
 const character = computed(() => characters.value[props.characterId] ?? null);
 
@@ -28,10 +33,8 @@ const type = computed(() => {
     <div v-if="type">
       <div>{{ type.icon }}</div>
       <div>ID: {{ props.characterId }} Class: {{ character.type }}</div>
-      <div>{{ t1st(type.title) }}</div>
-      <div>{{ t2nd(type.title) }}</div>
-      <div>{{ t1st(type.description) }}</div>
-      <div>{{ t2nd(type.description) }}</div>
+      <div>{{ t(type.title, language) }}</div>
+      <div>{{ t(type.description, language) }}</div>
       <div>
         <template v-for="{ locked, itemId } in character.inventory" :key="itemId">
           <span class="relative text-8xl">

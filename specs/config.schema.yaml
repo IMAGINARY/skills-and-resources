@@ -187,6 +187,7 @@ $defs:
       - challenge
       - inventory
       - tokenPrompt
+      - languages
     properties:
       challenge:
         type: object
@@ -226,6 +227,10 @@ $defs:
         $ref: '#/$defs/I18nRecord'
         title: Token Prompt
         description: Prompt text asking the player to place their NFC token.
+      languages:
+        $ref: '#/$defs/I18nRecord'
+        title: Language names
+        description: The names of the languages as displayed in the language selector.
     title: App Config
     description: >-
       Top-level UI text and labels for the two sub-apps (challenge and

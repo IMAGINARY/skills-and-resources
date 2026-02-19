@@ -188,6 +188,10 @@ export const ConfigSchema = Type.Cyclic(
           title: "Token Prompt",
           description: "Prompt text asking the player to place their NFC token.",
         }),
+        languages: Type.Ref("I18nRecord", {
+          title: "Language names",
+          description: "The names of the languages as displayed in the language selector.",
+        }),
       },
       {
         title: "App Config",
@@ -285,3 +289,8 @@ export type ContentConfig = Static<typeof ContentConfigSchema>;
 
 // Top-level config
 export type Config = Static<typeof ConfigSchema>;
+
+export enum Language {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+}

@@ -15,3 +15,6 @@ inventory:
 tokenPrompt:
   en: What are you bringing?
   de: Was bringst du mit?
+languages:
+  en: English
+  de: Deutsch

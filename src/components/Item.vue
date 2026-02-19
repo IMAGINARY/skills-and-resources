@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import type { DeepReadonly } from "vue";
 import { computed } from "vue";
-import type { ItemConfig } from "@/types/config";
+import { type ItemConfig, Language } from "@/types/config";
 
 import { useConfigStore } from "@/stores/config";
+import { useLanguageStore } from "@/stores/language";
 import ItemThumbnail from "@/components/ItemThumbnail.vue";
 
 const props = defineProps<{
+  language: Language;
   itemId: string;
   highlight?: boolean;
   locked?: boolean;
 }>();
 
-const { items, t1st, t2nd } = useConfigStore();
+const { items } = useConfigStore();
+const { useT } = useLanguageStore();
+const t = useT();
 
 const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId] ?? null);
 </script>
@@ -33,14 +37,12 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
       <div class="flex items-center text-2xl">
         <ItemThumbnail :item-id="item.id" class="text-5xl" />
         <div class="ms-5">
-          <div>{{ t1st(item.title) }}</div>
-          <div>{{ t2nd(item.title) }}</div>
+          <div>{{ t(item.title, language) }}</div>
         </div>
       </div>
     </template>
     <div class="mt-3 text-2xl">
-      <p>{{ t1st(item.description) }}</p>
-      <p>{{ t2nd(item.description) }}</p>
+      <p>{{ t(item.description, language) }}</p>
     </div>
     <template #footer v-if="locked"><span class="text-5xl">🔒</span></template>
   </UCard>

@@ -1,24 +1,15 @@
-import type {
-  Config,
-  I18nRecord,
-  ItemConfig,
-  ChallengeConfig,
-  CharacterTypeConfig,
+import {
+  type ChallengeConfig,
+  type CharacterTypeConfig,
+  type Config,
+  type ItemConfig,
 } from "@/types/config";
 import type { DeepReadonly } from "vue";
-
-import { computed, inject } from "vue";
+import { inject } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
 import { CONFIG_INJECTION_KEY } from "@/constants";
-import { useOptionsStore } from "./options";
-
-const t = (i18nRecord: I18nRecord, languageCode: string) => {
-  if (typeof i18nRecord === "string") return i18nRecord;
-  if (typeof i18nRecord[languageCode] === "string") return i18nRecord[languageCode];
-  return "<undefined>";
-};
 
 export const useConfigStore = defineStore("config", () => {
   const nullableConfig = inject<DeepReadonly<Config> | null>(CONFIG_INJECTION_KEY, null);
@@ -41,11 +32,11 @@ export const useConfigStore = defineStore("config", () => {
   );
   const challenges: DeepReadonly<Record<string, ChallengeConfig>> = asMap(content.challenges);
 
-  const { options } = useOptionsStore();
-
-  const { primary: lang1st, secondary: lang2nd } = options.languages;
-  const t1st = (i18nRecord: I18nRecord) => computed(() => t(i18nRecord, lang1st));
-  const t2nd = (i18nRecord: I18nRecord) => computed(() => t(i18nRecord, lang2nd));
-
-  return { app, content, items, characterTypes, challenges, t1st, t2nd };
+  return {
+    app,
+    content,
+    items,
+    characterTypes,
+    challenges,
+  };
 });
