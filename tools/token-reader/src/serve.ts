@@ -22,6 +22,7 @@ export interface ServerConfig {
   readers: {
     inventory: string;
     challenge: string;
+    buzzer?: boolean;
   };
 }
 
@@ -34,6 +35,7 @@ export async function serve(config: ServerConfig): Promise<number> {
 function createStateMessagePublisher(config: {
   challenge: string;
   inventory: string;
+  buzzer?: boolean;
 }): Publisher<StateMessage> {
   // Initialize NFC before creating readers
   const nfc = new NFC();
@@ -93,22 +95,22 @@ function createStateMessagePublisher(config: {
       // Card has been read - reader should be idle
       // -> take care of buzzer muting and set PICC operating parameter
       {
-        buzzerControl: if (!buzzerDisablingCompleted) {
+        buzzerControl: if (typeof config.buzzer !== "undefined" && !buzzerDisablingCompleted) {
           if (!(reader instanceof ACR122Reader)) {
             console.warn(`${role}: ? reader does not support buzzer disabling, skipping`);
             buzzerDisablingCompleted = true;
             break buzzerControl;
           }
           const acr122Reader: ACR122Reader = reader;
-          const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(false);
+          const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(config.buzzer);
           if (!buzzerResult.ok) {
             console.warn(
-              `${role}: ! buzzer disabling failed (will retry later): ${buzzerResult.error}`,
+              `${role}: ! buzzer ${config.buzzer ? "enabling" : "disabling"} failed (will retry later): ${buzzerResult.error}`,
             );
             break buzzerControl;
           }
 
-          console.log(`${role}: # buzzer disabled successfully`);
+          console.log(`${role}: # buzzer ${config.buzzer ? "enabled" : "disabled"} successfully`);
           buzzerDisablingCompleted = true;
         }
 

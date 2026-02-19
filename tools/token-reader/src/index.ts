@@ -39,8 +39,10 @@ program
   .requiredOption("-c, --challenge <name>", "Challenge reader name")
   .option("-H, --host <host>", "Host to bind", defaultOptions.host)
   .option("-p, --port <port>", "Port to bind", parseNonNegativeInteger, defaultOptions.port)
-  .action(async ({ host, port, inventory, challenge }) => {
-    process.exitCode = await serve({ host, port, readers: { inventory, challenge } });
+  .option("--buzzer", "Enable buzzer (applied after reading first token)")
+  .option("--no-buzzer", "Disable buzzer (applied after reading first token)")
+  .action(async ({ host, port, inventory, challenge, buzzer }) => {
+    process.exitCode = await serve({ host, port, readers: { inventory, challenge, buzzer } });
   });
 
 program
