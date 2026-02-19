@@ -8,7 +8,7 @@ import {
   TokenStateNFC,
   TokenErrorTypeNFC,
 } from "./state-server.ts";
-import { ACR122Reader, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
+import { ACR122Reader, CardRemovedError, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
 import { appShutdownPromise } from "./shutdown-signal.ts";
 
 // @ts-expect-error No type declarations available
@@ -152,11 +152,17 @@ function createStateMessagePublisher(config: {
 
     reader.on("error", (error) => {
       console.error(`${role}: !`, error);
-      // TODO: Differentiate between different types of errors
-      emit({
-        state: TokenStateType.ERROR,
-        error: { type: TokenErrorTypeNFC.UNKNOWN_ERROR, details: error.message },
-      });
+      if (error instanceof CardRemovedError) {
+        emit({
+          state: TokenStateType.ERROR,
+          error: { type: TokenErrorTypeNFC.READ_INTERRUPTED, details: error.message },
+        });
+      } else {
+        emit({
+          state: TokenStateType.ERROR,
+          error: { type: TokenErrorTypeNFC.UNKNOWN_ERROR, details: error.message },
+        });
+      }
     });
   };
   nfc.on("reader", handleReader);
