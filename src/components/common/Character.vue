@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { useTap } from "@/composables/use-tap";
 
 import { useConfigStore } from "@/stores/config";
-import ItemThumbnail from "@/components/ItemThumbnail.vue";
+import ItemThumbnail from "@/components/common/ItemThumbnail.vue";
 import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore } from "@/stores/language";
 import { Language } from "@/types/config.ts";

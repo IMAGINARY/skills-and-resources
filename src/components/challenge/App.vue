@@ -7,9 +7,9 @@ import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useTokenStore } from "@/stores/token";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
-import Character from "@/components/Character.vue";
+import Character from "@/components/common/Character.vue";
+import Challenge from "@/components/challenge/Challenge.vue";
 import { TokenStateType } from "@/types/token";
-import Challenge from "@/components/Challenge.vue";
 import { useTap } from "@/composables/use-tap";
 import { Language } from "@/types/config.ts";
 

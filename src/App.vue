@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ChallengeApp from "@/components/ChallengeApp.vue";
-import InventoryApp from "@/components/InventoryApp.vue";
-import ScaledLetterBox from "@/components/ScaledLetterBox.vue";
+import ChallengeApp from "@/components/challenge/App.vue";
+import InventoryApp from "@/components/inventory/App.vue";
+import ScaledLetterBox from "@/components/common/ScaledLetterBox.vue";
 </script>
 
 <template>

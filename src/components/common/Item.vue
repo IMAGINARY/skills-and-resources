@@ -5,7 +5,7 @@ import { type ItemConfig, Language } from "@/types/config";
 
 import { useConfigStore } from "@/stores/config";
 import { useLanguageStore } from "@/stores/language";
-import ItemThumbnail from "@/components/ItemThumbnail.vue";
+import ItemThumbnail from "@/components/common/ItemThumbnail.vue";
 
 const props = defineProps<{
   language: Language;
