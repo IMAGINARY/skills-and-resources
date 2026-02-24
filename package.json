@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "npm install --prefix tools/token-reader",
+    "postinstall": "npm run fix-install --prefix tools/token-reader",
     "check-updates": "npm-check-updates",
     "dev": "vite",
     "build": "npm run typecheck && vite build",
