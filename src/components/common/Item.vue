@@ -37,12 +37,12 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
       <div class="flex items-center text-2xl">
         <ItemThumbnail :item-id="item.id" class="text-5xl" />
         <div class="ms-5">
-          <div>{{ t(item.title, language) }}</div>
+          <div>{{ t(item.title) }}</div>
         </div>
       </div>
     </template>
     <div class="mt-3 text-2xl">
-      <p>{{ t(item.description, language) }}</p>
+      <p>{{ t(item.description) }}</p>
     </div>
     <template #footer v-if="locked"><span class="text-5xl">🔒</span></template>
   </UCard>

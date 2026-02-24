@@ -33,8 +33,8 @@ const type = computed(() => {
     <div v-if="type">
       <div>{{ type.icon }}</div>
       <div>ID: {{ props.characterId }} Class: {{ character.type }}</div>
-      <div>{{ t(type.title, language) }}</div>
-      <div>{{ t(type.description, language) }}</div>
+      <div>{{ t(type.title) }}</div>
+      <div>{{ t(type.description) }}</div>
       <div>
         <template v-for="{ locked, itemId } in character.inventory" :key="itemId">
           <span class="relative text-8xl">
