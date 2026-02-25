@@ -160,13 +160,16 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
   // -----------------------------------------------------------------------
 
   private setupStatusHandler(): void {
-    this.reader.on("status", (status) => {
+    this.reader.on("status", async (status) => {
       const changes = (this.reader as any).state ^ status.state;
       if (changes === 0) return;
 
       // Card inserted
       if (changes & ReaderState.PRESENT && status.state & ReaderState.PRESENT) {
         this.emit("card.on");
+
+        // Clear potentially stale PCSC handle to previous card
+        await this.disconnect();
 
         const atr = status.atr ?? Buffer.alloc(0);
 
@@ -180,6 +183,8 @@ export class Reader extends TypedEventEmitter<ReaderEventMap> {
 
       // Card removed
       if (changes & ReaderState.EMPTY && status.state & ReaderState.EMPTY) {
+        // Free the current PCSC card handle
+        await this.disconnect();
         this._card = null;
         this._protocol = null;
         this.emit("card.off");
