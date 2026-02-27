@@ -1,7 +1,4 @@
 import type { DeepReadonly } from "vue";
-import options from "@/options/options.yaml";
-
-// TODO: Create types from schema or vice versa
 
 export type MutableOptions = {
   languages: {
@@ -13,7 +10,21 @@ export type MutableOptions = {
 
 export type Options = DeepReadonly<MutableOptions>;
 
+export const defaultOptions: Options = {
+  languages: {
+    primary: "de",
+    secondary: "en",
+  },
+  websocketTokenReaderUrl: "ws://localhost:8382",
+};
+
 export async function loadOptions(): Promise<MutableOptions> {
-  // TODO: Load options from file(s) at runtime
-  return structuredClone(options as MutableOptions);
+  const sp = new URLSearchParams(window.location.search);
+  return {
+    languages: {
+      primary: sp.get("fstLang") ?? defaultOptions.languages.primary,
+      secondary: sp.get("sndLang") ?? defaultOptions.languages.secondary,
+    },
+    websocketTokenReaderUrl: sp.get("wsTokenReaderUrl") ?? defaultOptions.websocketTokenReaderUrl,
+  };
 }
