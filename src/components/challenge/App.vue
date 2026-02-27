@@ -17,6 +17,9 @@ import ArrowNextComponent from "@/assets/arrow-next.svg?component";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 import ChallengeAssesment from "@/components/challenge/ChallengeAssesment.vue";
 import { useCharacterData } from "@/composables/use-character-data.ts";
+import { useTap } from "@/composables/use-tap";
+import { usePointerScroll } from "@/composables/use-pointer-scroll.ts";
+import { Language } from "@/types/config.ts";
 
 const { app, content } = useConfigStore();
 const { ensureCharacter } = useCharacterStore();
@@ -51,6 +54,9 @@ watchImmediate(tokenState, (tokenStateValue) => {
     activeChallengeData.value = null;
   }
 });
+
+const challengeList = ref<HTMLDivElement | null>(null);
+usePointerScroll(challengeList, { vertical: false });
 </script>
 
 <template>
@@ -69,7 +75,7 @@ watchImmediate(tokenState, (tokenStateValue) => {
       :characterId="activeCharacterId"
       class="app-intro"
       ><div class="app-intro-inner-box">
-        <div class="challenge-list">
+        <div class="challenge-list" ref="challengeList">
           <ChallengeOverview
             v-for="(challenge, idx) in content.challenges"
             :language="language"
@@ -119,7 +125,8 @@ watchImmediate(tokenState, (tokenStateValue) => {
 .challenge-list {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  overflow: hidden;
+  touch-action: none;
   flex-wrap: nowrap;
   column-gap: var(--app-padding);
   width: calc(100% + var(--app-padding) * 2);
