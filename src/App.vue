@@ -7,8 +7,8 @@ import ScaledLetterBox from "@/components/common/ScaledLetterBox.vue";
 <template>
   <ScaledLetterBox :target-size="{ width: 2 * 1080, height: 1920 }" class="scaled-letter-box">
     <div class="sub-app-container">
-      <ChallengeApp></ChallengeApp>
       <InventoryApp></InventoryApp>
+      <ChallengeApp></ChallengeApp>
     </div>
   </ScaledLetterBox>
 </template>
