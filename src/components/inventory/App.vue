@@ -76,7 +76,7 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
       >
         <template #body>
           <div class="flex-2"></div>
-          <p class="text-8xl">{{ t(app.tokenPrompt) }}</p>
+          <p class="text-8xl">{{ t(app.tokenScanRequest) }}</p>
           <div class="flex-1"></div>
           <div class="text-center text-3xl">Inventory Token:<br />{{ tokenState }}</div>
           <div class="flex-1"></div>

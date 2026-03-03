@@ -184,8 +184,8 @@ export const ConfigSchema = Type.Cyclic(
             additionalProperties: false,
           },
         ),
-        tokenPrompt: Type.Ref("I18nRecord", {
-          title: "Token Prompt",
+        tokenScanRequest: Type.Ref("I18nRecord", {
+          title: "Token scan request",
           description: "Prompt text asking the player to place their NFC token.",
         }),
         languages: Type.Ref("I18nRecord", {

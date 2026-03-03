@@ -9,6 +9,7 @@ import { useTokenStore } from "@/stores/token";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
 import Character from "@/components/common/Character.vue";
 import Challenge from "@/components/challenge/Challenge.vue";
+import TokenScanRequest from "@/components/common/TokenScanRequest.vue";
 import { TokenStateType } from "@/types/token";
 import { useTap } from "@/composables/use-tap";
 import { Language } from "@/types/config.ts";
@@ -86,6 +87,7 @@ const challengeSolved = computed<boolean>(() => {
       :language="language"
       :character-id="activeCharacterId"
     ></Character>
+    <TokenScanRequest></TokenScanRequest>
   </div>
 </template>
 
@@ -106,5 +108,12 @@ const challengeSolved = computed<boolean>(() => {
   overflow: scroll;
   flex-wrap: nowrap;
   column-gap: 1rem;
+}
+
+.token-scan-request {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: calc(-1 * var(--text-style-overline-descender));
 }
 </style>
