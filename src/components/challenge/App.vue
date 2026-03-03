@@ -94,6 +94,10 @@ const challengeSolved = computed<boolean>(() => {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  position: relative;
+  border-width: var(--app-padding);
+  border-color: transparent; /* Using border over padding helps with applying temporary coloring as layout guide */
+  background-color: var(--color-backdrop-dark);
 }
 
 .challenge-list {

@@ -1,5 +1,11 @@
 /* semantic variables for this project */
 :root {
+  /* color palette */
+  --color-palette-blue-black: #000126;
+
+  /* semantic colors */
+  --color-backdrop-dark: var(--color-palette-blue-black);
+  /* other, legacy */
   --page-background-color: #4f4f4f;
   --app-background-color: #222222;
   --app-text-color: #ffffff;

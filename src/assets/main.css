@@ -12,3 +12,8 @@
   min-height: 1920px;
   max-height: 1920px;
 }
+
+
+:root {
+  --app-padding: 60px;
+}

@@ -27,6 +27,7 @@ const { flipSides } = options;
 }
 
 .sub-app-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   background-color: var(--app-background-color);
