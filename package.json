@@ -20,6 +20,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/national-park": "^5.2.11",
+    "@lottiefiles/dotlottie-vue": "^0.11.3",
     "@nuxt/ui": "^4.4.0",
     "@vueuse/core": "^14.2.1",
     "@vueuse/gesture": "^2.0.0",
