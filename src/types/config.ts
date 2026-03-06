@@ -169,9 +169,13 @@ export const ConfigSchema = Type.Cyclic(
         ),
         inventory: Type.Object(
           {
+            name: Type.Ref("I18nRecord", {
+              title: "Name",
+              description: "Name to display on the inventory app panel.",
+            }),
             title: Type.Ref("I18nRecord", {
               title: "Title",
-              description: "Heading for the inventory app panel.",
+              description: "Title to display on the inventory app panel.",
             }),
             description: Type.Ref("I18nRecord", {
               title: "Description",

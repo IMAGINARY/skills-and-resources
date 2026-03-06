@@ -22,94 +22,89 @@ provideLanguage(language); // use this language for all child components
 
 const { inventory: tokenState } = storeToRefs(useTokenStore());
 
-const activeCharacterId = computed(() =>
-  tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
-);
-
+const activeCharacterId = ref<string | null>(null);
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
+    // Only update when a new token is present but not when it is removed.
+    // This ensures that the inventory is still visible during animation of the app intro.
+    activeCharacterId.value = tokenState.value.token.id;
+
+    // Make sure a character for the token UID exists
     const { token } = tokenState.value;
     ensureCharacter(token.id, token.class);
   }
 });
 
-const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.PRESENT);
+const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PRESENT);
 </script>
 
 <template>
   <div class="full-hd-v-box inventory-app">
-    <LanguageSelector :hasDarkBackground="true"></LanguageSelector>
-    <div class="text-4xl">
-      <h1>{{ t(app.inventory.title) }}</h1>
-    </div>
-    <div class="slideover-container">
-      <div v-if="activeCharacterId" class="character-inventory">
-        <Character :language="language" :character-id="activeCharacterId"></Character>
-        <div class="item-list p-4 gap-4">
-          <Item
-            v-for="item in content.items"
-            :item-id="item.id"
-            :key="item.id"
-            :language="language"
-            :is-static="true"
-            :highlight="activeCharacterId ? hasItem(activeCharacterId, item.id) : false"
-            :locked="activeCharacterId ? isItemLocked(activeCharacterId, item.id) : false"
-            v-drag="useTap(toggleItem.bind(undefined, activeCharacterId, item.id))"
-          ></Item>
-        </div>
+    <div v-if="activeCharacterId" class="character-inventory app-padding">
+      <Character :language="language" :character-id="activeCharacterId"></Character>
+      <div class="item-list p-4 gap-4">
+        <Item
+          v-for="item in content.items"
+          :item-id="item.id"
+          :key="item.id"
+          :language="language"
+          :is-static="true"
+          :highlight="activeCharacterId ? hasItem(activeCharacterId, item.id) : false"
+          :locked="activeCharacterId ? isItemLocked(activeCharacterId, item.id) : false"
+          v-drag="useTap(toggleItem.bind(undefined, activeCharacterId, item.id))"
+        ></Item>
       </div>
-      <USlideover
-        v-model:open="slideoverOpen"
-        :portal="false"
-        :overlay="true"
-        :close="false"
-        :dismissible="false"
-        :modal="false"
-        side="bottom"
-        :ui="{
-          overlay: 'absolute inset-0',
-          body: 'flex-1 flex flex-col items-center justify-center',
-          footer: 'justify-center',
-          content:
-            'absolute inset-0 data-[state=open]:animate-[slide-in-from-bottom_400ms_ease-in-out] data-[state=closed]:animate-[slide-out-to-bottom_400ms_ease-in-out]',
-        }"
-      >
-        <template #body>
-          <div class="flex-2"></div>
-          <p class="text-8xl">{{ t(app.tokenScanRequest) }}</p>
-          <div class="flex-1"></div>
-          <div class="text-center text-3xl">Inventory Token:<br />{{ tokenState }}</div>
-          <div class="flex-1"></div>
-        </template>
-        <template #footer>
-          <UIcon name="i-lucide-arrow-down" class="size-100" />
-        </template>
-      </USlideover>
     </div>
+    <AppIntro
+      :name="t(app.inventory.name)"
+      :description="t(app.inventory.title)"
+      class="app-intro app-padding"
+      :class="{ 'app-intro-hidden': hideAppIntro }"
+      ><div class="app-intro-text text-style-h1">
+        <div>{{ t(app.inventory.description) }}</div>
+      </div>
+    </AppIntro>
   </div>
 </template>
 
 <style scoped>
 .inventory-app {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
   position: relative;
+}
+
+.app-padding {
   border-width: var(--app-padding);
   border-color: transparent; /* Using border over padding helps with applying temporary coloring as layout guide */
+}
+
+.app-intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0%, 0%);
+  transition: transform 0.5s ease-in-out;
   background-color: var(--color-backdrop-dark);
 }
 
-.slideover-container {
-  position: relative;
-  overflow: hidden;
-  flex: 1;
+.app-intro.app-intro-hidden {
+  transform: translate(0%, 100%);
+}
+
+.app-intro-text {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  color: var(--color-secondary);
 }
 
 .character-inventory {
+  position: absolute;
+  top: 100px;
+  left: 0;
   flex: 1;
   display: flex;
   flex-direction: column;

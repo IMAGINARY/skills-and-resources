@@ -1,4 +1,6 @@
+@import "@fontsource/national-park/300.css";
 @import "@fontsource/national-park/800.css";
+@import "@fontsource/inter/700-italic.css";
 
 @import "tailwindcss";
 @import "@nuxt/ui";
@@ -39,7 +41,32 @@
   text-transform: uppercase;
 }
 
+.text-style-h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 160px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 170px; /* 106.25% */
+  letter-spacing: -5.5px;
+}
+
+.text-style-h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 47px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 55px; /* 117.021% */
+  letter-spacing: -0.3px;
+}
+.text-style-h2-light {
+  font-family: "National Park", sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 38px; /* 79.167% */
+}
+
 :root {
   --app-padding: 60px;
-  --text-style-overline-descender: 10px;
+  --text-style-overline-descender: 11px;
 }

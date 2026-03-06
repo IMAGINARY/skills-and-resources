@@ -6,12 +6,14 @@ challenge:
     en: Select a challenge and start playing!
     de: Wähle eine Herausforderung aus und spiele!
 inventory:
+  name: Station 1
   title:
-    en: Inventory
-    de: Inventar
+    en: Choose your inventory
+    de: Auswahl des Inventars
   description:
-    en: Change the skills and resources of your character.
-    de: Verändere die Fähigkeiten und Ressourcen deines Charakters.
+    en: What do you rely on when it counts?
+    de: Was bringst du mit, wenn es drauf ankommt?
+
 tokenScanRequest:
   de: |-
     Charakter unten auf

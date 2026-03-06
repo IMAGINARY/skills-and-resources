@@ -4,8 +4,10 @@
   --color-palette-white: #ffffff;
   --color-palette-blue-black: #000126;
   --color-palette-ocean-water: #0dcedc;
+  --color-palette-electric-lava: #ff4612;
 
   /* semantic colors */
+  --color-secondary: var(--color-palette-electric-lava);
   --color-backdrop-dark: var(--color-palette-blue-black);
   --color-button: var(--color-palette-ocean-water);
   --color-white: var(--color-palette-white);
