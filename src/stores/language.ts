@@ -1,6 +1,6 @@
 import { type I18nRecord, Language } from "@/types/config";
-import type { MaybeRefOrGetter } from "vue";
-import { computed, provide, inject, toValue } from "vue";
+import type { Ref, MaybeRef, MaybeRefOrGetter } from "vue";
+import { ref, toRef, computed, provide, inject, toValue } from "vue";
 import { defineStore } from "pinia";
 
 import { LANGUGAGE_INJECTION_KEY } from "@/constants";
@@ -13,18 +13,18 @@ function translate(i18nRecord: I18nRecord, languageCode: string) {
 }
 
 export function injectLanguage() {
-  return inject<MaybeRefOrGetter<Language>>(
+  return inject<Ref<Language>>(
     LANGUGAGE_INJECTION_KEY,
     () => {
       console.warn("No language provided. Using static default.");
-      return Language.PRIMARY;
+      return ref(Language.PRIMARY);
     },
     true,
   );
 }
 
-export function provideLanguage(language: MaybeRefOrGetter<Language>) {
-  return provide(LANGUGAGE_INJECTION_KEY, language);
+export function provideLanguage(language: MaybeRef<Language>) {
+  return provide(LANGUGAGE_INJECTION_KEY, toRef(language));
 }
 
 export const useLanguageStore = defineStore("language", () => {
