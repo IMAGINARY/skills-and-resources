@@ -22,16 +22,20 @@ provideLanguage(language); // use this language for all child components
 
 const { inventory: tokenState } = storeToRefs(useTokenStore());
 
-const activeCharacterId = ref<string | null>(null);
+const activeCharacterId = computed(() =>
+  tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
+);
+const lastActiveCharacterId = ref<string | null>(null);
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {
-    // Only update when a new token is present but not when it is removed.
-    // This ensures that the inventory is still visible during animation of the app intro.
-    activeCharacterId.value = tokenState.value.token.id;
-
+    // TODO: Move this somewhere else, maybe the character store?
     // Make sure a character for the token UID exists
     const { token } = tokenState.value;
     ensureCharacter(token.id, token.class);
+
+    // Only update when a new token is present but not when it is removed.
+    // This ensures that the inventory is still visible during animation of the app intro.
+    lastActiveCharacterId.value = tokenState.value.token.id;
   }
 });
 
@@ -40,8 +44,8 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
 
 <template>
   <div class="full-hd-v-box inventory-app">
-    <div v-if="activeCharacterId" class="character-inventory app-padding">
-      <Character :language="language" :character-id="activeCharacterId"></Character>
+    <div v-if="lastActiveCharacterId" class="character-inventory app-padding">
+      <Character :language="language" :character-id="lastActiveCharacterId"></Character>
       <div class="item-list p-4 gap-4">
         <Item
           v-for="item in content.items"
@@ -49,15 +53,15 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
           :key="item.id"
           :language="language"
           :is-static="true"
-          :highlight="activeCharacterId ? hasItem(activeCharacterId, item.id) : false"
-          :locked="activeCharacterId ? isItemLocked(activeCharacterId, item.id) : false"
-          v-drag="useTap(toggleItem.bind(undefined, activeCharacterId, item.id))"
+          :highlight="lastActiveCharacterId ? hasItem(lastActiveCharacterId, item.id) : false"
+          :locked="lastActiveCharacterId ? isItemLocked(lastActiveCharacterId, item.id) : false"
+          v-drag="useTap(toggleItem.bind(undefined, lastActiveCharacterId, item.id))"
         ></Item>
       </div>
     </div>
     <AppIntro
-      :name="t(app.inventory.name)"
-      :description="t(app.inventory.title)"
+      :name="app.inventory.name"
+      :description="app.inventory.title"
       class="app-intro app-padding"
       :class="{ 'app-intro-hidden': hideAppIntro }"
       ><div class="app-intro-text text-style-h1">
@@ -97,6 +101,7 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
   flex-direction: column;
   justify-content: center;
   position: relative;
+  top: -0.5ex;
   height: 100%;
   color: var(--color-secondary);
 }

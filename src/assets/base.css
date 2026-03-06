@@ -5,11 +5,19 @@
   --color-palette-blue-black: #000126;
   --color-palette-ocean-water: #0dcedc;
   --color-palette-electric-lava: #ff4612;
+  --color-palette-seashell-blue: #e3ecff;
+  --color-palette-navy-blue: #0004a0;
+  --color-palette-humming-bird: #d1f5f8;
+  --color-palette-tender-teal: #88d5db;
 
   /* semantic colors */
+  --color-primary: var(--color-palette-navy-blue);
   --color-secondary: var(--color-palette-electric-lava);
   --color-backdrop-dark: var(--color-palette-blue-black);
+  --color-backdrop-light: var(--color-palette-seashell-blue);
   --color-button: var(--color-palette-ocean-water);
+  --color-button-inactive: var(--color-palette-humming-bird);
+  --color-buttontext-inactive: var(--color-palette-tender-teal);
   --color-white: var(--color-palette-white);
 
   /* other, legacy */

@@ -1,4 +1,5 @@
 @import "@fontsource/national-park/300.css";
+@import "@fontsource/national-park/600.css";
 @import "@fontsource/national-park/800.css";
 @import "@fontsource/inter/700-italic.css";
 
@@ -58,6 +59,7 @@
   line-height: 55px; /* 117.021% */
   letter-spacing: -0.3px;
 }
+
 .text-style-h2-light {
   font-family: "National Park", sans-serif;
   font-size: 48px;
@@ -66,7 +68,26 @@
   line-height: 38px; /* 79.167% */
 }
 
+.text-style-h2-station-2 {
+  font-family: Inter, sans-serif;
+  font-size: 102px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 115px; /* 112.745% */
+  letter-spacing: -3px;
+}
+
+.text-style-copy {
+  font-family: "National Park", sans-serif;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px; /* 189.474% */
+  letter-spacing: 0.5px;
+}
+
 :root {
   --app-padding: 60px;
   --text-style-overline-descender: 11px;
+  --text-style-h2-station-2-descender: 21px;
 }

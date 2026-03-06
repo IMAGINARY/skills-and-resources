@@ -7,11 +7,8 @@ import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useTokenStore } from "@/stores/token";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
-import Character from "@/components/common/Character.vue";
-import Challenge from "@/components/challenge/Challenge.vue";
-import TokenScanRequest from "@/components/common/TokenScanRequest.vue";
+import ChallengeOverview from "@/components/challenge/ChallengeOverview.vue";
 import { TokenStateType } from "@/types/token";
-import { useTap } from "@/composables/use-tap";
 import { Language } from "@/types/config.ts";
 
 const { app, content } = useConfigStore();
@@ -64,30 +61,31 @@ const challengeSolved = computed<boolean>(() => {
 
 <template>
   <div class="full-hd-v-box challenge-app">
-    <LanguageSelector :hasDarkBackground="true"></LanguageSelector>
-    <div>
-      <h1>{{ t(app.challenge.title) }}</h1>
-    </div>
-    <div class="challenge-list">
-      <Challenge
-        v-for="challenge in content.challenges"
-        :language="language"
-        :challenge-id="challenge.id"
-        :key="challenge.id"
-        v-drag="useTap(() => (activeChallengeId = challenge.id))"
-      ></Challenge>
-    </div>
-    <div v-if="activeChallengeId !== null">
-      <div>Active challenge: {{ activeChallengeId }}</div>
-      <div>Solved: {{ challengeSolved }}</div>
-    </div>
-    <div>Challenge Token: {{ tokenState }}</div>
-    <Character
-      v-if="activeCharacterId"
-      :language="language"
-      :character-id="activeCharacterId"
-    ></Character>
-    <TokenScanRequest></TokenScanRequest>
+    <AppIntro
+      :name="app.challenge.name"
+      :description="app.challenge.title"
+      :characterId="activeCharacterId"
+      class="app-intro app-padding"
+      ><div class="app-intro-inner-box">
+        <div class="challenge-list">
+          <ChallengeOverview
+            v-for="(challenge, challengeIndex) in content.challenges"
+            :language="language"
+            :challenge-id="challenge.id"
+            :challenge-idx="challengeIndex"
+            :disabled="activeCharacterId === null"
+            :key="challenge.id"
+            @selected="() => (activeChallengeId = challenge.id)"
+          ></ChallengeOverview>
+        </div>
+        <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
+        <div v-if="activeChallengeId !== null">
+          <div>Active challenge: {{ activeChallengeId }}</div>
+          <div>Solved: {{ challengeSolved }}</div>
+        </div>
+        <div>Challenge Token: {{ tokenState }}</div>
+      </div>
+    </AppIntro>
   </div>
 </template>
 
@@ -102,18 +100,30 @@ const challengeSolved = computed<boolean>(() => {
   background-color: var(--color-backdrop-dark);
 }
 
+.app-intro-inner-box {
+  position: absolute;
+  top: 549px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .challenge-list {
   display: flex;
   flex-direction: row;
   overflow: scroll;
   flex-wrap: nowrap;
-  column-gap: 1rem;
+  column-gap: var(--app-padding);
+  width: calc(100% + var(--app-padding) * 2);
+  margin-left: calc(-1 * var(--app-padding));
+  padding-left: var(--app-padding);
+  padding-right: var(--app-padding);
 }
 
-.token-scan-request {
+.app-intro-text {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: calc(-1 * var(--text-style-overline-descender));
+  top: calc(-76px + var(--text-style-h2-station-2-descender));
+  transform: translate(0px, -100%);
+  color: var(--color-secondary);
 }
 </style>

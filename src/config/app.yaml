@@ -1,10 +1,12 @@
 challenge:
+  name: Station 2
   title:
-    en: Challenge
-    de: Herausforderung
+    en: The Challenge
+    de: Der Ernstfall
   description:
-    en: Select a challenge and start playing!
-    de: Wähle eine Herausforderung aus und spiele!
+    en: Can your character handle the situation?
+    de: Hat dein Charakter die Lage im Griff?
+
 inventory:
   name: Station 1
   title:
@@ -24,3 +26,11 @@ tokenScanRequest:
 languages:
   en: English
   de: Deutsch
+
+misc:
+  character:
+    en: Character
+    de: Charakter
+  challenge:
+    en: Challenge
+    de: Ernstfall

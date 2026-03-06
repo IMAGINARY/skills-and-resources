@@ -152,9 +152,13 @@ export const ConfigSchema = Type.Cyclic(
       {
         challenge: Type.Object(
           {
+            name: Type.Ref("I18nRecord", {
+              title: "Name",
+              description: "Name to display on the challenge app panel.",
+            }),
             title: Type.Ref("I18nRecord", {
               title: "Title",
-              description: "Heading for the challenge app panel.",
+              description: "Title to display on the challenge app panel.",
             }),
             description: Type.Ref("I18nRecord", {
               title: "Description",
@@ -185,6 +189,23 @@ export const ConfigSchema = Type.Cyclic(
           {
             title: "Inventory",
             description: "UI text configuration for the inventory sub-app.",
+            additionalProperties: false,
+          },
+        ),
+        misc: Type.Object(
+          {
+            character: Type.Ref("I18nRecord", {
+              title: "Character",
+              description: "The word character in the UI.",
+            }),
+            challenge: Type.Ref("I18nRecord", {
+              title: "Challenge",
+              description: "The word challenge in the UI.",
+            }),
+          },
+          {
+            title: "Miscellaneous",
+            description: "UI text configuration for miscellaneous elements.",
             additionalProperties: false,
           },
         ),

@@ -36,7 +36,7 @@ export const useLanguageStore = defineStore("language", () => {
 
   const useT =
     (language: MaybeRefOrGetter = injectLanguage()) =>
-    (i18nRecord: I18nRecord) =>
+    (i18nRecord: MaybeRefOrGetter<I18nRecord>) =>
       t(i18nRecord, language);
 
   return {
