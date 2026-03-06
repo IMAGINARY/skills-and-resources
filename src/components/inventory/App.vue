@@ -38,7 +38,7 @@ const slideoverOpen = computed(() => tokenState.value.state !== TokenStateType.P
 
 <template>
   <div class="full-hd-v-box inventory-app">
-    <LanguageSelector></LanguageSelector>
+    <LanguageSelector :hasDarkBackground="true"></LanguageSelector>
     <div class="text-4xl">
       <h1>{{ t(app.inventory.title) }}</h1>
     </div>

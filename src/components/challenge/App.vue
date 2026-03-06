@@ -64,7 +64,7 @@ const challengeSolved = computed<boolean>(() => {
 
 <template>
   <div class="full-hd-v-box challenge-app">
-    <LanguageSelector></LanguageSelector>
+    <LanguageSelector :hasDarkBackground="true"></LanguageSelector>
     <div>
       <h1>{{ t(app.challenge.title) }}</h1>
     </div>
