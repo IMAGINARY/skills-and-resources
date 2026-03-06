@@ -123,6 +123,7 @@ const challengeSolved = computed<boolean>(() => {
   margin-left: calc(-1 * var(--app-padding));
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
+  scrollbar-width: none;
 }
 
 .challenge-list-buttons {
