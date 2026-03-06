@@ -10,6 +10,7 @@ import { useLanguageStore, provideLanguage } from "@/stores/language";
 import ChallengeOverview from "@/components/challenge/ChallengeOverview.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
+import ArrowNextComponent from "@/assets/arrow-next.svg?component";
 
 const { app, content } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
@@ -78,6 +79,10 @@ const challengeSolved = computed<boolean>(() => {
             @selected="() => (activeChallengeId = challenge.id)"
           ></ChallengeOverview>
         </div>
+        <div class="challenge-list-buttons">
+          <button class="disabled"><ArrowNextComponent></ArrowNextComponent></button>
+          <button><ArrowNextComponent></ArrowNextComponent></button>
+        </div>
         <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
         <div v-if="activeChallengeId !== null">
           <div>Active challenge: {{ activeChallengeId }}</div>
@@ -118,6 +123,39 @@ const challengeSolved = computed<boolean>(() => {
   margin-left: calc(-1 * var(--app-padding));
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
+}
+
+.challenge-list-buttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 224px;
+  margin-top: 39px;
+}
+
+.challenge-list-buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-button);
+}
+
+.challenge-list-buttons button:first-child {
+  transform: scaleX(-1);
+}
+
+.challenge-list-buttons button svg {
+  fill: var(--color-white) !important;
+}
+
+.challenge-list-buttons button.disabled {
+  background-color: var(--color-button-inactive);
+}
+
+.challenge-list-buttons button.disabled svg {
+  fill: var(--color-buttontext-inactive) !important;
 }
 
 .app-intro-text {
