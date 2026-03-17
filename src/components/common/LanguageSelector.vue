@@ -13,8 +13,13 @@ const { app } = useConfigStore();
 const { t } = useLanguageStore();
 
 const language = injectLanguage();
+
 function updateLanguage(newLanguage: Language) {
   language.value = newLanguage;
+}
+
+function toggleLanguage() {
+  language.value = language.value === Language.PRIMARY ? Language.SECONDARY : Language.PRIMARY;
 }
 </script>
 
@@ -28,12 +33,13 @@ function updateLanguage(newLanguage: Language) {
       }"
       v-drag="useTap(() => updateLanguage(Language.PRIMARY))"
       >{{ t(app.languages, Language.PRIMARY) }}</span
-    ><label class="switch">
+    ><label class="switch" @click.prevent v-drag="useTap(toggleLanguage)">
       <input
         type="checkbox"
         v-model="language"
         :true-value="Language.SECONDARY"
-        :false-value="Language.PRIMARY" /><span class="slider round"></span></label
+        :false-value="Language.PRIMARY"
+        @click.prevent /><span class="slider round" @click.prevent></span></label
     ><span
       class="language-label"
       :class="{

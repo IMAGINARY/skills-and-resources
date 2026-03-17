@@ -91,3 +91,7 @@
   --text-style-overline-descender: 11px;
   --text-style-h2-station-2-descender: 21px;
 }
+
+* {
+  touch-action: none;
+}
