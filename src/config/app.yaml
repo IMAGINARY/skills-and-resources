@@ -34,3 +34,20 @@ misc:
   challenge:
     en: Challenge
     de: Ernstfall
+
+tokenError:
+  name:
+    en: Error
+    de: Fehler
+  title:
+    en: Character chip malfunction
+    de: Problem mit Charakter-Chip
+  description:
+    en: Error! There is an issue with your character chip.
+    de: Fehler! Es gibt ein Problem mit deinem Charakter-Chip.
+  instruction:
+    en: Remove the character chip from the pad, wait 2 seconds, and place it back on.
+    de: Nimm den Charakter-Chip von der Auflage, warte 2 Sekunden und lege ihn wieder auf.
+  supportHint:
+    en: Is the problem still occurring? Inform the staff.
+    de: Besteht das Problem weiterhin? Informiere das Personal.

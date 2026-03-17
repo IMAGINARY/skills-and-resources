@@ -35,7 +35,9 @@ const challenge = computed(() => challenges[props.challengeId]);
         <button
           class="text-style-overline"
           :class="{ disabled: disabled }"
-          v-drag="useTap(() => $emit('selected', challengeId, challengeIdx))"
+          v-drag="
+            useTap(() => (disabled ? undefined : $emit('selected', challengeId, challengeIdx)))
+          "
         >
           Text
         </button>

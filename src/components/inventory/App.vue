@@ -11,6 +11,7 @@ import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
 import { useTap } from "@/composables/use-tap";
 import { storeToRefs } from "pinia";
+import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 
 const { app, content } = useConfigStore();
 const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
@@ -21,6 +22,8 @@ const t = useT(language);
 provideLanguage(language); // use this language for all child components
 
 const { inventory: tokenState } = storeToRefs(useTokenStore());
+
+const { hidden: hideTokenErrorPanel } = useTokenErrorPanelVisibility(tokenState);
 
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
@@ -68,6 +71,10 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
         <div>{{ t(app.inventory.description) }}</div>
       </div>
     </AppIntro>
+    <TokenErrorPanel
+      :tokenState="tokenState"
+      :class="{ 'token-error-panel-hidden': hideTokenErrorPanel }"
+    ></TokenErrorPanel>
   </div>
 </template>
 
@@ -122,5 +129,13 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
   overflow: scroll;
   flex-wrap: nowrap;
   scroll-behavior: smooth;
+}
+.token-error-panel {
+  transform: translate(0%, 0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.token-error-panel.token-error-panel-hidden {
+  transform: translate(0%, 100%);
 }
 </style>

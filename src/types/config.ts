@@ -217,6 +217,35 @@ export const ConfigSchema = Type.Cyclic(
           title: "Language names",
           description: "The names of the languages as displayed in the language selector.",
         }),
+        tokenError: Type.Object(
+          {
+            name: Type.Ref("I18nRecord", {
+              title: "Name",
+              description: "Name to display on the token error app panel.",
+            }),
+            title: Type.Ref("I18nRecord", {
+              title: "Title",
+              description: "Title to display on the token error app panel.",
+            }),
+            description: Type.Ref("I18nRecord", {
+              title: "Description",
+              description: "Generic error description text shown in the token error app panel.",
+            }),
+            instruction: Type.Ref("I18nRecord", {
+              title: "Instruction",
+              description: "Instruction text shown in the token error app panel.",
+            }),
+            supportHint: Type.Ref("I18nRecord", {
+              title: "Support hint",
+              description: "Instruction text shown in the token error app panel.",
+            }),
+          },
+          {
+            title: "Token Error",
+            description: "UI text configuration for the token error panel.",
+            additionalProperties: false,
+          },
+        ),
       },
       {
         title: "App Config",

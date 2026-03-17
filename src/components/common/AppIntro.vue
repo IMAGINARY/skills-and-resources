@@ -4,7 +4,7 @@ import { type MaybeRefOrGetter } from "vue";
 import { useConfigStore } from "@/stores/config";
 import { useLanguageStore } from "@/stores/language";
 import { useCharacterStore } from "@/stores/characters";
-import type { CharacterTypeConfig, I18nRecord } from "@/types/config.ts";
+import type { I18nRecord } from "@/types/config.ts";
 import { storeToRefs } from "pinia";
 
 const props = defineProps<{
@@ -39,7 +39,7 @@ const characterTypeConfig = computed(() => {
 </script>
 
 <template>
-  <div class="app-intro-container">
+  <div class="app-page app-intro-container">
     <div class="app-intro-name text-style-h2">{{ t(toValue(props.name)) }}</div>
     <div class="app-intro-description text-style-h2-light">{{ t(toValue(props.description)) }}</div>
     <div class="app-intro-slot"><slot></slot></div>
@@ -61,9 +61,7 @@ const characterTypeConfig = computed(() => {
 
 <style scoped>
 .app-intro-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  background-color: var(--color-backdrop-dark);
 }
 
 .app-intro-container > * {

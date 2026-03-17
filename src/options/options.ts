@@ -7,12 +7,17 @@ export type MutableOptions = {
     secondary: string;
   };
   websocketTokenReaderUrl: string;
+  errorPanelMinDuration: number;
 };
 
 export type Options = DeepReadonly<MutableOptions>;
 
 function parseBoolean(s: string | null, defaultValue: boolean): boolean {
   return /^(|[Tt]rue|1)$/i.test((s ?? `${defaultValue}`).trim());
+}
+
+function parseInteger(s: string | null, defaultValue: number): number {
+  return s === null ? defaultValue : parseInt(s);
 }
 
 export const defaultOptions: Options = {
@@ -22,6 +27,7 @@ export const defaultOptions: Options = {
     secondary: "en",
   },
   websocketTokenReaderUrl: "ws://localhost:8382",
+  errorPanelMinDuration: 20000,
 };
 
 export async function loadOptions(): Promise<MutableOptions> {
@@ -35,5 +41,9 @@ export async function loadOptions(): Promise<MutableOptions> {
       secondary: sp.get("sndLang") ?? defaultOptions.languages.secondary,
     },
     websocketTokenReaderUrl: sp.get("wsTokenReaderUrl") ?? defaultOptions.websocketTokenReaderUrl,
+    errorPanelMinDuration: parseInteger(
+      sp.get("errorPanelMinDuration"),
+      defaultOptions.errorPanelMinDuration,
+    ),
   };
 }

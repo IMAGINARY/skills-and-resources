@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { DeepReadonly } from "vue";
 
-import { computed, watch, ref } from "vue";
+import { computed, ref } from "vue";
+import { watchImmediate } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
@@ -11,6 +12,7 @@ import ChallengeOverview from "@/components/challenge/ChallengeOverview.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
 import ArrowNextComponent from "@/assets/arrow-next.svg?component";
+import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 
 const { app, content } = useConfigStore();
 const { characters } = storeToRefs(useCharacterStore());
@@ -23,18 +25,24 @@ provideLanguage(language); // use this language for all child components
 
 const { challenge: tokenState } = storeToRefs(useTokenStore());
 
+const { hidden: hideTokenErrorPanel } = useTokenErrorPanelVisibility(tokenState);
+
 const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
 );
 
-watch(tokenState, () => {
-  if (tokenState.value.state === TokenStateType.PRESENT) {
-    const { token } = tokenState.value;
+watchImmediate(tokenState, (tokenStateValue) => {
+  if (tokenStateValue.state === TokenStateType.PRESENT) {
+    const { token } = tokenStateValue;
     ensureCharacter(token.id, token.class);
   }
 });
 
+const disableChallengeSelection = computed(() => activeCharacterId.value === null);
 const activeChallengeId = ref<string | null>(null);
+watchImmediate(disableChallengeSelection, (value) => {
+  if (value) activeChallengeId.value = null;
+});
 
 const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
   return activeChallengeId.value
@@ -61,12 +69,12 @@ const challengeSolved = computed<boolean>(() => {
 </script>
 
 <template>
-  <div class="full-hd-v-box challenge-app">
+  <div class="app-position app-size challenge-app">
     <AppIntro
       :name="app.challenge.name"
       :description="app.challenge.title"
       :characterId="activeCharacterId"
-      class="app-intro app-padding"
+      class="app-intro"
       ><div class="app-intro-inner-box">
         <div class="challenge-list">
           <ChallengeOverview
@@ -74,7 +82,7 @@ const challengeSolved = computed<boolean>(() => {
             :language="language"
             :challenge-id="challenge.id"
             :challenge-idx="challengeIndex"
-            :disabled="activeCharacterId === null"
+            :disabled="disableChallengeSelection"
             :key="challenge.id"
             @selected="() => (activeChallengeId = challenge.id)"
           ></ChallengeOverview>
@@ -91,18 +99,25 @@ const challengeSolved = computed<boolean>(() => {
         <div>Challenge Token: {{ tokenState }}</div>
       </div>
     </AppIntro>
+    <TokenErrorPanel
+      :tokenState="tokenState"
+      :class="{ 'token-error-panel-hidden': hideTokenErrorPanel }"
+    ></TokenErrorPanel>
   </div>
 </template>
 
 <style scoped>
 .challenge-app {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
   position: relative;
-  border-width: var(--app-padding);
-  border-color: transparent; /* Using border over padding helps with applying temporary coloring as layout guide */
-  background-color: var(--color-backdrop-dark);
+}
+
+.app-intro {
+  transform: translate(0%, 0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.app-intro.app-intro-hidden {
+  transform: translate(0%, 100%);
 }
 
 .app-intro-inner-box {
@@ -164,5 +179,14 @@ const challengeSolved = computed<boolean>(() => {
   top: calc(-76px + var(--text-style-h2-station-2-descender));
   transform: translate(0px, -100%);
   color: var(--color-secondary);
+}
+
+.token-error-panel {
+  transform: translate(0%, 0%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.token-error-panel.token-error-panel-hidden {
+  transform: translate(0%, 100%);
 }
 </style>

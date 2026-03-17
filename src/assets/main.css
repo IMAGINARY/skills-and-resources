@@ -11,7 +11,9 @@
 #app {
 }
 
-.full-hd-v-box {
+.full-hd-v-box,
+.app-size,
+.app-page {
   min-width: 1080px;
   max-width: 1080px;
   min-height: 1920px;
@@ -49,6 +51,15 @@
   font-weight: 700;
   line-height: 170px; /* 106.25% */
   letter-spacing: -5.5px;
+}
+
+.text-style-h1-station-2 {
+  font-family: "Inter", sans-serif;
+  font-size: 102px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 115px; /* 112.745% */
+  letter-spacing: -3px;
 }
 
 .text-style-h2 {
@@ -90,6 +101,19 @@
   --app-padding: 60px;
   --text-style-overline-descender: 11px;
   --text-style-h2-station-2-descender: 21px;
+}
+
+.app-padding,
+.app-page {
+  border-width: var(--app-padding);
+  border-color: transparent; /* Using border over padding helps with applying temporary coloring as layout guide */
+}
+
+.app-position,
+.app-page {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 * {
