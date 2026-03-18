@@ -1,5 +1,10 @@
 import type { DeepReadonly } from "vue";
-import { AppConfigSchema, ContentConfigSchema, withConfigFileUrl } from "@/types/config.ts";
+import {
+  AppConfigSchema,
+  ContentConfigSchema,
+  withConfigFileUrl,
+  collectDecodedAssetUrls,
+} from "@/types/config.ts";
 import { Value } from "typebox/value";
 import YAML from "yaml";
 
@@ -83,16 +88,19 @@ export async function loadConfig(options: Options): Promise<DeepReadonly<Config>
   }
 
   // Schema validation has passed: Decode config (asset URL resolution etc.)
-  const decodedAppConfig = withConfigFileUrl(appConfigUrl, () =>
-    Value.Decode(AppConfigSchema, appConfig),
+
+  const { result: decodedAppConfig, assetUrls: appAssetUrls } = collectDecodedAssetUrls(() =>
+    withConfigFileUrl(appConfigUrl, () => Value.Decode(AppConfigSchema, appConfig)),
   );
   console.log("Decoded app config:", decodedAppConfig);
 
-  const decodedContentConfig = withConfigFileUrl(contentConfigUrl, () =>
-    Value.Decode(ContentConfigSchema, contentConfig),
+  const { result: decodedContentConfig, assetUrls: contentAssetUrls } = collectDecodedAssetUrls(
+    () =>
+      withConfigFileUrl(contentConfigUrl, () => Value.Decode(ContentConfigSchema, contentConfig)),
   );
   console.log("Decoded content config:", decodedContentConfig);
 
+  const assetUrls = new Set([...appAssetUrls, ...contentAssetUrls]);
   const config = { app: decodedAppConfig, content: decodedContentConfig };
 
   const createIdErrorCallback =

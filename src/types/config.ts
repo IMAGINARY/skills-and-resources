@@ -18,6 +18,17 @@ export function withConfigFileUrl<T>(url: URL, callback: () => T): T {
   return result;
 }
 
+let assetUrls = new Set<URL>();
+
+export function collectDecodedAssetUrls<T>(callback: () => T): { assetUrls: Set<URL>; result: T } {
+  const previousAssetUrls = assetUrls;
+  const currentAssetUrls = new Set<URL>();
+  assetUrls = currentAssetUrls;
+  const result = callback();
+  assetUrls = previousAssetUrls;
+  return { assetUrls: currentAssetUrls, result };
+}
+
 // ---------------------------------------------------------------------------
 // Module definition – all schemas in one place, cross-referenced via Type.Ref
 // ---------------------------------------------------------------------------
@@ -35,7 +46,11 @@ export const ConfigSchema = Type.Cyclic(
         title: "Asset URL",
         description: "Relative of absolute URL to an asset.",
       }),
-      (value) => new URL(value, configFileUrl),
+      (value) => {
+        const decodedUrl = new URL(value, configFileUrl); // decode relative URLs relative to the current config file
+        assetUrls.add(decodedUrl); // gather all asset URLs for later use
+        return decodedUrl;
+      },
     ),
 
     ItemType: Type.Enum(["skill", "resource"], {
