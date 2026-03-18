@@ -117,7 +117,8 @@ characterTypes:
     description:
       en: Emma has just completed her driver's license and first-aid course. In stressful situations, she sticks to clear procedures – it gives her a sense of security. The small cheat sheet from the course is still in her jacket pocket. Just in case.
       de: Emma hat gerade Führerschein und Erste-Hilfe-Kurs gemacht. In Stresssituationen hält sie sich an klare Abläufe – das gibt ihr Sicherheit. In ihrer Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
-    icon: 👩‍🦰
+    image: assets/characters/alex.webp
+    croppedImage: assets/characters/alex-portrait.webp
   - id: character_2
     items:
       - warning-app
@@ -126,7 +127,8 @@ characterTypes:
     description:
       en: Malte organizes almost everything via his smartphone. He notices early when something feels off and immediately checks reliable information. After once being stranded with an empty battery, he never leaves home without backup.
       de: Malte organisiert fast alles über sein Smartphone. Er merkt früh, wenn etwas nicht stimmt, und checkt sofort verlässliche Infos. Er ist einmal mit leerem Akku gestrandet – seitdem verlässt er das Haus nie ohne Backup.
-    icon: 🤖
+    image: assets/characters/daniel.webp
+    croppedImage: assets/characters/daniel-portrait.webp
   - id: character_3
     items:
       - crank-radio
@@ -135,7 +137,8 @@ characterTypes:
     description:
       en: "Martin loves being outdoors: camping, hiking, festivals. He likes things that work without a power socket. Improvisation is part of his routine – if necessary, pasta from a pot will do."
       de: "Martin ist gern draußen: Camping, Wandern, Festivals. Er mag es, wenn Dinge auch ohne Steckdose funktionieren. Improvisieren gehört für ihn dazu – notfalls gibt es eben Nudeln aus dem Topf."
-    icon: 🧔‍♂️
+    image: assets/characters/deniz.webp
+    croppedImage: assets/characters/deniz-portrait.webp
   - id: character_4
     items:
       - warning-app
@@ -144,7 +147,8 @@ characterTypes:
     description:
       en: "Sabine juggles work, children, and daily life. In exceptional situations, she tries to stay calm – especially for others. Her shopping motto: better prepared than improvising later."
       de: "Sabine jongliert Job, Kinder und Alltag. In Ausnahmesituationen versucht sie, Ruhe zu bewahren – vor allem für andere. Ihr Motto beim Einkaufen: Lieber vorbereitet sein als später improvisieren."
-    icon: 👱‍♀️
+    image: assets/characters/noa-portrait.webp
+    croppedImage: assets/characters/noa-portrait.webp
   - id: character_5
     items:
       - care-competence
@@ -153,7 +157,8 @@ characterTypes:
     description:
       en: Paul regularly supports his mother, who requires care. He knows what is essential and what cannot wait. His backpack is always well organized – even if he sometimes forgets where he put his keys.
       de: Paul unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, was unverzichtbar ist und was nicht warten darf. Sein Rucksack ist immer gut sortiert – auch wenn er dafür manchmal den Haustürschlüssel sucht.
-    icon: 👨‍🦱
+    image: assets/characters/petra.webp
+    croppedImage: assets/characters/petra-portrait.webp
   - id: character_6
     items:
       - local-knowledge
@@ -162,7 +167,8 @@ characterTypes:
     description:
       en: Renate has lived in the region for a long time and has experienced severe weather before. She knows risky areas and safe routes. When others panic, she stays calm – experience beats haste.
       de: Renate lebt schon lange in der Region und hat Unwetter schon öfter erlebt. Sie kennt riskante Stellen und sichere Wege. Wenn andere hektisch werden, bleibt sie gelassen – Erfahrung schlägt Eile.
-    icon: 👵
+    image: assets/characters/yasmin.webp
+    croppedImage: assets/characters/yasmin-portrait.webp
 
 challenges:
   - id: christmas-market

@@ -46,7 +46,10 @@ const characterTypeConfig = computed(() => {
     <LanguageSelector class="language-selector" :hasDarkBackground="true"></LanguageSelector>
     <template v-if="characterTypeConfig !== null">
       <div class="character">
-        <div class="character-icon">{{ characterTypeConfig.icon }}</div>
+        <div
+          class="character-icon"
+          :style="{ 'background-image': `url(${characterTypeConfig.croppedImage.href})` }"
+        ></div>
         <div class="character-text-group">
           <div class="character-label text-style-overline">{{ t(app.misc.character) }}</div>
           <div class="character-title text-style-h2">{{ t(characterTypeConfig.title) }}</div>
@@ -121,6 +124,8 @@ const characterTypeConfig = computed(() => {
   height: 115px;
   border-radius: 50%;
   background-color: var(--color-button);
+  background-image: none; /* override via dynamic style attribute */
+  background-size: cover;
   font-size: 70px;
   overflow: hidden;
 }

@@ -31,7 +31,7 @@ const type = computed(() => {
 <template>
   <template v-if="character">
     <div v-if="type">
-      <div>{{ type.icon }}</div>
+      <div><img :src="type.image.href" style="height: 400px" /></div>
       <div>ID: {{ props.characterId }} Class: {{ character.type }}</div>
       <div>{{ t(type.title) }}</div>
       <div>{{ t(type.description) }}</div>

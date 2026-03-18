@@ -102,9 +102,13 @@ export const ConfigSchema = Type.Cyclic(
           title: "Description",
           description: "Background story and personality description of the character.",
         }),
-        icon: Type.String({
-          title: "Icon",
-          description: "Emoji or icon identifier representing the character.",
+        image: Type.Ref("AssetUrl", {
+          title: "Full size character type image",
+          description: "URL to the full character type image.",
+        }),
+        croppedImage: Type.Ref("AssetUrl", {
+          title: "Cropped character type image",
+          description: "URL to the cropped character type image.",
         }),
       },
       {
