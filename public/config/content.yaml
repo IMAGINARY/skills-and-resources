@@ -187,7 +187,7 @@ challenges:
     description:
       en: You are visiting a Christmas market with your friend. The crowd is dense, and rumors are spreading everywhere. Some people say there has been an accident and that everyone must leave the area immediately.
       de: Du bist mit deiner Freundin auf einem Weihnachtsmarkt unterwegs. Die Menschenmenge ist dicht, überall kursieren Gerüchte. Manche sagen, es habe einen Unfall gegeben und alle müssten sofort den Platz verlassen.
-    icon: 🎄
+    image: assets/challenges/in-the-crowd.webp
     solution:
       items:
         - id: warning-app
@@ -221,7 +221,7 @@ challenges:
     description:
       en: After a storm, your neighbor tries to clear a fallen tree from the driveway and injures himself. Due to the severe weather, emergency services are overloaded and delayed.
       de: Nach einem Sturm versucht dein Nachbar, einen umgestürzten Baum von der Einfahrt zu räumen. Dabei verletzt er sich. Wegen des Unwetters ist der Rettungsdienst überlastet und kommt erst verspätet.
-    icon: 🌪️
+    image: assets/challenges/after-the-storm.webp
     solution:
       items:
         - id: first-aid
@@ -248,7 +248,7 @@ challenges:
     description:
       en: It has been raining heavily all night. You fear that your basement might be flooded and go to check.
       de: Es hat die ganze Nacht stark geregnet. Du befürchtest, dass euer Keller überflutet ist, und gehst nachsehen.
-    icon: 💧
+    image: assets/challenges/heavy-rain.webp
     solution:
       items:
         - id: self-protection
@@ -282,7 +282,7 @@ challenges:
     description:
       en: The power is out – not just in your house, but across the entire state, and it has been that way since the day before yesterday. Internet and mobile networks no longer work, traffic lights are down, and water pressure is low. You are at home with your family.
       de: Der Strom ist weg – nicht nur in deinem Haus, sondern im ganzen Bundesland und das seit Vorgestern. Internet und Mobilfunk funktionieren nicht mehr, Ampeln fallen aus und der Wasserdruck ist niedrig. Du bist mit deiner Familie zu Hause.
-    icon: ⚡
+    image: assets/challenges/blackout.webp
     solution:
       items:
         - id: cooking-option
@@ -323,7 +323,7 @@ challenges:
     description:
       en: You hear in the news that a storm surge is expected. Some neighborhoods are to be evacuated, others are considered safe. You must decide whether to leave and where to go.
       de: Über die Nachrichten erfährst du, dass eine Sturmflut angekündigt ist. Einige Stadtteile sollen evakuiert werden, andere gelten als sicher. Du musst entscheiden, ob und wohin du gehst.
-    icon: 🌊
+    image: assets/challenges/storm-surge.webp
     solution:
       items:
         - id: local-knowledge
@@ -357,7 +357,7 @@ challenges:
     description:
       en: The power has been out for over half an hour. Your mother is receiving home care and relies on an electric ventilator. You immediately head to her place.
       de: Der Strom ist seit über einer halben Stunde weg. Deine Mutter wird zu Hause gepflegt und ist auf ein elektrisches Beatmungsgerät angewiesen. Du machst dich sofort auf den Weg zu ihr.
-    icon: 🏥
+    image: assets/challenges/emergency-care.webp
     solution:
       items:
         - id: care-competence

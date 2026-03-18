@@ -23,7 +23,7 @@ const challenge = computed(() => challenges[props.challengeId]);
 <template>
   <div class="challenge-container">
     <template v-if="challenge">
-      <div class="challenge-image challenge-image-icon">{{ challenge.icon }}</div>
+      <div class="challenge-image"><img :src="challenge.image.href" /></div>
       <div class="challenge-label-box-outer">
         <div class="challenge-label-box-inner">
           <div class="challenge-label-with-idx text-style-overline">
@@ -67,11 +67,7 @@ const challenge = computed(() => challenges[props.challengeId]);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.challenge-image-icon {
-  font-size: 300px;
-  flex-grow: 0;
+  object-fit: cover;
 }
 
 .challenge-label-box-outer {

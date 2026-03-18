@@ -175,9 +175,9 @@ export const ConfigSchema = Type.Cyclic(
           title: "Description",
           description: "Narrative description of the challenge scenario.",
         }),
-        icon: Type.String({
-          title: "Icon",
-          description: "Emoji or icon identifier representing the challenge.",
+        image: Type.Ref("AssetUrl", {
+          title: "Challenge image",
+          description: "URL to an image representing the challenge scenario.",
         }),
       },
       {

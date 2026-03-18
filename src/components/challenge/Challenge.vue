@@ -18,7 +18,7 @@ const challenge = computed(() => challenges[props.challengeId]);
 
 <template>
   <div v-if="challenge" class="text-4xl">
-    <div class="text-[4em]">{{ challenge.icon }}</div>
+    <div class="text-[4em]"><img :src="challenge.image.href" /></div>
     <div>{{ t(challenge.title) }}</div>
     <div>{{ t(challenge.description) }}</div>
     <div class="text-[2em]">
