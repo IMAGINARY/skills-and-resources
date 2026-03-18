@@ -1,3 +1,42 @@
+inventory:
+  intro:
+    name: Station 1
+    title:
+      en: Choose your inventory
+      de: Auswahl des Inventars
+    description:
+      en: What do you rely on when it counts?
+      de: Was bringst du mit, wenn es drauf ankommt?
+  selection:
+    title:
+      en: Emergency inventory
+      de: Inventar für den Ernstfall
+    characterTagline:
+      en: That defines you
+      de: Das macht dich aus
+    slotEmpty:
+      en: Empty
+      de: Leer
+    skills:
+      en: Skills
+      de: Fähigkeiten
+    resources:
+      en: Resources
+      de: Ressourcen
+    full:
+      de: Inventar vollständig gefüllt.
+      en: Inventory full.
+    fullHint:
+      en: Remove an item above to add another.
+      de: Entferne oben einen Gegenstand, um einen anderen mitzunehmen.
+    continueHint:
+      en: |-
+        When you're ready:
+        Continue to Station 2.
+      de: |-
+        Sobald du zufrieden bist:
+        Weiter bei Station 2
+
 challenge:
   name: Station 2
   title:
@@ -6,15 +45,6 @@ challenge:
   description:
     en: Can your character handle the situation?
     de: Hat dein Charakter die Lage im Griff?
-
-inventory:
-  name: Station 1
-  title:
-    en: Choose your inventory
-    de: Auswahl des Inventars
-  description:
-    en: What do you rely on when it counts?
-    de: Was bringst du mit, wenn es drauf ankommt?
 
 tokenScanRequest:
   de: |-

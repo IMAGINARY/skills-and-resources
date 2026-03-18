@@ -6,7 +6,7 @@ import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
 import Item from "@/components/common/Item.vue";
-import Character from "@/components/common/Character.vue";
+import CharacterProfile from "@/components/inventory/CharacterProfile.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
 import { useTap } from "@/composables/use-tap";
@@ -47,28 +47,23 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
 
 <template>
   <div class="full-hd-v-box inventory-app">
-    <div v-if="lastActiveCharacterId" class="character-inventory app-padding">
-      <Character :language="language" :character-id="lastActiveCharacterId"></Character>
-      <div class="item-list p-4 gap-4">
-        <Item
-          v-for="item in content.items"
-          :item-id="item.id"
-          :key="item.id"
-          :language="language"
-          :is-static="true"
-          :highlight="lastActiveCharacterId ? hasItem(lastActiveCharacterId, item.id) : false"
-          :locked="lastActiveCharacterId ? isItemLocked(lastActiveCharacterId, item.id) : false"
-          v-drag="useTap(toggleItem.bind(undefined, lastActiveCharacterId, item.id))"
-        ></Item>
+    <div v-if="lastActiveCharacterId" class="character-with-inventory">
+      <CharacterProfile :character-id="lastActiveCharacterId"></CharacterProfile>
+      <div class="inventory">
+        <div class="inventory-slots"></div>
+        <div class="available-items"></div>
+      </div>
+      <div class="language-selector">
+        <LanguageSelector :hasDarkBackground="false"></LanguageSelector>
       </div>
     </div>
     <AppIntro
-      :name="app.inventory.name"
-      :description="app.inventory.title"
+      :name="app.inventory.intro.name"
+      :description="app.inventory.intro.title"
       class="app-intro app-padding"
       :class="{ 'app-intro-hidden': hideAppIntro }"
       ><div class="app-intro-text text-style-h1">
-        <div>{{ t(app.inventory.description) }}</div>
+        <div>{{ t(app.inventory.intro.description) }}</div>
       </div>
     </AppIntro>
     <TokenErrorPanel
@@ -81,11 +76,15 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
 <style scoped>
 .inventory-app {
   position: relative;
+  background-color: var(--color-backdrop-dark);
+  --padding-color: transparent;
 }
 
 .app-padding {
   border-width: var(--app-padding);
-  border-color: transparent; /* Using border over padding helps with applying temporary coloring as layout guide */
+  border-color: var(
+    --padding-color
+  ); /* Using border over padding helps with applying temporary coloring as layout guide */
 }
 
 .app-intro {
@@ -113,23 +112,29 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
   color: var(--color-secondary);
 }
 
-.character-inventory {
-  position: absolute;
-  top: 100px;
-  left: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.character-with-inventory {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.item-list {
+.language-selector {
+  position: absolute;
+  bottom: var(--app-padding);
+  margin-bottom: -14px;
   display: flex;
-  flex-direction: row;
-  overflow: scroll;
-  flex-wrap: nowrap;
-  scroll-behavior: smooth;
+  justify-content: center;
+  width: 100%;
 }
+
+.inventory {
+  border-width: 0 var(--app-padding) var(--app-padding) var(--app-padding);
+  border-color: var(--padding-color);
+  width: 100%;
+  height: calc(100% - 660px);
+  background-color: var(--color-backdrop-light);
+}
+
 .token-error-panel {
   transform: translate(0%, 0%);
   transition: transform 0.5s ease-in-out;

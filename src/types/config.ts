@@ -214,18 +214,68 @@ export const ConfigSchema = Type.Cyclic(
         ),
         inventory: Type.Object(
           {
-            name: Type.Ref("I18nRecord", {
-              title: "Name",
-              description: "Name to display on the inventory app panel.",
-            }),
-            title: Type.Ref("I18nRecord", {
-              title: "Title",
-              description: "Title to display on the inventory app panel.",
-            }),
-            description: Type.Ref("I18nRecord", {
-              title: "Description",
-              description: "Introductory text shown in the inventory app panel.",
-            }),
+            intro: Type.Object(
+              {
+                name: Type.Ref("I18nRecord", {
+                  title: "Name",
+                  description: "Name to display on the inventory app panel.",
+                }),
+                title: Type.Ref("I18nRecord", {
+                  title: "Title",
+                  description: "Title to display on the inventory app panel.",
+                }),
+                description: Type.Ref("I18nRecord", {
+                  title: "Description",
+                  description: "Introductory text shown in the inventory app panel.",
+                }),
+              },
+              {
+                title: "Intro",
+                description: "UI text configuration for the inventory intro.",
+                additionalProperties: false,
+              },
+            ),
+            selection: Type.Object(
+              {
+                title: Type.Ref("I18nRecord", {
+                  title: "Title",
+                  description: "Title of the selection.",
+                }),
+                characterTagline: Type.Ref("I18nRecord", {
+                  title: "Character Tagline",
+                  description: "Tagline for the character.",
+                }),
+                slotEmpty: Type.Ref("I18nRecord", {
+                  title: "Slot Empty",
+                  description: "Text shown when a slot is empty.",
+                }),
+                skills: Type.Ref("I18nRecord", {
+                  title: "Skills",
+                  description: "Title of the skills section.",
+                }),
+                resources: Type.Ref("I18nRecord", {
+                  title: "Resources",
+                  description: "Title of the resources section.",
+                }),
+                full: Type.Ref("I18nRecord", {
+                  title: "Full",
+                  description: "Text shown when all inventory slots are full.",
+                }),
+                fullHint: Type.Ref("I18nRecord", {
+                  title: "Full Hint",
+                  description: "Hint shown when all inventory slots are full.",
+                }),
+                continueHint: Type.Ref("I18nRecord", {
+                  title: "Continue Hint",
+                  description: "Hint shown to guide the player to the challenge station.",
+                }),
+              },
+              {
+                title: "Selection",
+                description: "UI text configuration for the inventory selection.",
+                additionalProperties: false,
+              },
+            ),
           },
           {
             title: "Inventory",
