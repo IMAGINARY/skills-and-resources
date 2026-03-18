@@ -2,7 +2,21 @@
 // Uses Type.Module() to resolve nested types via Type.Ref() references.
 import { Type } from "typebox";
 
-import type { Static } from "typebox";
+import type { StaticDecode } from "typebox";
+
+// Used for resolving URLs relative to the config file, e.g. for assets.
+let configFileUrl = global.window
+  ? new URL(global.window.location.href)
+  : new URL(process.cwd(), "file:///");
+
+// Temporarily override the config file URL for the duration of a callback.
+export function withConfigFileUrl<T>(url: URL, callback: () => T): T {
+  const oldUrl = configFileUrl;
+  configFileUrl = url;
+  const result = callback();
+  configFileUrl = oldUrl;
+  return result;
+}
 
 // ---------------------------------------------------------------------------
 // Module definition – all schemas in one place, cross-referenced via Type.Ref
@@ -15,6 +29,14 @@ export const ConfigSchema = Type.Cyclic(
       description:
         "An internationalized text value: either a plain string or a record mapping locale codes to translated strings.",
     }),
+
+    AssetUrl: Type.Decode(
+      Type.String({
+        title: "Asset URL",
+        description: "Relative of absolute URL to an asset.",
+      }),
+      (value) => new URL(value, configFileUrl),
+    ),
 
     ItemType: Type.Enum(["skill", "resource"], {
       title: "Item Type",
@@ -300,49 +322,52 @@ export const ConfigSchema = Type.Cyclic(
 
 // Base types
 export const I18nRecordSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.I18nRecord);
-export type I18nRecord = Static<typeof I18nRecordSchema>;
+export type I18nRecord = StaticDecode<typeof I18nRecordSchema>;
+
+export const AssetUrlSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.AssetUrl);
+export type AssetUrl = StaticDecode<typeof AssetUrlSchema>;
 
 export const ItemTypeSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.ItemType);
-export type ItemType = Static<typeof ItemTypeSchema>;
+export type ItemType = StaticDecode<typeof ItemTypeSchema>;
 
 // Item config
 export const ItemConfigSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.ItemConfig);
-export type ItemConfig = Static<typeof ItemConfigSchema>;
+export type ItemConfig = StaticDecode<typeof ItemConfigSchema>;
 
 // Character type config
 export const CharacterTypeConfigSchema = Type.Instantiate(
   ConfigSchema.$defs,
   ConfigSchema.$defs.CharacterTypeConfig,
 );
-export type CharacterTypeConfig = Static<typeof CharacterTypeConfigSchema>;
+export type CharacterTypeConfig = StaticDecode<typeof CharacterTypeConfigSchema>;
 
 // Challenge item config
 export const ChallengeItemConfigSchema = Type.Instantiate(
   ConfigSchema.$defs,
   ConfigSchema.$defs.ChallengeItemConfig,
 );
-export type ChallengeItemConfig = Static<typeof ChallengeItemConfigSchema>;
+export type ChallengeItemConfig = StaticDecode<typeof ChallengeItemConfigSchema>;
 
 // Challenge config
 export const ChallengeConfigSchema = Type.Instantiate(
   ConfigSchema.$defs,
   ConfigSchema.$defs.ChallengeConfig,
 );
-export type ChallengeConfig = Static<typeof ChallengeConfigSchema>;
+export type ChallengeConfig = StaticDecode<typeof ChallengeConfigSchema>;
 
 // App config
-export const AppConfigSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.AppConfig);
-export type AppConfig = Static<typeof AppConfigSchema>;
+export const AppConfigSchema = Type.Cyclic(ConfigSchema.$defs, "AppConfig");
+export type AppConfig = StaticDecode<typeof AppConfigSchema>;
 
 // Content config
 export const ContentConfigSchema = Type.Instantiate(
   ConfigSchema.$defs,
   ConfigSchema.$defs.ContentConfig,
 );
-export type ContentConfig = Static<typeof ContentConfigSchema>;
+export type ContentConfig = StaticDecode<typeof ContentConfigSchema>;
 
 // Top-level config
-export type Config = Static<typeof ConfigSchema>;
+export type Config = StaticDecode<typeof ConfigSchema>;
 
 export enum Language {
   PRIMARY = "primary",

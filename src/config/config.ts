@@ -1,5 +1,5 @@
 import type { DeepReadonly } from "vue";
-import { ConfigSchema } from "@/types/config.ts";
+import { AppConfigSchema, ContentConfigSchema, withConfigFileUrl } from "@/types/config.ts";
 import { Value } from "typebox/value";
 import YAML from "yaml";
 
@@ -60,23 +60,46 @@ export async function loadConfig(options: Options): Promise<DeepReadonly<Config>
   const contentConfig = await fetchYaml(contentConfigUrl);
   console.log("Loaded content config:", contentConfig);
 
-  const config = { app: appConfig, content: contentConfig };
+  const appConfigValidationFailedText = "App config validation failed";
+  const appConfigValidationFailedError = new Error(appConfigValidationFailedText);
+  const contentConfigValidationFailedText = "Config validation failed";
+  const contentConfigValidationFailedError = new Error(contentConfigValidationFailedText);
 
-  const configValidationFailedText = "Config validation failed";
-  const configValidationFailedError = new Error(configValidationFailedText);
-
-  // Validate config structure against the JSON Schema
-  if (!Value.Check(ConfigSchema, config)) {
+  // Validate config structures against the JSON Schema
+  if (!Value.Check(AppConfigSchema, appConfig)) {
     // Collect detailed errors
-    console.error(`${configValidationFailedText}:`, ...Value.Errors(ConfigSchema, config));
-    throw configValidationFailedError;
+    console.error(`${appConfigValidationFailedText}:`, ...Value.Errors(AppConfigSchema, appConfig));
+    throw appConfigValidationFailedError;
   }
+
+  if (!Value.Check(ContentConfigSchema, contentConfig)) {
+    // Collect detailed errors
+    const contentConfigValidationFailedText = "Content config validation failed";
+    console.error(
+      `${contentConfigValidationFailedText}:`,
+      ...Value.Errors(ContentConfigSchema, contentConfig),
+    );
+    throw contentConfigValidationFailedError;
+  }
+
+  // Schema validation has passed: Decode config (asset URL resolution etc.)
+  const decodedAppConfig = withConfigFileUrl(appConfigUrl, () =>
+    Value.Decode(AppConfigSchema, appConfig),
+  );
+  console.log("Decoded app config:", decodedAppConfig);
+
+  const decodedContentConfig = withConfigFileUrl(contentConfigUrl, () =>
+    Value.Decode(ContentConfigSchema, contentConfig),
+  );
+  console.log("Decoded content config:", decodedContentConfig);
+
+  const config = { app: decodedAppConfig, content: decodedContentConfig };
 
   const createIdErrorCallback =
     (msg: string): ((ids: string[]) => void) =>
     (ids: string[]) => {
-      console.error(`${configValidationFailedText}: ${msg}`, ...ids);
-      throw configValidationFailedError;
+      console.error(`${contentConfigValidationFailedText}: ${msg}`, ...ids);
+      throw contentConfigValidationFailedError;
     };
 
   {
