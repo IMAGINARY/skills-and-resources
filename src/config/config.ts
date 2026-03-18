@@ -10,6 +10,7 @@ import YAML from "yaml";
 
 import type { Config } from "@/types/config";
 import type { Options } from "@/options/options.ts";
+import { preloadAssets } from "@/config/preload.ts";
 
 function findDuplicates<T>(a: T[]): T[] {
   const seen = new Set<T>();
@@ -100,7 +101,10 @@ export async function loadConfig(options: Options): Promise<DeepReadonly<Config>
   );
   console.log("Decoded content config:", decodedContentConfig);
 
+  // Start asset preloading
   const assetUrls = new Set([...appAssetUrls, ...contentAssetUrls]);
+  preloadAssets(Array.from(assetUrls)).then(() => console.log("Asset preloading completed."));
+
   const config = { app: decodedAppConfig, content: decodedContentConfig };
 
   const createIdErrorCallback =
