@@ -71,9 +71,9 @@ export const ConfigSchema = Type.Cyclic(
           title: "Description",
           description: "Longer description explaining the item.",
         }),
-        icon: Type.String({
+        icon: Type.Ref("AssetUrl", {
           title: "Icon",
-          description: "Emoji or icon identifier representing the item.",
+          description: "Icon to represent the item on screen.",
         }),
       },
       {

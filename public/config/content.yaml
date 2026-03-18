@@ -7,7 +7,16 @@ items:
     description:
       en: You can provide basic medical first aid, such as placing someone in the recovery position or safely treating minor wounds.
       de: Du kannst medizinische Erstversorgung leisten, z. B. stabile Seitenlage anwenden oder kleinere Wunden sicher versorgen.
-    icon: 👨‍⚕️
+    icon: assets/items/skills/first-aid.svg
+  - id: coordination
+    type: skill
+    title:
+      en: Coordination
+      de: Koordination
+    description:
+      en: You coordinate with others and make decisions together.
+      de: Du sprichst dich mit anderen ab und triffst Entscheidungen gemeinsam.
+    icon: assets/items/skills/coordination.svg
   - id: care-competence
     type: skill
     title:
@@ -16,16 +25,16 @@ items:
     description:
       en: You understand the needs of people who require care in your close environment and can support them even in exceptional situations.
       de: Du kennst die Bedürfnisse pflegebedürftiger Personen in deinem näheren Umfeld und kannst sie auch in Ausnahmesituationen unterstützen.
-    icon: 🧑‍⚕️
+    icon: assets/items/skills/caretaking.svg
   - id: warning-app
-    type: skill
+    type: resource
     title:
       en: Warning App
       de: Warn-App
     description:
       en: Using your phone, you stay informed and know where to find reliable and official information in an emergency.
       de: Über dein Handy bleibst du informiert und weißt, wo du im Ernstfall verlässliche und offizielle Informationen findest.
-    icon: 📱
+    icon: assets/items/resources/warning-app.svg
   - id: local-knowledge
     type: skill
     title:
@@ -34,7 +43,7 @@ items:
     description:
       en: You know which crisis scenarios may occur in your area and are familiar with assembly points and critical infrastructure in your building.
       de: Du weißt, welche Krisenszenarien es in deiner Gegend geben kann, und kennst Sammelpunkte und wichtige Infrastruktur in deinem Gebäude.
-    icon: 🗺️
+    icon: assets/items/skills/local-knowledge.svg
   - id: emergency-bag
     type: skill
     title:
@@ -43,7 +52,7 @@ items:
     description:
       en: Emergency Bag You know what to pack in an emergency – for example water, essential medication, personal documents, and warm clothing.
       de: Du weißt, was du im Notfall einpacken musst – zum Beispiel Wasser, wichtige Medikamente, persönliche Dokumente und warme Kleidung.
-    icon: 🧳
+    icon: assets/items/resources/emergency-bag.svg
   - id: self-protection
     type: skill
     title:
@@ -52,7 +61,7 @@ items:
     description:
       en: You know how to act in critical situations without unnecessarily endangering yourself or others.
       de: Du weißt, wie man in kritischen Situationen handelt, ohne sich selbst oder andere unnötig in Gefahr zu bringen.
-    icon: 👷
+    icon: assets/items/skills/personal-safety.svg
   - id: supplies
     type: resource
     title:
@@ -61,7 +70,7 @@ items:
     description:
       en: With sufficient water and food, you can stay at home calmly for several days.
       de: Mit ausreichend Wasser und Lebensmitteln kannst du für ein paar Tage entspannt zu Hause bleiben.
-    icon: 🥫
+    icon: assets/items/resources/food-water.svg
   - id: flashlight
     type: resource
     title:
@@ -70,7 +79,7 @@ items:
     description:
       en: A flashlight allows you to move safely and maintain orientation even in darkness or during a power outage.
       de: Mit einer Taschenlampe findest du dich auch bei Dunkelheit oder Stromausfall sicher zurecht.
-    icon: 🔦
+    icon: assets/items/resources/flashlight.svg
   - id: power-bank
     type: resource
     title:
@@ -79,7 +88,7 @@ items:
     description:
       en: With a charged power bank, you can continue using essential electronic devices for some time even without electricity.
       de: Mit einer geladenen Powerbank kannst du wichtige elektronische Geräte auch ohne Strom noch eine Zeit lang nutzen.
-    icon: 🔋
+    icon: assets/items/resources/power-bank.svg
   - id: crank-radio
     type: skill
     title:
@@ -88,7 +97,7 @@ items:
     description:
       en: A radio allows you to stay informed even without internet or mobile service.
       de: Mit einem Radio bleibst du auch ohne Internet oder Mobilfunk gut informiert.
-    icon: 📻
+    icon: assets/items/resources/crank-radio.svg
   - id: cooking-option
     type: resource
     title:
@@ -97,7 +106,7 @@ items:
     description:
       en: With a gas stove, you can prepare warm meals for yourself and others even without electricity.
       de: Mit einem Gaskocher kannst du dir und anderen auch ohne Strom warme Mahlzeiten zubereiten.
-    icon: 🔥
+    icon: assets/items/resources/gas-stove.svg
   - id: medkit
     type: resource
     title:
@@ -106,7 +115,7 @@ items:
     description:
       en: With bandages, painkillers, and other medication, you can take care of yourself and others.
       de: Mit Pflastern, Schmerzmitteln und weiteren Medikamenten kannst du dich und andere versorgen.
-    icon: 🩹
+    icon: assets/items/resources/medical-supplies.svg
 
 characterTypes:
   - id: character_1

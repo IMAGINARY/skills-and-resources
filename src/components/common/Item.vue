@@ -35,7 +35,7 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
   >
     <template #header>
       <div class="flex items-center text-2xl">
-        <ItemThumbnail :item-id="item.id" class="text-5xl" />
+        <div class="icon"><ItemThumbnail :item-id="item.id" cssAccentColor="green" /></div>
         <div class="ms-5">
           <div>{{ t(item.title) }}</div>
         </div>
@@ -50,4 +50,11 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
   <UPageCard v-else class="aspect-[1/1.414]" title="Unknown item" />
 </template>
 
-<style scoped></style>
+<style scoped>
+.icon {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  --accent-color: green; /* color just for testing */
+}
+</style>

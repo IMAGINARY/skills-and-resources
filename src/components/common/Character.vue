@@ -38,7 +38,7 @@ const type = computed(() => {
       <div>
         <template v-for="{ locked, itemId } in character.inventory" :key="itemId">
           <span class="relative text-8xl">
-            <ItemThumbnail :item-id="itemId"></ItemThumbnail>
+            <div class="icon"><ItemThumbnail :item-id="itemId"></ItemThumbnail></div>
             <span v-if="locked" class="absolute bottom-0 right-0 text-[0.5em]">🔒</span>
             <span
               v-else
@@ -55,4 +55,10 @@ const type = computed(() => {
   <div v-else>Unknown character</div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.icon {
+  width: 100px;
+  height: 100px;
+  --accent-color: red; /* color just for testing */
+}
+</style>

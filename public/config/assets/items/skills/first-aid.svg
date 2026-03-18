@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;">
+    <g transform="matrix(1,0,0,1,0,-365.512)">
+        <g id="S1_First-Aid" transform="matrix(1,0,0,1,0,365.512)">
+            <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
+            <g transform="matrix(0.185274,0,0,0.185274,132.283,132.283)">
+                <g transform="matrix(1,0,0,1,-642.667,-642.667)">
+                    <g id="bg">
+                        <g id="Shape-12" serif:id="Shape 12" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M308,297L376,304L439,180L417,157L304,256L295,281L308,297Z" style="fill:white;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M432,157C432,157 455.5,165.2 449,186C415.28,293.98 404.67,304.82 386,317C345.12,343.67 299.84,372.58 292,376C299.91,372.55 286.13,420 245,445C210.75,465.82 172,472 172,472L70,392C70,392 40.31,307.82 132,290C184.29,279.84 198.12,280.93 240,257C260.69,245.18 300.85,213.26 325,185C335.02,173.27 347,184 347,184C347,184 365.91,151.3 372,146C387.05,132.91 402,141 402,141C402,141 410.33,119.09 421,121C431.67,122.91 442.91,130.11 436,147C429.09,163.89 380,263 380,263C380,263 338.62,286.67 328,292" style="fill:white;"/>
+                        </g>
+                        <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M190.5,28C248.77,28 296,75.23 296,133.5C296,191.77 248.77,239 190.5,239C132.23,239 85,191.77 85,133.5C85,75.23 132.23,28 190.5,28Z" style="fill:white;"/>
+                        </g>
+                    </g>
+                    <g id="stoke">
+                        <g id="Shape-11" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M432,157C432,157 455.5,165.2 449,186C415.28,293.98 404.67,304.82 386,317C345.12,343.67 299.84,372.58 292,376C299.91,372.55 286.13,420 245,445C210.75,465.82 172,472 172,472L70,392C70,392 40.31,307.82 132,290C184.29,279.84 198.12,280.93 240,257C260.69,245.18 300.85,213.26 325,185C335.02,173.27 347,184 347,184C347,184 365.91,151.3 372,146C387.05,132.91 402,141 402,141C402,141 410.33,119.09 421,121C431.67,122.91 442.91,130.11 436,147C429.09,163.89 380,263 380,263C380,263 338.62,286.67 328,292" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M148,388C153.31,327.41 202.65,295.83 267,307C274.81,304.4 328.05,266.25 344,290C350.38,299.51 330.36,314.9 322,323C311.72,332.96 297.55,344.01 283,358C274.82,365.89 271.78,383.72 264,402" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-111" serif:id="Shape 11" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M338.26,286.44C327.97,292.26 312.66,302.73 307.4,313.63C303.94,320.8 311.01,331.23 311.01,331.23" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M400.16,141.48C382.12,177.013 364.077,212.55 346.03,248.09C346.13,248.003 346.227,247.92 346.32,247.84C346.227,247.92 346.13,248.003 346.03,248.09C346.03,248.09 323.32,261.48 311.97,268.17L312.41,268.17L311.7,268.17" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-4" serif:id="Shape 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M347.97,182.74C337.083,201.607 326.193,220.473 315.3,239.34C315.3,239.34 292.15,250.64 280.58,256.28L280.55,256.28" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M381.36,264.22C385.52,267.533 389.68,270.847 393.84,274.16L393.84,274.57" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M416.89,191.45C421.53,194.46 431.67,197.99 435,199" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-7" serif:id="Shape 7" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M386.94,170.68C391.14,169.51 407.04,177.53 407.04,177.53" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-10" serif:id="Shape 10" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M360.56,177.54C364.887,179.987 369.217,182.43 373.55,184.87" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-8" serif:id="Shape 8" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M346.97,248.68C351.16,249.3 359.86,257.1 361.34,257.1" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Shape-9" serif:id="Shape 9" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M316.64,238.81C322.78,240.34 329.68,247.33 329.68,247.33" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                        <g id="Ellipse-11" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M190.5,28C248.77,28 296,75.23 296,133.5C296,191.77 248.77,239 190.5,239C132.23,239 85,191.77 85,133.5C85,75.23 132.23,28 190.5,28Z" style="fill:none;stroke:black;stroke-width:5px;"/>
+                        </g>
+                    </g>
+                    <g id="fill">
+                        <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M179.29,56.99L203.69,56.99C206.45,56.99 208.69,59.23 208.69,61.99L208.69,204.99C208.69,207.75 206.45,209.99 203.69,209.99L179.29,209.99C176.53,209.99 174.29,207.75 174.29,204.99L174.29,61.99C174.29,59.23 176.53,56.99 179.29,56.99Z"/>
+                        </g>
+                        <g id="Rectangle-1-copy" serif:id="Rectangle 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M267.99,121.29L267.99,145.69C267.99,148.45 265.75,150.69 262.99,150.69L119.99,150.69C117.23,150.69 114.99,148.45 114.99,145.69L114.99,121.29C114.99,118.53 117.23,116.29 119.99,116.29L262.99,116.29C265.75,116.29 267.99,118.53 267.99,121.29Z"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

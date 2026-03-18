@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:100;">
+    <g transform="matrix(1,0,0,1,-294.874,-365.512)">
+        <g id="S2_Local-Knowledge" transform="matrix(1,0,0,1,294.874,365.512)">
+            <g>
+                <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
+                <clipPath id="_clip1">
+                    <rect x="0" y="0" width="264.567" height="264.567"/>
+                </clipPath>
+                <g clip-path="url(#_clip1)">
+                    <g transform="matrix(0.205835,0,0,0.205835,132.283,132.283)">
+                        <g transform="matrix(1,0,0,1,-642.667,-642.667)">
+                            <clipPath id="_clip2">
+                                <rect x="0" y="0" width="1285.33" height="1285.33"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip2)">
+                                <g transform="matrix(6.07292,0,0,6.06396,-11499.2,-157.668)">
+                                    <path d="M2009.21,91.06C2009.05,90.28 2007.6,89.623 2007.6,89.623L2001.77,86.333L1975.18,102.571L1949.21,85.309L1925.56,102.634L1905.53,216.277L1945.26,193.26L1981.35,216.977L2016.87,191.049L2052.1,217.304L2093.98,211.147L2071.32,119.237C2071.32,119.237 2070.54,117.028 2069.94,118.56C2058.79,146.974 2042.89,170.436 2042.89,170.436C2042.89,170.436 2016.69,128.408 2009.21,91.06Z" style="fill:white;"/>
+                                </g>
+                                <g id="stroke">
+                                    <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M185,173L200,434" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-3-copy" serif:id="Shape 3 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M248,137L283,378" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-3-copy-2" serif:id="Shape 3 copy 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M310,176L361,434" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M128,137L120,380" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-4" serif:id="Shape 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M42,357C42,357 53.33,285.24 122,278C139.3,276.18 143.7,338.49 175,348C207.01,357.73 255.75,345.05 264,332C272.25,318.95 282.23,300.21 298,307C313.77,313.79 317.72,320.54 322,338C326.28,355.46 323.96,381.48 351,387C371.06,391.1 374.3,378.15 372,348C370.14,323.54 361.76,315.29 369,303C376.24,290.71 420,273 420,273" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M78,173L126,210L162,188L188,251L259,211L327,265L395,181" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M437,336C437,336 396.87,342.58 393,379C390.21,405.22 417,426 417,426" style="fill:none;stroke:black;stroke-width:3px;"/>
+                                    </g>
+                                    <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M74,175L27,434L119,380L201,434L281,374L362,434L457,421L393,162L310,176L248,136L187,174L128,134L74,175Z" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                                    </g>
+                                </g>
+                                <g id="Shape-7-copy" serif:id="Shape 7 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                    <path d="M342,41C294.29,41 262,59.32 262,123C262,198.7 341,328 341,328C341,328 423.3,204 425,119C425.87,75.36 406.06,41 342,41Z" style="fill:white;fill-rule:nonzero;"/>
+                                </g>
+                                <g id="stroke1" serif:id="stroke">
+                                    <g id="Shape-7-copy1" serif:id="Shape 7 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M342,41C294.29,41 262,59.32 262,123C262,198.7 341,328 341,328C341,328 423.3,204 425,119C425.87,75.36 406.06,41 342,41Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                                    </g>
+                                    <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                        <path d="M343,84C367.85,84 388,104.15 388,129C388,153.85 367.85,174 343,174C318.15,174 298,153.85 298,129C298,104.15 318.15,84 343,84Z" style="fill:none;stroke:black;stroke-width:6px;"/>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
