@@ -8,6 +8,8 @@ export type MutableOptions = {
   };
   websocketTokenReaderUrl: string;
   errorPanelMinDuration: number;
+  appCfg: string;
+  contentCfg: string;
 };
 
 export type Options = DeepReadonly<MutableOptions>;
@@ -28,12 +30,13 @@ export const defaultOptions: Options = {
   },
   websocketTokenReaderUrl: "ws://localhost:8382",
   errorPanelMinDuration: 20000,
+  appCfg: "app.yaml",
+  contentCfg: "content.yaml",
 };
 
 export async function loadOptions(): Promise<MutableOptions> {
   const sp = new URLSearchParams(window.location.search);
 
-  console.log();
   return {
     flipSides: parseBoolean(sp.get("flipSides"), defaultOptions.flipSides),
     languages: {
@@ -45,5 +48,7 @@ export async function loadOptions(): Promise<MutableOptions> {
       sp.get("errorPanelMinDuration"),
       defaultOptions.errorPanelMinDuration,
     ),
+    appCfg: sp.get("appCfg") ?? defaultOptions.appCfg,
+    contentCfg: sp.get("contentCfg") ?? defaultOptions.contentCfg,
   };
 }

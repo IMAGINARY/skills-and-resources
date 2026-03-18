@@ -1,10 +1,10 @@
 import type { DeepReadonly } from "vue";
-import app from "@/config/app.yaml";
-import content from "@/config/content.yaml";
 import { ConfigSchema } from "@/types/config.ts";
 import { Value } from "typebox/value";
+import YAML from "yaml";
 
 import type { Config } from "@/types/config";
+import type { Options } from "@/options/options.ts";
 
 function findDuplicates<T>(a: T[]): T[] {
   const seen = new Set<T>();
@@ -32,8 +32,35 @@ function checkIfAllForeignIdsExist<T extends { id: string }>(
   if (missingIds.length > 0) errCallback(missingIds);
 }
 
-export async function loadConfig(): Promise<DeepReadonly<Config>> {
-  const config = { app, content };
+function resolveBelowBaseUrl(url: string, base: URL): URL {
+  const resolved = new URL(url, base.href);
+  if (!resolved.href.startsWith(base.href))
+    throw new Error(`${url} must be below ${base.href}, but is resolved to ${resolved.href}`);
+  return resolved;
+}
+
+async function fetchYaml(url: URL): Promise<any[]> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+  const text = await response.text();
+  const doc = YAML.parse(text);
+  return doc;
+}
+
+export async function loadConfig(options: Options): Promise<DeepReadonly<Config>> {
+  const baseUrl = new URL("config/", window.location.href);
+
+  const appConfigUrl = resolveBelowBaseUrl(options.appCfg, baseUrl);
+  console.log("Loading app config:", appConfigUrl.href);
+  const appConfig = await fetchYaml(appConfigUrl);
+  console.log("Loaded app config:", appConfig);
+
+  const contentConfigUrl = resolveBelowBaseUrl(options.contentCfg, baseUrl);
+  console.log("Loading content config:", contentConfigUrl.href);
+  const contentConfig = await fetchYaml(contentConfigUrl);
+  console.log("Loaded content config:", contentConfig);
+
+  const config = { app: appConfig, content: contentConfig };
 
   const configValidationFailedText = "Config validation failed";
   const configValidationFailedError = new Error(configValidationFailedText);

@@ -28,7 +28,8 @@
     "tailwindcss": "^4.1.18",
     "typebox": "^1.0.81",
     "vue": "^3.5.28",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@modyfi/vite-plugin-yaml": "^1.1.1",

@@ -1,10 +1,9 @@
-import type { Config } from "@/types/config";
-
-import { inject, reactive, toValue } from "vue";
+import { reactive, toValue } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
-import { CONFIG_INJECTION_KEY, INVENTORY_SIZE } from "@/constants";
+import { INVENTORY_SIZE } from "@/constants";
+import { useConfigStore } from "@/stores/config";
 
 export type InventorySlot = {
   locked: boolean;
@@ -18,9 +17,7 @@ export type Character = {
 };
 
 export const useCharacterStore = defineStore("characters", () => {
-  const config = inject<Config | null>(CONFIG_INJECTION_KEY, null);
-  assert(config);
-  const { content } = config;
+  const { content } = useConfigStore();
 
   const randomCharacterType = () => {
     assert(content.characterTypes.length > 0);

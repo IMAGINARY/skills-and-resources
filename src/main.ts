@@ -10,9 +10,12 @@ import { OPTIONS_INJECTION_KEY, CONFIG_INJECTION_KEY } from "@/constants";
 import { loadOptions } from "@/options/options";
 import { loadConfig } from "@/config/config";
 
+const options = await loadOptions();
+const config = await loadConfig(options);
+
 const app = createApp(App);
-app.provide(OPTIONS_INJECTION_KEY, await loadOptions());
-app.provide(CONFIG_INJECTION_KEY, await loadConfig());
+app.provide(OPTIONS_INJECTION_KEY, options);
+app.provide(CONFIG_INJECTION_KEY, config);
 app.use(createPinia());
 app.use(ui, { router: () => {} });
 app.use(GesturePlugin);
