@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "node:fs";
-import yaml from "js-yaml";
+import YAML from "yaml";
 
 import { ConfigSchema } from "../src/types/config";
 
@@ -32,7 +32,7 @@ const schema = {
   ...ConfigSchemaExtracted,
   $defs: CleanedDefs,
 };
-const schemaYamlString = `${generatedComment.replace(/^/, "# ")}\n` + yaml.dump(schema);
+const schemaYamlString = `${generatedComment.replace(/^/, "# ")}\n` + YAML.stringify(schema);
 const schemaJsonString = JSON.stringify(schema, undefined, 2);
 const projectRootPath = path.resolve(import.meta.dirname, "..");
 const outputPathBase = path.resolve(projectRootPath, specDir);

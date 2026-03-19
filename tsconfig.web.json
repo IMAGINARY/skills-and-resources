@@ -14,7 +14,6 @@
     "paths": {
       "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
       "@/*": ["src/*"]
-    },
-    "types": ["@modyfi/vite-plugin-yaml/modules"]
+    }
   }
 }
