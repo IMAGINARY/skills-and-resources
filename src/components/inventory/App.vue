@@ -6,18 +6,16 @@ import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
 import AppIntro from "@/components/common/AppIntro.vue";
-import Item from "@/components/common/Item.vue";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import TokenErrorPanel from "@/components/common/TokenErrorPanel.vue";
 import CharacterProfile from "@/components/inventory/CharacterProfile.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
-import { useTap } from "@/composables/use-tap";
 import { storeToRefs } from "pinia";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 
-const { app, content } = useConfigStore();
-const { ensureCharacter, toggleItem, hasItem, isItemLocked } = useCharacterStore();
+const { app } = useConfigStore();
+const { ensureCharacter } = useCharacterStore();
 
 const language = ref<Language>(Language.PRIMARY);
 const { useT } = useLanguageStore();
@@ -28,9 +26,6 @@ const { inventory: tokenState } = storeToRefs(useTokenStore());
 
 const { hidden: hideTokenErrorPanel } = useTokenErrorPanelVisibility(tokenState);
 
-const activeCharacterId = computed(() =>
-  tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
-);
 const lastActiveCharacterId = ref<string | null>(null);
 watch(tokenState, () => {
   if (tokenState.value.state === TokenStateType.PRESENT) {

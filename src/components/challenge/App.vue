@@ -10,7 +10,6 @@ import { useTokenStore } from "@/stores/token";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
 import AppIntro from "@/components/common/AppIntro.vue";
 import ChallengeOverview from "@/components/challenge/ChallengeOverview.vue";
-import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import TokenErrorPanel from "@/components/common/TokenErrorPanel.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
