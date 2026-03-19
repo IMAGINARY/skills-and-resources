@@ -12,8 +12,8 @@
     "generate": "npm-run-all -s -c generate:**",
     "generate:config-schema": "tsx ./tools/generate-json-schemas.ts",
     "typecheck": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
     "format": "oxfmt",
     "token-reader": "npm run start --prefix tools/token-reader --"
   },
@@ -40,6 +40,7 @@
     "npm-run-all": "^4.1.5",
     "oxfmt": "^0.31.0",
     "oxlint": "^1.46.0",
+    "oxlint-tsgolint": "^0.17.0",
     "patch-package": "^8.0.1",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",

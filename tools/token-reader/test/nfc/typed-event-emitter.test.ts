@@ -9,10 +9,7 @@ interface TestEvents {
 
 // Subclass to expose protected `emit` for testing
 class TestEmitter extends TypedEventEmitter<TestEvents> {
-  public doEmit<K extends keyof TestEvents & string>(
-    event: K,
-    ...args: Parameters<TestEvents[K]>
-  ): boolean {
+  public doEmit<K extends keyof TestEvents>(event: K, ...args: Parameters<TestEvents[K]>): boolean {
     return this.emit(event, ...args);
   }
 }

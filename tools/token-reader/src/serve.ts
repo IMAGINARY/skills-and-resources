@@ -172,7 +172,7 @@ function createStateMessagePublisher(config: {
 
   // TODO: handle NFC-level errors
 
-  appShutdownPromise.then(() => {
+  void appShutdownPromise.then(() => {
     nfc.off("reader", handleReader);
     nfc.close();
   });
@@ -197,6 +197,6 @@ function decodeData(bytes: Buffer<ArrayBufferLike>): Result<string, string> {
   try {
     return Ok(decoder.decode(data));
   } catch (decodeError) {
-    return Err(`Could not decode NDEF text record: ${decodeError}`);
+    return Err(`Could not decode NDEF text record: ${String(decodeError)}`);
   }
 }

@@ -103,7 +103,7 @@ export async function loadConfig(options: Options): Promise<DeepReadonly<Config>
 
   // Start asset preloading
   const assetUrls = new Set([...appAssetUrls, ...contentAssetUrls]);
-  preloadAssets(Array.from(assetUrls)).then(() => console.log("Asset preloading completed."));
+  void preloadAssets(Array.from(assetUrls)).then(() => console.log("Asset preloading completed."));
 
   const config = { app: decodedAppConfig, content: decodedContentConfig };
 

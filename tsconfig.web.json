@@ -3,7 +3,6 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "auto-imports.d.ts", "components.d.ts"],
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
     "sourceMap": false,
     "isolatedModules": true,
     "noUnusedLocals": true,
@@ -12,8 +11,7 @@
     "noImplicitReturns": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
-      "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"],
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

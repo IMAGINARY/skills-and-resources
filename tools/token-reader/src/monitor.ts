@@ -50,7 +50,7 @@ async function withConnection(url: URL, onMessage: (msg: unknown) => void): Prom
       client.addEventListener("close", onClose, { once: true });
       client.addEventListener("error", onError, { once: true });
 
-      appShutdownPromise.then(() => {
+      void appShutdownPromise.then(() => {
         shouldRetry = false;
         client.close();
       });
