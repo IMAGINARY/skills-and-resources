@@ -96,7 +96,7 @@ export const ConfigSchema = Type.Cyclic(
         }),
         title: Type.Ref("I18nRecord", {
           title: "Title",
-          description: "Display name of the character (including age).",
+          description: "Display name of the character.",
         }),
         description: Type.Ref("I18nRecord", {
           title: "Description",
@@ -241,9 +241,13 @@ export const ConfigSchema = Type.Cyclic(
                   title: "Title",
                   description: "Title of the selection.",
                 }),
-                characterTagline: Type.Ref("I18nRecord", {
-                  title: "Character Tagline",
-                  description: "Tagline for the character.",
+                lockedSlots: Type.Ref("I18nRecord", {
+                  title: "Locked inventory slots",
+                  description: "Label for the locked inventory slots.",
+                }),
+                slots: Type.Ref("I18nRecord", {
+                  title: "Non-locked inventory slots",
+                  description: "Label for the non-locked inventory slots.",
                 }),
                 slotEmpty: Type.Ref("I18nRecord", {
                   title: "Slot Empty",
@@ -293,6 +297,39 @@ export const ConfigSchema = Type.Cyclic(
               title: "Challenge",
               description: "The word challenge in the UI.",
             }),
+            invalidItem: Type.Object(
+              {
+                title: Type.Ref("I18nRecord", {
+                  title: "Title",
+                  description: "Display title of the item.",
+                }),
+                description: Type.Ref("I18nRecord", {
+                  title: "Description",
+                  description: "Longer description explaining the item.",
+                }),
+              },
+              {
+                title: "Invalid Item",
+                description: "Item to represent invalid item references.",
+              },
+            ),
+            invalidCharacterType: Type.Object(
+              {
+                title: Type.Ref("I18nRecord", {
+                  title: "Title",
+                  description: "Display name of the invalid character type.",
+                }),
+                description: Type.Ref("I18nRecord", {
+                  title: "Description",
+                  description:
+                    "Background story and personality description of the invalid character type.",
+                }),
+              },
+              {
+                title: "Invalid character type",
+                description: "Character type to represent invalid character type references.",
+              },
+            ),
           },
           {
             title: "Miscellaneous",

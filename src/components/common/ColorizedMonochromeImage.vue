@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import { useConfigStore } from "@/stores/config";
-import { computed } from "vue";
+import { type MaybeRefOrGetter, type DeepReadonly, toValue } from "vue";
 
-const { items } = useConfigStore();
+// TODO: Accent color is not displayed correctly
+// TODO: White parts of the icons are gone
 
 const props = defineProps<{
-  itemId: string;
+  url: MaybeRefOrGetter<DeepReadonly<URL>>;
 }>();
-
-const item = computed(() => items[props.itemId]);
 </script>
 
 <template>
-  <template v-if="item"
-    ><div
-      class="outer mask"
-      :style="{
-        'mask-image': `url(${item.icon.href})`,
-      }"
-    >
-      <img :src="item.icon.href" class="inner" /></div
-  ></template>
-  <template v-else><div class="outer">❓</div></template>
+  <div
+    class="outer mask"
+    :style="{
+      'mask-image': `url(&quot;${toValue(props.url).href}&quot;)`,
+    }"
+  >
+    <img :src="toValue(url).href" class="inner" />
+  </div>
 </template>
 
 <style scoped>

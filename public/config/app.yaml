@@ -11,9 +11,12 @@ inventory:
     title:
       en: Emergency inventory
       de: Inventar für den Ernstfall
-    characterTagline:
+    lockedSlots:
       en: That defines you
       de: Das macht dich aus
+    slots:
+      en: Your inventory
+      de: Dein Inventar
     slotEmpty:
       en: Empty
       de: Leer
@@ -64,6 +67,15 @@ misc:
   challenge:
     en: Challenge
     de: Ernstfall
+  invalidItem:
+    title: Invalid item
+    description: An invalid item ID was provided.
+    icon: assets/icons/invalid.svg
+  invalidCharacterType:
+    title: Invalid character type
+    description: The provided character type is invalid.
+    image: assets/characters/invalid.svg
+    imageCropped: assets/characters/invalid-portrait.svg
 
 tokenError:
   name:

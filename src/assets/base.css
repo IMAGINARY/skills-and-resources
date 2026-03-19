@@ -9,15 +9,21 @@
   --color-palette-navy-blue: #0004a0;
   --color-palette-humming-bird: #d1f5f8;
   --color-palette-tender-teal: #88d5db;
+  --color-palette-light-rose: #ffcdcc;
+  --color-palette-blue-chalk: #e7eef7;
+  --color-palette-gray-navy: #666784;
 
   /* semantic colors */
   --color-primary: var(--color-palette-navy-blue);
+  --color-primary-inactive: var(--color-palette-gray-navy);
   --color-secondary: var(--color-palette-electric-lava);
+  --color-secondary-inactive: var(--color-palette-light-rose);
   --color-backdrop-dark: var(--color-palette-blue-black);
   --color-backdrop-light: var(--color-palette-seashell-blue);
   --color-button: var(--color-palette-ocean-water);
   --color-button-inactive: var(--color-palette-humming-bird);
   --color-buttontext-inactive: var(--color-palette-tender-teal);
+  --color-card-inactive: var(--color-palette-blue-chalk);
   --color-white: var(--color-palette-white);
 
   /* other, legacy */

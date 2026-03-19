@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="983"
+   height="983"
+   viewBox="0 0 260.08541 260.08542"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <g
+       id="g3"
+       transform="matrix(1.471227,0,0,1.471227,-59.307696,-29.188864)">
+      <ellipse
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.924454;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:2.77331, 2.77331"
+         id="path1"
+         cx="130.04271"
+         cy="93.200211"
+         rx="31.341665"
+         ry="35.465569" />
+      <ellipse
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.924454;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:2.77331, 2.77331"
+         id="path2"
+         cx="130.04271"
+         cy="393.42038"
+         rx="83.302841"
+         ry="268.05371" />
+      <rect
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.924454;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:2.77331, 2.77331"
+         id="rect3"
+         width="26.781654"
+         height="119.82156"
+         x="168.99608"
+         y="58.363796"
+         transform="rotate(38.567189)" />
+      <rect
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.924454;stroke-linecap:round;stroke-miterlimit:0;stroke-dasharray:2.77331, 2.77331"
+         id="rect3-1"
+         width="23.093859"
+         height="219.39166"
+         x="231.94139"
+         y="-45.952023"
+         transform="rotate(34.42021)" />
+    </g>
+  </g>
+</svg>

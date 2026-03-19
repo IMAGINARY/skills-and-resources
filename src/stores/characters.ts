@@ -1,14 +1,21 @@
-import { reactive, toValue } from "vue";
+import { reactive, toValue, type DeepReadonly } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
 import { INVENTORY_SIZE } from "@/constants";
 import { useConfigStore } from "@/stores/config";
+import { type ItemConfig } from "@/types/config";
 
 export type InventorySlot = {
   locked: boolean;
   itemId: string;
 };
+
+export type NonEmptySlotContent =
+  | { type: "item"; config: DeepReadonly<ItemConfig> }
+  | { type: "invalid"; config: DeepReadonly<ItemConfig> };
+
+export type SlotContent = NonEmptySlotContent | { type: "empty" };
 
 export type Character = {
   readonly id: string;
@@ -51,39 +58,54 @@ export const useCharacterStore = defineStore("characters", () => {
     }
   };
 
-  /**
-   * Toggles an item in the character inventory and returns whether it is present after the operation.
-   */
-  const toggleItem = (characterId: string, itemId: string): boolean => {
+  const hasItem = (characterId: string, itemId: string) => {
+    return characters[characterId]?.inventory.findIndex(({ itemId: iid }) => iid == itemId) !== -1;
+  };
+
+  const addItem = (characterId: string, itemId: string) => {
     if (!characters?.[characterId]) {
       ensureCharacter(characterId);
       return toggleItem(characterId, itemId);
     }
 
-    const idx = characters[characterId].inventory.findIndex(({ itemId: iid }) => iid == itemId);
-    if (typeof characters[characterId].inventory[idx] === "undefined") {
-      // try to add the item
+    if (hasItem(characterId, itemId)) return true;
 
-      if (characters[characterId].inventory.length >= INVENTORY_SIZE)
-        // no space left
-        return false;
+    // try to add the item
+    if (characters[characterId].inventory.length >= INVENTORY_SIZE)
+      // no space left
+      return false;
 
-      characters[characterId].inventory.push({ locked: false, itemId: itemId });
-      return true;
-    } else {
-      // try to remove the item
-
-      if (characters[characterId].inventory[idx].locked)
-        // item will be kept because it is locked
-        return true;
-
-      characters[characterId].inventory.splice(idx, 1);
-      return true; // item is absent now
-    }
+    characters[characterId].inventory.push({ locked: false, itemId: itemId });
+    return true;
   };
 
-  const hasItem = (characterId: string, itemId: string) => {
-    return characters[characterId]?.inventory.findIndex(({ itemId: iid }) => iid == itemId) !== -1;
+  const removeItem = (characterId: string, itemId: string) => {
+    if (!characters?.[characterId]) {
+      ensureCharacter(characterId);
+      return removeItem(characterId, itemId);
+    }
+
+    if (!hasItem(characterId, itemId)) return false;
+
+    const idx = characters[characterId].inventory.findIndex(({ itemId: iid }) => iid == itemId);
+    if (typeof characters[characterId].inventory[idx] === "undefined") return false;
+
+    // try to remove the item
+    if (characters[characterId].inventory[idx].locked)
+      // item will be kept because it is locked
+      return true;
+
+    characters[characterId].inventory.splice(idx, 1);
+    return true; // item is absent now
+  };
+
+  /**
+   * Toggles an item in the character inventory and returns whether it is present after the operation.
+   */
+  const toggleItem = (characterId: string, itemId: string): boolean => {
+    return hasItem(characterId, itemId)
+      ? removeItem(characterId, itemId)
+      : addItem(characterId, itemId);
   };
 
   const isItemLocked = (characterId: string, itemId: string) => {
@@ -92,5 +114,5 @@ export const useCharacterStore = defineStore("characters", () => {
     );
   };
 
-  return { characters, ensureCharacter, toggleItem, hasItem, isItemLocked };
+  return { characters, ensureCharacter, addItem, removeItem, toggleItem, hasItem, isItemLocked };
 });

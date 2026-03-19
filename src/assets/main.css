@@ -101,6 +101,16 @@ body {
   letter-spacing: -3px;
 }
 
+.text-style-h4 {
+  font-family: "National Park", sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 17px */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .text-style-copy {
   font-family: "National Park", sans-serif;
   font-size: 19px;

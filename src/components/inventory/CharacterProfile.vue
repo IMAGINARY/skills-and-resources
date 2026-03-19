@@ -1,46 +1,35 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
+import { computed, toValue, type MaybeRefOrGetter, type DeepReadonly } from "vue";
 
 import { useConfigStore } from "@/stores/config";
-import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore } from "@/stores/language";
+import type { CharacterTypeConfig } from "@/types/config.ts";
 
 const props = defineProps<{
-  characterId: string;
+  characterType: MaybeRefOrGetter<DeepReadonly<CharacterTypeConfig>>;
 }>();
 
-const { app, characterTypes } = useConfigStore();
-const { characters } = storeToRefs(useCharacterStore());
+const { app } = useConfigStore();
 const { useT } = useLanguageStore();
 const t = useT();
 
-const character = computed(() => characters.value[props.characterId] ?? null);
-
-const type = computed(() => {
-  const char = character.value;
-  return char ? characterTypes[char.type] : null;
-});
+const characterType = computed(() => toValue(props.characterType));
 </script>
 
 <template>
   <div class="character-profile">
-    <template v-if="character">
-      <template v-if="type">
-        <div class="text">
-          <div class="character-profile-overline text-style-overline">
-            {{ t(app.inventory.selection.title) }}
-          </div>
-          <div class="character-profile-title text-style-h2">
-            {{ t(app.misc.character) }}: {{ t(type.title) }}
-          </div>
-          <div class="character-profile-description text-style-copy">{{ t(type.description) }}</div>
-        </div>
-        <img class="image" :src="type.image.href" />
-      </template>
-      <template v-else> Unknown character type: {{ character.type }}</template>
-    </template>
-    <template v-else> Unknown character: {{ characterId }} </template>
+    <div class="text">
+      <div class="character-profile-overline text-style-overline">
+        {{ t(app.inventory.selection.title) }}
+      </div>
+      <div class="character-profile-title text-style-h2">
+        {{ t(app.misc.character) }}: {{ t(characterType.title) }}
+      </div>
+      <div class="character-profile-description text-style-copy">
+        {{ t(characterType.description) }}
+      </div>
+    </div>
+    <img class="image" :src="characterType.image.href" />
   </div>
 </template>
 
