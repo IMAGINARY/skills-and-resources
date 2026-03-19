@@ -43,7 +43,6 @@ Node `>=20.20.0 <21` (specified in both `package.json` files)
 - **Assertions**: Use `import { strict as assert } from "assert"` for runtime checks (polyfilled
   in-browser via `vite-plugin-node-polyfills`)
 - **Linting**: oxlint with plugins: eslint, typescript, unicorn, oxc, import, vue
-- **UI Components**: Use NuxtUI v4 components; prefer built-in components over custom ones
 - **Config**: Split into `src/config/app.yaml` (UI strings) and `src/config/content.yaml` (exhibit
   content), loaded via `@modyfi/vite-plugin-yaml`. Types are derived from a TypeBox schema in
   `src/types/config.ts` (via `Static<>`). The merged config is validated at runtime against the
@@ -61,7 +60,4 @@ Node `>=20.20.0 <21` (specified in both `package.json` files)
   are validated at runtime via `Value.Parse()` in `src/stores/token.ts`. Note: the token-reader tool
   (`tools/token-reader/`) defines its own parallel plain-TS types that must be kept in sync manually.
 - **State**: Pinia stores in `src/stores/`; config and options injected via `provide`/`inject`
-- **Routing**: No client-side routing; `vue-router` is a dependency only because NuxtUI requires it,
-  but is configured with `router: false` in the Vite plugin
-- **Project**: Vite 7 + Vue 3 + Pinia + NuxtUI v4 + Tailwind CSS 4 + VueUse + TypeBox +
-  TypeScript (ES modules)
+- **Project**: Vite 7 + Vue 3 + Pinia + VueUse + TypeBox + TypeScript (ES modules)

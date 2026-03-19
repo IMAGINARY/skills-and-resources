@@ -6,6 +6,8 @@ import { useLanguageStore } from "@/stores/language";
 import { useCharacterStore } from "@/stores/characters";
 import type { I18nRecord } from "@/types/config.ts";
 import { storeToRefs } from "pinia";
+import LanguageSelector from "@/components/common/LanguageSelector.vue";
+import TokenScanRequest from "@/components/common/TokenScanRequest.vue";
 
 const props = defineProps<{
   name: MaybeRefOrGetter<I18nRecord>;

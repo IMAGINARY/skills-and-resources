@@ -23,7 +23,7 @@ const challenge = computed(() => challenges[props.challengeId]);
 <template>
   <div class="challenge-container">
     <template v-if="challenge">
-      <div class="challenge-image"><img :src="challenge.image.href" /></div>
+      <img :src="challenge.image.href" class="challenge-image" />
       <div class="challenge-label-box-outer">
         <div class="challenge-label-box-inner">
           <div class="challenge-label-with-idx text-style-overline">

@@ -5,7 +5,10 @@ import { useTokenStore } from "@/stores/token";
 import { useConfigStore } from "@/stores/config";
 import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
+import AppIntro from "@/components/common/AppIntro.vue";
 import Item from "@/components/common/Item.vue";
+import LanguageSelector from "@/components/common/LanguageSelector.vue";
+import TokenErrorPanel from "@/components/common/TokenErrorPanel.vue";
 import CharacterProfile from "@/components/inventory/CharacterProfile.vue";
 import { TokenStateType } from "@/types/token";
 import { Language } from "@/types/config.ts";
@@ -78,13 +81,6 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
   position: relative;
   background-color: var(--color-backdrop-dark);
   --padding-color: transparent;
-}
-
-.app-padding {
-  border-width: var(--app-padding);
-  border-color: var(
-    --padding-color
-  ); /* Using border over padding helps with applying temporary coloring as layout guide */
 }
 
 .app-intro {

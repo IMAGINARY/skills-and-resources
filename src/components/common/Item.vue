@@ -7,12 +7,15 @@ import { useConfigStore } from "@/stores/config";
 import { useLanguageStore } from "@/stores/language";
 import ItemThumbnail from "@/components/common/ItemThumbnail.vue";
 
-const props = defineProps<{
-  language: Language;
-  itemId: string;
-  highlight?: boolean;
-  locked?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    language: Language;
+    itemId: string;
+    highlight?: boolean;
+    locked?: boolean;
+  }>(),
+  { highlight: false, locked: false },
+);
 
 const { items } = useConfigStore();
 const { useT } = useLanguageStore();
@@ -22,17 +25,7 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
 </script>
 
 <template>
-  <UCard
-    v-if="item"
-    variant="subtle"
-    :highlight="highlight ?? false"
-    class="min-w-80 max-w-80 aspect-[1/1.414] rounded-2xl overflow-hidden"
-    :ui="{
-      header: 'bg-accented',
-      root: `relative ${highlight ? 'outline-3 outline-accented' : ''}`,
-      footer: 'absolute bottom-0 right-0',
-    }"
-  >
+  <div v-if="item" :class="{ highlight }" :highlight="highlight ?? false">
     <template #header>
       <div class="flex items-center text-2xl">
         <div class="icon"><ItemThumbnail :item-id="item.id" cssAccentColor="green" /></div>
@@ -45,9 +38,8 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
       <p>{{ t(item.description) }}</p>
     </div>
     <template #footer v-if="locked"><span class="text-5xl">🔒</span></template>
-  </UCard>
-
-  <UPageCard v-else class="aspect-[1/1.414]" title="Unknown item" />
+  </div>
+  <div v-else>Unknown item</div>
 </template>
 
 <style scoped>
@@ -56,5 +48,9 @@ const item = computed<DeepReadonly<ItemConfig | null>>(() => items[props.itemId]
   height: 100px;
   object-fit: cover;
   --accent-color: green; /* color just for testing */
+}
+
+.highlight {
+  /* TODO */
 }
 </style>

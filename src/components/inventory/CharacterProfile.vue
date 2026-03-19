@@ -47,6 +47,7 @@ const type = computed(() => {
 <style scoped>
 .character-profile {
   position: relative;
+  border-style: solid;
   border-width: var(--app-padding) 0 0 var(--app-padding);
   border-color: var(--padding-color);
   width: 100%;

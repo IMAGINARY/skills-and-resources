@@ -5,6 +5,7 @@ import { type TokenStateNFC, TokenStateType } from "@/types/token.ts";
 import { useTap } from "@/composables/use-tap.ts";
 import { useConfigStore } from "@/stores/config.ts";
 import { useLanguageStore } from "@/stores/language.ts";
+import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import tokenSvgUrl from "@/assets/token.svg?url";
 
 const props = defineProps<{ tokenState: TokenStateNFC }>();

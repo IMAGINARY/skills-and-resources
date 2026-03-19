@@ -27,10 +27,3 @@
   --app-base-font-size: 16px;
   --app-base-font-family: sans-serif;
 }
-
-html {
-  background-color: var(--page-background-color);
-  font-size: var(--app-base-font-size);
-  font-family: var(--app-base-font-family);
-  overscroll-behavior: none;
-}
