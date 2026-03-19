@@ -6,9 +6,9 @@ required:
   - content
 properties:
   app:
-    $ref: '#/$defs/AppConfig'
+    $ref: "#/$defs/AppConfig"
   content:
-    $ref: '#/$defs/ContentConfig'
+    $ref: "#/$defs/ContentConfig"
 title: Config
 description: Root configuration combining app-level UI text and all content definitions.
 additionalProperties: false
@@ -22,9 +22,8 @@ $defs:
           ^.*$:
             type: string
     title: I18n Record
-    description: >-
-      An internationalized text value: either a plain string or a record mapping
-      locale codes to translated strings.
+    description: "An internationalized text value: either a plain string or a record
+      mapping locale codes to translated strings."
     $id: I18nRecord
   AssetUrl:
     type: string
@@ -36,9 +35,8 @@ $defs:
       - skill
       - resource
     title: Item Type
-    description: >-
-      The category of an inventory item: a personal skill or a physical
-      resource.
+    description: "The category of an inventory item: a personal skill or a physical
+      resource."
     $id: ItemType
   ItemConfig:
     type: object
@@ -54,19 +52,19 @@ $defs:
         title: Item ID
         description: Unique identifier for the item.
       type:
-        $ref: '#/$defs/ItemType'
+        $ref: "#/$defs/ItemType"
       title:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Title
         description: Display title of the item.
       description:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Description
         description: Longer description explaining the item.
       icon:
-        type: string
+        $ref: "#/$defs/AssetUrl"
         title: Icon
-        description: Emoji or icon identifier representing the item.
+        description: Icon to represent the item on screen.
     title: Item Config
     description: Configuration for a single skill or resource item in the inventory.
     additionalProperties: false
@@ -78,7 +76,8 @@ $defs:
       - items
       - title
       - description
-      - icon
+      - image
+      - croppedImage
     properties:
       id:
         type: string
@@ -92,21 +91,24 @@ $defs:
         title: Items
         description: List of item ids that are permanently assigned to this character type.
       title:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Title
         description: Display name of the character (including age).
       description:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Description
         description: Background story and personality description of the character.
-      icon:
-        type: string
-        title: Icon
-        description: Emoji or icon identifier representing the character.
+      image:
+        $ref: "#/$defs/AssetUrl"
+        title: Full size character type image
+        description: URL to the full character type image.
+      croppedImage:
+        $ref: "#/$defs/AssetUrl"
+        title: Cropped character type image
+        description: URL to the cropped character type image.
     title: Character Type Config
-    description: >-
-      Configuration for a character type that players can assume via an NFC
-      token.
+    description: Configuration for a character type that players can assume via an
+      NFC token.
     additionalProperties: false
     $id: CharacterTypeConfig
   ChallengeItemConfig:
@@ -121,17 +123,16 @@ $defs:
         title: Item ID
         description: Item ID referencing an item required by this challenge.
       present:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Present Text
         description: Feedback text shown when the player has this item.
       missing:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Missing Text
         description: Feedback text shown when the player is missing this item.
     title: Challenge Item Config
-    description: >-
-      Describes how a specific item relates to a challenge, including feedback
-      for presence and absence.
+    description: Describes how a specific item relates to a challenge, including
+      feedback for presence and absence.
     additionalProperties: false
     $id: ChallengeItemConfig
   ChallengeConfig:
@@ -141,7 +142,7 @@ $defs:
       - solution
       - title
       - description
-      - icon
+      - image
     properties:
       id:
         type: string
@@ -156,34 +157,32 @@ $defs:
           items:
             type: array
             items:
-              $ref: '#/$defs/ChallengeItemConfig'
+              $ref: "#/$defs/ChallengeItemConfig"
             title: Items
             description: Items that form the solution to this challenge.
           success:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Success Message
             description: Message displayed when the player has all required items.
         title: Solution
-        description: >-
-          The expected solution for the challenge, consisting of required items
-          and a success message.
+        description: The expected solution for the challenge, consisting of required
+          items and a success message.
         additionalProperties: false
       title:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Title
         description: Display title of the challenge scenario.
       description:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Description
         description: Narrative description of the challenge scenario.
-      icon:
-        type: string
-        title: Icon
-        description: Emoji or icon identifier representing the challenge.
+      image:
+        $ref: "#/$defs/AssetUrl"
+        title: Challenge image
+        description: URL to an image representing the challenge scenario.
     title: Challenge Config
-    description: >-
-      Configuration for a challenge scenario that players attempt to solve with
-      their inventory items.
+    description: Configuration for a challenge scenario that players attempt to
+      solve with their inventory items.
     additionalProperties: false
     $id: ChallengeConfig
   AppConfig:
@@ -204,15 +203,15 @@ $defs:
           - description
         properties:
           name:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Name
             description: Name to display on the challenge app panel.
           title:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Title
             description: Title to display on the challenge app panel.
           description:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Description
             description: Introductory text shown in the challenge app panel.
         title: Challenge
@@ -221,22 +220,78 @@ $defs:
       inventory:
         type: object
         required:
-          - name
-          - title
-          - description
+          - intro
+          - selection
         properties:
-          name:
-            $ref: '#/$defs/I18nRecord'
-            title: Name
-            description: Name to display on the inventory app panel.
-          title:
-            $ref: '#/$defs/I18nRecord'
-            title: Title
-            description: Title to display on the inventory app panel.
-          description:
-            $ref: '#/$defs/I18nRecord'
-            title: Description
-            description: Introductory text shown in the inventory app panel.
+          intro:
+            type: object
+            required:
+              - name
+              - title
+              - description
+            properties:
+              name:
+                $ref: "#/$defs/I18nRecord"
+                title: Name
+                description: Name to display on the inventory app panel.
+              title:
+                $ref: "#/$defs/I18nRecord"
+                title: Title
+                description: Title to display on the inventory app panel.
+              description:
+                $ref: "#/$defs/I18nRecord"
+                title: Description
+                description: Introductory text shown in the inventory app panel.
+            title: Intro
+            description: UI text configuration for the inventory intro.
+            additionalProperties: false
+          selection:
+            type: object
+            required:
+              - title
+              - characterTagline
+              - slotEmpty
+              - skills
+              - resources
+              - full
+              - fullHint
+              - continueHint
+            properties:
+              title:
+                $ref: "#/$defs/I18nRecord"
+                title: Title
+                description: Title of the selection.
+              characterTagline:
+                $ref: "#/$defs/I18nRecord"
+                title: Character Tagline
+                description: Tagline for the character.
+              slotEmpty:
+                $ref: "#/$defs/I18nRecord"
+                title: Slot Empty
+                description: Text shown when a slot is empty.
+              skills:
+                $ref: "#/$defs/I18nRecord"
+                title: Skills
+                description: Title of the skills section.
+              resources:
+                $ref: "#/$defs/I18nRecord"
+                title: Resources
+                description: Title of the resources section.
+              full:
+                $ref: "#/$defs/I18nRecord"
+                title: Full
+                description: Text shown when all inventory slots are full.
+              fullHint:
+                $ref: "#/$defs/I18nRecord"
+                title: Full Hint
+                description: Hint shown when all inventory slots are full.
+              continueHint:
+                $ref: "#/$defs/I18nRecord"
+                title: Continue Hint
+                description: Hint shown to guide the player to the challenge station.
+            title: Selection
+            description: UI text configuration for the inventory selection.
+            additionalProperties: false
         title: Inventory
         description: UI text configuration for the inventory sub-app.
         additionalProperties: false
@@ -247,22 +302,22 @@ $defs:
           - challenge
         properties:
           character:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Character
             description: The word character in the UI.
           challenge:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Challenge
             description: The word challenge in the UI.
         title: Miscellaneous
         description: UI text configuration for miscellaneous elements.
         additionalProperties: false
       tokenScanRequest:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Token scan request
         description: Prompt text asking the player to place their NFC token.
       languages:
-        $ref: '#/$defs/I18nRecord'
+        $ref: "#/$defs/I18nRecord"
         title: Language names
         description: The names of the languages as displayed in the language selector.
       tokenError:
@@ -275,31 +330,30 @@ $defs:
           - supportHint
         properties:
           name:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Name
             description: Name to display on the token error app panel.
           title:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Title
             description: Title to display on the token error app panel.
           description:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Description
             description: Generic error description text shown in the token error app panel.
           instruction:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Instruction
             description: Instruction text shown in the token error app panel.
           supportHint:
-            $ref: '#/$defs/I18nRecord'
+            $ref: "#/$defs/I18nRecord"
             title: Support hint
             description: Instruction text shown in the token error app panel.
         title: Token Error
         description: UI text configuration for the token error panel.
         additionalProperties: false
     title: App Config
-    description: >-
-      Top-level UI text and labels for the two sub-apps (challenge and
+    description: Top-level UI text and labels for the two sub-apps (challenge and
       inventory).
     additionalProperties: false
     $id: AppConfig
@@ -313,24 +367,23 @@ $defs:
       items:
         type: array
         items:
-          $ref: '#/$defs/ItemConfig'
+          $ref: "#/$defs/ItemConfig"
         title: Items
         description: All available skills and resources.
       characterTypes:
         type: array
         items:
-          $ref: '#/$defs/CharacterTypeConfig'
+          $ref: "#/$defs/CharacterTypeConfig"
         title: Character Types
         description: All available character types that can be assigned via NFC tokens.
       challenges:
         type: array
         items:
-          $ref: '#/$defs/ChallengeConfig'
+          $ref: "#/$defs/ChallengeConfig"
         title: Challenges
         description: All challenge scenarios available in the exhibit.
     title: Content Config
-    description: >-
-      Content definitions including items, character types, and challenge
+    description: Content definitions including items, character types, and challenge
       scenarios.
     additionalProperties: false
     $id: ContentConfig

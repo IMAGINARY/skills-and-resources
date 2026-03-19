@@ -80,9 +80,9 @@
           "description": "Longer description explaining the item."
         },
         "icon": {
-          "type": "string",
+          "$ref": "#/$defs/AssetUrl",
           "title": "Icon",
-          "description": "Emoji or icon identifier representing the item."
+          "description": "Icon to represent the item on screen."
         }
       },
       "title": "Item Config",
@@ -97,7 +97,8 @@
         "items",
         "title",
         "description",
-        "icon"
+        "image",
+        "croppedImage"
       ],
       "properties": {
         "id": {
@@ -124,10 +125,15 @@
           "title": "Description",
           "description": "Background story and personality description of the character."
         },
-        "icon": {
-          "type": "string",
-          "title": "Icon",
-          "description": "Emoji or icon identifier representing the character."
+        "image": {
+          "$ref": "#/$defs/AssetUrl",
+          "title": "Full size character type image",
+          "description": "URL to the full character type image."
+        },
+        "croppedImage": {
+          "$ref": "#/$defs/AssetUrl",
+          "title": "Cropped character type image",
+          "description": "URL to the cropped character type image."
         }
       },
       "title": "Character Type Config",
@@ -171,7 +177,7 @@
         "solution",
         "title",
         "description",
-        "icon"
+        "image"
       ],
       "properties": {
         "id": {
@@ -214,10 +220,10 @@
           "title": "Description",
           "description": "Narrative description of the challenge scenario."
         },
-        "icon": {
-          "type": "string",
-          "title": "Icon",
-          "description": "Emoji or icon identifier representing the challenge."
+        "image": {
+          "$ref": "#/$defs/AssetUrl",
+          "title": "Challenge image",
+          "description": "URL to an image representing the challenge scenario."
         }
       },
       "title": "Challenge Config",
@@ -267,25 +273,95 @@
         "inventory": {
           "type": "object",
           "required": [
-            "name",
-            "title",
-            "description"
+            "intro",
+            "selection"
           ],
           "properties": {
-            "name": {
-              "$ref": "#/$defs/I18nRecord",
-              "title": "Name",
-              "description": "Name to display on the inventory app panel."
+            "intro": {
+              "type": "object",
+              "required": [
+                "name",
+                "title",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Name",
+                  "description": "Name to display on the inventory app panel."
+                },
+                "title": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Title",
+                  "description": "Title to display on the inventory app panel."
+                },
+                "description": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Description",
+                  "description": "Introductory text shown in the inventory app panel."
+                }
+              },
+              "title": "Intro",
+              "description": "UI text configuration for the inventory intro.",
+              "additionalProperties": false
             },
-            "title": {
-              "$ref": "#/$defs/I18nRecord",
-              "title": "Title",
-              "description": "Title to display on the inventory app panel."
-            },
-            "description": {
-              "$ref": "#/$defs/I18nRecord",
-              "title": "Description",
-              "description": "Introductory text shown in the inventory app panel."
+            "selection": {
+              "type": "object",
+              "required": [
+                "title",
+                "characterTagline",
+                "slotEmpty",
+                "skills",
+                "resources",
+                "full",
+                "fullHint",
+                "continueHint"
+              ],
+              "properties": {
+                "title": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Title",
+                  "description": "Title of the selection."
+                },
+                "characterTagline": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Character Tagline",
+                  "description": "Tagline for the character."
+                },
+                "slotEmpty": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Slot Empty",
+                  "description": "Text shown when a slot is empty."
+                },
+                "skills": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Skills",
+                  "description": "Title of the skills section."
+                },
+                "resources": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Resources",
+                  "description": "Title of the resources section."
+                },
+                "full": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Full",
+                  "description": "Text shown when all inventory slots are full."
+                },
+                "fullHint": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Full Hint",
+                  "description": "Hint shown when all inventory slots are full."
+                },
+                "continueHint": {
+                  "$ref": "#/$defs/I18nRecord",
+                  "title": "Continue Hint",
+                  "description": "Hint shown to guide the player to the challenge station."
+                }
+              },
+              "title": "Selection",
+              "description": "UI text configuration for the inventory selection.",
+              "additionalProperties": false
             }
           },
           "title": "Inventory",
