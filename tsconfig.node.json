@@ -9,6 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "."
   },
-  "include": ["tools/*.ts", "src/types/*.ts"],
+  "include": ["tools/*.ts", "src/types/*.ts", "vite.config.ts"],
   "exclude": ["dist"]
 }
