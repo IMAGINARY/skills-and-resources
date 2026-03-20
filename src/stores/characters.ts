@@ -11,12 +11,6 @@ export type InventorySlot = {
   itemId: string;
 };
 
-export type NonEmptySlotContent =
-  | { type: "item"; config: DeepReadonly<ItemConfig> }
-  | { type: "invalid"; config: DeepReadonly<ItemConfig> };
-
-export type SlotContent = NonEmptySlotContent | { type: "empty" };
-
 export type Character = {
   readonly id: string;
   type: string;

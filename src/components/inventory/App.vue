@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, type DeepReadonly } from "vue";
+import { ref, computed } from "vue";
 import { watchImmediate } from "@vueuse/core";
 
 import { useTokenStore } from "@/stores/token";
 import { useConfigStore } from "@/stores/config";
-import { useCharacterStore, type NonEmptySlotContent, type SlotContent } from "@/stores/characters";
+import { useCharacterStore } from "@/stores/characters";
 import { useLanguageStore, provideLanguage } from "@/stores/language";
 import AppIntro from "@/components/common/AppIntro.vue";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
@@ -16,20 +16,16 @@ import ItemInsideSlot from "@/components/inventory/ItemInsideSlot.vue";
 import NoItemInsideSlot from "@/components/inventory/NoItemInsideSlot.vue";
 import ColorizedMonochromeImage from "@/components/common/ColorizedMonochromeImage.vue";
 import { TokenStateType } from "@/types/token";
-import { type CharacterTypeConfig, Language } from "@/types/config.ts";
+import { Language } from "@/types/config.ts";
 import { storeToRefs } from "pinia";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 import LabeledPanel from "@/components/common/LabeledPanel.vue";
 import TabbedItemPanel from "@/components/inventory/TabbedItemPanel.vue";
 import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
-import invalidCharacterTypeImageHref from "@/assets/invalid-character-type.svg?url";
-import invalidCharacterTypeCroppedImageHref from "@/assets/invalid-character-type-cropped.svg?url";
-import invalidItemHref from "@/assets/invalid-item.svg?url";
 import iconRemoveHref from "@/assets/icon-remove.svg?url";
-import { INVENTORY_SIZE } from "@/constants.ts";
+import { useCharacterData } from "@/composables/use-character-data.ts";
 
-const { app, content } = useConfigStore();
-const { characters } = storeToRefs(useCharacterStore());
+const { app } = useConfigStore();
 const { ensureCharacter, removeItem } = useCharacterStore();
 
 const language = ref<Language>(Language.PRIMARY);
@@ -55,57 +51,7 @@ watchImmediate(tokenState, () => {
   }
 });
 
-const lastActiveCharacterData = computed(() => {
-  if (lastActiveCharacterId.value === null) return null;
-
-  const character = characters.value[lastActiveCharacterId.value];
-  if (typeof character === "undefined") return null;
-
-  const toNonEmptySlotContent = (itemId: string): NonEmptySlotContent => {
-    const itemConfig = content.items.find(({ id }) => id === itemId);
-    if (typeof itemConfig === "undefined") {
-      return {
-        type: "invalid",
-        config: {
-          id: itemId,
-          type: "skill", // TODO: Create additional internal 'invalid' Item type
-          icon: new URL(invalidItemHref),
-          ...app.misc.invalidItem,
-        },
-      };
-    }
-    return { type: "item", config: itemConfig };
-  };
-
-  const characterTypeConfig: DeepReadonly<CharacterTypeConfig> = content.characterTypes.find(
-    ({ id }) => id === character.type,
-  ) ?? {
-    id: character.type,
-    items: new Array<string>(),
-    image: new URL(invalidCharacterTypeImageHref),
-    croppedImage: new URL(invalidCharacterTypeCroppedImageHref),
-    ...app.misc.invalidCharacterType,
-  };
-  const immutableSlotContents: NonEmptySlotContent[] = character.inventory
-    .filter((i) => i.locked)
-    .map(({ itemId }) => toNonEmptySlotContent(itemId));
-  const nonLockedItems = character.inventory.filter((i) => !i.locked).map(({ itemId }) => itemId);
-  const numEmptySlots = INVENTORY_SIZE - immutableSlotContents.length - nonLockedItems.length;
-  const mutableSlotContents: SlotContent[] = [
-    ...nonLockedItems.map(toNonEmptySlotContent),
-    ...Array.from({ length: numEmptySlots }).map(() => ({ type: "empty" as const })),
-  ];
-
-  return {
-    characterId: lastActiveCharacterId.value,
-    characterTypeConfig,
-    slotContents: {
-      immutable: immutableSlotContents,
-      mutable: mutableSlotContents,
-    },
-    inventoryFull: immutableSlotContents.length + nonLockedItems.length >= INVENTORY_SIZE,
-  };
-});
+const lastActiveCharacterData = useCharacterData(lastActiveCharacterId);
 
 const iconRemoveUrl = new URL(iconRemoveHref);
 
