@@ -20,6 +20,8 @@ import { type CharacterTypeConfig, Language } from "@/types/config.ts";
 import { storeToRefs } from "pinia";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 import LabeledPanel from "@/components/common/LabeledPanel.vue";
+import TabbedItemPanel from "@/components/inventory/TabbedItemPanel.vue";
+import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
 import invalidCharacterTypeImageHref from "@/assets/invalid-character-type.svg?url";
 import invalidCharacterTypeCroppedImageHref from "@/assets/invalid-character-type-cropped.svg?url";
 import invalidItemHref from "@/assets/invalid-item.svg?url";
@@ -101,6 +103,7 @@ const lastActiveCharacterData = computed(() => {
       immutable: immutableSlotContents,
       mutable: mutableSlotContents,
     },
+    inventoryFull: immutableSlotContents.length + nonLockedItems.length >= INVENTORY_SIZE,
   };
 });
 
@@ -157,7 +160,12 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
               </ItemSlotGroup>
             </LabeledPanel>
           </div>
-          <div class="available-items"></div>
+          <div class="item-selector-box">
+            <div class="item-selector-inner-box">
+              <TabbedItemPanel :characterId="characterData.characterId"></TabbedItemPanel>
+              <InventoryFullPanel v-if="characterData.inventoryFull"></InventoryFullPanel>
+            </div>
+          </div>
         </div>
         <div class="language-selector">
           <LanguageSelector :hasDarkBackground="false"></LanguageSelector>
@@ -282,6 +290,25 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
 
     .no-item {
     }
+  }
+}
+
+.item-selector-box {
+  margin-top: 72px;
+  position: relative;
+  width: 100%;
+  height: 770px;
+  border: 2px solid var(--color-primary);
+  border-radius: 32px;
+  background-color: var(--color-white);
+  padding: 8px;
+
+  .item-selector-inner-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    overflow: hidden;
   }
 }
 

@@ -27,18 +27,17 @@ inventory:
       en: Resources
       de: Ressourcen
     full:
-      de: Inventar vollständig gefüllt.
-      en: Inventory full.
+      de: Inventar vollständig gefüllt
+      en: Inventory full
     fullHint:
       en: Remove an item above to add another.
       de: Entferne oben einen Gegenstand, um einen anderen mitzunehmen.
+    continueCondition:
+      en: "When you're ready:"
+      de: "Sobald du zufrieden bist:"
     continueHint:
-      en: |-
-        When you're ready:
-        Continue to Station 2.
-      de: |-
-        Sobald du zufrieden bist:
-        Weiter bei Station 2
+      en: Continue to Station 2
+      de: Weiter bei Station 2
 
 challenge:
   name: Station 2

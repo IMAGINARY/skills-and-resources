@@ -84,6 +84,26 @@ body {
   letter-spacing: -0.3px;
 }
 
+.text-style-tab {
+  text-align: center;
+  font-family: "National Park", sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 39px; /* 156% */
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.text-style-card {
+  font-family: "National Park", sans-serif;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px; /* 142.105% */
+  letter-spacing: 0.5px;
+}
+
 .text-style-h2-light {
   font-family: "National Park", sans-serif;
   font-size: 48px;
@@ -99,6 +119,16 @@ body {
   font-weight: 700;
   line-height: 115px; /* 112.745% */
   letter-spacing: -3px;
+}
+
+.text-style-h3 {
+  font-family: "National Park", sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 23px; /* 92% */
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
 }
 
 .text-style-h4 {

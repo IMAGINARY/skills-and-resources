@@ -93,7 +93,7 @@ $defs:
       title:
         $ref: "#/$defs/I18nRecord"
         title: Title
-        description: Display name of the character (including age).
+        description: Display name of the character.
       description:
         $ref: "#/$defs/I18nRecord"
         title: Description
@@ -249,22 +249,28 @@ $defs:
             type: object
             required:
               - title
-              - characterTagline
+              - lockedSlots
+              - slots
               - slotEmpty
               - skills
               - resources
               - full
               - fullHint
+              - continueCondition
               - continueHint
             properties:
               title:
                 $ref: "#/$defs/I18nRecord"
                 title: Title
                 description: Title of the selection.
-              characterTagline:
+              lockedSlots:
                 $ref: "#/$defs/I18nRecord"
-                title: Character Tagline
-                description: Tagline for the character.
+                title: Locked inventory slots
+                description: Label for the locked inventory slots.
+              slots:
+                $ref: "#/$defs/I18nRecord"
+                title: Non-locked inventory slots
+                description: Label for the non-locked inventory slots.
               slotEmpty:
                 $ref: "#/$defs/I18nRecord"
                 title: Slot Empty
@@ -285,6 +291,10 @@ $defs:
                 $ref: "#/$defs/I18nRecord"
                 title: Full Hint
                 description: Hint shown when all inventory slots are full.
+              continueCondition:
+                $ref: "#/$defs/I18nRecord"
+                title: Continue Hint Condition
+                description: Condition that should be fulfilled moving to the challenge station
               continueHint:
                 $ref: "#/$defs/I18nRecord"
                 title: Continue Hint
@@ -300,6 +310,8 @@ $defs:
         required:
           - character
           - challenge
+          - invalidItem
+          - invalidCharacterType
         properties:
           character:
             $ref: "#/$defs/I18nRecord"
@@ -309,6 +321,39 @@ $defs:
             $ref: "#/$defs/I18nRecord"
             title: Challenge
             description: The word challenge in the UI.
+          invalidItem:
+            type: object
+            required:
+              - title
+              - description
+            properties:
+              title:
+                $ref: "#/$defs/I18nRecord"
+                title: Title
+                description: Display title of the item.
+              description:
+                $ref: "#/$defs/I18nRecord"
+                title: Description
+                description: Longer description explaining the item.
+            title: Invalid Item
+            description: Item to represent invalid item references.
+          invalidCharacterType:
+            type: object
+            required:
+              - title
+              - description
+            properties:
+              title:
+                $ref: "#/$defs/I18nRecord"
+                title: Title
+                description: Display name of the invalid character type.
+              description:
+                $ref: "#/$defs/I18nRecord"
+                title: Description
+                description: Background story and personality description of the invalid
+                  character type.
+            title: Invalid character type
+            description: Character type to represent invalid character type references.
         title: Miscellaneous
         description: UI text configuration for miscellaneous elements.
         additionalProperties: false

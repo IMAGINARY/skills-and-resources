@@ -269,6 +269,10 @@ export const ConfigSchema = Type.Cyclic(
                   title: "Full Hint",
                   description: "Hint shown when all inventory slots are full.",
                 }),
+                continueCondition: Type.Ref("I18nRecord", {
+                  title: "Continue Hint Condition",
+                  description: "Condition that should be fulfilled moving to the challenge station",
+                }),
                 continueHint: Type.Ref("I18nRecord", {
                   title: "Continue Hint",
                   description: "Hint shown to guide the player to the challenge station.",
