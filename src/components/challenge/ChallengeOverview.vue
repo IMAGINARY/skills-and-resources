@@ -39,7 +39,7 @@ const challenge = computed(() => challenges[props.challengeId]);
             useTap(() => (disabled ? undefined : $emit('selected', challengeId, challengeIdx)))
           "
         >
-          Text
+          {{ t(app.challenge.select) }}
         </button>
       </div>
     </template>

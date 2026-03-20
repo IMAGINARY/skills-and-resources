@@ -47,6 +47,27 @@ challenge:
   description:
     en: Can your character handle the situation?
     de: Hat dein Charakter die Lage im Griff?
+  select:
+    de: Situation lösen
+    en: Resolve the situation
+  inventory:
+    de: Das bringst du mit
+    en: What you've got
+  success:
+    de: Gelöst!
+    en: Solved!
+  failure:
+    de: Nicht gelöst!
+    en: Not solved!
+  next:
+    de: Nächster Ernstfall
+    en: Next challenge
+  nextHint:
+    de: Weiter geht's!
+    en: Continue!
+  retryHint:
+    de: Gehe zurück zu Station 1
+    en: Go back to station 1
 
 tokenScanRequest:
   de: |-
@@ -61,8 +82,8 @@ languages:
 
 misc:
   character:
-    en: Character
-    de: Charakter
+    en: Your character
+    de: Dein Charakter
   challenge:
     en: Challenge
     de: Ernstfall

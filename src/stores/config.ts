@@ -9,6 +9,7 @@ import { inject } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
+import invalidItemHref from "@/assets/invalid-item.svg?url";
 import { CONFIG_INJECTION_KEY } from "@/constants";
 
 export const useConfigStore = defineStore("config", () => {
@@ -32,11 +33,21 @@ export const useConfigStore = defineStore("config", () => {
   );
   const challenges: DeepReadonly<Record<string, ChallengeConfig>> = asMap(content.challenges);
 
+  const createInvalidItem = (id: string) => ({
+    id,
+    type: "skill", // TODO: Create additional internal 'invalid' Item type
+    icon: new URL(invalidItemHref),
+    ...app.misc.invalidItem,
+  });
+
+  // TODO: Create use methods for characterTypes and challenges
+
   return {
     app,
     content,
     items,
     characterTypes,
     challenges,
+    createInvalidItem,
   };
 });

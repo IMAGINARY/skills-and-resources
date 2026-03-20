@@ -205,6 +205,34 @@ export const ConfigSchema = Type.Cyclic(
               title: "Description",
               description: "Introductory text shown in the challenge app panel.",
             }),
+            select: Type.Ref("I18nRecord", {
+              title: "Select challenge button",
+              description: "Text shown on the button to select a challenge.",
+            }),
+            inventory: Type.Ref("I18nRecord", {
+              title: "Inventory",
+              description: "Text shown on the inventory panel.",
+            }),
+            success: Type.Ref("I18nRecord", {
+              title: "Success",
+              description: "Text shown when the player has solved the challenge.",
+            }),
+            failure: Type.Ref("I18nRecord", {
+              title: "Failure",
+              description: "Text shown when the player was unable the challenge.",
+            }),
+            next: Type.Ref("I18nRecord", {
+              title: "Next",
+              description: "Text shown on the button to advance to the next challenge.",
+            }),
+            nextHint: Type.Ref("I18nRecord", {
+              title: "Next Hint",
+              description: "Hint to guide the player to the next challenge.",
+            }),
+            retryHint: Type.Ref("I18nRecord", {
+              title: "Retry Hint",
+              description: "Hint to guide the player back to the inventory station.",
+            }),
           },
           {
             title: "Challenge",

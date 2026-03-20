@@ -1,5 +1,6 @@
 @import "@fontsource/national-park/300.css";
 @import "@fontsource/national-park/600.css";
+@import "@fontsource/national-park/700.css";
 @import "@fontsource/national-park/800.css";
 @import "@fontsource/inter/700-italic.css";
 
@@ -150,10 +151,20 @@ body {
   letter-spacing: 0.5px;
 }
 
+.text-style-copy-bold {
+  font-family: "National Park", sans-serif;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 189.474% */
+  letter-spacing: 0.5px;
+}
+
 :root {
   --app-padding: 60px;
   --text-style-overline-descender: 11px;
   --text-style-h2-station-2-descender: 21px;
+  --text-style-copy-bold-descender: 11px;
 }
 
 .app-padding,

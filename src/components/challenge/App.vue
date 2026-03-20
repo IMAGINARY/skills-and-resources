@@ -12,12 +12,13 @@ import AppIntro from "@/components/common/AppIntro.vue";
 import ChallengeOverview from "@/components/challenge/ChallengeOverview.vue";
 import TokenErrorPanel from "@/components/common/TokenErrorPanel.vue";
 import { TokenStateType } from "@/types/token";
-import { Language } from "@/types/config.ts";
+import { type ChallengeConfig, Language } from "@/types/config.ts";
 import ArrowNextComponent from "@/assets/arrow-next.svg?component";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
+import ChallengeAssesment from "@/components/challenge/ChallengeAssesment.vue";
+import { useCharacterData } from "@/composables/use-character-data.ts";
 
 const { app, content } = useConfigStore();
-const { characters } = storeToRefs(useCharacterStore());
 const { ensureCharacter } = useCharacterStore();
 
 const language = ref<Language>(Language.PRIMARY);
@@ -33,46 +34,36 @@ const activeCharacterId = computed(() =>
   tokenState.value.state === TokenStateType.PRESENT ? tokenState.value.token.id : null,
 );
 
+const disableChallengeSelection = computed(() => activeCharacterId.value === null);
+
+const activeCharacterData = useCharacterData(activeCharacterId);
+const activeChallengeData = ref<{ idx: number; config: DeepReadonly<ChallengeConfig> } | null>(
+  null,
+);
+
 watchImmediate(tokenState, (tokenStateValue) => {
   if (tokenStateValue.state === TokenStateType.PRESENT) {
     const { token } = tokenStateValue;
     ensureCharacter(token.id, token.class);
   }
-});
 
-const disableChallengeSelection = computed(() => activeCharacterId.value === null);
-const activeChallengeId = ref<string | null>(null);
-watchImmediate(disableChallengeSelection, (value) => {
-  if (value) activeChallengeId.value = null;
-});
-
-const requiredItemIds = computed<DeepReadonly<string[]>>(() => {
-  return activeChallengeId.value
-    ? (content.challenges
-        .find(({ id }) => id === activeChallengeId.value)
-        ?.solution?.items?.map(({ id }) => id) ?? [])
-    : [];
-});
-
-const availableItemIds = computed<DeepReadonly<string[]>>(() => {
-  return activeCharacterId.value
-    ? (characters.value[activeCharacterId.value]?.inventory
-        .map(({ itemId }) => itemId)
-        .filter((i) => i !== null) ?? [])
-    : [];
-});
-
-const challengeSolved = computed<boolean>(() => {
-  const requiredItemSet = new Set(requiredItemIds.value);
-  const characterItemSet = new Set(availableItemIds.value);
-  const remainingItemSet = requiredItemSet.difference(characterItemSet);
-  return remainingItemSet.size === 0;
+  if (tokenStateValue.state !== TokenStateType.PRESENT) {
+    activeChallengeData.value = null;
+  }
 });
 </script>
 
 <template>
   <div class="app-position app-size challenge-app">
+    <ChallengeAssesment
+      v-if="activeCharacterData !== null && activeChallengeData !== null"
+      :challenge-idx="activeChallengeData.idx"
+      :challenge-config="activeChallengeData.config"
+      :character-data="activeCharacterData"
+      @done="() => (activeChallengeData = null)"
+    ></ChallengeAssesment>
     <AppIntro
+      v-else
       :name="app.challenge.name"
       :description="app.challenge.title"
       :characterId="activeCharacterId"
@@ -80,13 +71,13 @@ const challengeSolved = computed<boolean>(() => {
       ><div class="app-intro-inner-box">
         <div class="challenge-list">
           <ChallengeOverview
-            v-for="(challenge, challengeIndex) in content.challenges"
+            v-for="(challenge, idx) in content.challenges"
             :language="language"
             :challenge-id="challenge.id"
-            :challenge-idx="challengeIndex"
+            :challenge-idx="idx"
             :disabled="disableChallengeSelection"
             :key="challenge.id"
-            @selected="() => (activeChallengeId = challenge.id)"
+            @selected="() => (activeChallengeData = { idx: idx, config: challenge })"
           ></ChallengeOverview>
         </div>
         <div class="challenge-list-buttons">
@@ -94,11 +85,6 @@ const challengeSolved = computed<boolean>(() => {
           <button><ArrowNextComponent></ArrowNextComponent></button>
         </div>
         <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
-        <div v-if="activeChallengeId !== null">
-          <div>Active challenge: {{ activeChallengeId }}</div>
-          <div>Solved: {{ challengeSolved }}</div>
-        </div>
-        <div>Challenge Token: {{ tokenState }}</div>
       </div>
     </AppIntro>
     <TokenErrorPanel
