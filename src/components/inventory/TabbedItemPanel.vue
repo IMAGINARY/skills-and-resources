@@ -86,7 +86,7 @@ const activeItemType = ref<ItemType>("skill");
 
     &:not(.active) {
       color: var(--color-button);
-      background-color: transparent;
+      background-color: var(--color-button-inactive);
     }
   }
 }
