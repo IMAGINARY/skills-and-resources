@@ -19,16 +19,16 @@
                             </g>
                             <g id="stroke">
                                 <g id="outline" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M151,117L332,117C337.52,117 342,121.48 342,127L342,427C342,432.52 337.52,437 332,437L151,437C145.48,437 141,432.52 141,427L141,127C141,121.48 145.48,117 151,117Z" style="fill:none;stroke:black;stroke-width:6px;"/>
+                                    <path d="M151,117L332,117C337.52,117 342,121.48 342,127L342,427C342,432.52 337.52,437 332,437L151,437C145.48,437 141,432.52 141,427L141,127C141,121.48 145.48,117 151,117Z" style="fill:none;stroke:black;stroke-width:8px;"/>
                                 </g>
-                                <g id="line-3" serif:id="line 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M178,403L302,403" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                                <g id="line-3" serif:id="line 3" transform="matrix(2.66667,0,0,2.66667,3,0)">
+                                    <path d="M178,403L302,403" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:round;"/>
                                 </g>
-                                <g id="line-2" serif:id="line 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M179,377L303,377" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                                <g id="line-2" serif:id="line 2" transform="matrix(2.66667,0,0,2.66667,2,4)">
+                                    <path d="M179,377L303,377" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:round;"/>
                                 </g>
-                                <g id="line-1" serif:id="line 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M178,354L302,354" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                                <g id="line-1" serif:id="line 1" transform="matrix(2.66667,0,0,2.66667,3,0)">
+                                    <path d="M178,354L302,354" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:round;"/>
                                 </g>
                             </g>
                             <g id="fill">

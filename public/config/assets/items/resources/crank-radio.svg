@@ -48,22 +48,22 @@
                             </g>
                             <g id="stroke">
                                 <g id="Line-4" serif:id="Line 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M283.63,294.33L284.37,293.67L292.37,302.67L291.63,303.33L283.63,294.33Z" style="fill:none;stroke:black;stroke-width:7px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <path d="M283.63,294.33L284.37,293.67L292.37,302.67L291.63,303.33L283.63,294.33Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                                 </g>
                                 <g id="Line-4-copy" serif:id="Line 4 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M389.03,311.2L389,312.2L376.97,311.8L377,310.8L389.03,311.2Z" style="fill:none;stroke:black;stroke-width:7px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <path d="M389.03,311.2L389,312.2L376.97,311.8L377,310.8L389.03,311.2Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                                 </g>
                                 <g id="speaker" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path id="Rectangle-3" serif:id="Rectangle 3" d="M101,222L214,222C225.05,222 234,230.95 234,242L234,349C234,360.05 225.05,369 214,369L101,369C89.95,369 81,360.05 81,349L81,242C81,230.95 89.95,222 101,222Z" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-1" serif:id="Line 1" x="113" y="225" width="1" height="142" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-2" serif:id="Line 2" x="158" y="223" width="1" height="144" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-3" serif:id="Line 3" x="203" y="224" width="1" height="142" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-1-copy" serif:id="Line 1 copy" x="87" y="335" width="142" height="1" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-2-copy" serif:id="Line 2 copy" x="85" y="294" width="144" height="1" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                                    <rect id="Line-3-copy" serif:id="Line 3 copy" x="86" y="255" width="142" height="1" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <path id="Rectangle-3" serif:id="Rectangle 3" d="M101,222L214,222C225.05,222 234,230.95 234,242L234,349C234,360.05 225.05,369 214,369L101,369C89.95,369 81,360.05 81,349L81,242C81,230.95 89.95,222 101,222Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-1" serif:id="Line 1" x="113" y="225" width="1" height="142" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-2" serif:id="Line 2" x="158" y="223" width="1" height="144" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-3" serif:id="Line 3" x="203" y="224" width="1" height="142" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-1-copy" serif:id="Line 1 copy" x="87" y="335" width="142" height="1" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-2-copy" serif:id="Line 2 copy" x="85" y="294" width="144" height="1" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <rect id="Line-3-copy" serif:id="Line 3 copy" x="86" y="255" width="142" height="1" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                                 </g>
                                 <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M109,197L109,128C109,121.37 114.37,116 121,116L362,116C368.63,116 374,121.37 374,128L374,197" style="fill:none;stroke:black;stroke-width:10px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                    <path d="M109,197L109,128C109,121.37 114.37,116 121,116L362,116C368.63,116 374,121.37 374,128L374,197" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                                 </g>
                                 <g id="outline" transform="matrix(2.66667,0,0,2.66667,0,0)">
                                     <path d="M71,199L411,199C417.63,199 423,204.37 423,211L423,379C423,385.63 417.63,391 411,391L71,391C64.37,391 59,385.63 59,379L59,211C59,204.37 64.37,199 71,199Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>

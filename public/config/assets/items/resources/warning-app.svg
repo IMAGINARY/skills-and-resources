@@ -20,19 +20,19 @@
                         </g>
                         <g id="stroke">
                             <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M114,27L342,27C350.28,27 357,33.72 357,42L357,437C357,445.28 350.28,452 342,452L114,452C105.72,452 99,445.28 99,437L99,42C99,33.72 105.72,27 114,27Z" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                <path d="M114,27L342,27C350.28,27 357,33.72 357,42L357,437C357,445.28 350.28,452 342,452L114,452C105.72,452 99,445.28 99,437L99,42C99,33.72 105.72,27 114,27Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                             </g>
                             <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M228.5,403C238.16,403 246,410.84 246,420.5C246,430.16 238.16,438 228.5,438C218.84,438 211,430.16 211,420.5C211,410.84 218.84,403 228.5,403Z" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                <path d="M228.5,403C238.16,403 246,410.84 246,420.5C246,430.16 238.16,438 228.5,438C218.84,438 211,430.16 211,420.5C211,410.84 218.84,403 228.5,403Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                             </g>
                             <g id="Triangle-1" serif:id="Triangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M224.34,93.38C225.74,90.19 230.26,90.19 231.66,93.38L319.67,293.38C320.83,296.03 318.9,298.99 316.01,298.99L139.99,298.99C137.1,298.99 135.17,296.03 136.33,293.38L224.34,93.38Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:6px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                <path d="M224.34,93.38C225.74,90.19 230.26,90.19 231.66,93.38L319.67,293.38C320.83,296.03 318.9,298.99 316.01,298.99L139.99,298.99C137.1,298.99 135.17,296.03 136.33,293.38L224.34,93.38Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                             </g>
-                            <g id="Rectangle-1-copy" serif:id="Rectangle 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M126.49,40.5L329.51,40.5C337.79,40.5 344.51,47.22 344.51,55.5L344.51,360.5C344.51,368.78 337.79,375.5 329.51,375.5L126.49,375.5C118.21,375.5 111.49,368.78 111.49,360.5L111.49,55.5C111.49,47.22 118.21,40.5 126.49,40.5Z" style="fill:none;stroke:black;stroke-width:5px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                            <g id="Rectangle-1-copy" serif:id="Rectangle 1 copy" transform="matrix(2.57841,0,0,2.60528,20.1222,14.8494)">
+                                <path d="M126.49,40.5L329.51,40.5C337.79,40.5 344.51,47.22 344.51,55.5L344.51,360.5C344.51,368.78 337.79,375.5 329.51,375.5L126.49,375.5C118.21,375.5 111.49,368.78 111.49,360.5L111.49,55.5C111.49,47.22 118.21,40.5 126.49,40.5Z" style="fill:none;stroke:black;stroke-width:8.23px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                             </g>
                             <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M101,389L356,389C356.55,389 357,389.45 357,390C357,390.55 356.55,391 356,391L101,391C100.45,391 100,390.55 100,390C100,389.45 100.45,389 101,389Z" style="fill:none;stroke:black;stroke-width:4px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
+                                <path d="M101,389L356,389C356.55,389 357,389.45 357,390C357,390.55 356.55,391 356,391L101,391C100.45,391 100,390.55 100,390C100,389.45 100.45,389 101,389Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
                             </g>
                         </g>
                     </g>

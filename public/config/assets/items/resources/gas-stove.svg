@@ -19,7 +19,7 @@
                             </g>
                             <g id="stroke">
                                 <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M67,274L390,274C393.31,274 396,276.69 396,280L396,381C396,384.31 393.31,387 390,387L67,387C63.69,387 61,384.31 61,381L61,280C61,276.69 63.69,274 67,274Z" style="fill:none;stroke:black;stroke-width:6px;"/>
+                                    <path d="M67,274L390,274C393.31,274 396,276.69 396,280L396,381C396,384.31 393.31,387 390,387L67,387C63.69,387 61,384.31 61,381L61,280C61,276.69 63.69,274 67,274Z" style="fill:none;stroke:black;stroke-width:8px;"/>
                                 </g>
                                 <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
                                     <path d="M228.58,290.26C251,290.26 269.17,308.43 269.17,330.85C269.17,353.26 251,371.43 228.58,371.43C206.17,371.43 188,353.26 188,330.85C188,308.43 206.17,290.26 228.58,290.26Z" style="fill:none;stroke:black;stroke-width:9px;stroke-linejoin:round;stroke-miterlimit:4;"/>
@@ -28,10 +28,10 @@
                                     <path d="M227.94,293L227.94,333" style="fill:none;stroke:black;stroke-width:9px;stroke-linejoin:round;stroke-miterlimit:4;"/>
                                 </g>
                                 <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M334,228L372,228L372,266" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                                    <path d="M334,228L372,228L372,266" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:round;stroke-miterlimit:4;"/>
                                 </g>
                                 <g id="Shape-1-copy" serif:id="Shape 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M122,228L84,228L84,266" style="fill:none;stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                                    <path d="M122,228L84,228L84,266" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:round;stroke-miterlimit:4;"/>
                                 </g>
                             </g>
                             <g id="stroke-fill" serif:id="stroke+fill">
