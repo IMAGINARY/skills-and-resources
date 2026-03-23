@@ -18,6 +18,7 @@ import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-pane
 import ChallengeAssesment from "@/components/challenge/ChallengeAssesment.vue";
 import { useCharacterData } from "@/composables/use-character-data.ts";
 import { usePointerScroll } from "@/composables/use-pointer-scroll.ts";
+import { useTap } from "@/composables/use-tap.ts";
 
 const { app, content } = useConfigStore();
 const { ensureCharacter } = useCharacterStore();
@@ -54,7 +55,7 @@ watchImmediate(tokenState, (tokenStateValue) => {
 });
 
 const challengeList = ref<HTMLDivElement | null>(null);
-usePointerScroll(challengeList, { vertical: false });
+const { prev, next, isFirst, isLast } = usePointerScroll(challengeList, { vertical: false });
 </script>
 
 <template>
@@ -85,8 +86,12 @@ usePointerScroll(challengeList, { vertical: false });
           ></ChallengeOverview>
         </div>
         <div class="challenge-list-buttons">
-          <button class="disabled"><ArrowNextComponent></ArrowNextComponent></button>
-          <button><ArrowNextComponent></ArrowNextComponent></button>
+          <button :class="{ disabled: isFirst }" v-drag="useTap(prev)">
+            <ArrowNextComponent></ArrowNextComponent>
+          </button>
+          <button :class="{ disabled: isLast }" v-drag="useTap(next)">
+            <ArrowNextComponent></ArrowNextComponent>
+          </button>
         </div>
         <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
       </div>
