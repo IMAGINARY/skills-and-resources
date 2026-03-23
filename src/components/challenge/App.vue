@@ -17,9 +17,7 @@ import ArrowNextComponent from "@/assets/arrow-next.svg?component";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 import ChallengeAssesment from "@/components/challenge/ChallengeAssesment.vue";
 import { useCharacterData } from "@/composables/use-character-data.ts";
-import { useTap } from "@/composables/use-tap";
 import { usePointerScroll } from "@/composables/use-pointer-scroll.ts";
-import { Language } from "@/types/config.ts";
 
 const { app, content } = useConfigStore();
 const { ensureCharacter } = useCharacterStore();
@@ -134,6 +132,11 @@ usePointerScroll(challengeList, { vertical: false });
   padding-left: var(--app-padding);
   padding-right: var(--app-padding);
   scrollbar-width: none;
+  scroll-padding: var(--app-padding);
+}
+
+.challenge-list > * {
+  scroll-snap-align: start;
 }
 
 .challenge-list-buttons {

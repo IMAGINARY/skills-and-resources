@@ -4,18 +4,27 @@ import { useEventListener, watchImmediate } from "@vueuse/core";
 export interface UsePointerScrollOptions {
   vertical?: boolean;
   horizontal?: boolean;
+  snapType?: SnapType;
+  smoothSnapping?: boolean;
 }
+
+type SnapAxes = "x" | "y" | "block" | "inline" | "both";
+type SnapStrictness = "mandatory" | "proximity";
+
+type SnapType = "none" | `${SnapAxes} ${SnapStrictness}`;
 
 const defaultOptions: Required<UsePointerScrollOptions> = {
   vertical: true,
   horizontal: true,
+  snapType: "both mandatory",
+  smoothSnapping: true,
 };
 
 export function usePointerScroll(
   container: MaybeRefOrGetter<HTMLElement | null | undefined>,
   options?: UsePointerScrollOptions,
 ) {
-  const { vertical, horizontal } = { ...defaultOptions, ...options };
+  const { vertical, horizontal, snapType, smoothSnapping } = { ...defaultOptions, ...options };
 
   if (typeof container === "undefined" || container === null) return;
 
@@ -27,15 +36,15 @@ export function usePointerScroll(
     const lastScroll = { left: containerValue.scrollLeft, top: containerValue.scrollTop };
 
     const activePointers = new Array<number>();
-    let abortSnap = () => {};
 
     const handlePointerDown = (e: PointerEvent) => {
-      abortSnap();
-      activePointers.push(e.pointerId);
+      containerValue.setPointerCapture(e.pointerId);
+      if (!activePointers.includes(e.pointerId)) activePointers.push(e.pointerId);
       lastScroll.left = containerValue.scrollLeft;
       lastScroll.top = containerValue.scrollTop;
 
       containerValue.style.scrollSnapType = "none";
+      containerValue.style.scrollBehavior = "auto";
     };
 
     const handlePointerMove = (e: PointerEvent) => {
@@ -54,36 +63,16 @@ export function usePointerScroll(
     };
 
     const handlePointerUpOrCancel = (e: PointerEvent) => {
+      containerValue.releasePointerCapture(e.pointerId);
       const pointerIdIdx = activePointers.findLastIndex((id) => id === e.pointerId);
       if (pointerIdIdx === -1) return;
       activePointers.splice(pointerIdIdx, 1);
-      containerValue.style.scrollSnapType = "x mandatory";
-    };
-
-    const handleScrollSnapChange = (e) => {
-      if (e.snapTargetBlock === null && e.snapTargetInline === null) return;
-
-      console.log("test");
-
-      containerValue.style.scrollSnapType = "none";
-
-      const { scrollLeft, scrollTop } = containerValue;
-
-      containerValue.scrollLeft = lastScroll.left;
-      containerValue.scrollTop = lastScroll.top;
-
-      console.log({ scrollLeft, scrollTop }, lastScroll);
-
-      abortSnap();
-      const timeoutId = setTimeout(
-        () => containerValue.scrollTo({ top: scrollTop, left: scrollLeft, behavior: "smooth" }),
-        0,
-      );
-      abortSnap = () => clearTimeout(timeoutId);
+      if (activePointers.length > 0) return;
+      containerValue.style.scrollSnapType = snapType;
+      containerValue.style.scrollBehavior = smoothSnapping ? "smooth" : "auto";
     };
 
     useEventListener(container, "pointerdown", handlePointerDown);
-    useEventListener(container, "scrollsnapchange", handleScrollSnapChange);
     useEventListener(container, "pointermove", handlePointerMove);
     useEventListener(container, ["pointerup", "pointercancel"], handlePointerUpOrCancel);
   });
