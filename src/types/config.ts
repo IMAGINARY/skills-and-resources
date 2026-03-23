@@ -213,6 +213,10 @@ export const ConfigSchema = Type.Cyclic(
               title: "Inventory",
               description: "Text shown on the inventory panel.",
             }),
+            unsolvable: Type.Ref("I18nRecord", {
+              title: "Unsolvable",
+              description: "Text shown when the challenge is unsolvable for the current character.",
+            }),
             success: Type.Ref("I18nRecord", {
               title: "Success",
               description: "Text shown when the player has solved the challenge.",

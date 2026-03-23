@@ -17,11 +17,13 @@ import ItemInsideSlot from "@/components/common/ItemInsideSlot.vue";
 import ColorizedMonochromeImage from "@/components/common/ColorizedMonochromeImage.vue";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import { DotLottieVue } from "@lottiefiles/dotlottie-vue";
+import thoughtBubbleHref from "@/assets/thought-bubble.svg?url";
 import iconCorrectHref from "@/assets/icon-correct.svg?url";
 import itemMissingHref from "@/assets/item-missing.svg?url";
 import drawArrowLeftHref from "@/assets/draw-arrow-left.lottie?url";
 import drawArrowUpperLeftHref from "@/assets/draw-arrow-upper-left.lottie?url";
 import failureIconHref from "@/assets/failure-icon.svg?url";
+import { INVENTORY_SIZE } from "@/constants.ts";
 
 const props = defineProps<{
   challengeIdx: MaybeRefOrGetter<number>;
@@ -59,9 +61,23 @@ const additionalItemConfigs = computed(() => {
 const requiredItemIds = computed<DeepReadonly<string[]>>(() =>
   toValue(challengeConfigRef).solution.items.map(({ id }) => id),
 );
-const characterItemIds = computed<DeepReadonly<string[]>>(() =>
-  [...toValue(personalItemConfigs), ...toValue(additionalItemConfigs)].map(({ id }) => id),
+const personalItemIds = computed<DeepReadonly<string[]>>(() =>
+  toValue(personalItemConfigs).map(({ id }) => id),
 );
+const additionalItemIds = computed<DeepReadonly<string[]>>(() =>
+  toValue(additionalItemConfigs).map(({ id }) => id),
+);
+const characterItemIds = computed<DeepReadonly<string[]>>(() => [
+  ...toValue(personalItemIds),
+  ...toValue(additionalItemIds.value),
+]);
+
+const solvable = computed(() => {
+  const requiredItemSet = new Set(toValue(requiredItemIds));
+  const personalItemSet = new Set(toValue(personalItemIds));
+  return requiredItemSet.difference(personalItemSet).size <= INVENTORY_SIZE - personalItemSet.size;
+});
+
 const solved = computed(() => {
   const requiredItemSet = new Set(toValue(requiredItemIds));
   const characterItemSet = new Set(toValue(characterItemIds));
@@ -76,10 +92,16 @@ const failureIconUrl = new URL(failureIconHref);
 
 <template>
   <div class="challenge-assessment app-position app-size">
-    <div class="header"><img class="image" :src="challengeConfigRef.image.href" /></div>
+    <div class="header"><img class="challenge-image" :src="challengeConfigRef.image.href" /></div>
     <div class="body">
-      <div class="challenge-image">
+      <div class="character-image">
         <img :src="characterDataRef.characterTypeConfig.croppedImage.href" />
+      </div>
+      <div v-if="!solvable" class="thought-bubble">
+        <img :src="thoughtBubbleHref" />
+        <div class="thought text-style-copy-bold">
+          <div>{{ t(app.challenge.unsolvable) }}</div>
+        </div>
       </div>
       <div class="challenge-info">
         <div class="label-with-idx text-style-overline">
@@ -183,7 +205,7 @@ const failureIconUrl = new URL(failureIconHref);
   .header {
     height: 780px;
 
-    .image {
+    .challenge-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -196,7 +218,7 @@ const failureIconUrl = new URL(failureIconHref);
     margin: var(--app-padding) 50px;
     color: var(--color-primary);
 
-    .challenge-image {
+    .character-image {
       position: absolute;
       top: calc(-1 * var(--app-padding));
       right: 0;
@@ -206,8 +228,31 @@ const failureIconUrl = new URL(failureIconHref);
       background-color: var(--color-white);
       border-radius: 50%;
       overflow: hidden;
+    }
 
-      img {
+    .thought-bubble {
+      position: absolute;
+      width: 468px;
+      top: -492px;
+      left: 191px;
+
+      .thought {
+        position: absolute;
+        top: 14%;
+        left: 7%;
+        width: 68%;
+        height: 46%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: pre-line;
+      }
+    }
+
+    .character-image,
+    .thought-bubble {
+      > img {
         width: 100%;
         height: 100%;
         object-fit: cover;

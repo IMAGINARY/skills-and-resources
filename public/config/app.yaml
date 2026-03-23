@@ -50,6 +50,15 @@ challenge:
   select:
     de: Situation lösen
     en: Resolve the situation
+  unsolvable:
+    de: |-
+      Die Aufgabe werde ich wohl
+      nicht lösen können. Das sollte
+      jemand anderes versuchen.
+    en: |-
+      I probably won't be able to
+      solve this problem. Someone
+      else should try it.
   inventory:
     de: Das bringst du mit
     en: What you've got
