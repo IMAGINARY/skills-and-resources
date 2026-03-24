@@ -31,6 +31,7 @@
     "yaml": "^2.8.2"
   },
   "devDependencies": {
+    "@sentry/vue": "^10.45.0",
     "@tsconfig/node24": "^24.0.4",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.10.13",

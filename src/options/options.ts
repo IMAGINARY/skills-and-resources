@@ -10,6 +10,7 @@ export type MutableOptions = {
   errorPanelMinDuration: number;
   appCfg: string;
   contentCfg: string;
+  sentryDsn: string | undefined;
 };
 
 export type Options = DeepReadonly<MutableOptions>;
@@ -32,6 +33,7 @@ export const defaultOptions: Options = {
   errorPanelMinDuration: 20000,
   appCfg: "app.yaml",
   contentCfg: "content.yaml",
+  sentryDsn: undefined,
 };
 
 export async function loadOptions(): Promise<MutableOptions> {
@@ -50,5 +52,6 @@ export async function loadOptions(): Promise<MutableOptions> {
     ),
     appCfg: sp.get("appCfg") ?? defaultOptions.appCfg,
     contentCfg: sp.get("contentCfg") ?? defaultOptions.contentCfg,
+    sentryDsn: sp.get("sentryDsn") ?? defaultOptions.sentryDsn,
   };
 }
