@@ -55,7 +55,7 @@ watchImmediate(tokenState, (tokenStateValue) => {
 });
 
 const challengeList = ref<HTMLDivElement | null>(null);
-const { prev, next, isFirst, isLast } = usePointerScroll(challengeList, { vertical: false });
+const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
 </script>
 
 <template>
@@ -86,10 +86,10 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList, { vertic
           ></ChallengeOverview>
         </div>
         <div class="challenge-list-buttons">
-          <button :class="{ disabled: isFirst }" v-drag="useTap(prev)">
+          <button :class="{ disabled: isFirst }" @click.prevent v-drag="useTap(prev)">
             <ArrowNextComponent></ArrowNextComponent>
           </button>
-          <button :class="{ disabled: isLast }" v-drag="useTap(next)">
+          <button :class="{ disabled: isLast }" @click.prevent v-drag="useTap(next)">
             <ArrowNextComponent></ArrowNextComponent>
           </button>
         </div>
@@ -159,6 +159,10 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList, { vertic
   height: 60px;
   border-radius: 50%;
   background-color: var(--color-button);
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .challenge-list-buttons button:first-child {
