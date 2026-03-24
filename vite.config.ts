@@ -6,6 +6,7 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 import svgLoader from "vite-svg-loader";
 
 export default defineConfig({
+  base: "./",
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
