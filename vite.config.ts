@@ -13,4 +13,7 @@ export default defineConfig({
     },
   },
   plugins: [vue(), vueDevTools(), svgLoader(), nodePolyfills({ include: ["events", "assert"] })],
+  build: {
+    sourcemap: true,
+  },
 });
