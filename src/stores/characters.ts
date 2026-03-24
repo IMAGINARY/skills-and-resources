@@ -1,10 +1,9 @@
-import { reactive, toValue, type DeepReadonly } from "vue";
+import { reactive, toValue } from "vue";
 import { defineStore } from "pinia";
 import { strict as assert } from "assert";
 
 import { INVENTORY_SIZE } from "@/constants";
 import { useConfigStore } from "@/stores/config";
-import { type ItemConfig } from "@/types/config";
 
 export type InventorySlot = {
   locked: boolean;

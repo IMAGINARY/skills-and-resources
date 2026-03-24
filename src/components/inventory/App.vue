@@ -24,7 +24,6 @@ import TabbedItemPanel from "@/components/inventory/TabbedItemPanel.vue";
 import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
 import iconRemoveHref from "@/assets/icon-remove.svg?url";
 import { useCharacterData } from "@/composables/use-character-data.ts";
-import { usePointerScroll } from "@/composables/use-pointer-scroll.ts";
 
 const { app } = useConfigStore();
 const { ensureCharacter, removeItem } = useCharacterStore();
@@ -57,9 +56,6 @@ const lastActiveCharacterData = useCharacterData(lastActiveCharacterId);
 const iconRemoveUrl = new URL(iconRemoveHref);
 
 const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PRESENT);
-
-const itemList = ref<HTMLDivElement | null>(null);
-usePointerScroll(itemList, { vertical: false });
 </script>
 
 <template>
