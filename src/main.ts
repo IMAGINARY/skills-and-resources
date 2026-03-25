@@ -5,16 +5,22 @@ import { createPinia } from "pinia";
 import { GesturePlugin } from "@vueuse/gesture";
 import App from "./App.vue";
 import { initSentry, addSentryVue } from "@/sentry";
+import { setWasmUrl } from "@lottiefiles/dotlottie-vue";
 
 import { OPTIONS_INJECTION_KEY, CONFIG_INJECTION_KEY } from "@/constants";
 import { loadOptions } from "@/options/options";
 import { loadConfig } from "@/config/config";
+
+import dotlottieWasmHref from "@lottiefiles/dotlottie-web/dotlottie-player.wasm?url";
 
 const options = await loadOptions();
 const { sentryDsn } = options;
 const useSentry = !!sentryDsn;
 
 if (useSentry) initSentry(sentryDsn);
+
+// Set local WASM URL before initializing the app to support offline development
+setWasmUrl(dotlottieWasmHref);
 
 const config = await loadConfig(options);
 const app = createApp(App);
