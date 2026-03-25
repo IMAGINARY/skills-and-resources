@@ -60,15 +60,8 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
 
 <template>
   <div class="app-position app-size challenge-app">
-    <ChallengeAssesment
-      v-if="activeCharacterData !== null && activeChallengeData !== null"
-      :challenge-idx="activeChallengeData.idx"
-      :challenge-config="activeChallengeData.config"
-      :character-data="activeCharacterData"
-      @done="() => (activeChallengeData = null)"
-    ></ChallengeAssesment>
     <AppIntro
-      v-else
+      :class="{ hidden: activeCharacterData !== null && activeChallengeData !== null }"
       :name="app.challenge.name"
       :description="app.challenge.title"
       :characterId="activeCharacterId"
@@ -96,6 +89,13 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
         <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
       </div>
     </AppIntro>
+    <ChallengeAssesment
+      v-if="activeCharacterData !== null && activeChallengeData !== null"
+      :challenge-idx="activeChallengeData.idx"
+      :challenge-config="activeChallengeData.config"
+      :character-data="activeCharacterData"
+      @done="() => (activeChallengeData = null)"
+    ></ChallengeAssesment>
     <TokenErrorPanel
       :tokenState="tokenState"
       :class="{ 'token-error-panel-hidden': hideTokenErrorPanel }"
@@ -106,6 +106,10 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
 <style scoped>
 .challenge-app {
   position: relative;
+}
+
+.hidden {
+  display: none;
 }
 
 .app-intro {
