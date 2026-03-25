@@ -24,6 +24,7 @@ import TabbedItemPanel from "@/components/inventory/TabbedItemPanel.vue";
 import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
 import iconRemoveHref from "@/assets/icon-remove.svg?url";
 import { useCharacterData } from "@/composables/use-character-data.ts";
+import { useTap } from "@/composables/use-tap.ts";
 
 const { app } = useConfigStore();
 const { ensureCharacter, removeItem } = useCharacterStore();
@@ -86,7 +87,8 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
                 <div v-for="content in characterData.slotContents.mutable" class="slot">
                   <ItemSlot
                     v-if="content.type === 'item'"
-                    @badge-action="() => removeItem(characterData.characterId, content.config.id)"
+                    :key="content.config.id"
+                    v-drag="useTap(() => removeItem(characterData.characterId, content.config.id))"
                   >
                     <template v-slot:badge
                       ><ColorizedMonochromeImage
