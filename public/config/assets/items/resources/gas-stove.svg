@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:100;">
-    <g transform="matrix(1,0,0,1,-1219.66,0)">
-        <g id="R5_Gas-Stove" transform="matrix(1,0,0,1,1219.66,0)">
+    <g transform="matrix(1,0,0,1,-1378.66,0)">
+        <g id="R5_Gas-Stove" transform="matrix(1,0,0,1,1378.66,0)">
             <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
             <clipPath id="_clip1">
                 <rect x="0" y="0" width="264.567" height="264.567"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
-                <g transform="matrix(0.231797,0,0,0.231797,138.738,136.936)">
+                <g transform="matrix(0.205835,0,0,0.205835,136.283,136.283)">
                     <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                         <clipPath id="_clip2">
                             <rect x="0" y="0" width="1285.33" height="1285.33"/>
                         </clipPath>
                         <g clip-path="url(#_clip2)">
-                            <g id="bg" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M67,274L390,274C393.31,274 396,276.69 396,280L396,381C396,384.31 393.31,387 390,387L67,387C63.69,387 61,384.31 61,381L61,280C61,276.69 63.69,274 67,274Z" style="fill:white;"/>
+                            <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M67,274L390,274C393.31,274 396,276.69 396,280L396,381C396,384.31 393.31,387 390,387L67,387C63.69,387 61,384.31 61,381L61,280C61,276.69 63.69,274 67,274Z" style="fill:white;stroke:black;stroke-width:10px;"/>
                             </g>
-                            <g id="stroke">
-                                <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M67,274L390,274C393.31,274 396,276.69 396,280L396,381C396,384.31 393.31,387 390,387L67,387C63.69,387 61,384.31 61,381L61,280C61,276.69 63.69,274 67,274Z" style="fill:none;stroke:black;stroke-width:8px;"/>
-                                </g>
-                                <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M228.58,290.26C251,290.26 269.17,308.43 269.17,330.85C269.17,353.26 251,371.43 228.58,371.43C206.17,371.43 188,353.26 188,330.85C188,308.43 206.17,290.26 228.58,290.26Z" style="fill:none;stroke:black;stroke-width:9px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Shape-4" serif:id="Shape 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M227.94,293L227.94,333" style="fill:none;stroke:black;stroke-width:9px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M334,228L372,228L372,266" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Shape-1-copy" serif:id="Shape 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M122,228L84,228L84,266" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
+                            <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M228,293.02C247.87,293.02 263.97,309.13 263.97,329C263.97,348.87 247.87,364.98 228,364.98C208.14,364.98 192.03,348.87 192.03,329C192.03,309.13 208.14,293.02 228,293.02Z" style="fill:none;stroke:black;stroke-width:10px;stroke-linejoin:round;stroke-miterlimit:4;"/>
                             </g>
-                            <g id="stroke-fill" serif:id="stroke+fill">
-                                <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M348,391L390,391C390,391 391.58,420 370,420C344.02,420 348,391 348,391Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Shape-5-copy" serif:id="Shape 5 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M71,391L113,391C113,391 114.58,420 93,420C67.02,420 71,391 71,391Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M191,242L265,242C268.31,242 271,244.69 271,248L271,253C271,256.31 268.31,259 265,259L191,259C187.69,259 185,256.31 185,253L185,248C185,244.69 187.69,242 191,242Z" style="stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
-                                <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                    <path d="M204,38C204,38 265.45,57.16 273,96C280.55,134.84 269,165 269,165C269,165 281.95,166.54 290,155C298.83,142.34 298,111 298,111C298,111 318.16,149.77 315,173C311.99,195.1 302.14,204.85 291,217C281.11,227.79 259.5,230.34 260,225C260.5,219.66 274.76,206.85 276,199C277.91,186.95 270,182 270,182L244,211C244,211 259.87,181.24 250,169C240.13,156.76 229,154 229,154C229,154 242.11,174.97 235,190C227.89,205.03 225.24,212.72 222,207C218.76,201.28 211,187 211,187C211,187 201.78,194.4 203,207C204.22,219.6 210,226 210,226C210,226 172.03,230.77 158,200C134.57,148.63 166,112 166,112C166,112 165.16,142.02 175,155C184.84,167.98 197,166 197,166C197,166 217.85,141.39 216,116C214.15,90.61 200,80 200,80C200,80 219.7,78.19 218,68C216.3,57.81 204,38 204,38Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
-                                </g>
+                            <g id="Shape-4" serif:id="Shape 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M227.94,293L227.94,333" style="fill:none;stroke:black;stroke-width:10px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M334,224L372,224L372,262" style="fill:none;stroke:black;stroke-width:10px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Shape-1-copy" serif:id="Shape 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M122,224L84,224L84,262" style="fill:none;stroke:black;stroke-width:10px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M191,237L265,237C268.31,237 271,239.69 271,243L271,248C271,251.31 268.31,254 265,254L191,254C187.69,254 185,251.31 185,248L185,243C185,239.69 187.69,237 191,237Z" style="stroke:black;stroke-width:6px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M200,27C200,27 267.45,45.16 275,84C282.55,122.84 265,154 265,154C265,154 278.57,155.95 286,144C296.18,127.62 294,100 294,100C294,100 318.17,138.17 316,162C313.98,184.22 304.84,196.82 291,208C279.61,217.2 255.5,219.34 256,214C256.5,208.66 270.76,195.85 272,188C273.91,175.95 266,171 266,171L240,200C240,200 255.87,170.24 246,158C236.13,145.76 225,143 225,143C225,143 238.11,163.97 231,179C223.89,194.03 221.24,201.72 218,196C214.76,190.28 207,176 207,176C207,176 197.78,183.4 199,196C200.22,208.6 206,215 206,215C206,215 168.03,219.77 154,189C130.57,137.63 162,101 162,101C162,101 161.16,131.02 171,144C180.84,156.98 193,155 193,155C193,155 213.85,130.39 212,105C210.15,79.61 196,69 196,69C196,69 215.7,67.19 214,57C212.3,46.81 200,27 200,27Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M348,391L390,391C390,391 391.58,420 370,420C344.02,420 348,391 348,391Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
+                            </g>
+                            <g id="Shape-5-copy" serif:id="Shape 5 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                                <path d="M71,391L113,391C113,391 114.58,420 93,420C67.02,420 71,391 71,391Z" style="stroke:black;stroke-width:3px;stroke-linejoin:round;stroke-miterlimit:4;"/>
                             </g>
                         </g>
                     </g>

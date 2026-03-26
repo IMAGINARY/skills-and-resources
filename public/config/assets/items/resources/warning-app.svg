@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-1832.53,-1.13687e-13)">
-        <g id="R7_Warning-App" transform="matrix(1,0,0,1,1832.53,1.13687e-13)">
+<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:100;">
+    <g transform="matrix(1,0,0,1,-1991.53,-1.13687e-13)">
+        <g id="R7_Warning-App" transform="matrix(1,0,0,1,1991.53,1.13687e-13)">
             <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
-            <g transform="matrix(0.195555,0,0,0.195555,132.283,132.283)">
+            <g transform="matrix(0.182273,0,0,0.182273,132.283,129.429)">
                 <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                     <clipPath id="_clip1">
                         <rect x="0" y="0" width="1285.33" height="1285.33"/>
                     </clipPath>
                     <g clip-path="url(#_clip1)">
-                        <g id="bg" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                            <path d="M114,27L342,27C350.28,27 357,33.72 357,42L357,437C357,445.28 350.28,452 342,452L114,452C105.72,452 99,445.28 99,437L99,42C99,33.72 105.72,27 114,27Z" style="fill:white;"/>
+                        <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M114,27L342,27C350.28,27 357,33.72 357,42L357,437C357,445.28 350.28,452 342,452L114,452C105.72,452 99,445.28 99,437L99,42C99,33.72 105.72,27 114,27Z" style="fill:white;stroke:black;stroke-width:10px;"/>
+                        </g>
+                        <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M228,404.72C236.99,404.72 244.28,412.01 244.28,421C244.28,429.99 236.99,437.28 228,437.28C219.01,437.28 211.72,429.99 211.72,421C211.72,412.01 219.01,404.72 228,404.72Z" style="fill:none;stroke:black;stroke-width:8px;"/>
                         </g>
                         <g id="_-" serif:id="!" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                            <g id="fill">
-                                <path id="_-1" serif:id="!" d="M228.51,172C225.91,172 220.35,172.77 218.1,173.84C217.23,174.3 217.23,174.92 217.23,175.54L217.23,186.61C217.23,199.54 220.01,235.7 220.35,240C220.53,240.62 220.88,240.93 221.57,240.93L235.46,240.93C236.5,240.93 236.67,240.47 236.67,240C237.19,235.39 240.15,199.08 240.15,186.15L240.15,175.07C240.15,174.61 239.97,173.84 239.1,173.38C237.37,172.61 231.99,172 228.51,172ZM228.51,276.01C235.81,276.01 241.01,272.16 241.01,265.7C241.01,259.39 235.98,255.08 228.51,255.08C221.22,255.08 216.01,259.54 216.01,265.7C216.01,272.01 221.05,276.01 228.51,276.01Z" style="fill-rule:nonzero;stroke:black;stroke-width:0.38px;"/>
-                            </g>
+                            <path d="M226.54,184.53C224.29,184.53 219.48,185.19 217.53,186.12C216.78,186.52 216.78,187.05 216.78,187.59L216.78,197.17C216.78,208.35 219.18,239.62 219.48,243.35C219.63,243.88 219.93,244.15 220.53,244.15L232.55,244.15C233.45,244.15 233.6,243.75 233.6,243.35C234.05,239.36 236.6,207.95 236.6,196.77L236.6,187.19C236.6,186.79 236.45,186.12 235.7,185.72C234.2,185.06 229.54,184.53 226.54,184.53ZM226.54,274.49C232.85,274.49 237.35,271.16 237.35,265.57C237.35,260.12 233,256.39 226.54,256.39C220.23,256.39 215.73,260.25 215.73,265.57C215.73,271.03 220.08,274.49 226.54,274.49Z" style="fill-rule:nonzero;"/>
                         </g>
-                        <g id="stroke">
-                            <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M114,27L342,27C350.28,27 357,33.72 357,42L357,437C357,445.28 350.28,452 342,452L114,452C105.72,452 99,445.28 99,437L99,42C99,33.72 105.72,27 114,27Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                            </g>
-                            <g id="Ellipse-1" serif:id="Ellipse 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M228.5,403C238.16,403 246,410.84 246,420.5C246,430.16 238.16,438 228.5,438C218.84,438 211,430.16 211,420.5C211,410.84 218.84,403 228.5,403Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                            </g>
-                            <g id="Triangle-1" serif:id="Triangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M224.34,93.38C225.74,90.19 230.26,90.19 231.66,93.38L319.67,293.38C320.83,296.03 318.9,298.99 316.01,298.99L139.99,298.99C137.1,298.99 135.17,296.03 136.33,293.38L224.34,93.38Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                            </g>
-                            <g id="Rectangle-1-copy" serif:id="Rectangle 1 copy" transform="matrix(2.57841,0,0,2.60528,20.1222,14.8494)">
-                                <path d="M126.49,40.5L329.51,40.5C337.79,40.5 344.51,47.22 344.51,55.5L344.51,360.5C344.51,368.78 337.79,375.5 329.51,375.5L126.49,375.5C118.21,375.5 111.49,368.78 111.49,360.5L111.49,55.5C111.49,47.22 118.21,40.5 126.49,40.5Z" style="fill:none;stroke:black;stroke-width:8.23px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                            </g>
-                            <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                                <path d="M101,389L356,389C356.55,389 357,389.45 357,390C357,390.55 356.55,391 356,391L101,391C100.45,391 100,390.55 100,390C100,389.45 100.45,389 101,389Z" style="fill:none;stroke:black;stroke-width:8px;stroke-linejoin:miter;stroke-miterlimit:100;"/>
-                            </g>
+                        <g id="Triangle-1" serif:id="Triangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M224.39,127.23C225.79,124.04 230.31,124.04 231.71,127.23L300.91,284.49C302.07,287.14 300.14,290.1 297.25,290.1L158.85,290.1C155.96,290.1 154.02,287.14 155.18,284.49L224.39,127.23Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:10px;"/>
+                        </g>
+                        <g id="Rectangle-1-copy" serif:id="Rectangle 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M137.79,53.8L318.21,53.8C326.5,53.8 333.21,60.51 333.21,68.8L333.21,342.2C333.21,350.49 326.5,357.2 318.21,357.2L137.79,357.2C129.5,357.2 122.79,350.49 122.79,342.2L122.79,68.8C122.79,60.51 129.5,53.8 137.79,53.8Z" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        </g>
+                        <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M101,388L356,388C356.55,388 357,388.45 357,389C357,389.55 356.55,390 356,390L101,390C100.45,390 100,389.55 100,389C100,388.45 100.45,388 101,388Z" style="fill:none;stroke:black;stroke-width:10px;"/>
                         </g>
                     </g>
                 </g>
