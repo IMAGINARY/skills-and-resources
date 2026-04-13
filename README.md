@@ -93,49 +93,102 @@ lock or damage your NFC tags.
 ## Preparing NFC Tags
 
 The token reader tool currently only supports **NTAG21x** (NTAG 213/215/216)
-NFC tags. Each tag represents one character and must be prepared as follows:
+NFC tags. Each tag represents one character and must be prepared as described
+in the following subsections.
 
-1. **Write an NDEF text record** containing the character type ID (e.g.
-   `character_1`, `character_2`, …). The IDs must match the `characterTypes[].id`
-   values in [`src/config/content.yaml`](src/config/content.yaml). The NDEF
-   record must be of type `text` — no other record types are supported.
+### Writing the NDEF Text Record
 
-2. **Enable the NFC counter** (recommended). By reading the counter, it is
-   possible to check whether a tag is approaching or has reached its end of
-   life (NTAG21x tags are rated for 100 000 read operations). The NFC counter
-   is controlled by bit 4 (`NFC_CNT_EN`) of the `ACCESS` configuration byte
-   (byte 0 of page `2Ah` on NTAG213, `84h` on NTAG215, `E5h` on NTAG216).
-   To enable it without overwriting other bits, first read the page with a
-   `READ` command, set bit 4 in byte 0, and write the byte back:
+Write an NDEF text record containing the character type ID (e.g.
+`character_1`, `character_2`, …). The IDs must match the `characterTypes[].id`
+values in [`src/config/content.yaml`](src/config/content.yaml). The NDEF
+record must be of type `text` — no other record types are supported.
 
-   ```
-   READ <ACCESS page>          # e.g. 30 2A for NTAG213
-   # extract byte 0-3 of the 16 byte response
-   # 00:05:00:00:00:00:00:... -> 00:05:00:00
-   # set bit 4 (0x10) of byte 0, but keep other bits unchanged
-   # 00:05:00:00 | 10:00:00:00 -> 01:05:00:00
-   # write the modified byte back
-   WRITE <ACCESS page> ...     # e.g. A2 2A <modified 4 bytes> for NTAG213
-   ```
+### Enabling the NFC Counter (Recommended)
 
-   Once enabled, the 24-bit counter can be read with the `READ_CNT` command
-   (`39h`):
+By reading the counter, it is possible to check whether a tag is approaching
+or has reached its end of life (NTAG21x tags are rated for 100 000 read
+operations). The NFC counter is controlled by bit 4 (`NFC_CNT_EN`) of the
+`ACCESS` configuration byte (byte 0 of page `2Ah` on NTAG213, `84h` on
+NTAG215, `E5h` on NTAG216). To enable it without overwriting other bits,
+first read the page with a `READ` command, set bit 4 in byte 0, and write
+the byte back:
 
-   ```
-   39 02
-   ```
+```
+READ <ACCESS page>          # e.g. 30 2A for NTAG213
+# extract byte 0-3 of the 16 byte response
+# 00:05:00:00:00:00:00:... -> 00:05:00:00
+# set bit 4 (0x10) of byte 0, but keep other bits unchanged
+# 00:05:00:00 | 10:00:00:00 -> 01:05:00:00
+# write the modified byte back
+WRITE <ACCESS page> ...     # e.g. A2 2A <modified 4 bytes> for NTAG213
+```
 
-   The reader returns 3 bytes representing the counter value in
-   little-endian byte order.
+Once enabled, the 24-bit counter can be read with the `READ_CNT` command
+(`39h`):
 
-   Please consult the [NTAG21x specification](https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf)
-   for more details about the `READ`, `WRITE`, and `READ_CNT` commands as well
-   as the `ACCESS` configuration byte and the `NFC_CNT_EN` bit.
+```
+39 02
+```
 
-3. **Enable password protection** (recommended). Setting a password makes the
-   tag read-only for anyone who does not know the password. This prevents
-   tech-savvy visitors from deleting or modifying the tag data using their
-   smartphones.
+The reader returns 3 bytes representing the counter value in little-endian
+byte order.
+
+Please consult the
+[NTAG21x specification](https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf)
+for more details about the `READ`, `WRITE`, and `READ_CNT` commands as well
+as the `ACCESS` configuration byte and the `NFC_CNT_EN` bit.
+
+### Locking and Password Protection (Recommended)
+
+NTAG21x tags have two distinct write-protection mechanisms — **do not confuse
+them**:
+
+- **Permanent locking** ("Lock tag" in _NFC Tools_ and _NXP TagWriter_): Makes the tag read-only
+  forever. This is irreversible. **Do not use it** unless you are certain the
+  tag content is final and never needs changing.
+
+- **Password protection** ("Set password" in _NFC Tools_, "Protect → Password protection" in _NXP
+  TagWriter_): Prevents writing without a password, but the tag remains freely
+  readable. The password can be changed or removed at any time. **Use this**
+  to prevent visitors from modifying the tag data with their smartphones.
+
+#### Setting a password with NFC Tools
+
+1. Open the tag in _NFC Tools_ and go to **Other → Set password**.
+2. Enter any text password (e.g. `"mysecret"`). The app derives the raw
+   hardware password from this text via MD5 hashing internally (first 4 bytes of the hash).
+3. To remove or change the password later, you must enter the same text
+   password.
+
+#### Setting a password with NXP TagWriter
+
+1. Open _NXP TagWriter_ and go to **Protect Tags → Password Protection**.
+2. Enter the password as an **8-hex-character string** representing 4 raw
+   bytes (e.g. `06d80eb0`) into the **New password** field.
+3. To remove or change the password later, you must select **Remove Password** and enter the
+   same hex string into the **Current password** field.
+
+#### Using both apps on the same tag
+
+Since _NFC Tools_ hashes the text password with MD5 internally, a tag
+protected by _NFC Tools_ can be managed in _TagWriter_ by computing the MD5
+yourself and entering the first 8 hex characters:
+
+```
+NFC Tools password: "mysecret"
+MD5("mysecret"):    06c219e5bc8378f3a8a3f83b4b7e4649
+TagWriter password: 06c219e5   (first 8 hex chars)
+```
+
+On macOS: `echo -n "mysecret" | md5`. On Linux: `echo -n "mysecret" | md5sum`.
+
+The reverse is not possible: given only the hex password from _TagWriter_,
+you cannot recover the original _NFC Tools_ text password because MD5 is a
+one-way hash.
+
+For hardware-level details (register layout, configuration page addresses,
+`AUTH0`/`PROT`/`AUTHLIM` fields), see
+[NTAG21x_PROTECTION.md](NTAG21x_PROTECTION.md).
 
 # Development
 
