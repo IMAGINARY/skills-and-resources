@@ -78,6 +78,18 @@ Available subcommands:
 Run `npm run token-reader -- --help` or
 `npm run token-reader -- <command> --help` for detailed usage information.
 
+## NFC Tooling
+
+Various apps are available for reading and writing NFC tags:
+
+- [NFC Tools](https://www.wakdev.com/en/) (Android, iOS, Linux, macOS, Windows)
+- [NFX TagWriter by NXP](https://www.nxp.com/design/design-center/software/rfid-developer-resources/nfc-tagwriter-app-by-nxp:NFC-TAGWRITER) (Android, iOS)
+- [NFC TagInfo by NXP](https://www.nxp.com/design/design-center/software/rfid-developer-resources/the-nfc-taginfo-app-by-nxp:NFC-TAGINFO) (Android, iOS), reading only
+
+Note that _NFC Tools_ supports user-defined low-level NFC commands (called _Advanced
+NFC commands_ in the app). Use these commands with caution as they might permanently
+lock or damage your NFC tags.
+
 ## Preparing NFC Tags
 
 The token reader tool currently only supports **NTAG21x** (NTAG 213/215/216)
@@ -124,13 +136,6 @@ NFC tags. Each tag represents one character and must be prepared as follows:
    tag read-only for anyone who does not know the password. This prevents
    tech-savvy visitors from deleting or modifying the tag data using their
    smartphones.
-
-On Android, the
-[NFC Tools](https://play.google.com/store/apps/details?id=com.wakdev.wdnfc)
-app can be used to write NDEF records and configure tag settings such as the
-read counter and password protection. Note that the read counter can only be
-enabled via the _Advanced NFC commands_, which may permanently damage the tag
-when used incorrectly.
 
 # Development
 
