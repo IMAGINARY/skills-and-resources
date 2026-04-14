@@ -103,40 +103,14 @@ Write an NDEF text record containing the character type ID (e.g.
 values in [`src/config/content.yaml`](src/config/content.yaml). The NDEF
 record must be of type `text` — no other record types are supported.
 
-### Enabling the NFC Counter (Recommended)
+### Tag Durability
 
-By reading the counter, it is possible to check whether a tag is approaching
-or has reached its end of life (NTAG21x tags are rated for 100 000 read
-operations). The NFC counter is controlled by bit 4 (`NFC_CNT_EN`) of the
-`ACCESS` configuration byte (byte 0 of page `2Ah` on NTAG213, `84h` on
-NTAG215, `E5h` on NTAG216). To enable it without overwriting other bits,
-first read the page with a `READ` command, set bit 4 in byte 0, and write
-the byte back:
-
-```
-READ <ACCESS page>          # e.g. 30 2A for NTAG213
-# extract byte 0-3 of the 16 byte response
-# 00:05:00:00:00:00:00:... -> 00:05:00:00
-# set bit 4 (0x10) of byte 0, but keep other bits unchanged
-# 00:05:00:00 | 10:00:00:00 -> 01:05:00:00
-# write the modified byte back
-WRITE <ACCESS page> ...     # e.g. A2 2A <modified 4 bytes> for NTAG213
-```
-
-Once enabled, the 24-bit counter can be read with the `READ_CNT` command
-(`39h`):
-
-```
-39 02
-```
-
-The reader returns 3 bytes representing the counter value in little-endian
-byte order.
-
-Please consult the
-[NTAG21x specification](https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf)
-for more details about the `READ`, `WRITE`, and `READ_CNT` commands as well
-as the `ACCESS` configuration byte and the `NFC_CNT_EN` bit.
+NTAG21x tags support a virtually unlimited number of contactless read
+operations, so tag wear from normal exhibit use is not a concern. The write
+endurance is specified at 100 000 cycles per page, but since tags are only
+written during initial preparation (and occasionally re-written to update
+content), the comparably few manual write operations will almost certainly
+never approach this limit.
 
 ### Locking and Password Protection (Recommended)
 
