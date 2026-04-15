@@ -8,7 +8,16 @@ import {
   TokenStateNFC,
   TokenErrorTypeNFC,
 } from "./state-server.ts";
-import { ACR122UReader, CardRemovedError, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
+import {
+  ACR122UReader,
+  AcsReader,
+  CardRemovedError,
+  Err,
+  NFC,
+  Ok,
+  Reader,
+  Result,
+} from "./nfc/index.ts";
 import { appShutdownPromise } from "./shutdown-signal.ts";
 
 // @ts-expect-error No type declarations available
@@ -119,7 +128,7 @@ function createStateMessagePublisher(config: {
           piccOperatingParameterSettingCompleted = true;
           break piccControl;
           /* Original code
-          if (!(reader instanceof ACR122UReader)) {
+          if (!(reader instanceof AcsReader)) {
             console.warn(
               `${role}: ? reader does not support setting PICC operating parameters, skipping`,
             );

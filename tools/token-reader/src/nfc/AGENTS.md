@@ -33,6 +33,7 @@ src/nfc/
   Reader.ts             # Core reader (auto-read on card detect)
   AcsReader.ts          # Abstract base for ACS readers (shared pseudo-APDUs)
   ACR122UReader.ts      # ACR122U subclass (buzzer-on-detection toggle)
+  ACR1252UReader.ts     # ACR1252U subclass (minimal; extend with native cmds)
   TypedEventEmitter.ts  # Type-safe EventEmitter (composition pattern)
   types.ts              # Interfaces and type constants (Card, TagType, etc.)
   constants.ts          # APDU commands, ATR parsing, PC/SC constants
@@ -90,7 +91,7 @@ test/nfc/
 | Class files      | PascalCase            | `Reader.ts`, `AcsReader.ts`, `ACR122UReader.ts` |
 | Utility files    | camelCase             | `constants.ts`, `errors.ts`, `result.ts` |
 | Test files       | kebab-case `.test.ts` | `typed-event-emitter.test.ts`            |
-| Classes          | PascalCase            | `NFC`, `Reader`, `AcsReader`, `ACR122UReader` |
+| Classes          | PascalCase            | `NFC`, `Reader`, `AcsReader`, `ACR122UReader`, `ACR1252UReader` |
 | Interfaces/Types | PascalCase            | `Card`, `LedState`, `LedBuzzerOptions`   |
 | Constants        | SCREAMING_SNAKE_CASE  | `CMD_GET_DATA_UID`, `SW_SUCCESS`         |
 | Functions        | camelCase             | `buildReadCommand`, `parseAtr`           |

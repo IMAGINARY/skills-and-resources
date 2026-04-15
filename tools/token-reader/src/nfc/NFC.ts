@@ -8,7 +8,8 @@ import { TypedEventEmitter } from "./TypedEventEmitter.ts";
 import { type Result, Ok, Err } from "./result.ts";
 import { Reader } from "./Reader.ts";
 import { ACR122UReader } from "./ACR122UReader.ts";
-import { ACR122_READER_PATTERN } from "./constants.ts";
+import { ACR1252UReader } from "./ACR1252UReader.ts";
+import { ACR122U_READER_PATTERN, ACR1252U_READER_PATTERN } from "./constants.ts";
 import type { CardReader } from "./types.ts";
 
 /** The top-level pcsclite instance type. */
@@ -114,11 +115,14 @@ export class NFC extends TypedEventEmitter<NfcEventMap> {
    * Wraps a raw pcsclite CardReader in the appropriate Reader subclass.
    *
    * ACR122U and ACR1252U readers are detected by name and wrapped in
-    * an {@link AcsReader} subclass ({@link ACR122UReader}); all others
-    * get a plain {@link Reader}.
-   */
+    * an {@link AcsReader} subclass ({@link ACR122UReader} or
+    * {@link ACR1252UReader}); all others get a plain {@link Reader}.
+    */
   private wrapReader(rawReader: CardReader): Reader {
-    if (ACR122_READER_PATTERN.test(rawReader.name)) {
+    if (ACR1252U_READER_PATTERN.test(rawReader.name)) {
+      return new ACR1252UReader(rawReader);
+    }
+    if (ACR122U_READER_PATTERN.test(rawReader.name)) {
       return new ACR122UReader(rawReader);
     }
     return new Reader(rawReader);

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { NFC } from "../../../src/nfc/NFC.ts";
 import { Reader } from "../../../src/nfc/Reader.ts";
 import { ACR122UReader } from "../../../src/nfc/ACR122UReader.ts";
+import { AcsReader } from "../../../src/nfc/AcsReader.ts";
 import { UnsupportedTagError } from "../../../src/nfc/errors.ts";
 import type { Card } from "../../../src/nfc/types.ts";
 
@@ -275,22 +276,22 @@ describe("Reader.close (hardware)", () => {
 });
 
 // -----------------------------------------------------------------------
-// ACR122UReader tests — uses the shared reader
+// AcsReader tests (shared) — uses the shared reader
 // -----------------------------------------------------------------------
 
-describe("ACR122UReader (hardware)", () => {
-  // ACR122U pseudo-APDUs are sent via transmit(), which requires an active
+describe("AcsReader (hardware)", () => {
+  // ACS pseudo-APDUs are sent via transmit(), which requires an active
   // card connection. Ensure a card is present before running these tests.
   beforeAll(async () => {
-    if (!(sharedReader instanceof ACR122UReader)) return;
-    console.log(">>> [ACR122U] Ensure a card is on the reader...");
+    if (!(sharedReader instanceof AcsReader)) return;
+    console.log(">>> [AcsReader] Ensure a card is on the reader...");
     await waitForCard(sharedReader);
-    console.log(">>> [ACR122U] Card present — running ACR122U tests");
+    console.log(">>> [AcsReader] Card present — running AcsReader tests");
   }, 35_000);
 
   it("should read firmware version from ACR122U/ACR1252U", async () => {
-    if (!(sharedReader instanceof ACR122UReader)) {
-      console.log(">>> Skipping: not an ACR122U reader");
+    if (!(sharedReader instanceof AcsReader)) {
+      console.log(">>> Skipping: not an ACS reader");
       return;
     }
 
@@ -305,8 +306,8 @@ describe("ACR122UReader (hardware)", () => {
   });
 
   it("should control LEDs and return current state", async () => {
-    if (!(sharedReader instanceof ACR122UReader)) {
-      console.log(">>> Skipping: not an ACR122U reader");
+    if (!(sharedReader instanceof AcsReader)) {
+      console.log(">>> Skipping: not an ACS reader");
       return;
     }
 
@@ -342,8 +343,8 @@ describe("ACR122UReader (hardware)", () => {
   });
 
   it("should read LED state via getLedState()", async () => {
-    if (!(sharedReader instanceof ACR122UReader)) {
-      console.log(">>> Skipping: not an ACR122U reader");
+    if (!(sharedReader instanceof AcsReader)) {
+      console.log(">>> Skipping: not an ACS reader");
       return;
     }
 
@@ -355,6 +356,43 @@ describe("ACR122UReader (hardware)", () => {
       console.log(">>> getLedState():", result.value);
     }
   });
+
+  it("should get/set PICC operating parameter", async () => {
+    if (!(sharedReader instanceof AcsReader)) {
+      console.log(">>> Skipping: not an ACS reader");
+      return;
+    }
+
+    const getResult = await sharedReader.getPiccOperatingParameter();
+    if (getResult.ok) {
+      console.log(">>> PICC parameter:", getResult.value);
+
+      // Write back the same value to verify round-trip.
+      const setResult = await sharedReader.setPiccOperatingParameter(getResult.value);
+      if (setResult.ok) {
+        expect(setResult.value).toEqual(getResult.value);
+        console.log(">>> PICC parameter confirmed:", setResult.value);
+      } else {
+        console.log(`>>> Set PICC failed: ${setResult.error.message}`);
+      }
+    } else {
+      console.log(`>>> Get PICC failed: ${getResult.error.message}`);
+    }
+  });
+});
+
+// -----------------------------------------------------------------------
+// ACR122UReader tests (ACR122U-only) — uses the shared reader
+// -----------------------------------------------------------------------
+
+describe("ACR122UReader (hardware)", () => {
+  // setBuzzerOnCardDetection is ACR122U-only (FF 00 52).
+  beforeAll(async () => {
+    if (!(sharedReader instanceof ACR122UReader)) return;
+    console.log(">>> [ACR122U] Ensure a card is on the reader...");
+    await waitForCard(sharedReader);
+    console.log(">>> [ACR122U] Card present — running ACR122U-only tests");
+  }, 35_000);
 
   it("should disable and re-enable buzzer on card detection", async () => {
     if (!(sharedReader instanceof ACR122UReader)) {
@@ -385,27 +423,4 @@ describe("ACR122UReader (hardware)", () => {
     expect(enableResult.ok).toBe(true);
     console.log(">>> Buzzer re-enabled");
   }, 65_000);
-
-  it("should get/set PICC operating parameter", async () => {
-    if (!(sharedReader instanceof ACR122UReader)) {
-      console.log(">>> Skipping: not an ACR122U reader");
-      return;
-    }
-
-    const getResult = await sharedReader.getPiccOperatingParameter();
-    if (getResult.ok) {
-      console.log(">>> PICC parameter:", getResult.value);
-
-      // Write back the same value to verify round-trip.
-      const setResult = await sharedReader.setPiccOperatingParameter(getResult.value);
-      if (setResult.ok) {
-        expect(setResult.value).toEqual(getResult.value);
-        console.log(">>> PICC parameter confirmed:", setResult.value);
-      } else {
-        console.log(`>>> Set PICC failed: ${setResult.error.message}`);
-      }
-    } else {
-      console.log(`>>> Get PICC failed: ${getResult.error.message}`);
-    }
-  });
 });

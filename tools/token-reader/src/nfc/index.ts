@@ -3,6 +3,7 @@ export { NFC } from "./NFC.ts";
 export { Reader } from "./Reader.ts";
 export { AcsReader } from "./AcsReader.ts";
 export { ACR122UReader } from "./ACR122UReader.ts";
+export { ACR1252UReader } from "./ACR1252UReader.ts";
 
 // Event maps
 export type { NfcEventMap } from "./NFC.ts";

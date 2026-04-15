@@ -553,11 +553,13 @@ export function parseLedStateByte(byte: number): LedState {
 // Reader name patterns for auto-detection
 // ---------------------------------------------------------------------------
 
+/** Regex to detect ACR122U readers by PC/SC reader name. */
+export const ACR122U_READER_PATTERN = /ACR122/i;
+
 /**
- * Regex to detect ACR122U or ACR1252U readers (which support
- * the ACR122U compatibility command set).
+ * Regex to detect ACR1252U readers by PC/SC reader name.
  */
-export const ACR122_READER_PATTERN = /ACR122|ACR1252/i;
+export const ACR1252U_READER_PATTERN = /ACR1252/i;
 
 // ---------------------------------------------------------------------------
 // Transmit defaults

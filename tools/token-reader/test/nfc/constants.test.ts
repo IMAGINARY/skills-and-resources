@@ -17,7 +17,8 @@ import {
   CMD_GET_VERSION,
   ACR122_CMD_GET_FIRMWARE,
   ACR122_CMD_GET_PICC,
-  ACR122_READER_PATTERN,
+  ACR122U_READER_PATTERN,
+  ACR1252U_READER_PATTERN,
   SW_SUCCESS,
   PAGE_SIZE,
   ATR_MIN_LENGTH,
@@ -413,21 +414,39 @@ describe("constants", () => {
   });
 });
 
-describe("ACR122_READER_PATTERN", () => {
+describe("ACR122U_READER_PATTERN", () => {
   it("matches ACR122U reader names", () => {
-    expect(ACR122_READER_PATTERN.test("ACS ACR122U PICC Interface")).toBe(true);
+    expect(ACR122U_READER_PATTERN.test("ACS ACR122U PICC Interface")).toBe(true);
   });
 
-  it("matches ACR1252U reader names", () => {
-    expect(ACR122_READER_PATTERN.test("ACS ACR1252 1S CL Reader PICC Interface")).toBe(true);
+  it("does not match ACR1252U reader names", () => {
+    expect(ACR122U_READER_PATTERN.test("ACS ACR1252 1S CL Reader PICC Interface")).toBe(false);
   });
 
   it("matches case-insensitively", () => {
-    expect(ACR122_READER_PATTERN.test("acr122")).toBe(true);
+    expect(ACR122U_READER_PATTERN.test("acr122u")).toBe(true);
   });
 
   it("does not match unrelated reader names", () => {
-    expect(ACR122_READER_PATTERN.test("Generic USB Reader")).toBe(false);
+    expect(ACR122U_READER_PATTERN.test("Generic USB Reader")).toBe(false);
+  });
+});
+
+describe("ACR1252U_READER_PATTERN", () => {
+  it("matches ACR1252U reader names", () => {
+    expect(ACR1252U_READER_PATTERN.test("ACS ACR1252 1S CL Reader PICC Interface")).toBe(true);
+  });
+
+  it("does not match ACR122U reader names", () => {
+    expect(ACR1252U_READER_PATTERN.test("ACS ACR122U PICC Interface")).toBe(false);
+  });
+
+  it("matches case-insensitively", () => {
+    expect(ACR1252U_READER_PATTERN.test("acr1252")).toBe(true);
+  });
+
+  it("does not match unrelated reader names", () => {
+    expect(ACR1252U_READER_PATTERN.test("Generic USB Reader")).toBe(false);
   });
 });
 
