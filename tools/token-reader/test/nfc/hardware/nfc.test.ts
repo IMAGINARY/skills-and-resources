@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { NFC } from "../../../src/nfc/NFC.ts";
 import { Reader } from "../../../src/nfc/Reader.ts";
-import { ACR122Reader } from "../../../src/nfc/ACR122Reader.ts";
+import { ACR122UReader } from "../../../src/nfc/ACR122UReader.ts";
 
 /**
  * Hardware integration tests for the NFC class.
@@ -56,10 +56,10 @@ describe("NFC (hardware)", () => {
     expect(typeof detectedReader.name).toBe("string");
     expect(detectedReader.name.length).toBeGreaterThan(0);
 
-    // Check if ACR122 readers get the subclass
+    // Check if ACR122U readers get the subclass
     if (/ACR122|ACR1252/i.test(detectedReader.name)) {
-      expect(detectedReader).toBeInstanceOf(ACR122Reader);
-      console.log(">>> Detected as ACR122Reader");
+      expect(detectedReader).toBeInstanceOf(ACR122UReader);
+      console.log(">>> Detected as ACR122UReader");
     }
   });
 

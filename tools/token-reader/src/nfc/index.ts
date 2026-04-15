@@ -1,7 +1,7 @@
 // Core classes
 export { NFC } from "./NFC.ts";
 export { Reader } from "./Reader.ts";
-export { ACR122Reader } from "./ACR122Reader.ts";
+export { ACR122UReader } from "./ACR122UReader.ts";
 
 // Event maps
 export type { NfcEventMap } from "./NFC.ts";

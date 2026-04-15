@@ -96,7 +96,7 @@ export interface NfcForumType2TagCard {
 }
 
 // ---------------------------------------------------------------------------
-// ACR122 PICC operating parameter
+// ACR122U PICC operating parameter
 // ---------------------------------------------------------------------------
 
 /**
@@ -128,14 +128,14 @@ export interface PiccOperatingParameter {
 }
 
 // ---------------------------------------------------------------------------
-// ACR122 LED / Buzzer
+// ACR122U LED / Buzzer
 // ---------------------------------------------------------------------------
 
 /**
  * Current LED state of the ACR122U reader.
  *
- * Returned by {@link ACR122Reader.ledBuzzer} and
- * {@link ACR122Reader.getLedState}. The values reflect the actual
+ * Returned by {@link ACR122UReader.ledBuzzer} and
+ * {@link ACR122UReader.getLedState}. The values reflect the actual
  * hardware state reported by the reader's response byte:
  *
  * - Bit 0: Red LED (1 = on, 0 = off)

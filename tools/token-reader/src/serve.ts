@@ -8,7 +8,7 @@ import {
   TokenStateNFC,
   TokenErrorTypeNFC,
 } from "./state-server.ts";
-import { ACR122Reader, CardRemovedError, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
+import { ACR122UReader, CardRemovedError, Err, NFC, Ok, Reader, Result } from "./nfc/index.ts";
 import { appShutdownPromise } from "./shutdown-signal.ts";
 
 // @ts-expect-error No type declarations available
@@ -96,13 +96,13 @@ function createStateMessagePublisher(config: {
       // -> take care of buzzer muting and set PICC operating parameter
       {
         buzzerControl: if (typeof config.buzzer !== "undefined" && !buzzerDisablingCompleted) {
-          if (!(reader instanceof ACR122Reader)) {
+          if (!(reader instanceof ACR122UReader)) {
             console.warn(`${role}: ? reader does not support buzzer disabling, skipping`);
             buzzerDisablingCompleted = true;
             break buzzerControl;
           }
-          const acr122Reader: ACR122Reader = reader;
-          const buzzerResult = await acr122Reader.setBuzzerOnCardDetection(config.buzzer);
+          const acr122UReader: ACR122UReader = reader;
+          const buzzerResult = await acr122UReader.setBuzzerOnCardDetection(config.buzzer);
           if (!buzzerResult.ok) {
             console.warn(
               `${role}: ! buzzer ${config.buzzer ? "enabling" : "disabling"} failed (will retry later): ${buzzerResult.error}`,
@@ -119,7 +119,7 @@ function createStateMessagePublisher(config: {
           piccOperatingParameterSettingCompleted = true;
           break piccControl;
           /* Original code
-          if (!(reader instanceof ACR122Reader)) {
+          if (!(reader instanceof ACR122UReader)) {
             console.warn(
               `${role}: ? reader does not support setting PICC operating parameters, skipping`,
             );

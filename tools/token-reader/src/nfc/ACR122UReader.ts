@@ -1,5 +1,5 @@
 /**
- * ACR122Reader — extends Reader with ACR122U-specific commands.
+ * ACR122UReader — extends Reader with ACR122U-specific commands.
  *
  * Covers both the ACR122U and the ACR1252U (via its ACR122U
  * compatibility layer). Adds LED/buzzer control, firmware version
@@ -44,7 +44,7 @@ import {
  * Note: The standalone buzzer command (FF 00 52) is NOT available
  * on the ACR1252U's compatibility layer.
  */
-export class ACR122Reader extends Reader {
+export class ACR122UReader extends Reader {
   constructor(reader: CardReader) {
     super(reader);
   }
@@ -311,6 +311,6 @@ export class ACR122Reader extends Reader {
   }
 
   override toString(): string {
-    return `ACR122Reader(${this.name})`;
+    return `ACR122UReader(${this.name})`;
   }
 }
