@@ -22,7 +22,7 @@ type PCSCLite = ReturnType<typeof pcsclite>;
  * Event map for the NFC class.
  *
  * - `reader`: Emitted when a new PC/SC card reader is detected.
- *             Carries a {@link Reader} (or {@link ACR122UReader} for
+ *             Carries a {@link Reader} (or {@link AcsReader} subclass for
  *             ACR122U / ACR1252U hardware).
  * - `error`:  Emitted when an error occurs in the underlying pcsclite layer.
  */
@@ -43,7 +43,7 @@ export interface NfcEventMap {
  * Wraps the pcsclite native binding and provides typed events
  * for reader discovery. When a hardware reader is detected, the
  * NFC class automatically wraps it in a {@link Reader} (or
- * {@link ACR122UReader} for ACR122U/ACR1252U devices) and emits
+ * {@link ACR122UReader} for ACR122U devices) and emits
  * a `reader` event.
  *
  * @example
@@ -114,7 +114,8 @@ export class NFC extends TypedEventEmitter<NfcEventMap> {
    * Wraps a raw pcsclite CardReader in the appropriate Reader subclass.
    *
    * ACR122U and ACR1252U readers are detected by name and wrapped in
-    * {@link ACR122UReader}; all others get a plain {@link Reader}.
+    * an {@link AcsReader} subclass ({@link ACR122UReader}); all others
+    * get a plain {@link Reader}.
    */
   private wrapReader(rawReader: CardReader): Reader {
     if (ACR122_READER_PATTERN.test(rawReader.name)) {

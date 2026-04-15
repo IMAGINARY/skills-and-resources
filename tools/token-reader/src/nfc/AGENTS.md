@@ -31,7 +31,8 @@ src/nfc/
   index.ts              # Public API barrel exports
   NFC.ts                # Entry point wrapping pcsclite
   Reader.ts             # Core reader (auto-read on card detect)
-  ACR122UReader.ts       # ACR122U/ACR1252U subclass (LED/buzzer/PICC)
+  AcsReader.ts          # Abstract base for ACS readers (shared pseudo-APDUs)
+  ACR122UReader.ts      # ACR122U subclass (buzzer-on-detection toggle)
   TypedEventEmitter.ts  # Type-safe EventEmitter (composition pattern)
   types.ts              # Interfaces and type constants (Card, TagType, etc.)
   constants.ts          # APDU commands, ATR parsing, PC/SC constants
@@ -86,10 +87,10 @@ test/nfc/
 
 | Element          | Convention            | Examples                                 |
 | ---------------- | --------------------- | ---------------------------------------- |
-| Class files      | PascalCase            | `Reader.ts`, `ACR122UReader.ts`           |
+| Class files      | PascalCase            | `Reader.ts`, `AcsReader.ts`, `ACR122UReader.ts` |
 | Utility files    | camelCase             | `constants.ts`, `errors.ts`, `result.ts` |
 | Test files       | kebab-case `.test.ts` | `typed-event-emitter.test.ts`            |
-| Classes          | PascalCase            | `NFC`, `Reader`, `ACR122UReader`          |
+| Classes          | PascalCase            | `NFC`, `Reader`, `AcsReader`, `ACR122UReader` |
 | Interfaces/Types | PascalCase            | `Card`, `LedState`, `LedBuzzerOptions`   |
 | Constants        | SCREAMING_SNAKE_CASE  | `CMD_GET_DATA_UID`, `SW_SUCCESS`         |
 | Functions        | camelCase             | `buildReadCommand`, `parseAtr`           |
@@ -144,8 +145,10 @@ NfcError (extends Error)
   `emit()` is `protected` (only subclasses can emit).
 - **Factory auto-detection**: `NFC.wrapReader()` selects `ACR122UReader` vs `Reader` via
   `ACR122_READER_PATTERN` regex on reader name.
+- **Class hierarchy**: `Reader` → `AcsReader` (abstract, shared ACS pseudo-APDUs) →
+  `ACR122UReader` (ACR122U-only buzzer toggle). Future: `ACR1252UReader`.
 - **Retry logic**: `Reader.transmit()` detects `SCARD_W_RESET_CARD` and auto-reconnects once.
-- **Guard pattern**: ACR122UReader methods check `this._closed` at entry.
+- **Guard pattern**: `AcsReader` / `ACR122UReader` methods check `this._closed` at entry.
 
 ## Testing Conventions
 
