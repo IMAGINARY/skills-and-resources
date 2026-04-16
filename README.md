@@ -78,6 +78,8 @@ Available subcommands:
 Run `npm run token-reader -- --help` or
 `npm run token-reader -- <command> --help` for detailed usage information.
 
+For more details, see the [Token Reader README](tools/token-reader/README.md).
+
 ## NFC Tooling
 
 Various apps are available for reading and writing NFC tags:
