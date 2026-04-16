@@ -12,6 +12,15 @@ export interface UsePointerScrollOptions {
   snap?: boolean;
   snapStrictness?: SnapStrictness;
   smooth?: boolean;
+  /**
+   * Exponential decay rate (base 10) in 1/s for scroll inertia.
+   * The velocity decays as `v(t) = v₀ · 10^(-friction · t)`.
+   * The value represents how many orders of magnitude the velocity drops per second.
+   * 0 = no decay, Infinity = instant stop (no inertia).
+   */
+  inertiaFriction?: number;
+  /** Delay in ms after inertia stops before snap engages. Default: 200. */
+  snapDelay?: number;
 }
 
 const defaultOptions: Required<UsePointerScrollOptions> = {
@@ -19,6 +28,8 @@ const defaultOptions: Required<UsePointerScrollOptions> = {
   snap: true,
   snapStrictness: "mandatory",
   smooth: true,
+  inertiaFriction: 1.1,
+  snapDelay: 200,
 };
 
 export function usePointerScroll(
@@ -30,7 +41,10 @@ export function usePointerScroll(
   isFirst: ComputedRef<boolean>;
   isLast: ComputedRef<boolean>;
 } {
-  const { axis, snap, snapStrictness, smooth } = { ...defaultOptions, ...options };
+  const { axis, snap, snapStrictness, smooth, inertiaFriction, snapDelay } = {
+    ...defaultOptions,
+    ...options,
+  };
   const snapType: SnapType = snap ? `${axis} ${snapStrictness}` : "none";
 
   let currentChild: HTMLElement | null | undefined = null;
@@ -60,6 +74,7 @@ export function usePointerScroll(
     return { prev, next, isFirst, isLast };
 
   let dragController = useDrag(() => {}, {});
+
   watchImmediate(container, (container) => {
     dragController.clean();
     if (typeof container === "undefined" || container === null) return;
@@ -79,29 +94,119 @@ export function usePointerScroll(
 
     enableSnapping();
 
+    const scrollObj =
+      axis === "x"
+        ? {
+            getScrollPosition: () => containerValue.scrollLeft,
+            getMaxScrollPosition: () => containerValue.scrollWidth - containerValue.clientWidth,
+            setScrollPosition: (position: number) =>
+              containerValue.scrollTo({ left: position, behavior: "instant" }),
+          }
+        : {
+            getScrollPosition: () => containerValue.scrollTop,
+            getMaxScrollPosition: () => containerValue.scrollHeight - containerValue.clientHeight,
+            setScrollPosition: (position: number) =>
+              containerValue.scrollTo({ top: position, behavior: "instant" }),
+          };
+
+    const MIN_VELOCITY_PX_PER_MS = 0.03; // ~0.5px per 16ms frame
+    const scrollPositionTracker = new (class {
+      velocity: number = 0;
+      _pos: number = 0;
+      friction: number = 0;
+
+      set pos(position: number) {
+        this._pos = Math.max(0, Math.min(position, scrollObj.getMaxScrollPosition()));
+        scrollObj.setScrollPosition(position);
+      }
+
+      get pos(): number {
+        return this._pos;
+      }
+
+      update(dt: number) {
+        this.velocity *= 10 ** (-(this.friction * dt) / 1000);
+        const position = this.pos - this.velocity * dt;
+        this.pos = position; // assignment to a clamped setter
+        const preventedOverscroll = position - this.pos;
+        if (preventedOverscroll !== 0)
+          // Hitting a scroll boundary causes a full stop
+          this.velocity = 0;
+      }
+    })();
+
+    const scrollAnimator = (() => {
+      let lastTimestamp = performance.now();
+
+      const callback = (timestamp: DOMHighResTimeStamp) => {
+        const dt = timestamp - lastTimestamp;
+        lastTimestamp = timestamp;
+        scrollPositionTracker.update(dt);
+        if (
+          scrollPositionTracker.friction > 0 &&
+          Math.abs(scrollPositionTracker.velocity) < MIN_VELOCITY_PX_PER_MS
+        )
+          pause();
+      };
+
+      let requestAnimationFrameId: ReturnType<typeof requestAnimationFrame> | null = null;
+      let snapTimeoutId: ReturnType<typeof setTimeout> = setTimeout(enableSnapping, snapDelay);
+      const loop = (timestamp: DOMHighResTimeStamp) => {
+        requestAnimationFrameId = requestAnimationFrame(loop);
+        callback(timestamp);
+        clearTimeout(snapTimeoutId);
+        snapTimeoutId = setTimeout(enableSnapping, snapDelay);
+      };
+      const pause = () => {
+        if (requestAnimationFrameId === null) return;
+
+        cancelAnimationFrame(requestAnimationFrameId);
+        requestAnimationFrameId = null;
+      };
+
+      const play = () => {
+        if (requestAnimationFrameId !== null) return;
+
+        disableSnapping();
+        pause();
+        lastTimestamp = performance.now();
+        requestAnimationFrameId = requestAnimationFrame(loop);
+      };
+      return {
+        pause,
+        play,
+      };
+    })();
+
+    let first = true;
     dragController = useDrag(
       (state) => {
         const {
-          delta: [x, y],
-          dragging,
-          first,
+          vxvy: [vx, vy],
           last,
         } = state;
 
-        // oxlint-disable-next-line typescript/no-meaningless-void-operator
-        if (last) return void enableSnapping();
+        // The "first" event of the drag gesture does not account for events that are considered
+        // unintentional. Therefore, we have to track that state ourselves.
+        if (first) {
+          first = false;
+          scrollPositionTracker.friction = 0;
+          scrollPositionTracker.pos = scrollObj.getScrollPosition();
+        }
 
-        if (!dragging) return;
+        scrollAnimator.play();
+        scrollPositionTracker.velocity = axis === "x" ? vx : vy;
 
-        // oxlint-disable-next-line typescript/no-meaningless-void-operator
-        if (first) return void disableSnapping();
-
-        containerValue.scrollBy(-x, -y);
+        if (last) {
+          scrollPositionTracker.friction = inertiaFriction;
+          first = true; // The next event will be treated as the "first" of the gesture
+        }
       },
       {
         domTarget: containerValue,
         manual: true,
         axis,
+        triggerAllEvents: true, // necessary to receive events that are considered unintentional by the composable
       },
     );
 
@@ -117,68 +222,6 @@ export function usePointerScroll(
       containerValue?.children[0] instanceof HTMLElement ? containerValue?.children[0] : null;
 
     dragController.bind();
-
-    /*
-      const containerValue = toValue(container);
-      currentChild =
-        containerValue?.children[0] instanceof HTMLElement ? containerValue?.children[0] : null;
-
-      if (typeof containerValue === "undefined" || containerValue === null) return;
-
-      const lastScroll = { left: containerValue.scrollLeft, top: containerValue.scrollTop };
-
-      const activePointers = new Array<number>();
-
-      containerValue.style.scrollSnapType = snapType;
-      containerValue.style.scrollBehavior = smoothSnapping ? "smooth" : "auto";
-
-      const handlePointerDown = (e: PointerEvent) => {
-        containerValue.setPointerCapture(e.pointerId);
-        if (!activePointers.includes(e.pointerId)) activePointers.push(e.pointerId);
-        lastScroll.left = containerValue.scrollLeft;
-        lastScroll.top = containerValue.scrollTop;
-
-        containerValue.style.scrollSnapType = "none";
-        containerValue.style.scrollBehavior = "auto";
-      };
-
-      const handlePointerMove = (e: PointerEvent) => {
-        const lastPointerId = activePointers[activePointers.length - 1];
-        if (typeof lastPointerId === "undefined") return;
-        if (lastPointerId !== e.pointerId) return;
-
-        if (horizontal) {
-          containerValue.scrollLeft -= e.movementX;
-          lastScroll.left = containerValue.scrollLeft;
-        }
-        if (vertical) {
-          containerValue.scrollTop -= e.movementY;
-          lastScroll.top = containerValue.scrollTop;
-        }
-      };
-
-      const handlePointerUpOrCancel = (e: PointerEvent) => {
-        containerValue.releasePointerCapture(e.pointerId);
-        const pointerIdIdx = activePointers.findLastIndex((id) => id === e.pointerId);
-        if (pointerIdIdx === -1) return;
-        activePointers.splice(pointerIdIdx, 1);
-        if (activePointers.length > 0) return;
-        containerValue.style.scrollSnapType = snapType;
-        containerValue.style.scrollBehavior = smoothSnapping ? "smooth" : "auto";
-      };
-
-      const handleScrollSnapChange = (e: Event) => {
-        // @ts-expect-error: e.snapTargetBlock is not defined (API too new)
-        currentChild = e.snapTargetInline;
-        isFirstInternal.value = currentChild === containerValue.firstElementChild;
-        isLastInternal.value = currentChild === containerValue.lastElementChild;
-      };
-
-      useEventListener(container, "pointerdown", handlePointerDown);
-      useEventListener(container, "pointermove", handlePointerMove);
-      useEventListener(container, "scrollsnapchange", handleScrollSnapChange);
-      useEventListener(container, ["pointerup", "pointercancel", "pointer"], handlePointerUpOrCancel);
-      */
   });
 
   return { prev, next, isFirst, isLast };
