@@ -106,7 +106,10 @@ function createStateMessagePublisher(config: {
       {
         buzzerControl: if (typeof config.buzzer !== "undefined" && !buzzerDisablingCompleted) {
           if (!(reader instanceof ACR122UReader)) {
-            console.warn(`${role}: ? reader does not support buzzer disabling, skipping`);
+            console.info(
+              `${role}: # --buzzer/--no-buzzer ignored (not supported by this reader;`
+                + ` for ACR1252U use scripts/disable-acr1252u-buzzer.ts)`,
+            );
             buzzerDisablingCompleted = true;
             break buzzerControl;
           }
