@@ -85,6 +85,7 @@ const challenge = computed(() => challenges[props.challengeId]);
   color: var(--color-white);
   background-color: var(--color-button);
   border-radius: 30px;
+  border-width: 0;
 }
 
 .challenge-label-box-outer > button.disabled {

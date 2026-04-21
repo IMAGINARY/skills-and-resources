@@ -162,6 +162,7 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  border-width: 0;
   background-color: var(--color-button);
 
   &:focus {
