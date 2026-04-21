@@ -80,6 +80,9 @@ const challenge = computed(() => challenges[props.challengeId]);
 }
 
 .challenge-label-box-outer > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 60px;
   color: var(--color-white);
