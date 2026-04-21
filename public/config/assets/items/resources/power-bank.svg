@@ -8,7 +8,7 @@
                 <rect x="0" y="0" width="264.567" height="264.567"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
-                <g transform="matrix(0.214248,0,0,0.214248,129.283,119.877)">
+                <g transform="matrix(0.213482,0,0,0.213482,131.681,124.005)">
                     <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                         <clipPath id="_clip2">
                             <rect x="0" y="0" width="1285.33" height="1285.33"/>
@@ -17,13 +17,13 @@
                             <g id="Rectangle-1" serif:id="Rectangle 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
                                 <path d="M151,117L332,117C337.52,117 342,121.48 342,127L342,427C342,432.52 337.52,437 332,437L151,437C145.48,437 141,432.52 141,427L141,127C141,121.48 145.48,117 151,117Z" style="fill:white;stroke:black;stroke-width:10px;"/>
                             </g>
-                            <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,-1,5)">
+                            <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,1.33333,4.32985)">
                                 <path d="M179,377L303,377" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                             </g>
-                            <g id="Shape-2-copy" serif:id="Shape 2 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <g id="Shape-2-copy" serif:id="Shape 2 copy" transform="matrix(2.66667,0,0,2.66667,4,0)">
                                 <path d="M178,403L302,403" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                             </g>
-                            <g id="Shape-2-copy-2" serif:id="Shape 2 copy 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <g id="Shape-2-copy-2" serif:id="Shape 2 copy 2" transform="matrix(2.66667,0,0,2.66667,4,0.7)">
                                 <path d="M178,354L302,354" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                             </g>
                             <g id="Rectangle-2" serif:id="Rectangle 2" transform="matrix(2.66667,0,0,2.66667,0,0)">

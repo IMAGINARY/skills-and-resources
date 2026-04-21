@@ -4,7 +4,7 @@
     <g transform="matrix(1,0,0,1,-159,-365.512)">
         <g id="S1_First-Aid" transform="matrix(1,0,0,1,159,365.512)">
             <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
-            <g transform="matrix(0.188542,0,0,0.188542,130.169,132.283)">
+            <g transform="matrix(0.175561,0,0,0.175561,128.283,128.283)">
                 <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                     <g id="Shape-12" serif:id="Shape 12" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M308,297L376,304L439,180L417,157L304,256L295,281L308,297Z" style="fill:white;stroke:black;stroke-width:5px;"/>
@@ -13,7 +13,7 @@
                         <path d="M432,157C432,157 455.5,165.2 449,186C415.28,293.98 404.67,304.82 386,317C345.12,343.67 299.84,372.58 292,376C299.91,372.55 286.13,420 245,445C210.75,465.82 172,472 172,472L70,392C70,392 40.31,307.82 132,290C184.29,279.84 198.12,280.93 240,257C260.69,245.18 300.85,213.26 325,185C335.02,173.27 347,184 347,184C347,184 365.91,151.3 372,146C387.05,132.91 402,141 402,141C402,141 410.33,119.09 421,121C431.67,122.91 442.91,130.11 436,147C429.09,163.89 380,263 380,263C380,263 348.37,283.06 338,289" style="fill:white;stroke:black;stroke-width:10px;"/>
                     </g>
                     <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M144,391C149.31,330.41 198.65,298.83 263,310C270.81,307.4 324.05,269.25 340,293C346.38,302.51 326.36,317.9 318,326C307.72,335.96 293.55,347.01 279,361C270.82,368.89 267.78,386.72 260,405" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        <path d="M144,391C149.31,330.41 198.65,298.83 263,310C270.81,307.4 324.05,269.25 340,293C346.38,302.51 326.36,317.9 318,326C307.72,335.96 293.55,347.01 279,361C270.82,368.89 267.78,386.72 260,405" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-11" serif:id="Shape 11" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M324,285C313.71,290.82 295.26,308.1 290,319C286.54,326.16 297,341 297,341" style="fill:none;stroke:black;stroke-width:10px;"/>
@@ -22,19 +22,19 @@
                         <path d="M402.16,141.48C384.12,177.013 366.077,212.55 348.03,248.09C348.13,248.003 348.227,247.92 348.32,247.84C348.227,247.92 348.13,248.003 348.03,248.09C348.03,248.09 325.32,261.48 313.97,268.17L314.41,268.17L313.7,268.17" style="fill:none;stroke:black;stroke-width:10px;"/>
                     </g>
                     <g id="Shape-4" serif:id="Shape 4" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M347.97,182.74C337.083,201.607 326.193,220.473 315.3,239.34C315.3,239.34 292.15,250.64 280.58,256.28L280.55,256.28" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        <path d="M347.97,182.74C337.083,201.607 326.193,220.473 315.3,239.34C315.3,239.34 292.15,250.64 280.58,256.28L280.55,256.28" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M383.77,263.03C388.303,265.803 392.84,268.58 397.38,271.36C397.393,271.493 397.41,271.63 397.43,271.77" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M413.89,192.45C418.53,195.46 428.67,198.99 432,200" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                        <path d="M416,193C420.87,195.51 428.67,198.99 432,200" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-7" serif:id="Shape 7" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M388.94,171.68C393.14,170.51 409.04,178.53 409.04,178.53" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                        <path d="M388.94,171.68C397.04,174.42 409.04,178.53 409.04,178.53" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-10" serif:id="Shape 10" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M359.56,177.54C363.887,179.987 368.217,182.43 372.55,184.87" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
+                        <path d="M356,176C361.96,176.98 370.57,181.03 375,185" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>
                     </g>
                     <g id="Shape-8" serif:id="Shape 8" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M346.97,248.68C351.16,249.3 359.86,257.1 361.34,257.1" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:round;"/>

@@ -4,7 +4,7 @@
     <g transform="matrix(1,0,0,1,-2298.65,-1.13687e-13)">
         <g id="R8_Emergency-Bag" transform="matrix(1,0,0,1,2298.65,1.13687e-13)">
             <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
-            <g transform="matrix(0.196275,0,0,0.196275,132.14,137.427)">
+            <g transform="matrix(0.200389,0,0,0.200389,132.283,129.429)">
                 <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                     <g id="Shape-14" serif:id="Shape 14" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M387,87C404.18,95.93 425.28,119.9 414,209C406.23,270.38 397,279 397,279C397,279 406.31,370.29 386,410C375.72,430.11 341.21,424.41 339,413C336.79,401.59 355,258 355,258L373,255C373,255 383.6,212.94 384,186C384.4,159.06 380,129 380,129L339,151L325,112C325,112 369.35,77.83 387,87Z" style="fill:white;"/>
@@ -25,14 +25,14 @@
                         <path id="Shape-5" serif:id="Shape 5" d="M144,417.01C144,417.01 95.02,443.82 87.14,382.1C80.15,327.34 83.5,309.94 85.14,295.26C86.78,280.57 95.09,259.31 111.12,257.32C125.35,255.57 130.1,259.32 130.1,259.32" style="fill:none;stroke:black;stroke-width:10px;"/>
                         <path id="Shape-2" serif:id="Shape 2" d="M157.08,115.58C157.08,115.58 118.19,84.15 99.13,88.63C80.06,93.11 66.41,121.35 68.16,186.45C69.9,251.56 86.14,285.27 86.14,285.27" style="fill:none;stroke:black;stroke-width:10px;"/>
                         <path id="Shape-12" serif:id="Shape 12" d="M157.56,330.07C157.56,330.07 185.91,307.57 241.31,307.57C296.71,307.57 327.75,330.97 327.75,330.97" style="fill:none;stroke:black;stroke-width:10px;"/>
-                        <path id="Shape-4" serif:id="Shape 4" d="M72.96,128.31C82.18,119.76 95.33,125.95 104.78,130.53C106.233,131.27 107.69,132.007 109.15,132.74" style="fill:none;stroke:black;stroke-width:10px;"/>
-                        <path id="Shape-3" serif:id="Shape 3" d="M111.12,259.32C111.12,259.32 98.84,204.11 99.13,178.47C99.41,153.18 104.12,129.55 104.12,129.55L142.09,152.51" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        <path id="Shape-4" serif:id="Shape 4" d="M72.96,128.31C82.18,119.76 95.33,125.95 104.78,130.53C106.23,131.27 137.54,150.26 139,151" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        <path id="Shape-3" serif:id="Shape 3" d="M111,257C111,257 98.84,204.11 99.13,178.47C99.41,153.18 104,130 104,130L142.09,152.51" style="fill:none;stroke:black;stroke-width:10px;"/>
                     </g>
                     <g id="Group-1-copy" serif:id="Group 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path id="Shape-51" serif:id="Shape 5" d="M337.91,415.04C337.91,415.04 387.98,440.82 395.86,379.1C402.85,324.34 399.5,306.95 397.86,292.26C396.22,277.57 387.91,256.31 371.88,254.33C357.65,252.57 352.9,256.33 352.9,256.33" style="fill:none;stroke:black;stroke-width:10px;"/>
                         <path id="Shape-21" serif:id="Shape 2" d="M325.92,112.59C325.92,112.59 364.81,81.16 383.87,85.63C402.94,90.11 416.59,118.35 414.84,183.46C413.1,248.56 396.86,282.28 396.86,282.28" style="fill:none;stroke:black;stroke-width:10px;"/>
                         <path id="Shape-41" serif:id="Shape 4" d="M410.04,125.31C400.82,116.77 387.67,122.95 378.22,127.54C376.767,128.273 375.31,129.01 373.85,129.75" style="fill:none;stroke:black;stroke-width:10px;"/>
-                        <path id="Shape-31" serif:id="Shape 3" d="M371.88,256.33C371.88,256.33 384.16,201.11 383.87,175.47C383.59,150.18 378.88,126.56 378.88,126.56L337.91,150.52" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        <path id="Shape-31" serif:id="Shape 3" d="M371.88,256.33C371.88,256.33 384.16,201.11 383.87,175.47C383.59,150.18 379,127 379,127L337.91,150.52" style="fill:none;stroke:black;stroke-width:10px;"/>
                     </g>
                     <g id="Shape-13" serif:id="Shape 13" transform="matrix(2.66667,0,0,2.66667,0,0)">
                         <path d="M241,145.68L241,270.89" style="fill:none;stroke:black;stroke-width:10px;"/>

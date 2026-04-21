@@ -4,7 +4,7 @@
     <g transform="matrix(1,0,0,1,-465.368,-5.68434e-14)">
         <g id="R2_Flashlight" transform="matrix(1,0,0,1,465.368,5.68434e-14)">
             <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
-            <g transform="matrix(0.176378,0,0,0.176378,129.886,138.401)">
+            <g transform="matrix(0.175236,0,0,0.175236,132.585,132.417)">
                 <g transform="matrix(1,0,0,1,-642.667,-642.667)">
                     <clipPath id="_clip1">
                         <rect x="0" y="0" width="1285.33" height="1285.33"/>
@@ -38,13 +38,13 @@
                             <path d="M367.22,116.71C409.46,155.15 434.79,196.09 423.81,208.16C412.82,220.23 369.68,198.85 327.45,160.41C285.21,121.96 259.87,81.02 270.86,68.95C281.84,56.88 324.98,78.26 367.22,116.71Z" style="stroke:black;stroke-width:4px;"/>
                         </g>
                         <g id="Shape-5" serif:id="Shape 5" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                            <path d="M215,130C215.06,130.07 240.11,180.78 279,217C318.45,253.75 373,266 373,266" style="fill:none;stroke:white;stroke-width:10px;stroke-linecap:round;"/>
+                            <path d="M215,129C215.06,129.07 240.11,180.78 279,217C318.45,253.75 369,266 369,266" style="fill:none;stroke:white;stroke-width:10px;stroke-linecap:round;"/>
                         </g>
                         <g id="Ellipse-1-copy-2" serif:id="Ellipse 1 copy 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
                             <path d="M360.22,122.71C402.45,161.15 427.79,202.09 416.81,214.16C405.82,226.23 362.68,204.85 320.45,166.41C278.21,127.96 252.87,87.02 263.86,74.95C274.84,62.88 317.98,84.26 360.22,122.71Z" style="fill:white;stroke:black;stroke-width:4px;"/>
                         </g>
                         <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                            <path d="M184,236C184,236 185.7,258.88 210,283C235.62,308.43 269,308 269,308" style="fill:none;stroke:white;stroke-width:10px;"/>
+                            <path d="M185,239C185,239 185.7,258.88 210,283C235.62,308.43 265,308 265,308" style="fill:none;stroke:white;stroke-width:10px;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;"/>
                         </g>
                         <g id="Shape-9" serif:id="Shape 9" transform="matrix(2.66667,0,0,2.66667,0,0)">
                             <path d="M326.82,18.44L311.28,56.85" style="fill:none;stroke:black;stroke-width:10px;"/>

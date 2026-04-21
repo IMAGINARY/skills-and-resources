@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;">
+<svg width="100%" height="100%" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
     <g transform="matrix(1,0,0,1,-752.746,-365.512)">
         <g id="S3_Personal-Safety" transform="matrix(1,0,0,1,752.746,365.512)">
-            <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
-            <g transform="matrix(0.181726,0,0,0.181726,132.283,136.283)">
-                <g transform="matrix(1,0,0,1,-642.667,-642.667)">
-                    <g id="Shape-1-copy" serif:id="Shape 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M241,29C241,29 298.79,74 351,74C403.21,74 454,50 454,50C454,50 440.62,248.86 408,319C343.85,456.93 241,467 241,467M241,29C241,29 183.21,74 131,74C78.79,74 28,50 28,50C28,50 41.38,248.86 74,319C138.15,456.93 241,467 241,467" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M288,166C288,166 279.63,234 241,234C198.63,234 192.73,182.28 193,153" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M294,147C294,147 300.34,143.42 305,148C309.66,152.58 310.99,164.33 306,173C301.01,181.67 297.1,191.16 293,190C288.9,188.85 288,183 288,183" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-11" serif:id="Shape 11" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M275,204C275,212.04 275.33,225 278,225C278,225 329.83,242.28 351,253C355.49,260.93 359.93,282 360,282C360,282 371.55,346.18 352,365C333.97,382.36 314.86,368.33 287,357C251.01,342.36 215,323 215,323L232,285L314,306" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-11-copy" serif:id="Shape 11 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M207,216C206.06,213.76 205.54,226.85 206,226C206,226 142.87,250.38 143,255C143,255 123.95,336.83 137,368C143.78,384.19 185.08,386.95 220,369C248.79,354.2 253,343 253,343" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-12" serif:id="Shape 12" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M247,252C247,252 261.3,287.74 271,278C280.7,268.26 279,222 279,222L247,252Z" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-12-copy" serif:id="Shape 12 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M238,252C238,252 223.7,287.74 214,278C204.3,268.26 206,222 206,222L238,252Z" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-10" serif:id="Shape 10" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M221.7,205.53C229.57,218.43 248.65,219.62 257.57,207.47C257.543,207.503 257.513,207.533 257.48,207.56" style="fill:none;stroke:black;stroke-width:8px;"/>
-                    </g>
-                    <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M229.89,181.22C226.59,190.82 240.16,193.46 245.75,188.55C245.75,188.55 244.2,171.64 243,155" style="fill:none;stroke:black;stroke-width:8px;"/>
-                    </g>
-                    <g id="Shape-3-copy" serif:id="Shape 3 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M193,150C193,150 177.66,145.42 173,150C168.34,154.58 171.01,166.33 176,175C180.99,183.67 184.9,193.16 189,192C193.1,190.85 194,185 194,185" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M225,101C225.85,104.27 222.13,113.72 241,114C255.96,114.22 259,101 259,101L278,120C278,120 281.79,167 287,167C290.19,167 296.07,156.42 297,138C297.93,119.58 299.49,114.04 292,102C282.39,86.55 258.44,77.36 241,77C227.93,76.73 216.44,82.48 205,91C193.99,99.21 184.64,112.05 187,138C187.42,142.61 198.42,159.75 201,160C203.22,160.22 199.86,123.32 201,121C205.76,111.3 224.15,97.73 225,101Z" style="stroke:black;stroke-width:8px;"/>
-                    </g>
-                    <g id="Shape-13" serif:id="Shape 13" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M231,285C231,285 204.72,271.57 195,274C185.28,276.43 166,308 166,308L175,339L201,317C201,317 205.02,323.13 213,323" style="fill:none;stroke:black;stroke-width:8px;"/>
-                    </g>
-                    <g id="Shape-18" serif:id="Shape 18" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M165.85,381.2C164.723,397.913 163.597,414.627 162.47,431.34C162.543,431.147 162.617,430.957 162.69,430.77" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-19" serif:id="Shape 19" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M323,371C323.27,381.18 323.73,390.82 324,401C324.49,410.82 324.38,417.12 324.86,426.94C325.067,426.587 325.27,426.23 325.47,425.87" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-20" serif:id="Shape 20" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M169.89,328.47C160.91,331.68 153.05,346.45 153.05,355.82L153.05,355.64" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-21" serif:id="Shape 21" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M335.25,318.12C336.83,319.85 344.62,338.29 342.43,338.29" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-22" serif:id="Shape 22" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M146.56,255.01L148.4,255.01C148.47,257.71 157.49,279.24 160,284" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-23" serif:id="Shape 23" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M347.91,253.01L342.13,253.01C339.67,258.457 337.21,263.907 334.75,269.36L334.75,269.1" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-13-copy" serif:id="Shape 13 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M267,292C267,292 288.67,266.18 317,267C333.6,267.48 351,301 351,301L335,320L312,305" style="fill:none;stroke:black;stroke-width:10px;"/>
-                    </g>
-                    <g id="Shape-9" serif:id="Shape 9" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M266.97,156.49C268.08,155.89 266.32,153.5 266,152C266,152 261.2,151.64 260.6,152.18C257.59,152.18 258.32,162.74 261.56,163.33C265.56,164.05 266.98,161.26 267,157" style="stroke:black;stroke-width:6px;"/>
-                    </g>
-                    <g id="Shape-9-copy" serif:id="Shape 9 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
-                        <path d="M224.97,157.49C226.08,156.89 224.32,154.5 224,153C224,153 219.2,152.64 218.6,153.18C215.59,153.18 216.32,163.74 219.56,164.33C223.56,165.05 224.98,162.26 225,158" style="stroke:black;stroke-width:6px;"/>
+            <g>
+                <rect x="0" y="0" width="264.567" height="264.567" style="fill:none;"/>
+                <g transform="matrix(0.18406,0,0,0.18406,131.625,126.746)">
+                    <g transform="matrix(1,0,0,1,-642.667,-642.667)">
+                        <g id="Shape-1-copy" serif:id="Shape 1 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M241,29C241,29 298.79,74 351,74C403.21,74 454,50 454,50C454,50 440.62,248.86 408,319C343.85,456.93 241,467 241,467M241,29C241,29 183.21,74 131,74C78.79,74 28,50 28,50C28,50 41.38,248.86 74,319C138.15,456.93 241,467 241,467" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:10px;"/>
+                        </g>
+                        <g id="Shape-2" serif:id="Shape 2" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M288,166C288,166 279.63,234 241,234C198.63,234 192.73,182.28 193,153" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-3" serif:id="Shape 3" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M294,147C294,147 300.34,143.42 305,148C309.66,152.58 310.99,164.33 306,173C301.01,181.67 297.1,191.16 293,190C288.9,188.85 288,183 288,183" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-11" serif:id="Shape 11" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M275,209C275,217.04 275.33,225 278,225C278,225 329.83,242.28 351,253C355.49,260.93 359.93,282 360,282C360,282 371.55,346.18 352,365C333.97,382.36 314.86,368.33 287,357C251.01,342.36 215,323 215,323L232,285L314,306" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-11-copy" serif:id="Shape 11 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M207,216C206.06,213.76 205.54,226.85 206,226C206,226 142.87,250.38 143,255C143,255 123.95,336.83 137,368C143.78,384.19 185.08,386.95 220,369C248.79,354.2 253,343 253,343" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-12" serif:id="Shape 12" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M247,252C247,252 261.3,287.74 271,278C280.7,268.26 279,222 279,222L247,252Z" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-12-copy" serif:id="Shape 12 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M238,252C238,252 223.7,287.74 214,278C204.3,268.26 206,222 206,222L238,252Z" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-10" serif:id="Shape 10" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M221.7,205.53C229.57,218.43 248.65,219.62 257.57,207.47C257.543,207.503 257.513,207.533 257.48,207.56" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-6" serif:id="Shape 6" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M229.89,181.22C226.59,190.82 240.16,193.46 245.75,188.55C245.75,188.55 244.2,171.64 243,155" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-3-copy" serif:id="Shape 3 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M193,150C193,150 177.66,145.42 173,150C168.34,154.58 171.01,166.33 176,175C180.99,183.67 184.9,193.16 189,192C193.1,190.85 194,185 194,185" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-1" serif:id="Shape 1" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M225,101C225.85,104.27 222.13,113.72 241,114C255.96,114.22 259,101 259,101L278,120C278,120 281.79,167 287,167C290.19,167 296.07,156.42 297,138C297.93,119.58 299.49,114.04 292,102C282.39,86.55 258.44,77.36 241,77C227.93,76.73 216.44,82.48 205,91C193.99,99.21 184.64,112.05 187,138C187.42,142.61 198.42,159.75 201,160C203.22,160.22 199.86,123.32 201,121C205.76,111.3 224.15,97.73 225,101Z" style="stroke:black;stroke-width:8px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-13" serif:id="Shape 13" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M231,285C231,285 204.72,271.57 195,274C185.28,276.43 166,308 166,308L175,339L201,317C201,317 205.02,323.13 213,323" style="fill:none;stroke:black;stroke-width:8px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-18" serif:id="Shape 18" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M165.85,381.2C164.723,397.913 163.597,414.627 162.47,431.34C162.543,431.147 162.617,430.957 162.69,430.77" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-19" serif:id="Shape 19" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M323,371C323.27,381.18 323.73,390.82 324,401C324.49,410.82 324.38,417.12 324.86,426.94C325.067,426.587 325.27,426.23 325.47,425.87" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-20" serif:id="Shape 20" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M169.89,328.47C160.91,331.68 153.05,346.45 153.05,355.82L153.05,355.64" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-21" serif:id="Shape 21" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M335.25,318.12C336.83,319.85 341.92,336.5 343,340" style="fill:none;stroke:black;stroke-width:10px;"/>
+                        </g>
+                        <g id="Shape-22" serif:id="Shape 22" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M146.56,255.01L148.4,255.01C148.47,257.71 157.49,279.24 160,284" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-23" serif:id="Shape 23" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M347.91,253.01L342.13,253.01C339.67,258.46 334.63,271.15 334,272C333.64,273.3 332.03,275.93 333,274" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-13-copy" serif:id="Shape 13 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M267,292C267,292 288.67,266.18 317,267C333.6,267.48 351,301 351,301L335,320L312,305" style="fill:none;stroke:black;stroke-width:10px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-9" serif:id="Shape 9" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M266.97,156.49C268.08,155.89 266.32,153.5 266,152C266,152 261.2,151.64 260.6,152.18C257.59,152.18 258.32,162.74 261.56,163.33C265.56,164.05 266.98,161.26 267,157" style="stroke:black;stroke-width:6px;stroke-linecap:butt;"/>
+                        </g>
+                        <g id="Shape-9-copy" serif:id="Shape 9 copy" transform="matrix(2.66667,0,0,2.66667,0,0)">
+                            <path d="M224.97,157.49C226.08,156.89 224.32,154.5 224,153C224,153 219.2,152.64 218.6,153.18C215.59,153.18 216.32,163.74 219.56,164.33C223.56,165.05 224.98,162.26 225,158" style="stroke:black;stroke-width:6px;stroke-linecap:butt;"/>
+                        </g>
                     </g>
                 </g>
             </g>
