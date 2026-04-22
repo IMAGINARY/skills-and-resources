@@ -217,6 +217,7 @@ export function usePointerScroll(
     const handleScrollSnapChange = (e: Event) => {
       // @ts-expect-error: e.snapTargetBlock is not defined (API too new)
       currentChild = axis === "x" ? e.snapTargetInline : e.snapTargetBlock;
+      if (currentChild === null) return;
       isFirstInternal.value = currentChild === containerValue.firstElementChild;
       isLastInternal.value = currentChild === containerValue.lastElementChild;
     };
