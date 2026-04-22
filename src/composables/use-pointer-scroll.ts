@@ -194,12 +194,15 @@ export function usePointerScroll(
           scrollPositionTracker.pos = scrollObj.getScrollPosition();
         }
 
-        scrollAnimator.play();
         scrollPositionTracker.velocity = axis === "x" ? vx : vy;
+        scrollAnimator.play();
 
         if (last) {
-          scrollPositionTracker.friction = inertiaFriction;
           first = true; // The next event will be treated as the "first" of the gesture
+
+          if (scrollPositionTracker.velocity === 0)
+            scrollAnimator.pause(); // pause immediately
+          else scrollPositionTracker.friction = inertiaFriction; // start inertia decay
         }
       },
       {
