@@ -221,6 +221,7 @@ export function usePointerScroll(
       isFirstInternal.value = currentChild === containerValue.firstElementChild;
       isLastInternal.value = currentChild === containerValue.lastElementChild;
     };
+    useEventListener(container, "scrollsnapchanging", handleScrollSnapChange);
     useEventListener(container, "scrollsnapchange", handleScrollSnapChange);
 
     currentChild =
