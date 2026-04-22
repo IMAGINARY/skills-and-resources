@@ -178,20 +178,18 @@ export function usePointerScroll(
       };
     })();
 
-    let first = true;
     dragController = useDrag(
       (state) => {
         const {
           vxvy: [vx, vy],
+          first,
           last,
           tap,
         } = state;
 
-        // The "first" event of the drag gesture does not account for events that are considered
-        // unintentional. Therefore, we have to track that state ourselves.
         if (first) {
-          first = false;
           scrollPositionTracker.friction = 0;
+          scrollPositionTracker.velocity = 0;
           scrollPositionTracker.pos = scrollObj.getScrollPosition();
         }
 
@@ -199,8 +197,6 @@ export function usePointerScroll(
         scrollAnimator.play();
 
         if (last || tap) {
-          first = true; // The next event will be treated as the "first" of the gesture
-
           if (scrollPositionTracker.velocity === 0)
             scrollAnimator.pause(); // pause immediately
           else scrollPositionTracker.friction = inertiaFriction; // start inertia decay
@@ -209,8 +205,6 @@ export function usePointerScroll(
       {
         domTarget: containerValue,
         manual: true,
-        axis,
-        triggerAllEvents: true, // necessary to receive events that are considered unintentional by the composable
       },
     );
 
