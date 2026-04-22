@@ -184,6 +184,7 @@ export function usePointerScroll(
         const {
           vxvy: [vx, vy],
           last,
+          tap,
         } = state;
 
         // The "first" event of the drag gesture does not account for events that are considered
@@ -197,7 +198,7 @@ export function usePointerScroll(
         scrollPositionTracker.velocity = axis === "x" ? vx : vy;
         scrollAnimator.play();
 
-        if (last) {
+        if (last || tap) {
           first = true; // The next event will be treated as the "first" of the gesture
 
           if (scrollPositionTracker.velocity === 0)
