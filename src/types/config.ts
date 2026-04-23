@@ -470,6 +470,7 @@ export const AssetUrlSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.
 export type AssetUrl = StaticDecode<typeof AssetUrlSchema>;
 
 export const ItemTypeSchema = Type.Instantiate(ConfigSchema.$defs, ConfigSchema.$defs.ItemType);
+export const ItemTypes = [...ItemTypeSchema.enum.values()];
 export type ItemType = StaticDecode<typeof ItemTypeSchema>;
 
 // Item config

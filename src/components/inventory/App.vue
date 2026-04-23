@@ -10,6 +10,7 @@ import AppIntro from "@/components/common/AppIntro.vue";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import TokenErrorPanel from "@/components/common/TokenErrorPanel.vue";
 import CharacterProfile from "@/components/inventory/CharacterProfile.vue";
+import ItemSelectorPanel from "@/components/inventory/ItemSelectorPanel.vue";
 import ItemSlotGroup from "@/components/common/ItemSlotGroup.vue";
 import ItemSlot from "@/components/common/ItemSlot.vue";
 import ItemInsideSlot from "@/components/common/ItemInsideSlot.vue";
@@ -20,8 +21,6 @@ import { Language } from "@/types/config.ts";
 import { storeToRefs } from "pinia";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
 import LabeledPanel from "@/components/common/LabeledPanel.vue";
-import TabbedItemPanel from "@/components/inventory/TabbedItemPanel.vue";
-import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
 import iconRemoveHref from "@/assets/icon-remove.svg?url";
 import { useCharacterData } from "@/composables/use-character-data.ts";
 import { useTap } from "@/composables/use-tap.ts";
@@ -108,11 +107,11 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
               </ItemSlotGroup>
             </LabeledPanel>
           </div>
-          <div class="item-selector-box">
-            <div class="item-selector-inner-box">
-              <TabbedItemPanel :characterId="characterData.characterId"></TabbedItemPanel>
-              <InventoryFullPanel v-if="characterData.inventoryFull"></InventoryFullPanel>
-            </div>
+          <div class="item-selector-panel">
+            <ItemSelectorPanel
+              :characterId="characterData.characterId"
+              :inventory-full="characterData.inventoryFull"
+            ></ItemSelectorPanel>
           </div>
         </div>
         <div class="language-selector">
@@ -241,23 +240,8 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
   }
 }
 
-.item-selector-box {
-  margin-top: 72px;
-  position: relative;
-  width: 100%;
-  height: 770px;
-  border: 2px solid var(--color-primary);
-  border-radius: 32px;
-  background-color: var(--color-white);
-  padding: 8px;
-
-  .item-selector-inner-box {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 26px;
-    overflow: hidden;
-  }
+.item-selector-panel {
+  margin-top: var(--app-padding);
 }
 
 .token-error-panel {
