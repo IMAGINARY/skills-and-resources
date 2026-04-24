@@ -11,6 +11,9 @@ inventory:
     title:
       en: Emergency inventory
       de: Inventar für den Ernstfall
+    explanation:
+      en: Tap on the skills and tools you want to add to your inventory.
+      de: Tippe auf die Fähigkeiten und Ressourcen, die du zu deinem Inventar hinzufügen möchtest.
     lockedSlots:
       en: That defines you
       de: Das macht dich aus

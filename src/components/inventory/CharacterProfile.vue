@@ -18,15 +18,23 @@ const characterType = computed(() => toValue(props.characterType));
 
 <template>
   <div class="character-profile">
-    <div>
-      <div class="character-profile-overline text-style-overline">
-        {{ t(app.inventory.selection.title) }}
+    <div class="character-profile-text-column">
+      <div>
+        <div class="character-profile-overline text-style-overline">
+          {{ t(app.misc.character) }}
+        </div>
+        <div class="character-profile-title text-style-h2">{{ t(characterType.title) }}</div>
+        <div class="character-profile-description text-style-copy">
+          {{ t(characterType.description) }}
+        </div>
       </div>
-      <div class="character-profile-title text-style-h2">
-        {{ t(app.misc.character) }}: {{ t(characterType.title) }}
-      </div>
-      <div class="character-profile-description text-style-copy">
-        {{ t(characterType.description) }}
+      <div>
+        <div class="inventory-explanation-title text-style-h2">
+          {{ t(app.inventory.selection.title) }}
+        </div>
+        <div class="inventory-explanation-text text-style-copy">
+          {{ t(app.inventory.selection.explanation) }}
+        </div>
       </div>
     </div>
     <img class="character-profile-image" :src="characterType.image.href" />
@@ -46,16 +54,27 @@ const characterType = computed(() => toValue(props.characterType));
   align-content: stretch;
 }
 
+.character-profile-text-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: var(--app-padding);
+}
+
 .character-profile-overline {
-  margin-top: calc(199px - var(--app-padding));
 }
 
 .character-profile-title {
   margin-top: 8px;
 }
 
-.character-profile-description {
+.character-profile-description,
+.inventory-explanation-text {
   margin-top: 15px;
+}
+
+.inventory-explanation-title {
+  color: var(--color-secondary);
 }
 
 .character-profile-image {
