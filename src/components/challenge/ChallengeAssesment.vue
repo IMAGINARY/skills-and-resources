@@ -163,7 +163,7 @@ const failureIconUrl = new URL(failureIconHref);
                 ></ColorizedMonochromeImage>
               </div>
             </div>
-            <div class="text text-style-card">{{ t(isPresent ? present : missing) }}</div>
+            <div class="text-style-card">{{ t(isPresent ? present : missing) }}</div>
           </div>
         </div>
       </div>
@@ -335,8 +335,6 @@ const failureIconUrl = new URL(failureIconHref);
             border-radius: 50%;
             overflow: hidden;
             padding: 10px;
-          }
-          .text {
           }
         }
 

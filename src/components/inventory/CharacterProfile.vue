@@ -18,7 +18,7 @@ const characterType = computed(() => toValue(props.characterType));
 
 <template>
   <div class="character-profile">
-    <div class="text">
+    <div>
       <div class="character-profile-overline text-style-overline">
         {{ t(app.inventory.selection.title) }}
       </div>
@@ -29,7 +29,7 @@ const characterType = computed(() => toValue(props.characterType));
         {{ t(characterType.description) }}
       </div>
     </div>
-    <img class="image" :src="characterType.image.href" />
+    <img class="character-profile-image" :src="characterType.image.href" />
   </div>
 </template>
 
@@ -44,10 +44,6 @@ const characterType = computed(() => toValue(props.characterType));
   display: flex;
   flex-direction: row;
   align-content: stretch;
-}
-
-.character-profile-text {
-  color: var(--color-backdrop-light);
 }
 
 .character-profile-overline {
