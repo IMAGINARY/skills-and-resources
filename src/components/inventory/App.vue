@@ -73,7 +73,11 @@ const hideAppIntro = computed(() => tokenState.value.state === TokenStateType.PR
               <ItemSlotGroup>
                 <div v-for="content in characterData.slotContents.immutable" class="slot">
                   <ItemSlot>
-                    <ItemInsideSlot :item="content.config" class="item"></ItemInsideSlot>
+                    <ItemInsideSlot
+                      :item="content.config"
+                      :tooltip="t(app.inventory.selection.slotLockedHint)"
+                      class="item"
+                    ></ItemInsideSlot>
                   </ItemSlot>
                 </div>
               </ItemSlotGroup>

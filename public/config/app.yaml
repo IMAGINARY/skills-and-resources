@@ -17,6 +17,9 @@ inventory:
     lockedSlots:
       en: That defines you
       de: Das macht dich aus
+    slotLockedHint:
+      en: You cannot change this inventory tray.
+      de: Dieses Fach des Inventars kannst du nicht verändern.
     slots:
       en: Your inventory
       de: Dein Inventar

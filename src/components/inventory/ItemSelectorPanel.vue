@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, toValue, type MaybeRefOrGetter, type DeepReadonly } from "vue";
+import { ref, toValue, type MaybeRefOrGetter, type DeepReadonly, computed } from "vue";
 
 import { useCharacterStore } from "@/stores/characters";
 import { useConfigStore } from "@/stores/config";
 import { useLanguageStore } from "@/stores/language";
+import TooltipTransition from "@/components/common/TooltipTransition.vue";
 import InventoryFullPanel from "@/components/inventory/InventoryFullPanel.vue";
 import ColorizedMonochromeImage from "@/components/common/ColorizedMonochromeImage.vue";
 import { useTap } from "@/composables/use-tap.ts";
 import { type ItemType, ItemTypes } from "@/types/config.ts";
+import { useTooltip } from "@/composables/use-tooltip.ts";
 
 const props = defineProps<{
   characterId: MaybeRefOrGetter<DeepReadonly<string>>;
@@ -21,6 +23,16 @@ const t = useT();
 const { hasItem, isItemLocked, toggleItem } = useCharacterStore();
 
 const activeItemType = ref<ItemType>("skill");
+
+const itemTooltips = new Map<string, ReturnType<typeof useTooltip>>();
+const useItemTooltip = (itemId: string) => {
+  let tooltip = itemTooltips.get(itemId);
+  if (typeof tooltip === "undefined") {
+    tooltip = useTooltip();
+    itemTooltips.set(itemId, tooltip);
+  }
+  return tooltip;
+};
 </script>
 
 <template>
@@ -49,28 +61,46 @@ const activeItemType = ref<ItemType>("skill");
           class="content-panels"
           :class="[itemType, { invisible: itemType !== activeItemType }]"
         >
-          <div
+          <template
             v-for="item in content.items.filter(({ type }) => type === itemType)"
             :key="item.id"
-            class="item"
-            :class="[
-              hasItem(toValue(characterId), item.id)
-                ? isItemLocked(toValue(characterId), item.id)
-                  ? 'locked'
-                  : 'active'
-                : 'inactive',
-            ]"
-            v-drag="useTap(() => toggleItem(toValue(characterId), item.id))"
           >
-            <div class="icon">
-              <ColorizedMonochromeImage :url="item.icon"></ColorizedMonochromeImage>
-            </div>
-            <div class="brief">
-              <div class="text-style-h3">{{ t(item.title) }}</div>
-              <div class="text-style-card">{{ t(item.description) }}</div>
-            </div>
-            <div class="badge"><div class="icon"></div></div>
-          </div>
+            <template
+              v-for="{ active, locked, showTooltip, toggleTooltip } in [
+                {
+                  ...useItemTooltip(item.id),
+                  active: computed(() => hasItem(toValue(characterId), item.id)),
+                  locked: computed(() => isItemLocked(toValue(characterId), item.id)),
+                },
+              ]"
+            >
+              <div
+                class="item"
+                :class="[toValue(active) ? (toValue(locked) ? 'locked' : 'active') : 'inactive']"
+                v-drag="
+                  useTap(() =>
+                    toValue(locked) ? toggleTooltip() : toggleItem(toValue(characterId), item.id),
+                  )
+                "
+              >
+                <div class="icon">
+                  <ColorizedMonochromeImage :url="item.icon"></ColorizedMonochromeImage>
+                </div>
+                <TooltipTransition>
+                  <div v-if="locked && showTooltip.value" class="brief">
+                    <div class="text-style-card">
+                      {{ t(app.inventory.selection.slotLockedHint) }}
+                    </div>
+                  </div>
+                  <div v-else class="brief">
+                    <div class="text-style-h3">{{ t(item.title) }}</div>
+                    <div class="text-style-card">{{ t(item.description) }}</div>
+                  </div>
+                </TooltipTransition>
+                <div class="badge"><div class="icon"></div></div>
+              </div>
+            </template>
+          </template>
         </div>
       </div>
     </div>
@@ -231,6 +261,7 @@ const activeItemType = ref<ItemType>("skill");
     .brief {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 15px;
       height: 100%;
     }

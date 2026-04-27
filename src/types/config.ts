@@ -281,6 +281,10 @@ export const ConfigSchema = Type.Cyclic(
                   title: "Locked inventory slots",
                   description: "Label for the locked inventory slots.",
                 }),
+                slotLockedHint: Type.Ref("I18nRecord", {
+                  title: "Slot Locked Hint",
+                  description: "Hint shown on locked slots.",
+                }),
                 slots: Type.Ref("I18nRecord", {
                   title: "Non-locked inventory slots",
                   description: "Label for the non-locked inventory slots.",
