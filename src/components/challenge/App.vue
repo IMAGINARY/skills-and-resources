@@ -15,7 +15,7 @@ import { TokenStateType } from "@/types/token";
 import { type ChallengeConfig, Language } from "@/types/config.ts";
 import ArrowNextComponent from "@/assets/arrow-next.svg?component";
 import { useTokenErrorPanelVisibility } from "@/composables/use-token-error-panel-visibility.ts";
-import ChallengeAssesment from "@/components/challenge/ChallengeAssesment.vue";
+import ChallengeAssessment from "@/components/challenge/ChallengeAssessment.vue";
 import { useCharacterData } from "@/composables/use-character-data.ts";
 import { usePointerScroll } from "@/composables/use-pointer-scroll.ts";
 import { useTap } from "@/composables/use-tap.ts";
@@ -89,13 +89,13 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
         <div class="app-intro-text text-style-h2-station-2">{{ t(app.challenge.description) }}</div>
       </div>
     </AppIntro>
-    <ChallengeAssesment
+    <ChallengeAssessment
       v-if="activeCharacterData !== null && activeChallengeData !== null"
       :challenge-idx="activeChallengeData.idx"
       :challenge-config="activeChallengeData.config"
       :character-data="activeCharacterData"
       @done="() => (activeChallengeData = null)"
-    ></ChallengeAssesment>
+    ></ChallengeAssessment>
     <TokenErrorPanel
       :tokenState="tokenState"
       :class="{ 'token-error-panel-hidden': hideTokenErrorPanel }"
