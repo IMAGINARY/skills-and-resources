@@ -293,6 +293,10 @@ export const ConfigSchema = Type.Cyclic(
                   title: "Slot Empty",
                   description: "Text shown when a slot is empty.",
                 }),
+                slotEmptyHint: Type.Ref("I18nRecord", {
+                  title: "Slot Empty Hint",
+                  description: "Hint shown on empty slots.",
+                }),
                 skills: Type.Ref("I18nRecord", {
                   title: "Skills",
                   description: "Title of the skills section.",

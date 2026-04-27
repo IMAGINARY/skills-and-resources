@@ -26,6 +26,9 @@ inventory:
     slotEmpty:
       en: Empty
       de: Leer
+    slotEmptyHint:
+      en: You can still fill this inventory tray.
+      de: Dieses Fach des Inventars kannst du noch befüllen.
     skills:
       en: Skills
       de: Fähigkeiten
