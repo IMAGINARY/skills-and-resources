@@ -132,6 +132,15 @@ const failureIconUrl = new URL(failureIconHref);
                     <ItemInsideSlot
                       :item="item"
                       :key="item.id"
+                      :tooltip="
+                        item.type === 'skill'
+                          ? isCorrect
+                            ? t(app.challenge.skillCorrectHint)
+                            : t(app.challenge.skillIncorrectHint)
+                          : isCorrect
+                            ? t(app.challenge.resourceCorrectHint)
+                            : t(app.challenge.resourceIncorrectHint)
+                      "
                       class="item"
                       :class="[isCorrect ? 'correct' : 'incorrect']"
                     ></ItemInsideSlot

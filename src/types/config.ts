@@ -217,6 +217,22 @@ export const ConfigSchema = Type.Cyclic(
               title: "Unsolvable",
               description: "Text shown when the challenge is unsolvable for the current character.",
             }),
+            skillCorrectHint: Type.Ref("I18nRecord", {
+              title: "Skill Correct Hint",
+              description: "Hint shown on correct skills.",
+            }),
+            skillIncorrectHint: Type.Ref("I18nRecord", {
+              title: "Skill Incorrect Hint",
+              description: "Hint shown on incorrect skills.",
+            }),
+            resourceCorrectHint: Type.Ref("I18nRecord", {
+              title: "Resource Correct Hint",
+              description: "Hint shown on correct resources.",
+            }),
+            resourceIncorrectHint: Type.Ref("I18nRecord", {
+              title: "Resource Incorrect Hint",
+              description: "Hint shown on incorrect resources.",
+            }),
             success: Type.Ref("I18nRecord", {
               title: "Success",
               description: "Text shown when the player has solved the challenge.",
