@@ -332,15 +332,16 @@ const failureIconUrl = new URL(failureIconHref);
           }
 
           .item {
-            --accent-color: var(--color-primary);
-            --label-color: var(--color-primary);
-
             &.correct {
+              --accent-color: var(--color-primary);
+              --label-color: var(--color-white);
               background-color: var(--color-button);
             }
 
             &.incorrect {
-              background-color: var(--color-secondary-inactive);
+              --accent-color: var(--color-primary-inactive);
+              --label-color: var(--color-primary-inactive);
+              background-color: var(--color-card-inactive);
             }
           }
         }
@@ -385,7 +386,7 @@ const failureIconUrl = new URL(failureIconHref);
           background-color: var(--color-white);
 
           .icon-container {
-            background-color: var(--color-button-inactive);
+            background-color: var(--color-button);
             --accent-color: var(--color-primary);
             .icon {
               width: 100%;
