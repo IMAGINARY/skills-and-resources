@@ -16,6 +16,7 @@ import ItemSlot from "@/components/common/ItemSlot.vue";
 import ItemInsideSlot from "@/components/common/ItemInsideSlot.vue";
 import ColorizedMonochromeImage from "@/components/common/ColorizedMonochromeImage.vue";
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
+import TooltipTransition from "@/components/common/TooltipTransition.vue";
 import { DotLottieVue } from "@lottiefiles/dotlottie-vue";
 import thoughtBubbleHref from "@/assets/thought-bubble.svg?url";
 import iconCorrectHref from "@/assets/icon-correct.svg?url";
@@ -24,6 +25,7 @@ import drawArrowLeftHref from "@/assets/draw-arrow-left.lottie?url";
 import drawArrowUpperLeftHref from "@/assets/draw-arrow-upper-left.lottie?url";
 import failureIconHref from "@/assets/failure-icon.svg?url";
 import { INVENTORY_SIZE } from "@/constants.ts";
+import { useTooltip } from "@/composables/use-tooltip.ts";
 
 const props = defineProps<{
   challengeIdx: MaybeRefOrGetter<number>;
@@ -152,29 +154,59 @@ const failureIconUrl = new URL(failureIconHref);
         </LabeledPanel>
       </div>
       <div class="challenge-items">
-        <div
-          v-for="{ icon, present, missing, isPresent } in challengeConfigRef.solution.items.map(
-            (item: ChallengeItemConfig) => ({
-              icon: (items[item.id] ?? createInvalidItem(item.id)).icon,
-              present: item.present,
-              missing: item.missing,
-              isPresent: hasItem(characterDataRef.characterId, item.id),
-            }),
-          )"
-          class="challenge-item"
-          :class="[isPresent ? 'present' : 'missing']"
+        <template
+          v-for="{
+            type,
+            icon,
+            present,
+            missing,
+            isPresent,
+          } in challengeConfigRef.solution.items.map((item: ChallengeItemConfig) => ({
+            type: items[item.id]?.type,
+            icon: (items[item.id] ?? createInvalidItem(item.id)).icon,
+            present: item.present,
+            missing: item.missing,
+            isPresent: hasItem(characterDataRef.characterId, item.id),
+          }))"
         >
-          <div class="container">
-            <div class="icon-container">
-              <div class="icon">
-                <ColorizedMonochromeImage
-                  :url="isPresent ? icon : itemMissingUrl"
-                ></ColorizedMonochromeImage>
+          <template v-for="{ showTooltip, toggleTooltip } in [useTooltip()]">
+            <div
+              v-drag="useTap(toggleTooltip)"
+              class="challenge-item"
+              :class="[isPresent ? 'present' : 'missing']"
+            >
+              <div class="container">
+                <div class="icon-container">
+                  <div class="icon">
+                    <ColorizedMonochromeImage
+                      :url="isPresent ? icon : itemMissingUrl"
+                    ></ColorizedMonochromeImage>
+                  </div>
+                </div>
+                <div class="text-style-card">
+                  <TooltipTransition>
+                    <div v-if="showTooltip.value">
+                      {{
+                        t(
+                          typeof type !== "undefined"
+                            ? type === "skill"
+                              ? isPresent
+                                ? app.challenge.skillPresentHint
+                                : app.challenge.skillMissingHint
+                              : isPresent
+                                ? app.challenge.resourcePresentHint
+                                : app.challenge.resourceMissingHint
+                            : app.misc.invalidItem.description,
+                        )
+                      }}
+                    </div>
+                    <div v-else>{{ t(isPresent ? present : missing) }}</div>
+                  </TooltipTransition>
+                </div>
               </div>
             </div>
-            <div class="text-style-card">{{ t(isPresent ? present : missing) }}</div>
-          </div>
-        </div>
+          </template>
+        </template>
       </div>
     </div>
     <div class="footer">

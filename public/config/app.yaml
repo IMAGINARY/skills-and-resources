@@ -86,6 +86,18 @@ challenge:
   resourceIncorrectHint:
     de: Diese Ressource hilft hier leider nicht.
     en: This resource is not particularly useful here.
+  skillPresentHint:
+    de: Gut gemacht! Diese Fähigkeit kannst du hier gut gebrauchen.
+    en: Well done! This skill is useful here.
+  skillMissingHint:
+    de: Gehe zurück zum Inventar und suche etwas passendes!
+    en: Go back to the inventory and find something useful.
+  resourcePresentHint:
+    de: Gut gemacht! Diese Ressource kannst du hier gut gebrauchen.
+    en: Well done! This resource is useful here.
+  resourceMissingHint:
+    de: Gehe zurück zum Inventar und suche etwas passendes!
+    en: Go back to the inventory and find something useful.
   success:
     de: Gelöst!
     en: Solved!

@@ -233,6 +233,22 @@ export const ConfigSchema = Type.Cyclic(
               title: "Resource Incorrect Hint",
               description: "Hint shown on incorrect resources.",
             }),
+            skillPresentHint: Type.Ref("I18nRecord", {
+              title: "Skill Present Hint",
+              description: "Hint shown on present skills.",
+            }),
+            skillMissingHint: Type.Ref("I18nRecord", {
+              title: "Skill Missing Hint",
+              description: "Hint shown on missing skills.",
+            }),
+            resourcePresentHint: Type.Ref("I18nRecord", {
+              title: "Resource Present Hint",
+              description: "Hint shown on present resources.",
+            }),
+            resourceMissingHint: Type.Ref("I18nRecord", {
+              title: "Resource Missing Hint",
+              description: "Hint shown on missing resources.",
+            }),
             success: Type.Ref("I18nRecord", {
               title: "Success",
               description: "Text shown when the player has solved the challenge.",
