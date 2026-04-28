@@ -12,17 +12,18 @@ inventory:
       en: Emergency inventory
       de: Inventar für den Ernstfall
     explanation:
-      en: Tap on the skills and tools you want to add to your inventory.
+      en: Tap on the skills and resouces you want to add to your inventory to prepare for the scenarios in the next station.
       de: Tippe auf die Fähigkeiten und Ressourcen, die du zu deinem Inventar hinzufügen möchtest.
     lockedSlots:
-      en: That defines you
-      de: Das macht dich aus
+      en: What you already have
+      de: Das hast du schon
     slotLockedHint:
       en: You cannot change this inventory tray.
       de: Dieses Fach des Inventars kannst du nicht verändern.
     slots:
-      en: Your inventory
-      de: Dein Inventar
+      en: Your selection
+      de: Deine Auswahl
+
     slotEmpty:
       en: Empty
       de: Leer
@@ -36,8 +37,8 @@ inventory:
       en: Resources
       de: Ressourcen
     itemLockedHint:
-      en: This item is permanently attached to your character and cannot be changed.
-      de: Dieses Element gehört fest zu deinem Charakter und kann nicht verändert werden.
+      en: This item is part of your character and cannot be changed.
+      de: Dieses Element gehört zu deinem Charakter und kann nicht verändert werden.
     full:
       de: Inventar vollständig gefüllt
       en: Inventory full
@@ -45,8 +46,8 @@ inventory:
       en: Remove an item above to add another.
       de: Entferne oben einen Gegenstand, um einen anderen mitzunehmen.
     continueCondition:
-      en: "When you're ready:"
-      de: "Sobald du zufrieden bist:"
+      en: "When you're done:"
+      de: "Wenn du fertig bist:"
     continueHint:
       en: Continue to Station 2
       de: Weiter bei Station 2
