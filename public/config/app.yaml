@@ -35,6 +35,9 @@ inventory:
     resources:
       en: Resources
       de: Ressourcen
+    itemLockedHint:
+      en: This item is permanently attached to your character and cannot be changed.
+      de: Dieses Element gehört fest zu deinem Charakter und kann nicht verändert werden.
     full:
       de: Inventar vollständig gefüllt
       en: Inventory full

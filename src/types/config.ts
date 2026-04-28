@@ -321,6 +321,10 @@ export const ConfigSchema = Type.Cyclic(
                   title: "Resources",
                   description: "Title of the resources section.",
                 }),
+                itemLockedHint: Type.Ref("I18nRecord", {
+                  title: "Item Locked Hint",
+                  description: "Hint shown on locked items in the item selector.",
+                }),
                 full: Type.Ref("I18nRecord", {
                   title: "Full",
                   description: "Text shown when all inventory slots are full.",

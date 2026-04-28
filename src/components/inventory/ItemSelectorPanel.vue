@@ -89,7 +89,7 @@ const useItemTooltip = (itemId: string) => {
                 <TooltipTransition>
                   <div v-if="locked && showTooltip.value" class="brief">
                     <div class="text-style-card">
-                      {{ t(app.inventory.selection.slotLockedHint) }}
+                      {{ t(app.inventory.selection.itemLockedHint) }}
                     </div>
                   </div>
                   <div v-else class="brief">
