@@ -124,8 +124,8 @@ characterTypes:
       - self-protection
     title: Noa
     description:
-      en: Noa has just finished their driver’s license and a first-aid course. In stressful situations, they stick to clear steps. A small cheat sheet from the course is still in their jacket pocket. Just in case.
-      de: Noa hat gerade den Führerschein und einen Erste-Hilfe-Kurs gemacht. In stressigen Situationen hält Noa sich an klare Schritte. In der Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
+      en: Noa has just completed a first aid course for a driving license. In stressful situations, Noa prefers to follow clear instructions. The small cheat sheet from the course is still in Noa’s jacket pocket. Just in case
+      de: Noa hat gerade den Erste-Hilfe-Kurs für den Führerschein gemacht. In stressigen Situationen folgt Noa am liebsten klaren Anweisungen. In der Jackentasche steckt noch der kleine Spickzettel aus dem Kurs. Nur für den Fall.
     image: assets/characters/noa.webp
     croppedImage: assets/characters/noa-portrait.webp
   - id: character_2
@@ -144,8 +144,8 @@ characterTypes:
       - cooking-option
     title: Alex
     description:
-      en: "Alex enjoys being outdoors: camping, hiking, or at festivals. Improvisation and solutions that work without electricity are simply part of everyday life. If needed, dinner is just pasta from a pot."
-      de: "Alex ist gern draußen unterwegs: beim Camping, Wandern oder auf Festivals. Improvisation und Lösungen, die auch ohne Steckdose funktionieren, gehören ganz selbstverständlich dazu. Notfalls gibt es eben Nudeln aus dem Topf."
+      en: "Alex loves spending time outdoors, whether camping, hiking, or festivals. Improvising and finding practical solutions that work without a power outlet are simply part of the experience. If needed, a simple pot of pasta is enough to get by."
+      de: "Alex ist gern draußen unterwegs, egal ob Camping, Wandern oder auf Festivals. Improvisation und Lösungen, die auch ohne Steckdose funktionieren, gehören selbstverständlich dazu. Notfalls gibt es eben Nudeln aus dem Topf."
     image: assets/characters/alex.webp
     croppedImage: assets/characters/alex-portrait.webp
   - id: character_4
@@ -154,8 +154,8 @@ characterTypes:
       - supplies
     title: Yasmin
     description:
-      en: "Yasmin juggles work, children, and everyday life. In exceptional situations, she tries to stay calm. Her shopping motto: better prepared than forced to improvise later."
-      de: "Yasmin jongliert Job, Kinder und Alltag. In Ausnahmesituationen versucht sie, ruhig zu bleiben. Ihr Einkaufs-Motto: lieber vorbereitet sein als später improvisieren."
+      en: "Yasmin juggles work, children, and everyday life. She is used to keeping several things in mind at once and making sure everyone knows what to do. Her shopping motto: better to be prepared than to improvise later."      
+      de: "Yasmin jongliert Job, Kinder und Alltag. Sie ist es gewohnt, mehrere Dinge gleichzeitig im Blick zu behalten und dafür zu sorgen, dass alle wissen, was zu tun ist. Ihr Einkaufs-Motto: lieber vorbereitet sein als später improvisieren."
     image: assets/characters/yasmin.webp
     croppedImage: assets/characters/yasmin-portrait.webp
   - id: character_5
@@ -164,8 +164,8 @@ characterTypes:
       - warning-app
     title: Daniel
     description:
-      en: Daniel regularly supports his care-dependent mother. He knows what is essential, seeks information early, and acts calmly and in a structured way. Just in case, there is usually a plan B.
-      de: Daniel unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, was unverzichtbar ist, informiert sich frühzeitig und handelt ruhig und strukturiert. Für alle Fälle gibt es meistens noch einen Plan B.
+      en: "Daniel regularly supports his mother, who needs care. He knows what matters in everyday care and checks reliable information early. For most situations, he already has a plan B in mind."
+      de: "Daniel unterstützt regelmäßig seine pflegebedürftige Mutter. Er weiß, worauf es im Pflegealltag ankommt, und prüft frühzeitig verlässliche Informationen. Für die meisten Fälle hat er schon einen Plan B im Kopf."
     image: assets/characters/daniel.webp
     croppedImage: assets/characters/daniel-portrait.webp
   - id: character_6
@@ -174,8 +174,8 @@ characterTypes:
       - flashlight
     title: Petra
     description:
-      en: Petra has lived in the region for a long time and has experienced severe weather before. She knows the risky areas and safe routes. When others panic, she stays calm. Experience outweighs urgency.
-      de: Petra lebt schon lange in der Region und hat Unwetter bereits öfter erlebt. Sie kennt riskante Stellen und sichere Wege. Wenn andere hektisch werden, bleibt sie gelassen. Erfahrung schlägt Eile.
+     en: "Petra has lived in the region for a long time and has experienced severe weather before. She knows the risky areas, the safer routes, and a few shortcuts that are not on every map. Experience outweighs speed."
+     de: "Petra lebt schon lange in der Region und hat Unwetter bereits öfter erlebt. Sie kennt riskante Stellen, sichere Wege und ein paar Abkürzungen, die nicht auf jeder Karte stehen. Erfahrung schlägt Tempo."
     image: assets/characters/petra.webp
     croppedImage: assets/characters/petra-portrait.webp
 
