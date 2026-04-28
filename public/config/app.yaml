@@ -55,14 +55,14 @@ inventory:
 challenge:
   name: Station 2
   title:
-    en: The Challenge
+    en: The Scenario
     de: Der Ernstfall
   description:
-    en: Can your character handle the situation?
-    de: Hat dein Charakter die Lage im Griff?
+    en: Ready for this scenario?
+    de: Bereit für den Ernstfall?
   select:
-    de: Situation lösen
-    en: Resolve the situation
+    de: Ernstfall lösen
+    en: Handle the situation
   unsolvable:
     de: |-
       Die Aufgabe werde ich wohl
@@ -131,7 +131,7 @@ misc:
     en: Your character
     de: Dein Charakter
   challenge:
-    en: Challenge
+    en: Scenario
     de: Ernstfall
   invalidItem:
     title: Invalid item
