@@ -7,7 +7,6 @@ import { useTap } from "@/composables/use-tap.ts";
 
 const props = defineProps<{
   challengeId: string;
-  challengeIdx: number;
   disabled: boolean;
 }>();
 
@@ -27,7 +26,8 @@ const challenge = computed(() => challenges[props.challengeId]);
       <div class="challenge-label-box-outer">
         <div class="challenge-label-box-inner">
           <div class="challenge-label-with-idx text-style-overline">
-            {{ t(app.misc.challenge) }} {{ props.challengeIdx + 1 }}
+            {{ t(app.challenge.difficulty) }}:
+            {{ t(app.challenge.difficulties[challenge.difficulty]) }}
           </div>
           <div class="challenge-title text-style-h2">{{ t(challenge.title) }}</div>
           <div class="challenge-description text-style-copy">{{ t(challenge.description) }}</div>

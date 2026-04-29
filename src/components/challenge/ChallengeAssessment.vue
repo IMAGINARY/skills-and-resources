@@ -28,7 +28,6 @@ import { INVENTORY_SIZE } from "@/constants.ts";
 import { useTooltip } from "@/composables/use-tooltip.ts";
 
 const props = defineProps<{
-  challengeIdx: MaybeRefOrGetter<number>;
   challengeConfig: DeepReadonly<MaybeRefOrGetter<ChallengeConfig>>;
   characterData: DeepReadonly<MaybeRefOrGetter<CharacterData>>;
 }>();
@@ -106,9 +105,6 @@ const failureIconUrl = new URL(failureIconHref);
         </div>
       </div>
       <div class="challenge-info">
-        <div class="label-with-idx text-style-overline">
-          {{ t(app.misc.challenge) }} {{ toValue(props.challengeIdx) + 1 }}
-        </div>
         <div class="title text-style-h2">{{ t(challengeConfigRef.title) }}</div>
         <div class="description text-style-copy">{{ t(challengeConfigRef.description) }}</div>
       </div>
@@ -305,7 +301,13 @@ const failureIconUrl = new URL(failureIconHref);
     }
 
     .title {
+      text-box-trim: trim-start;
+      text-box-edge: cap alphabetic;
       margin-bottom: 15px;
+    }
+
+    .description {
+      width: 760px;
     }
 
     .inventory {

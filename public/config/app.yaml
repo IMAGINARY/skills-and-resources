@@ -60,6 +60,19 @@ challenge:
   description:
     en: Ready for this scenario?
     de: Bereit für den Ernstfall?
+  difficulty:
+    de: Schwierigkeit
+    en: Difficulty
+  difficulties:
+    easy:
+      de: Leicht
+      en: Easy
+    medium:
+      de: Mittel
+      en: Medium
+    hard:
+      de: Schwer
+      en: Hard
   select:
     de: Ernstfall lösen
     en: Handle the situation

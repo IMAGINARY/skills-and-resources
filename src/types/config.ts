@@ -118,6 +118,11 @@ export const ConfigSchema = Type.Cyclic(
       },
     ),
 
+    ChallengeDifficulty: Type.Enum(["easy", "medium", "hard"], {
+      title: "Challenge Difficulty",
+      description: "The difficulty level of a challenge scenario.",
+    }),
+
     // Challenge item config
     ChallengeItemConfig: Type.Object(
       {
@@ -148,6 +153,10 @@ export const ConfigSchema = Type.Cyclic(
         id: Type.String({
           title: "Challenge ID",
           description: "Unique identifier for the challenge.",
+        }),
+        difficulty: Type.Ref("ChallengeDifficulty", {
+          title: "Difficulty",
+          description: "Difficulty level.",
         }),
         solution: Type.Object(
           {
@@ -205,6 +214,31 @@ export const ConfigSchema = Type.Cyclic(
               title: "Description",
               description: "Introductory text shown in the challenge app panel.",
             }),
+            difficulty: Type.Ref("I18nRecord", {
+              title: "Difficulty",
+              description: "Difficulty level.",
+            }),
+            difficulties: Type.Object(
+              {
+                easy: Type.Ref("I18nRecord", {
+                  title: "Easy difficulty level",
+                  description: "Label for the easy difficulty level",
+                }),
+                medium: Type.Ref("I18nRecord", {
+                  title: "Medium difficulty level",
+                  description: "Label for the medium difficulty level",
+                }),
+                hard: Type.Ref("I18nRecord", {
+                  title: "Hard difficulty level",
+                  description: "Label for the hard difficulty level",
+                }),
+              },
+              {
+                title: "Difficulties",
+                description: "Labels for the different difficulty levels.",
+                additionalProperties: false,
+              },
+            ),
             select: Type.Ref("I18nRecord", {
               title: "Select challenge button",
               description: "Text shown on the button to select a challenge.",
@@ -531,6 +565,13 @@ export const CharacterTypeConfigSchema = Type.Instantiate(
   ConfigSchema.$defs.CharacterTypeConfig,
 );
 export type CharacterTypeConfig = StaticDecode<typeof CharacterTypeConfigSchema>;
+
+export const ChallengeDifficultySchema = Type.Instantiate(
+  ConfigSchema.$defs,
+  ConfigSchema.$defs.ChallengeDifficulty,
+);
+export const ChallengeDifficulties = [...ChallengeDifficultySchema.enum.values()];
+export type ChallengeDifficultyType = StaticDecode<typeof ChallengeDifficultySchema>;
 
 // Challenge item config
 export const ChallengeItemConfigSchema = Type.Instantiate(

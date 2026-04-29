@@ -181,6 +181,7 @@ characterTypes:
 
 challenges:
   - id: heavy-rain
+    difficulty: easy
     title:
       en: Heavy Rain
       de: Dauerregen
@@ -208,6 +209,7 @@ challenges:
         en: Well done! Using the flashlight, you detect the flooding early and avoid unnecessary risks. You do not enter the basement further and immediately shut off electricity and gas.
         de: Gut gemacht! Mit der Taschenlampe erkennst du die Überflutung rechtzeitig und gehst kein unnötiges Risiko ein. Du betrittst den Keller nicht weiter und schaltest sofort Strom und Gas ab.
   - id: after-the-storm
+    difficulty: easy
     title:
       en: After the Storm
       de: Nach dem Sturm
@@ -235,6 +237,7 @@ challenges:
         en: Well done! You act quickly and calmly. With your first-aid knowledge and the supplies you have at home, you can treat and stabilize your neighbor until professional help arrives.
         de: Gut gemacht! Du handelst schnell und ruhig. Mit deinem Wissen aus der Ersten Hilfe und der Wundversorgung, die du Zuhause hast, kannst du deinen Nachbarn versorgen und stabilisieren, bis professionelle Hilfe eintrifft.
   - id: storm-surge
+    difficulty: medium
     title:
       en: Storm Surge
       de: Sturmflut
@@ -269,6 +272,7 @@ challenges:
         en: Well done! Thanks to the warning app, you know you live in an affected area. You quickly pack your emergency bag with all essential items and take the safest route out of the danger zone.
         de: Gut gemacht! Dank der Warn-App, weiß du, dass du in einem betroffenen Gebiet wohnst. Du packst schnell dein Notgepäck mit allen wichtigen Sachen und machst dich auf den sichersten Weg raus aus dem Gefahrengebiet.
   - id: emergency-care
+    difficulty: medium
     title:
       en: Emergency Care
       de: Notfallpflege
@@ -303,6 +307,7 @@ challenges:
         en: Well done! Your experience helps you stay calm and act purposefully. You check the battery level of the ventilator and prepare the manual ventilation bag. You support your mother as best as possible and can call professional help if needed.
         de: Gut gemacht! Deine Erfahrung hilft dir, ruhig zu bleiben und gezielt zu handeln. Du prüfst den Akkustand des Beatmungsgeräts und hältst den Beatmungsbeutel für die Handbeatmung bereit. Damit unterstützt du deine Mutter bestmöglich und kannst im Zweifel professionelle Hilfe holen.
   - id: in-the-crowd
+    difficulty: hard
     title:
       en: In the Crowd
       de: In der Menge
@@ -344,6 +349,7 @@ challenges:
         en: Well done! You stay calm and assess the situation instead of being swept up by rumors. Using the warning app, you quickly find out that there is no official alert. The rumors turn out to be false – you can continue enjoying the market.
         de: Gut gemacht! Ihr bleibt ruhig und prüft die Situation, statt euch von Gerüchten anstecken zu lassen. Über die Warn-App findet ihr schnell heraus, dass es keine offizielle Meldung gibt. Die Gerüchte bestätigen sich nicht – ihr könnt den Markt entspannt weiter genießen.
   - id: blackout
+    difficulty: hard
     title:
       en: Blackout
       de: Blackout

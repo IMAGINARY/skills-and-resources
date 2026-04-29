@@ -39,9 +39,7 @@ const activeCharacterId = computed(() =>
 const disableChallengeSelection = computed(() => activeCharacterId.value === null);
 
 const activeCharacterData = useCharacterData(activeCharacterId);
-const activeChallengeData = ref<{ idx: number; config: DeepReadonly<ChallengeConfig> } | null>(
-  null,
-);
+const activeChallengeData = ref<{ config: DeepReadonly<ChallengeConfig> } | null>(null);
 
 watchImmediate(tokenState, (tokenStateValue) => {
   if (tokenStateValue.state === TokenStateType.PRESENT) {
@@ -69,13 +67,12 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
       ><div class="app-intro-inner-box">
         <div class="challenge-list" ref="challengeList">
           <ChallengeOverview
-            v-for="(challenge, idx) in content.challenges"
+            v-for="challenge in content.challenges"
             :language="language"
             :challenge-id="challenge.id"
-            :challenge-idx="idx"
             :disabled="disableChallengeSelection"
             :key="challenge.id"
-            @selected="() => (activeChallengeData = { idx: idx, config: challenge })"
+            @selected="() => (activeChallengeData = { config: challenge })"
           ></ChallengeOverview>
         </div>
         <div class="challenge-list-buttons">
@@ -91,7 +88,6 @@ const { prev, next, isFirst, isLast } = usePointerScroll(challengeList);
     </AppIntro>
     <ChallengeAssessment
       v-if="activeCharacterData !== null && activeChallengeData !== null"
-      :challenge-idx="activeChallengeData.idx"
       :challenge-config="activeChallengeData.config"
       :character-data="activeCharacterData"
       @done="() => (activeChallengeData = null)"
