@@ -82,7 +82,7 @@ challenge:
     de: Diese Fähigkeit hilft hier leider nicht.
     en: This skill is not particularly useful here.
   resourceCorrectHint:
-    de: Diese Ressource kannst du hier gut gebrauchen.
+    de: Die­se Ressource kannst du hier gut ge­brau­chen.
     en: This resource turned out to be useful.
   resourceIncorrectHint:
     de: Diese Ressource hilft hier leider nicht.
