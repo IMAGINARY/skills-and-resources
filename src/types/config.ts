@@ -243,6 +243,10 @@ export const ConfigSchema = Type.Cyclic(
               title: "Select challenge button",
               description: "Text shown on the button to select a challenge.",
             }),
+            assessmentHint: Type.Ref("I18nRecord", {
+              title: "Challenge Assessment Hint",
+              description: "Hint shown on the challenge assessment screen.",
+            }),
             inventory: Type.Ref("I18nRecord", {
               title: "Inventory",
               description: "Text shown on the inventory panel.",

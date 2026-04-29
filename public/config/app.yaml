@@ -75,6 +75,9 @@ challenge:
   select:
     de: Ernstfall lösen
     en: Handle the situation
+  assessmentHint:
+    de: Prüfe, ob dein Inventar zum Ernstfall passt. Die Hinweise unten zeigen dir, was deinem Charakter fehlt.
+    en: Check if your inventory is right for the scenario. The hints below show what your character is missing.
   unsolvable:
     overline:
       de: Es liegt nicht an dir, es liegt an deinem Charakter

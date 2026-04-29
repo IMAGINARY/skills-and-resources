@@ -100,6 +100,9 @@ const failureIconUrl = new URL(failureIconHref);
       <div class="challenge-info">
         <div class="title text-style-h2">{{ t(challengeConfigRef.title) }}</div>
         <div class="description text-style-copy">{{ t(challengeConfigRef.description) }}</div>
+        <div class="assessmentHint text-style-copy" style="">
+          {{ t(app.challenge.assessmentHint) }}
+        </div>
       </div>
       <div class="inventory">
         <LabeledPanel :label="t(app.challenge.inventory)">
@@ -291,6 +294,11 @@ const failureIconUrl = new URL(failureIconHref);
 
     .description {
       width: 760px;
+    }
+
+    .assessmentHint {
+      position: absolute;
+      top: 185px;
     }
 
     .inventory {
