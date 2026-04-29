@@ -18,7 +18,6 @@ import ColorizedMonochromeImage from "@/components/common/ColorizedMonochromeIma
 import LanguageSelector from "@/components/common/LanguageSelector.vue";
 import TooltipTransition from "@/components/common/TooltipTransition.vue";
 import { DotLottieVue } from "@lottiefiles/dotlottie-vue";
-import thoughtBubbleHref from "@/assets/thought-bubble.svg?url";
 import iconCorrectHref from "@/assets/icon-correct.svg?url";
 import itemMissingHref from "@/assets/item-missing.svg?url";
 import drawArrowLeftHref from "@/assets/draw-arrow-left.lottie?url";
@@ -97,12 +96,6 @@ const failureIconUrl = new URL(failureIconHref);
     <div class="body">
       <div class="character-image">
         <img :src="characterDataRef.characterTypeConfig.croppedImage.href" />
-      </div>
-      <div v-if="!solvable" class="thought-bubble">
-        <img :src="thoughtBubbleHref" />
-        <div class="thought text-style-copy-bold">
-          <div>{{ t(app.challenge.unsolvable) }}</div>
-        </div>
       </div>
       <div class="challenge-info">
         <div class="title text-style-h2">{{ t(challengeConfigRef.title) }}</div>
@@ -206,28 +199,41 @@ const failureIconUrl = new URL(failureIconHref);
       </div>
     </div>
     <div class="footer">
-      <LanguageSelector :has-dark-background="true" class="language-selector"></LanguageSelector>
-      <template v-if="solved">
-        <div class="result">
-          <div class="success text-style-h2-station-2">{{ t(app.challenge.success) }}</div>
-          <button class="next-button text-style-tab" v-drag="useTap(() => $emit('done'))">
-            <div>{{ t(app.challenge.next) }}</div>
-          </button>
+      <div v-if="!solvable" class="footer-top">
+        <div class="unsolvable-text-overline text-style-h3">
+          {{ t(app.challenge.unsolvable.overline) }}
         </div>
-        <div class="next-hint text-style-copy-bold">{{ t(app.challenge.nextHint) }}</div>
-        <DotLottieVue class="next-arrow" autoplay loop :src="drawArrowUpperLeftHref" />
-      </template>
-      <template v-else>
-        <div class="result">
-          <div class="failure text-style-h2-station-2">{{ t(app.challenge.failure) }}</div>
-          <ColorizedMonochromeImage :url="failureIconUrl" class="failure-icon">
-          </ColorizedMonochromeImage>
+        <div class="unsolvable-text-title white-space-pre-line text-style-h2">
+          {{ t(app.challenge.unsolvable.title) }}
         </div>
-        <div class="retry-hint-container">
-          <div><DotLottieVue class="retry-arrow" autoplay loop :src="drawArrowLeftHref" /></div>
-          <div class="retry-hint text-style-copy-bold">{{ t(app.challenge.retryHint) }}</div>
+        <div class="unsolvable-text-description white-space-pre-line text-style-card">
+          {{ t(app.challenge.unsolvable.description) }}
         </div>
-      </template>
+      </div>
+      <div class="footer-bottom">
+        <LanguageSelector :has-dark-background="true" class="language-selector"></LanguageSelector>
+        <template v-if="solved">
+          <div class="result">
+            <div class="success text-style-h2-station-2">{{ t(app.challenge.success) }}</div>
+            <button class="next-button text-style-tab" v-drag="useTap(() => $emit('done'))">
+              <div>{{ t(app.challenge.next) }}</div>
+            </button>
+          </div>
+          <div class="next-hint text-style-copy-bold">{{ t(app.challenge.nextHint) }}</div>
+          <DotLottieVue class="next-arrow" autoplay loop :src="drawArrowUpperLeftHref" />
+        </template>
+        <template v-else>
+          <div class="result">
+            <div class="failure text-style-h2-station-2">{{ t(app.challenge.failure) }}</div>
+            <ColorizedMonochromeImage :url="failureIconUrl" class="failure-icon">
+            </ColorizedMonochromeImage>
+          </div>
+          <div class="retry-hint-container">
+            <div><DotLottieVue class="retry-arrow" autoplay loop :src="drawArrowLeftHref" /></div>
+            <div class="retry-hint text-style-copy-bold">{{ t(app.challenge.retryHint) }}</div>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -265,30 +271,7 @@ const failureIconUrl = new URL(failureIconHref);
       background-color: var(--color-white);
       border-radius: 50%;
       overflow: hidden;
-    }
 
-    .thought-bubble {
-      position: absolute;
-      width: 468px;
-      top: -492px;
-      left: 191px;
-
-      .thought {
-        position: absolute;
-        top: 14%;
-        left: 7%;
-        width: 68%;
-        height: 46%;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        white-space: pre-line;
-      }
-    }
-
-    .character-image,
-    .thought-bubble {
       > img {
         width: 100%;
         height: 100%;
@@ -415,107 +398,137 @@ const failureIconUrl = new URL(failureIconHref);
         }
       }
     }
+
+    .challenge-unsolvable {
+      position: absolute;
+      top: 508px;
+      width: 100%;
+      background-color: var(--color-backdrop-dark);
+    }
   }
 
   .footer {
     position: relative;
-    height: 254px;
     border-width: 0 var(--app-padding) var(--app-padding) var(--app-padding);
     border-style: solid;
     border-color: transparent;
     background-color: var(--color-backdrop-dark);
 
-    .language-selector {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      margin-bottom: -14px;
-    }
+    .footer-top {
+      height: calc(575px - 254px);
+      padding: var(--app-padding) 0 0 0;
+      text-align: center;
 
-    .result {
-      position: absolute;
-      bottom: 74px;
-      left: 0;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      width: 100%;
-    }
+      .unsolvable-text-overline {
+        color: var(--color-white);
+        margin-bottom: 21px;
+      }
 
-    .success,
-    .failure {
-      margin-bottom: calc(-1 * var(--text-style-h2-station-2-descender));
-      flex-shrink: 0;
-    }
+      .unsolvable-text-title {
+        color: var(--color-secondary);
+        margin-bottom: 16px;
+      }
 
-    .success {
-      color: var(--color-button);
-    }
-
-    .next-button {
-      text-box-trim: trim-both;
-      text-box-edge: cap alphabetic;
-      border-radius: 30px;
-      border-width: 0;
-      width: 476px;
-      height: 60px;
-      background-color: var(--color-button);
-      color: var(--color-white);
-
-      > * {
-        vertical-align: middle;
+      .unsolvable-text-description {
+        color: var(--color-white);
       }
     }
 
-    .next-arrow {
-      position: absolute;
-      bottom: 0;
-      right: -43px;
-      width: 117px;
-      transform: translate(0, calc(50% + 5px)) rotate(90deg) scaleY(-1);
-    }
+    .footer-bottom {
+      height: calc(254px - var(--app-padding));
 
-    .failure {
-      color: var(--color-secondary);
-    }
+      .language-selector {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-bottom: -14px;
+      }
 
-    .retry-arrow {
-      height: 61px;
-      transform: rotate(6.794deg);
-      margin-bottom: -25px;
-    }
+      .result {
+        position: absolute;
+        bottom: 74px;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 100%;
+      }
 
-    .failure-icon {
-      width: 82px;
-      margin-bottom: -7px;
-      --accent-color: var(--color-secondary);
-    }
+      .success,
+      .failure {
+        margin-bottom: calc(-1 * var(--text-style-h2-station-2-descender));
+        flex-shrink: 0;
+      }
 
-    .retry-hint-container {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-    }
+      .success {
+        color: var(--color-button);
+      }
 
-    .next-hint {
-      position: absolute;
-      bottom: 0;
-      right: 75px;
-      text-align: right;
-    }
+      .next-button {
+        text-box-trim: trim-both;
+        text-box-edge: cap alphabetic;
+        border-radius: 30px;
+        border-width: 0;
+        width: 476px;
+        height: 60px;
+        background-color: var(--color-button);
+        color: var(--color-white);
 
-    .retry-hint-container {
-      gap: 19px;
-    }
+        > * {
+          vertical-align: middle;
+        }
+      }
 
-    .next-hint,
-    .retry-hint {
-      text-box-trim: trim-both;
-      text-box-edge: cap alphabetic;
+      .next-arrow {
+        position: absolute;
+        bottom: 0;
+        right: -43px;
+        width: 117px;
+        transform: translate(0, calc(50% + 5px)) rotate(90deg) scaleY(-1);
+      }
+
+      .failure {
+        color: var(--color-secondary);
+      }
+
+      .retry-arrow {
+        height: 61px;
+        transform: rotate(6.794deg);
+        margin-bottom: -25px;
+      }
+
+      .failure-icon {
+        width: 82px;
+        margin-bottom: -7px;
+        --accent-color: var(--color-secondary);
+      }
+
+      .retry-hint-container {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+      }
+
+      .next-hint {
+        position: absolute;
+        bottom: 0;
+        right: 75px;
+        text-align: right;
+      }
+
+      .retry-hint-container {
+        gap: 19px;
+      }
+
+      .next-hint,
+      .retry-hint {
+        text-box-trim: trim-both;
+        text-box-edge: cap alphabetic;
+      }
     }
   }
 }

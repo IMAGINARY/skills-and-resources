@@ -76,14 +76,23 @@ challenge:
     de: Ernstfall lösen
     en: Handle the situation
   unsolvable:
-    de: |-
-      Die Aufgabe werde ich wohl
-      nicht lösen können. Das sollte
-      jemand anderes versuchen.
-    en: |-
-      I probably won't be able to
-      solve this problem. Someone
-      else should try it.
+    overline:
+      de: Es liegt nicht an dir, es liegt an deinem Charakter
+      en: It’s not you — it’s your character
+    title:
+      de: |-
+        Dein Charakter kann diesen
+        Ernstfall nicht lösen!
+      en: |-
+        Your character cannot
+        solve this situation!
+    description:
+      de: |-
+        Aufgrund des vorgegebenen Inventarinhalts kommst du hier nur mit einer anderen Person weiter.
+        Suche dir einen anderen Charakter oder eine anderen Ernstfall aus.
+      en: |-
+        Due to the provided inventory, you can only progress with another player.
+        Choose a different character or a different scenario.
   inventory:
     de: Das bringst du mit
     en: What you've got

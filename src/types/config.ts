@@ -247,10 +247,31 @@ export const ConfigSchema = Type.Cyclic(
               title: "Inventory",
               description: "Text shown on the inventory panel.",
             }),
-            unsolvable: Type.Ref("I18nRecord", {
-              title: "Unsolvable",
-              description: "Text shown when the challenge is unsolvable for the current character.",
-            }),
+            unsolvable: Type.Object(
+              {
+                overline: Type.Ref("I18nRecord", {
+                  title: "Unsolvable challenge overline",
+                  description:
+                    "Overline text shown when the challenge is unsolvable for the current character.",
+                }),
+                title: Type.Ref("I18nRecord", {
+                  title: "Unsolvable challenge title",
+                  description:
+                    "Title text shown when the challenge is unsolvable for the current character.",
+                }),
+                description: Type.Ref("I18nRecord", {
+                  title: "Unsolvable challenge description",
+                  description:
+                    "Description text shown when the challenge is unsolvable for the current character.",
+                }),
+              },
+              {
+                title: "Unsolvable challenge",
+                description:
+                  "Texts shown when the challenge is unsolvable for the current character.",
+                additionalProperties: false,
+              },
+            ),
             skillCorrectHint: Type.Ref("I18nRecord", {
               title: "Skill Correct Hint",
               description: "Hint shown on correct skills.",
