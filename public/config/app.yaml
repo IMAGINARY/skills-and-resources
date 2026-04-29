@@ -48,8 +48,8 @@ inventory:
       en: "When you're done:"
       de: "Wenn du fertig bist:"
     continueHint:
-      en: Continue to Station 2
-      de: Weiter bei Station 2
+      en: Continue on the other screen
+      de: Weiter beim anderen Bildschirm
 
 challenge:
   name: Station 2
