@@ -24,6 +24,7 @@ const { hasItem, isItemLocked, toggleItem } = useCharacterStore();
 
 const activeItemType = ref<ItemType>("skill");
 
+// TODO: Create component for item selector items and manage tooltips there
 const itemTooltips = new Map<string, ReturnType<typeof useTooltip>>();
 const useItemTooltip = (itemId: string) => {
   let tooltip = itemTooltips.get(itemId);

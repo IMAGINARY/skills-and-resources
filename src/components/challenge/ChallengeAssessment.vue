@@ -88,6 +88,18 @@ const solved = computed(() => {
 const iconCorrectUrl = new URL(iconCorrectHref);
 const itemMissingUrl = new URL(itemMissingHref);
 const failureIconUrl = new URL(failureIconHref);
+
+// TODO: Create component for challenge items and manage tooltips there
+const challengeItemTooltips = new Map<string, ReturnType<typeof useTooltip>>();
+const useChallengeItemTooltip = (itemId: string, challengeId: string) => {
+  const id = JSON.stringify({ itemId, challengeId });
+  let tooltip = challengeItemTooltips.get(id);
+  if (typeof tooltip === "undefined") {
+    tooltip = useTooltip();
+    challengeItemTooltips.set(id, tooltip);
+  }
+  return tooltip;
+};
 </script>
 
 <template>
@@ -153,51 +165,52 @@ const failureIconUrl = new URL(failureIconHref);
             present,
             missing,
             isPresent,
+            showTooltip,
+            toggleTooltip,
           } in challengeConfigRef.solution.items.map((item: ChallengeItemConfig) => ({
             type: items[item.id]?.type,
             icon: (items[item.id] ?? createInvalidItem(item.id)).icon,
             present: item.present,
             missing: item.missing,
             isPresent: hasItem(characterDataRef.characterId, item.id),
+            ...useChallengeItemTooltip(item.id, toValue(challengeConfig).id),
           }))"
         >
-          <template v-for="{ showTooltip, toggleTooltip } in [useTooltip()]">
-            <div
-              v-drag="useTap(toggleTooltip)"
-              class="challenge-item"
-              :class="[isPresent ? 'present' : 'missing']"
-            >
-              <div class="container">
-                <div class="icon-container">
-                  <div class="icon">
-                    <ColorizedMonochromeImage
-                      :url="isPresent ? icon : itemMissingUrl"
-                    ></ColorizedMonochromeImage>
-                  </div>
-                </div>
-                <div class="text-style-card">
-                  <TooltipTransition>
-                    <div v-if="showTooltip.value">
-                      {{
-                        t(
-                          typeof type !== "undefined"
-                            ? type === "skill"
-                              ? isPresent
-                                ? app.challenge.skillPresentHint
-                                : app.challenge.skillMissingHint
-                              : isPresent
-                                ? app.challenge.resourcePresentHint
-                                : app.challenge.resourceMissingHint
-                            : app.misc.invalidItem.description,
-                        )
-                      }}
-                    </div>
-                    <div v-else>{{ t(isPresent ? present : missing) }}</div>
-                  </TooltipTransition>
+          <div
+            v-drag="useTap(toggleTooltip)"
+            class="challenge-item"
+            :class="[isPresent ? 'present' : 'missing']"
+          >
+            <div class="container">
+              <div class="icon-container">
+                <div class="icon">
+                  <ColorizedMonochromeImage
+                    :url="isPresent ? icon : itemMissingUrl"
+                  ></ColorizedMonochromeImage>
                 </div>
               </div>
+              <div class="text-style-card">
+                <TooltipTransition>
+                  <div v-if="showTooltip.value">
+                    {{
+                      t(
+                        typeof type !== "undefined"
+                          ? type === "skill"
+                            ? isPresent
+                              ? app.challenge.skillPresentHint
+                              : app.challenge.skillMissingHint
+                            : isPresent
+                              ? app.challenge.resourcePresentHint
+                              : app.challenge.resourceMissingHint
+                          : app.misc.invalidItem.description,
+                      )
+                    }}
+                  </div>
+                  <div v-else>{{ t(isPresent ? present : missing) }}</div>
+                </TooltipTransition>
+              </div>
             </div>
-          </template>
+          </div>
         </template>
       </div>
     </div>
