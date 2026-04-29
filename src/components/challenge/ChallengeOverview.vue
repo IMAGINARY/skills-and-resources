@@ -10,7 +10,7 @@ const props = defineProps<{
   disabled: boolean;
 }>();
 
-const emit = defineEmits<{ selected: [challengeId: string, challengeIdx: number] }>();
+const emit = defineEmits<{ selected: [challengeId: string] }>();
 
 const { app, challenges } = useConfigStore();
 const { useT } = useLanguageStore();
@@ -35,9 +35,7 @@ const challenge = computed(() => challenges[props.challengeId]);
         <button
           class="text-style-overline"
           :class="{ disabled: disabled }"
-          v-drag="
-            useTap(() => (disabled ? undefined : $emit('selected', challengeId, challengeIdx)))
-          "
+          v-drag="useTap(() => (disabled ? undefined : $emit('selected', challengeId)))"
         >
           {{ t(app.challenge.select) }}
         </button>
