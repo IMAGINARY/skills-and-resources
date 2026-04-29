@@ -80,7 +80,7 @@ challenge:
     en: Check if your inventory is right for the scenario. The hints below show what your character is missing.
   unsolvable:
     overline:
-      de: Es liegt nicht an dir, es liegt an deinem Charakter
+      de: Es liegt nicht an dir — es liegt an deinem Charakter
       en: It’s not you — it’s your character
     title:
       de: |-
@@ -91,10 +91,10 @@ challenge:
         solve this situation!
     description:
       de: |-
-        Aufgrund des vorgegebenen Inventarinhalts kommst du hier nur mit einer anderen Person weiter.
-        Suche dir einen anderen Charakter oder eine anderen Ernstfall aus.
+        Aufgrund des vorgegebenen Inventarinhalts kommst du hier nur mit einer anderen Charakter weiter.
+        Suche dir einen anderen Charakter oder einen anderen Ernstfall aus.
       en: |-
-        Due to the provided inventory, you can only progress with another player.
+        Due to the provided inventory, you can only progress with another character.
         Choose a different character or a different scenario.
   inventory:
     de: Das bringst du mit
