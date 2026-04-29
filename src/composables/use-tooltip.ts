@@ -5,7 +5,7 @@ export type UseTooltipOptions = {
 };
 
 const defaultOptions: Required<UseTooltipOptions> = {
-  timeout: 2000,
+  timeout: 2500,
 };
 
 export function useTooltip(options: UseTooltipOptions = {}) {
