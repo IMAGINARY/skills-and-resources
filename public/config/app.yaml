@@ -23,7 +23,6 @@ inventory:
     slots:
       en: Your selection
       de: Deine Auswahl
-
     slotEmpty:
       en: Empty
       de: Leer
