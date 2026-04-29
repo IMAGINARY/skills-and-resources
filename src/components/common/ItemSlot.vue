@@ -44,8 +44,8 @@ defineEmits<{
   position: absolute;
   top: 0;
   right: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-style: solid;
   border-width: 3px;
   border-radius: 50%;
