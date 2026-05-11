@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useWebSocket } from "@vueuse/core";
 import { Value } from "typebox/value";
 
@@ -16,16 +16,23 @@ export const useTokenStore = defineStore("token", () => {
   const { options } = useOptionsStore();
   const { websocketTokenReaderUrl } = options;
 
-  const { data } = useWebSocket<string>(websocketTokenReaderUrl, {
-    onConnected: () => console.log("Connected!"),
-    onDisconnected: (_ws, event) => console.log("Disconnected!", event.code),
-    onError: (_ws, event) => console.error("Error:", event),
+  const delay = ref(0);
+  const { data, status } = useWebSocket<string>(websocketTokenReaderUrl, {
+    onConnected: () => console.log("WebSocket connected!"),
+    onDisconnected: (_ws, event) => console.log("WebSocket disconnected!", event.code),
+    onError: (ws, event) => {
+      if (status.value === "CONNECTING" && delay.value < MAX_WEBSOCKET_RETRY_DELAY)
+        // Ignore errors triggered by autoReconnect unless max delay has been reached
+        return;
+
+      console.error("WebSocket error:", event, ws);
+    },
     autoReconnect: {
       // Exponential backoff: 1s, 2s, 4s, 8s, 16s, ..., (MAX_RETRY_DELAY / 1000)s
       delay: (retries) => {
-        const delay = Math.min(1000 * 2 ** (retries - 1), MAX_WEBSOCKET_RETRY_DELAY);
-        console.info(`Attempting retry No. ${retries} in ${Math.round(delay / 100) / 10}s`);
-        return delay;
+        delay.value = Math.min(1000 * 2 ** (retries - 1), MAX_WEBSOCKET_RETRY_DELAY);
+        console.info(`Attempting retry No. ${retries} in ${Math.round(delay.value / 100) / 10}s`);
+        return delay.value;
       },
     },
   });
