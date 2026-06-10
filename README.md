@@ -214,5 +214,12 @@ Based on an idea by Eric Londaits.
 
 ## License
 
-Copyright (c) 2026 IMAGINARY gGmbH, licensed under the MIT license (see
+### Code
+
+Copyright (c) 2026 IMAGINARY gGmbH, licensed under the [MIT license](LICENSES/MIT.txt) (see also
 [`LICENSE`](LICENSE)).
+
+### Media assets
+
+ - `public/config/assets`: Copyright (c) 2026 Maxim Usik, Musik Art Oü, licensed under the [CC BY-NC-ND 4.0 license](LICENSES/CC-BY-NC-ND-4.0.txt). 
+ - `src/assets/*.{svg,lottie}`: Copyright (c) 2026 Aenias Fritsch, lisenced under the [CC0 1.0 license](LICENSES/CC0-1.0.txt).
